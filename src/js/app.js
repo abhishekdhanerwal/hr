@@ -1,8 +1,9 @@
-/** 
+/**
   * declare 'packet' module with dependencies
 */
 'use strict';
 angular.module("packet", [
+  'app.core',
 	'ngAnimate',
 	'ngCookies',
 	'ngStorage',

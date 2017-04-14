@@ -1,0 +1,57 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
+  <h4 class="mainTitle no-margin">Lodge Complaint</h4>
+
+  <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+
+<wave-spinner ng-show="vm.progress" ></wave-spinner>
+
+<div ng-show="!vm.progress" class="container-fluid container-fullw">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body">
+
+          <fieldset>
+            <legend>
+              Lodge Complaint
+            </legend>
+            <ng-form name="vm.Form" role="Form" id="Form" novalidate>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.complaintType.$dirty && vm.Form.complaintType.$invalid, 'has-success':vm.Form.complaintType.$valid}">
+                    <label class="control-label"> Complaint Type <span class="symbol required"></span> </label>
+                    <select class="form-control" name="complaintType" ng-model="vm.complaint.type"
+                            ng-options="complaint for complaint in complaintList" required>
+                    </select>
+                    <span class="error text-small block"
+                          ng-if="vm.Form.complaintType.$dirty && vm.Form.complaintType.$error.required">Complaint Type is required.</span>
+                  </div>
+
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.complaintText.$dirty && vm.Form.complaintText.$invalid, 'has-success':vm.Form.complaintText.$valid}">
+                    <label class="control-label">Complaint Description<span class="symbol required"></span> </label>
+                    <input type="complaintText" class="form-control" name="complaintText"
+                           ng-model="vm.complaint.text" required>
+                    <span class="error text-small block" ng-if="vm.Form.complaintText.$dirty && vm.Form.complaintText.$error.required">Email is required.</span>
+                    <span class="error text-small block" ng-if="vm.Form.complaintText.$error.pattern">Please Enter a valid email address</span>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </ng-form>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+

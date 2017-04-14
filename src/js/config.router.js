@@ -25,22 +25,32 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     // APPLICATION ROUTES
     // -----------------------------------
     // For any unmatched url, redirect to /app/dashboard
-    $urlRouterProvider.otherwise("/app/dashboard");
+    $urlRouterProvider.otherwise("/app/complaint");
     //
-    // Set up the states
+    // Set up the state
     $stateProvider.state('app', {
         url: "/app",
-        templateUrl: "views/app.html",
+        templateUrl: "app/app.html",
         resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
         abstract: true
     }).state('app.dashboard', {
-        url: "/dashboard",
-        templateUrl: "views/dashboard.html",
-        resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
-        title: 'Dashboard',
-        ncyBreadcrumb: {
-            label: 'Dashboard'
-        }
+      url: "/complaint",
+      templateUrl: "app/complaint/manageComplaint.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Complaint',
+      ncyBreadcrumb: {
+        label: 'Complaint'
+      }
+    }).state('app.addComplaint', {
+      url: "/add",
+      templateUrl: "app/complaint/addComplaint.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      // controller: 'UserList',
+      // controllerAs: 'vm',
+      title: 'Lodge Complaint',
+      ncyBreadcrumb: {
+        label: 'Lodge Complaint'
+      }
     }).state('app.pagelayouts', {
         url: '/ui',
         template: '<div ui-view class="fade-in-up"></div>',
