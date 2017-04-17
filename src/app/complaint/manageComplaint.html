@@ -1,32 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--</body>-->
-<!--</html>-->
-
-<!-- <div id="body_panel" > -->
-<!--<div class="container">-->
-  <!--<div class="row">-->
-    <!--<div class="col-md-12">-->
-      <!--<div class="maincontainer" ng-init="getComplaintDetails()">-->
-        <!--<div class="heading-bg">Manage Complaint Details <span class="right-link"><a href="/complaint/add/">Add Complaint</a></span></div>-->
-        <!--<div class="col-md-12 margin-top-ten margin-bottom-ten">-->
-          <!--<div class="table-responsive ">-->
-            <!--<div ui-grid="gridOptions" external-scopes="$scope" ui-grid-auto-resize ui-grid-cellNav ui-grid-pinning ui-grid-pagination ui-grid-resize-columns ui-grid-selection ui-grid-move-columns ui-grid-exporter></div>-->
-          <!--</div>&lt;!&ndash;table-responsive&ndash;&gt;-->
-        <!--</div>&lt;!&ndash;col-md-12&ndash;&gt;-->
-        <!--<div class="clr"></div>-->
-      <!--</div>&lt;!&ndash;maincontainer&ndash;&gt;-->
-    <!--</div>&lt;!&ndash;Manage Complaint Details&ndash;&gt;-->
-  <!--</div>-->
-<!--</div>-->
-
-
 
 <div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
   <h4 class="mainTitle no-margin">Manage Complaint</h4>
@@ -57,7 +28,7 @@
           </div>
           <div class="table-responsive">
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
-              <tr>
+              <tr ng-repeat="row in $data">
                 <td data-title="'Active'"><i ng-if="row.active == true"
                                              class="fa fa-lg fa-check"></i><i
                   ng-if="row.active == false" class="fa fa-lg fa-ban"></i></td>
@@ -65,17 +36,19 @@
                 <td data-title="'Consumer Name'" sortable="'consumername'" filter="{'consumername': 'text'}">
                   Consumer Name
                 </td>
-                <td data-title="'Complaint Type'">Complaint Type
+                <td data-title="'Complaint Type'">{{row.complaintType}}
                 </td>
-                <td data-title="'Complaint Text'">
+                <td data-title="'Complaint Text'">{{row.complaintText}}
                   Complaint Text
                 </td>
 
-                <td data-title="'Complaint Date'">Complaint Date</td>
+                <td data-title="'Complaint Date'">{{row.createdOn}}</td>
 
-                <td data-title="'Resolve Date'">Resolve Date</td>
+                <td data-title="'Resolve Date'">{{row.resolvedOn}}</td>
 
-                <td data-title="'Status'">Status</td>
+                <td data-title="'Assigned To'">{{row.assignedTo}}</td>
+
+                <td data-title="'Status'">{{row.status}}</td>
 
 
                 <td class="center">

@@ -33,11 +33,13 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "app/app.html",
         resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
         abstract: true
-    }).state('app.dashboard', {
+    }).state('app.complaint', {
       url: "/complaint",
       templateUrl: "app/complaint/manageComplaint.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Complaint',
+      controller: 'ComplaintListCtrl',
+      controllerAs: 'vm',
       ncyBreadcrumb: {
         label: 'Complaint'
       }
@@ -45,8 +47,8 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
       url: "/add",
       templateUrl: "app/complaint/addComplaint.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
-      // controller: 'UserList',
-      // controllerAs: 'vm',
+      controller: 'ComplaintNewCtrl',
+      controllerAs: 'vm',
       title: 'Lodge Complaint',
       ncyBreadcrumb: {
         label: 'Lodge Complaint'

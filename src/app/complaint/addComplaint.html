@@ -26,7 +26,7 @@
                        ng-class="{'has-error':vm.Form.complaintType.$dirty && vm.Form.complaintType.$invalid, 'has-success':vm.Form.complaintType.$valid}">
                     <label class="control-label"> Complaint Type <span class="symbol required"></span> </label>
                     <select class="form-control" name="complaintType" ng-model="vm.complaint.type"
-                            ng-options="complaint for complaint in complaintList" required>
+                            ng-options="complaint for complaint in vm.complaintType" required>
                     </select>
                     <span class="error text-small block"
                           ng-if="vm.Form.complaintType.$dirty && vm.Form.complaintType.$error.required">Complaint Type is required.</span>
@@ -34,16 +34,29 @@
 
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.complaintText.$dirty && vm.Form.complaintText.$invalid, 'has-success':vm.Form.complaintText.$valid}">
-                    <label class="control-label">Complaint Description<span class="symbol required"></span> </label>
-                    <input type="complaintText" class="form-control" name="complaintText"
-                           ng-model="vm.complaint.text" required>
+                    <label class="control-label">Description<span class="symbol required"></span> </label>
+                    <textarea class="form-control custom-control" rows="3" style="resize:none" ng-model="vm.complaint.text" required></textarea>
                     <span class="error text-small block" ng-if="vm.Form.complaintText.$dirty && vm.Form.complaintText.$error.required">Email is required.</span>
                     <span class="error text-small block" ng-if="vm.Form.complaintText.$error.pattern">Please Enter a valid email address</span>
                   </div>
 
                 </div>
-
               </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div>
+                      <button type="submit" class="btn btn-wide btn-success"
+                              ng-click="vm.submit()">
+                        Save
+                      </button>
+                      <button type="reset" class="btn btn-wide btn-warning"
+                              ng-click="vm.reset()">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
 
             </ng-form>
