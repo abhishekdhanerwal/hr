@@ -12,6 +12,7 @@
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
+    vm.clearFlat = clearFlat;
 
     activate();
 
@@ -21,32 +22,44 @@
         console.log(vm.complaintType)
       })
 
+      vm.list = ['1', '2']
+      vm.list.map(function(item)
+      {
+        return item;
+        console.log(item)
+      });
+      vm.flatList = vm.list;
+      console.log(vm.flatList)
+
     };
 
-    function reset() {
+    function clearFlat(){
+      vm.complaint = {};
+    }
 
+    function reset() {
       vm.complaint.type = '';
       vm.complaint.text = '';
+      vm.complaint.flat = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
 
     function submit() {
-      console.log('l')
       var firstError = null;
 
       if (vm.Form.complaintType.$invalid || vm.Form.complaintText.$invalid) {
 
-        validationHelperFactory.manageValidationFailed(vm.form);
+        validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;
 
       } else {
 
-        complaintFactory.newComplaint(vm.data).then(function (response) {
-          console.log(vm.data);
+        complaintFactory.newComplaint(vm.complaint).then(function (response) {
+          console.log(response.data);
 
-          if (response.status == 201) {
+          if (response.status == 200) {
             // logger.info('Complaint registered', 'default');
             $state.go('app.complaint');
           }

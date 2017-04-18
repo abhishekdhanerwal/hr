@@ -25,7 +25,7 @@
     };
 
     service.getComplaintDetails = function () {
-      var promise = $http.get(__env.dataServerUrl + '/complaint/users')
+      var promise = $http.get(__env.dataServerUrl + '/complaint')
         .then(
           function (response) {
             return response;

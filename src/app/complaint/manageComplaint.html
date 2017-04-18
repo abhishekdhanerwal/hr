@@ -28,23 +28,20 @@
           </div>
           <div class="table-responsive">
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
-              <tr ng-repeat="row in $data">
+              <tr ng-repeat="row in vm.master">
                 <td data-title="'Active'"><i ng-if="row.active == true"
                                              class="fa fa-lg fa-check"></i><i
                   ng-if="row.active == false" class="fa fa-lg fa-ban"></i></td>
 
-                <td data-title="'Consumer Name'" sortable="'consumername'" filter="{'consumername': 'text'}">
-                  Consumer Name
-                </td>
-                <td data-title="'Complaint Type'">{{row.complaintType}}
-                </td>
-                <td data-title="'Complaint Text'">{{row.complaintText}}
-                  Complaint Text
-                </td>
+                <td data-title="'Consumer Name'" sortable="'consumername'" filter="{'consumername': 'text'}"></td>
 
-                <td data-title="'Complaint Date'">{{row.createdOn}}</td>
+                <td data-title="'Complaint Type'">{{row.complaintType}}</td>
 
-                <td data-title="'Resolve Date'">{{row.resolvedOn}}</td>
+                <td data-title="'Complaint Text'">{{row.description}}</td>
+
+                <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+
+                <td data-title="'Resolve Date'">{{row.resolvedOn | date:'dd-MM-yyyy'}}</td>
 
                 <td data-title="'Assigned To'">{{row.assignedTo}}</td>
 

@@ -6,15 +6,16 @@
     .module('app.complaint')
     .controller('ComplaintListCtrl', ComplaintListCtrl);
 
-  ComplaintListCtrl.$inject = [ 'NgTableParams', '$filter', 'complaintFactory', 'validationHelperFactory'];
+  ComplaintListCtrl.$inject = [ 'NgTableParams', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams'];
   /* @ngInject */
-  function ComplaintListCtrl( NgTableParams, $filter, complaintFactory, validationHelperFactory) {
+  function ComplaintListCtrl( NgTableParams, $filter, complaintFactory, validationHelperFactory, $stateParams) {
     var vm = this;
 
     activate();
 
     function activate() {
       complaintFactory.getComplaintDetails().then(function (response) {
+        console.log($stateParams.id)
         if (response.status == 200) {
           vm.master = response.data;
           console.log(vm.master)
