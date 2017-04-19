@@ -1,14 +1,12 @@
 <!-- start: BREADCRUMB -->
 <div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
-  <h4 class="mainTitle no-margin">Lodge Complaint</h4>
+  <h4 class="mainTitle no-margin">Edit Complaint</h4>
 
   <div ncy-breadcrumb class="pull-right"></div>
 </div>
 <!-- end: BREADCRUMB -->
 
-<wave-spinner ng-show="vm.progress" ></wave-spinner>
-
-<div ng-show="!vm.progress" class="container-fluid container-fullw">
+<div class="container-fluid container-fullw">
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-white">
@@ -16,7 +14,7 @@
 
           <fieldset>
             <legend>
-              Lodge Complaint
+              Edit Complaint
             </legend>
             <ng-form name="vm.Form" role="Form" id="Form" novalidate>
 
@@ -63,22 +61,22 @@
                   </div>
 
                 </div>
-              </div>
+              </div><br>
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <div>
-                      <button type="submit" class="btn btn-wide btn-success"
-                              ng-click="vm.submit()">
-                        Save
-                      </button>
-                      <button type="reset" class="btn btn-wide btn-warning"
-                              ng-click="vm.reset()">
-                        Reset
-                      </button>
-                    </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div>
+                    <button type="submit" class="btn btn-wide btn-success"
+                            ng-click="vm.submit()">
+                      Save
+                    </button>
+                    <button type="reset" class="btn btn-wide btn-warning"
+                            ng-click="vm.reset()">
+                      Reset
+                    </button>
                   </div>
                 </div>
+              </div>
 
 
             </ng-form>

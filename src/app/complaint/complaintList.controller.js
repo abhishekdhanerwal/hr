@@ -16,7 +16,6 @@
 
     function activate() {
       complaintFactory.getComplaintDetails().then(function (response) {
-        console.log($stateParams.id)
         if (response.status == 200) {
           vm.master = response.data;
           console.log(vm.master)

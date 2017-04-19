@@ -53,6 +53,16 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
       ncyBreadcrumb: {
         label: 'Lodge Complaint'
       }
+    }).state('app.editComplaint', {
+      url: "/edit/:id",
+      templateUrl: "app/complaint/editComplaint.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      controller: 'ComplaintEditCtrl',
+      controllerAs: 'vm',
+      title: 'Edit Complaint',
+      ncyBreadcrumb: {
+        label: 'Edit Complaint'
+      }
     }).state('app.pagelayouts', {
         url: '/ui',
         template: '<div ui-view class="fade-in-up"></div>',

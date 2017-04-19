@@ -21,19 +21,14 @@
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
                 Complaint</a>
-              <a ng-click="vm.tableParams.filter({})"
-                 class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear
-                Filters</a>
+              <!--<a ng-click="vm.tableParams.filter({})"-->
+                 <!--class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear-->
+                <!--Filters</a>-->
             </div>
           </div>
           <div class="table-responsive">
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in vm.master">
-                <td data-title="'Active'"><i ng-if="row.active == true"
-                                             class="fa fa-lg fa-check"></i><i
-                  ng-if="row.active == false" class="fa fa-lg fa-ban"></i></td>
-
-                <td data-title="'Consumer Name'" sortable="'consumername'" filter="{'consumername': 'text'}"></td>
 
                 <td data-title="'Complaint Type'">{{row.complaintType}}</td>
 
@@ -47,20 +42,11 @@
 
                 <td data-title="'Status'">{{row.status}}</td>
 
-
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a ui-sref="app.user.edit({id : row.id})" class="btn btn-transparent btn-xs"
+                    <a ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
-                       uib-tooltip="Edit" ng-if="vm.isUserCreationAllowed" ><i class="fa fa-pencil"></i></a>
-                    <a href="#" ng-click="vm.toggleStatus(row.id)"
-                       ng-if="row.active == true && row.email != vm.disableActive && vm.isActiveAllowed == true"
-                       class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
-                       uib-tooltip="Deactivate"><i class="fa fa-ban"></i></a>
-                    <a href="#" ng-click="vm.toggleStatus(row.id)"
-                       ng-if="row.active == false && row.email != vm.disableActive && vm.isActiveAllowed == true"
-                       class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
-                       uib-tooltip="Activate"><i class="fa fa-check"></i></a>
+                       uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                   </div>
                   <div class="visible-xs visible-sm hidden-md hidden-lg">
                     <div class="btn-group" uib-dropdown>
@@ -71,15 +57,6 @@
                       <ul class="dropdown-menu pull-right dropdown-light" role="menu">
                         <li>
                           <a href="#" ui-sref="app.user.edit({id : row.id})"> Edit </a>
-                        </li>
-
-                        <li>
-                          <a ng-if="row.active == true && row.email != vm.disableActive" href="#"
-                             ng-click="vm.toggleStatus(row.id)">
-                            Deactivate </a>
-                          <a ng-if="row.active == false && row.email != vm.disableActive" href="#"
-                             ng-click="vm.toggleStatus(row.id)">
-                            Activate </a>
                         </li>
                       </ul>
                     </div>
