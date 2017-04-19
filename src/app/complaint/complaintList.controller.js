@@ -6,10 +6,11 @@
     .module('app.complaint')
     .controller('ComplaintListCtrl', ComplaintListCtrl);
 
-  ComplaintListCtrl.$inject = [ 'NgTableParams', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams'];
+  ComplaintListCtrl.$inject = [ 'NgTableParams', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster'];
   /* @ngInject */
-  function ComplaintListCtrl( NgTableParams, $filter, complaintFactory, validationHelperFactory, $stateParams) {
+  function ComplaintListCtrl( NgTableParams, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
+
 
     activate();
 
@@ -22,17 +23,17 @@
           complaintData();
         }
         else if (response.status == -1) {
-          // logger.error('Network Error', 'error');
+          toaster.error('Network Error', 'error');
           vm.errorMessage = "Network Error";
           console.error(response);
         }
         else if (response.status == 400) {
           console.error(response);
           vm.errorMessage = vm.master[0].message;
-          // logger.error(vm.master[0].message, 'error');
+          toaster.error(vm.master[0].message, 'error');
         }
         else {
-          // logger.error('Some problem', 'error');
+          toaster.error('Some problem', 'error');
           console.error(response);
         }
       })
