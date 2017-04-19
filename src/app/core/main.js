@@ -12,9 +12,9 @@ function ($rootScope, $state, $stateParams) {
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'Packet', // name of your project
-        author: 'ClipTheme', // author's name or company name
-        description: 'Angular Bootstrap Admin Template', // brief description
+        name: 'Complaint & Notice', // name of your project
+        author: 'Datiot', // author's name or company name
+        description: 'Complaint & Notice', // brief description
         version: '1.0', // current version
         year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
         isMobile: (function () {// true if the browser is a mobile device
@@ -162,5 +162,5 @@ app.run(["$templateCache", function ($templateCache) {
 	    "    </tr>\n" +
 	    "  </tbody>\n" +
 	    "</table>\n" +
-	    "");    
+	    "");
 }]);
