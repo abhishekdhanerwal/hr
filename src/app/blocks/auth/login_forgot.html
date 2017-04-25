@@ -1,0 +1,42 @@
+<!-- start: FORGOT -->
+<div class="row">
+  <div
+    class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5">
+
+    <p class="text-center text-dark text-bold text-extra-large margin-top-15">
+      Forgot Password
+    </p>
+    <p class="text-center">
+      Enter your email address and we will send you a link to reset your password.
+    </p>
+    <!-- start: FORGOT BOX -->
+    <div class="box-forgot">
+      <ng-form name="vm.Form" role="Form" id="Form" novalidate>
+        <div class="form-group" ng-class="{'has-error':vm.Form.email.$dirty && vm.Form.email.$invalid,
+                 'has-success':vm.Form.email.$valid}">
+          <input type="email" placeholder="Email" class="form-control" name="email" ng-model="vm.email" required>
+          <span class="error text-small block" ng-if="vm.Form.email.$dirty && vm.Form.email.$error.required">
+                        Email is required</span>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success btn-block" ng-click="vm.submit()">
+              Submit
+            </button>
+          </div>
+      </ng-form>
+    </div>
+
+
+    <div class="text-center margin-top-15">
+      <strong>Oh!!</strong> I remember my password <br>
+      <a ui-sref="auth.signin">Go Back</a>
+    </div>
+    <!-- start: COPYRIGHT -->
+    <div class="copyright">
+      {{app.year}} &copy; {{ app.name }} by {{ app.author }}.
+    </div>
+    <!-- end: COPYRIGHT -->
+  </div>
+  <!-- end: FORGOT BOX -->
+</div>
+</div>
+<!-- end: FORGOT -->

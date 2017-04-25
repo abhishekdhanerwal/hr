@@ -25,7 +25,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     // APPLICATION ROUTES
     // -----------------------------------
     // For any unmatched url, redirect to /app/dashboard
-    $urlRouterProvider.otherwise("/app/complaint");
+    $urlRouterProvider.otherwise("/auth/signin");
     //
     // Set up the state
     $stateProvider.state('app', {
@@ -63,37 +63,29 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
       ncyBreadcrumb: {
         label: 'Edit Complaint'
       }
-    }).state('app.pagelayouts', {
-        url: '/ui',
-        template: '<div ui-view class="fade-in-up"></div>',
-        title: 'Page Layouts',
-        ncyBreadcrumb: {
-            label: 'Page Layouts'
-        }
-    }).state('app.pagelayouts.fixedheader', {
-        url: "/fixed-header",
-        templateUrl: "views/dashboard-2.html",
-        resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
-        title: 'Fixed Header',
-        ncyBreadcrumb: {
-            label: 'Fixed Header'
-        },
-        controller: function ($scope) {
-            $scope.setLayout();
-            $scope.app.layout.isNavbarFixed = true;
-        }
-    }).state('app.pagelayouts.fixedsidebar', {
-        url: "/fixed-sidebar",
-        templateUrl: "views/dashboard-3.html",
-        resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
-        title: 'Fixed Sidebar',
-        ncyBreadcrumb: {
-            label: 'Fixed Sidebar'
-        },
-        controller: function ($scope) {
-            $scope.setLayout();
-            $scope.app.layout.isSidebarFixed = true;
-        }
+    }).state('app.userManagement', {
+      url: '/ui',
+      template: '<div ui-view class="fade-in-up"></div>',
+    }).state('app.createUser', {
+      url: "/createUser",
+      templateUrl: "app/user-management/create_user.html",
+      controller: 'CreateUserController',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Create User',
+      ncyBreadcrumb: {
+        label: 'Create User'
+      }
+    }).state('app.allUsers', {
+      url: "/allUsers",
+      templateUrl: "app/user-management/list.html",
+      controller: 'UserList',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'All Users',
+      ncyBreadcrumb: {
+        label: 'All Users'
+      }
     }).state('app.pagelayouts.fixedheadersidebar', {
         url: "/fixed-header-and-sidebar",
         templateUrl: "views/dashboard-4.html",
@@ -390,14 +382,24 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'Pages'
         }
-    }).state('app.pages.user', {
-        url: '/user',
-        templateUrl: "views/pages_user_profile.html",
+    }).state('app.userProfile', {
+        url: '/user-profile',
+        templateUrl: "app/user-menu/user-profile.html",
+        controller: 'UserProfileCtrl',
         title: 'User Profile',
         ncyBreadcrumb: {
             label: 'User Profile'
         },
         resolve: loadSequence('flow', 'userCtrl')
+    }).state('app.changepassword', {
+      url: '/changepassword',
+      templateUrl: "app/user-menu/changePassword.html",
+      controller: 'ChangePasswordController',
+      title: 'Change Password',
+      ncyBreadcrumb: {
+        label: 'Change Password'
+      },
+      resolve: loadSequence('flow', 'userCtrl')
     }).state('app.pages.invoice', {
         url: '/invoice',
         templateUrl: "views/pages_invoice.html",
@@ -485,16 +487,18 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
 
 	// Login routes
 
-	.state('login', {
-	    url: '/login',
+	.state('auth', {
+	    url: '/auth',
 	    template: '<div ui-view class="fade-in-right-big smooth"></div>',
 	    abstract: true
-	}).state('login.signin', {
+	}).state('auth.signin', {
 	    url: '/signin',
-	    templateUrl: "views/login_login.html"
-	}).state('login.forgot', {
+	    templateUrl: 'app/blocks/auth/login.html',
+      controller: 'SigninController',
+      controllerAs: 'vm'
+	}).state('auth.forgot', {
 	    url: '/forgot',
-	    templateUrl: "views/login_forgot.html"
+	    templateUrl: "app/blocks/auth/login_forgot.html"
 	}).state('login.registration', {
 	    url: '/registration',
 	    templateUrl: "views/login_registration.html"

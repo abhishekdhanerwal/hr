@@ -79,22 +79,22 @@
 
           if (response.status == 200) {
             console.log('ab')
-            // logger.info('Complaint registered', 'default');
+            toaster.info('Complaint updated');
             $state.go('app.complaint');
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';
-            // logger.error('Network Error', 'error');
+            toaster.error('Network Error', 'error');
             console.error(response);
           }
           else if (response.status == 400) {
             vm.errorMessage = response.data[0].message;
-            // logger.error(response.data[0].message, 'error');
+            toaster.error(response.data[0].message, 'error');
             console.error(response);
           }
           else {
             vm.errorMessage = 'Some problem';
-            // logger.error('Some problem', 'error');
+            toaster.error('Some problem', 'error');
             console.error(response);
           }
           vm.resetDisabled = false;
