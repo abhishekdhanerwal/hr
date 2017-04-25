@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('app.complaint', [
-        'ngTable'
+        'ngTable',
+      'angular-spinkit'
     ]);
 })();

@@ -38,7 +38,6 @@
     "AngularJS-Toaster": "~0.4.10",
     "angular-bootstrap-nav-tree": "*",
     "angular-ladda": "~0.3.1",
-    "ng-table": "^4.0.0",
     "angular-ui-utils": "mask-0.2.2",
     "ngImgCrop": "~0.3.2",
     "angular-file-upload": "~1.1.5",
@@ -85,7 +84,9 @@
     "themify-icons": "~0.1.0",
     "bootstrap": "~3.3.2",
     "flag-icon-css": "~0.8.5",
-    "bootstrap-rtl": "~3.3.1"
+    "bootstrap-rtl": "~3.3.1",
+    "angular-spinkit": "^0.3.4",
+    "ng-table": "~1.0.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.7"
