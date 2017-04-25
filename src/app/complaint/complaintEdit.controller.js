@@ -4,11 +4,11 @@
 
   angular
     .module('app.complaint')
-    .controller('ComplaintNewCtrl', ComplaintNewCtrl);
+    .controller('ComplaintEditCtrl', ComplaintEditCtrl);
 
-  ComplaintNewCtrl.$inject = [ 'NgTableParams', '$filter', 'complaintFactory', '$state', 'validationHelperFactory', 'toaster'];
+  ComplaintEditCtrl.$inject = [ 'NgTableParams', '$filter', 'complaintFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
   /* @ngInject */
-  function ComplaintNewCtrl( NgTableParams, $filter, complaintFactory, $state, validationHelperFactory , toaster) {
+  function ComplaintEditCtrl( NgTableParams, $filter, complaintFactory, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -17,10 +17,31 @@
     activate();
 
     function activate() {
+      complaintFactory.findComplaint($stateParams.id).then(function (response) {
+        if (response.status == 200) {
+          vm.master = response.data;
+          vm.complaint = angular.copy(vm.master)
+          console.log(vm.master)
+        }
+        else if (response.status == -1) {
+          toaster.error('Network Error', 'error');
+          vm.errorMessage = "Network Error";
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          console.error(response);
+          vm.errorMessage = vm.master[0].message;
+          toaster.error(vm.master[0].message, 'error');
+        }
+        else {
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
+      });
+
       complaintFactory.loadTypeDetails().then(function (response) {
         vm.complaintType = response.data;
-        console.log(vm.complaintType)
-      })
+      });
 
       vm.list = ['1', '2']
       vm.list.map(function(item)
@@ -29,7 +50,6 @@
         console.log(item)
       });
       vm.flatList = vm.list;
-      console.log(vm.flatList)
 
     };
 
@@ -54,12 +74,12 @@
 
       } else {
 
-        complaintFactory.newComplaint(vm.complaint).then(function (response) {
+        complaintFactory.editComplaint($stateParams.id, vm.complaint).then(function (response) {
           console.log(response.data);
 
           if (response.status == 200) {
             console.log('ab')
-            toaster.info('Complaint registered');
+            toaster.info('Complaint updated');
             $state.go('app.complaint');
           }
           else if (response.status == -1) {

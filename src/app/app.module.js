@@ -2,6 +2,9 @@
     'use strict';
 
     angular.module('app.core', [
-        'app.complaint'
+        'app.complaint',
+        'blocks.auth',
+        'app.userMenu',
+        'app.user'
     ]);
 })();

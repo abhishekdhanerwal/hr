@@ -1,0 +1,90 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
+  <h4 class="mainTitle no-margin">Edit Complaint</h4>
+
+  <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+
+<div class="container-fluid container-fullw">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body">
+
+          <fieldset>
+            <legend>
+              Edit Complaint
+            </legend>
+            <ng-form name="vm.Form" role="Form" id="Form" novalidate>
+
+              <div class="row">
+                <div class="col-md-6">
+
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.complaintType.$dirty && vm.Form.complaintType.$invalid, 'has-success':vm.Form.complaintType.$valid}">
+                    <label class="control-label"> Complaint Type <span class="symbol required"></span> </label>
+                    <select class="form-control" name="complaintType" ng-model="vm.complaint.complaintType"
+                            ng-options="complaint for complaint in vm.complaintType" required>
+                    </select>
+                    <span class="error text-small block"
+                          ng-if="vm.Form.complaintType.$dirty && vm.Form.complaintType.$error.required">Complaint Type is required.</span>
+                  </div>
+
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.complaintText.$dirty && vm.Form.complaintText.$invalid, 'has-success':vm.Form.complaintText.$valid}">
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control custom-control" rows="3" name="complaintText" style="resize:none" ng-model="vm.complaint.description"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label">
+                      Address
+                    </label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <input type="text" ng-model="vm.complaint.address" placeholder="Search Address"
+                               ng-value="vm.complaint.address"
+                               uib-typeahead="item for item in vm.flatList"
+                               typeahead-loading="loadingLocations" typeahead-min-length="1" typeahead-no-results="noResults"
+                               typeahead-editable='true'
+                               class="form-control" required>
+                      </div>
+                      <div class="col-md-6">
+                    <span class="btn btn-danger" ng-click="vm.clearFlat()" ><i
+                      class="fa fa-times"></i> </span>
+                      </div>
+                    </div>
+                    <!--<div ng-show="noResults" class="error">-->
+                    <!--<i class="glyphicon glyphicon-remove"></i> No Results Found-->
+                    <!--</div>-->
+                  </div>
+
+                </div>
+              </div><br>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div>
+                    <button type="submit" class="btn btn-wide btn-success"
+                            ng-click="vm.submit()">
+                      Save
+                    </button>
+                    <button type="reset" class="btn btn-wide btn-warning"
+                            ng-click="vm.reset()">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+
+            </ng-form>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+

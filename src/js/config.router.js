@@ -49,9 +49,19 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       controller: 'ComplaintNewCtrl',
       controllerAs: 'vm',
-      title: 'Lodge Complaint',
+      title: 'New Complaint',
       ncyBreadcrumb: {
-        label: 'Lodge Complaint'
+        label: 'New Complaint'
+      }
+    }).state('app.editComplaint', {
+      url: "/edit",
+      templateUrl: "app/complaint/editComplaint.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      controller: 'ComplaintEditCtrl',
+      controllerAs: 'vm',
+      title: 'Edit Complaint',
+      ncyBreadcrumb: {
+        label: 'Edit Complaint'
       }
     }).state('app.pagelayouts', {
         url: '/ui',
