@@ -11,11 +11,15 @@
   function ComplaintListCtrl( NgTableParams, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
 
-
+    vm.progress = true;
     activate();
 
     function activate() {
       complaintFactory.getComplaintDetails().then(function (response) {
+
+        console.log($stateParams.id)
+        vm.progress = false;
+
         if (response.status == 200) {
           vm.master = response.data;
           console.log(vm.master)
