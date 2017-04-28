@@ -4,8 +4,8 @@
     .module('app.user')
     .controller('UserList', UserList);
 
-  UserList.$inject = ['$filter', '$state', 'NgTableParams', 'logger', 'userFactory', 'role', 'ACCESS_LEVEL', '$localStorage', 'SweetAlert']
-  function UserList($filter, $state, NgTableParams, logger, userFactory, role, ACCESS_LEVEL, $localStorage, SweetAlert) {
+  UserList.$inject = ['$filter', '$state', 'NgTableParams', 'toaster', 'userFactory', '$localStorage', 'SweetAlert']
+  function UserList($filter, $state, NgTableParams, toaster, userFactory, $localStorage, SweetAlert) {
     var self = this;
     self.progress = true;
     self.breadcrumbRoute = breadcrumbRoute;
@@ -24,13 +24,14 @@
 
     function activate() {
 
-      self.disableActive = $localStorage._identity.userDetails.email;
-      self.isUserCreationAllowed = role.isAdminRole();
-      self.isUserEditAllowed = role.isAdminRole();
-      self.isActiveAllowed = role.isAdminRole();
+      // self.disableActive = $localStorage._identity.userDetails.email;
+      // self.isUserCreationAllowed = role.isAdminRole();
+      // self.isUserEditAllowed = role.isAdminRole();
+      // self.isActiveAllowed = role.isAdminRole();
 
-      userFactory.getAll().then(function (response) {
+      userFactory.alluser().then(function (response) {
         self.userList = response.data;
+        console.log(self.userList)
         listView();
       })
     };
@@ -44,7 +45,7 @@
             lastModified: 'desc' // initial sorting
           }, // count per page
           filter: {
-            firstname: '' // initial filter
+            name: '' // initial filter
           }
         }, {
           getData: function (params) {
@@ -79,63 +80,63 @@
         })
     }
 
-    self.toggleStatus = function (id) {
-      userFactory.changeStatus(id).then(function (response) {
-        if (response.status == 200) {
-          logger.info('Status Changed Successfully');
-        }
-        else if (response.status == -1) {
-          logger.error('Network Error');
-        }
-        else if (response.status == 404) {
-          logger.error('User not found');
-        }
-        else {
-          logger.error('Backend error');
-        }
-        $state.reload();
-      });
-    };
-    self.toggleStatus = function (id) {
-      SweetAlert.swal({
-        title: "Are you sure?",
-        text: "You want to change the status!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#4CAF50",
-        confirmButtonText: "Yes",
-        cancelButton: "#008CBA",
-        cancelButtonText: "No",
-        closeOnConfirm: true,
-        closeOnCancel: true
-      }, function (isConfirm) {
-        if (isConfirm) {
-          self.progress = true;
-          userFactory.changeStatus(id).then(function (response) {
-            if (response.status == 200) {
-              self.progress = false;
-              $state.reload();
-              logger.info('Status Changed Successfully');
-            }
-            else if (response.status == -1) {
-              self.progress = false;
-              logger.error('Network Error');
-            }
-            else if (response.status == 404) {
-              self.progress = false;
-              logger.error('Client not found');
-            }
-            else {
-              self.progress = false;
-              logger.error(response.data.error_description);
-            }
-
-
-          });
-        } else {
-        }
-      });
-
-    };
+    // self.toggleStatus = function (id) {
+    //   userFactory.changeStatus(id).then(function (response) {
+    //     if (response.status == 200) {
+    //       toaster.info('Status Changed Successfully');
+    //     }
+    //     else if (response.status == -1) {
+    //       toaster.error('Network Error');
+    //     }
+    //     else if (response.status == 404) {
+    //       toaster.error('User not found');
+    //     }
+    //     else {
+    //       toaster.error('Backend error');
+    //     }
+    //     $state.reload();
+    //   });
+    // };
+    // self.toggleStatus = function (id) {
+    //   SweetAlert.swal({
+    //     title: "Are you sure?",
+    //     text: "You want to change the status!",
+    //     type: "warning",
+    //     showCancelButton: true,
+    //     confirmButtonColor: "#4CAF50",
+    //     confirmButtonText: "Yes",
+    //     cancelButton: "#008CBA",
+    //     cancelButtonText: "No",
+    //     closeOnConfirm: true,
+    //     closeOnCancel: true
+    //   }, function (isConfirm) {
+    //     if (isConfirm) {
+    //       self.progress = true;
+    //       userFactory.changeStatus(id).then(function (response) {
+    //         if (response.status == 200) {
+    //           self.progress = false;
+    //           $state.reload();
+    //           toaster.info('Status Changed Successfully');
+    //         }
+    //         else if (response.status == -1) {
+    //           self.progress = false;
+    //           toaster.error('Network Error');
+    //         }
+    //         else if (response.status == 404) {
+    //           self.progress = false;
+    //           toaster.error('Client not found');
+    //         }
+    //         else {
+    //           self.progress = false;
+    //           toaster.error(response.data.error_description);
+    //         }
+    //
+    //
+    //       });
+    //     } else {
+    //     }
+    //   });
+    //
+    // };
   }
 })();

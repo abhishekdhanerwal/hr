@@ -3,6 +3,7 @@
 */
 'use strict';
 angular.module("packet", [
+  'blocks.auth',
   'app.core',
 	'ngAnimate',
 	'ngCookies',

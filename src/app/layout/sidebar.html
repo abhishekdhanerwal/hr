@@ -43,9 +43,11 @@
               <a ui-sref="app.changepassword"> Change Password </a>
             </li>
             <li class="divider"></li>
-            <li>
-              <a ng-click="vm.signout()" translate="topbar.user.LOGOUT"> Log Out </a>
+
+            <li ng-controller="SignoutController as vm">
+              <a ng-click="vm.signout()"> Log Out </a>
             </li>
+
           </ul>
         </div>
       </div>

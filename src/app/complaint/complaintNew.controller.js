@@ -12,7 +12,6 @@
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
-    vm.clearFlat = clearFlat;
 
     activate();
 
@@ -21,21 +20,7 @@
         vm.complaintType = response.data;
         console.log(vm.complaintType)
       })
-
-      vm.list = ['1', '2']
-      vm.list.map(function(item)
-      {
-        return item;
-        console.log(item)
-      });
-      vm.flatList = vm.list;
-      console.log(vm.flatList)
-
     };
-
-    function clearFlat(){
-      vm.complaint.address = '';
-    }
 
     function reset() {
       vm.complaint = '';

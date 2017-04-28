@@ -496,7 +496,10 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
 	    templateUrl: 'app/blocks/auth/login.html',
       controller: 'SigninController',
       controllerAs: 'vm'
-	}).state('auth.forgot', {
+	}).state('auth.signout',{
+      controller: 'SignoutController',
+      controllerAs: 'vm'
+  }).state('auth.forgot', {
 	    url: '/forgot',
 	    templateUrl: "app/blocks/auth/login_forgot.html"
 	}).state('login.registration', {

@@ -9,6 +9,8 @@
 
   /* @ngInject */
   function principal($q, $http, $timeout, toaster, $localStorage) {
+    var _identity = undefined;
+    var _authenticated = false;
 
     var service = {
       //authenticate: authenticate,
@@ -102,35 +104,96 @@
       }
     }
 
-    function signin(user, password, rememberMe) {
-      var deferred = $q.defer();
-      $http.post(__env.dataServerUrl + '/createUser', {userName: user, password: password})
-        .then(function (response) {
-            if (response.status == 200) {
-              $localStorage._identity = response.data;
-              $localStorage.loggedInTimeStamp = Date.now();
-              //_authenticated = true;
-              $http.defaults.headers.common['Authorization'] = 'Bearer ' + $localStorage._identity.access_token;
-              deferred.resolve($localStorage._identity);
-            }
-            else {
-              clearLocalStorage();
-              //_authenticated = false;
-              deferred.reject("Invalid Login credentials");
-            }
-          },
-          function (response) {
-            clearLocalStorage();
-            //_authenticated = false;
-            deferred.reject("Error connecting server");
-          });
-      return deferred.promise;
+    // function signin(user, password) {
+    //   var deferred = $q.defer();
+    //   $http.post(__env.dataServerUrl + '/login', {username: user, password: password})
+    //     .then(function (response) {
+    //         if (response.status == 200) {
+    //           $localStorage._identity = response.data;
+    //           $localStorage.loggedInTimeStamp = Date.now();
+    //           //_authenticated = true;
+    //           $http.defaults.headers.common['Authorization'] = 'Basic' + btoa(user + ":" + password);
+    //           deferred.resolve($localStorage._identity);
+    //         }
+    //         else {
+    //           clearLocalStorage();
+    //           //_authenticated = false;
+    //           deferred.reject("Invalid Login credentials");
+    //         }
+    //       },
+    //       function (response) {
+    //         clearLocalStorage();
+    //         //_authenticated = false;
+    //         deferred.reject("Error connecting server");
+    //       });
+    //   return deferred.promise;
+    //
+    // }
 
+    function signin(user, password) {
+      var deferred = $q.defer();
+      var headers = {
+        authorization : "Basic "
+        + btoa(user + ":"
+          + password)
+      }
+      $http.get(__env.dataServerUrl + '/login', {
+        headers : headers
+      }).then(function(response) {
+console.log(response)
+        if(response.status == 200){
+          $localStorage._identity = response.data;
+          console.log($localStorage._identity)
+          $localStorage.loggedInTimeStamp = Date.now();
+          _identity = response.data.principal.user;
+          _authenticated = true;
+          // $rootScope.currentUser =  $localStorage._identity.principal.user;
+          // deferred.resolve(_identity);
+          deferred.resolve($localStorage._identity);
+        }
+        else {
+          clearLocalStorage();
+          //_authenticated = false;
+          deferred.reject("Invalid Login credentials");
+        }
+        },
+        function (response) {
+          _identity = null;
+          _authenticated = false;
+          deferred.reject(_identity);
+          toaster.error("Login Failed");
+        });
+      // return deferred.promise;
+      //   $localStorage._identity = response.data;
+      //   console.log($localStorage._identity)
+      //   $localStorage.loggedInTimeStamp = Date.now();
+      //   _identity = response.data.principal.user;
+      //   _authenticated = true;
+      //   // $rootScope.currentUser =  $localStorage._identity.principal.user;
+      //   deferred.resolve(_identity);
+      // }, function(response) {
+      //   _identity = null;
+      //   _authenticated = false;
+      //   deferred.reject(_identity);
+      //   toaster.error("Login Failed");
+      // });
+      return deferred.promise;
     }
 
+    // function signout() {
+    //   clearLocalStorage();
+    //   //_authenticated = false;
+    // }
+
     function signout() {
-      clearLocalStorage();
-      //_authenticated = false;
+      var deferred = $q.defer();
+      $http.post(__env.dataServerUrl + '/logout', {}).finally(function() {
+        deferred.resolve(_identity);
+        $rootScope.currentUser = null;
+        _identity = null;
+        _authenticated = false;
+      });
+      return deferred.promise;
     }
   }
 

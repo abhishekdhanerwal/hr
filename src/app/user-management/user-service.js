@@ -36,6 +36,18 @@
       return promise;
     };
 
+    service.alluser = function () {
+      var promise = $http.get(__env.dataServerUrl + '/users')
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.update = function (id, user) { // TODO below need to be changed
       var promise = $http.post(__env.userServerUrl + '/editUser/' + id, user)
         .then(

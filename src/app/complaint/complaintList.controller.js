@@ -17,7 +17,6 @@
     function activate() {
       complaintFactory.getComplaintDetails().then(function (response) {
 
-        console.log($stateParams.id)
         vm.progress = false;
 
         if (response.status == 200) {

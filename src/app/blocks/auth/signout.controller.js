@@ -1,6 +1,3 @@
-/**
- * Created by Pooja on 4/20/2017.
- */
 
 (function () {
   'use strict';
@@ -9,16 +6,14 @@
     .module('blocks.auth')
     .controller('SignoutController', SignoutController);
 
-  SignoutController.$inject = ['$state', 'principal', 'logger'];
+  SignoutController.$inject = ['$state', 'principal', 'toaster'];
   /* @ngInject */
-  function SignoutController($state, principal, logger) {
+  function SignoutController($state, principal, toaster) {
     var vm = this;
 
-    activate();
-
-    function activate() {
-      principal.signout();
-      $state.go('auth.signin');
-    }
+       vm.signout = function () {
+        principal.signout();
+        $state.go('auth.signin');
+       }
   }
-})();
+  })();
