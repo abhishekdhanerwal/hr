@@ -22,7 +22,7 @@
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
           console.log(vm.master)
-          console.log(vm.master.assignedTo.name)
+          console.log(vm.complaint.assignedTo.name)
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');
@@ -54,7 +54,7 @@
     function populateAssignToList(){
       complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
         vm.assignTo = response.data;
-        console.log(vm.assignTo.name)
+        console.log(vm.assignTo)
       });
     }
 

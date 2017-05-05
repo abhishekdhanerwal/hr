@@ -94,14 +94,14 @@
           if(response.status == 200){
             vm.master = response.data;
             console.log(response.data)
-            for ( var index =0 ; index < vm.master.length ; index ++){
-
-              var createdOn= vm.master[index].createdOn.split(" ");
-              var temp1 = createdOn[1].split(":");
-              var temp = createdOn[0].split("/");
-              vm.master[index].createdOn = new Date(temp[2], temp[1]-1 , temp[0], temp1[0] , temp1[1]);
-
-            }
+            // for ( var index =0 ; index < vm.master.length ; index ++){
+            //
+            //   var createdOn= vm.master[index].createdOn.split(" ");
+            //   var temp1 = createdOn[1].split(":");
+            //   var temp = createdOn[0].split("/");
+            //   vm.master[index].createdOn = new Date(temp[2], temp[1]-1 , temp[0], temp1[0] , temp1[1]);
+            //
+            // }
             reportList();
           }
           else if (response.status == -1) {

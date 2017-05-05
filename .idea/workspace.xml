@@ -3,23 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="16d9d364-3880-4526-b193-f5912f7b8799" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/app.module.js" afterPath="$PROJECT_DIR$/src/app/app.module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/blocks/auth/login.html" afterPath="$PROJECT_DIR$/src/app/blocks/auth/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/blocks/auth/principal.service.js" afterPath="$PROJECT_DIR$/src/app/blocks/auth/principal.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js" afterPath="$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/addComplaint.html" afterPath="$PROJECT_DIR$/src/app/complaint/addComplaint.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaint.service.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaint.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/editComplaint.html" afterPath="$PROJECT_DIR$/src/app/complaint/editComplaint.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/manageComplaint.html" afterPath="$PROJECT_DIR$/src/app/complaint/manageComplaint.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/core/config.router.js" afterPath="$PROJECT_DIR$/src/app/core/config.router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/core/main.js" afterPath="$PROJECT_DIR$/src/app/core/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/core/validationHelperFactory.js" afterPath="$PROJECT_DIR$/src/app/core/validationHelperFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js" afterPath="$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-menu/user-profile.html" afterPath="$PROJECT_DIR$/src/app/user-menu/user-profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/partials/nav.html" afterPath="$PROJECT_DIR$/src/views/partials/nav.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" afterPath="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/complaintReport.html" afterPath="$PROJECT_DIR$/src/app/reports/complaintReport.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,11 +26,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="complaintEdit.controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="complaintEdit.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="54" />
+            <state relative-caret-position="311">
+              <caret line="56" column="22" lean-forward="true" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="complaintReport.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="102" column="40" lean-forward="false" selection-start-line="102" selection-start-column="40" selection-end-line="102" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="complaintReport.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="111" column="44" lean-forward="true" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -53,8 +59,8 @@
       <file leaf-file-name="editComplaint.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/complaint/editComplaint.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="26" column="107" lean-forward="false" selection-start-line="26" selection-start-column="107" selection-end-line="26" selection-end-column="107" />
+            <state relative-caret-position="404">
+              <caret line="43" column="59" lean-forward="false" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -159,13 +165,13 @@
         <option value="$PROJECT_DIR$/src/app/complaint/complaint.service.js" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/complaintReport.service.js" />
         <option value="$PROJECT_DIR$/src/app/complaint/addComplaint.html" />
         <option value="$PROJECT_DIR$/src/app/complaint/manageComplaint.html" />
-        <option value="$PROJECT_DIR$/src/app/reports/complaintReport.html" />
-        <option value="$PROJECT_DIR$/src/app/complaint/editComplaint.html" />
         <option value="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/complaint/editComplaint.html" />
+        <option value="$PROJECT_DIR$/src/app/reports/complaintReport.html" />
+        <option value="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" />
       </list>
     </option>
   </component>
@@ -510,12 +516,12 @@
       <workItem from="1492406580915" duration="89052000" />
       <workItem from="1493099992322" duration="3834000" />
       <workItem from="1493180890888" duration="50758000" />
-      <workItem from="1493610550268" duration="72524000" />
+      <workItem from="1493610550268" duration="73834000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225820000" />
+    <option name="totallyTimeSpent" value="227130000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,7 +545,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -911,14 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="92" column="61" lean-forward="false" selection-start-line="92" selection-start-column="55" selection-end-line="92" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -983,26 +981,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1019">
-          <caret line="116" column="73" lean-forward="false" selection-start-line="116" selection-start-column="73" selection-end-line="116" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/complaint/editComplaint.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="26" column="107" lean-forward="false" selection-start-line="26" selection-start-column="107" selection-end-line="26" selection-end-column="107" />
+        <state relative-caret-position="404">
+          <caret line="43" column="59" lean-forward="false" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="54" />
+        <state relative-caret-position="311">
+          <caret line="56" column="22" lean-forward="true" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="102" column="40" lean-forward="false" selection-start-line="102" selection-start-column="40" selection-end-line="102" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="111" column="44" lean-forward="true" selection-start-line="111" selection-start-column="44" selection-end-line="111" selection-end-column="44" />
           <folding />
         </state>
       </provider>
