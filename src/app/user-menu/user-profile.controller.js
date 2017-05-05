@@ -21,7 +21,7 @@
       vm.message = false;
     };
 
-    // vm.userID = $localStorage._identity.id;
+    vm.userID = $localStorage._identity.principal.id;
 
     activate(vm.userID);
 
@@ -32,18 +32,8 @@
     }
 
     function activate(id) {
-      userProfileFactory.alluser().then(function (response) {
-        if (response.status == 200) {
-          if (response.data != null) {
-            vm.master = response.data;
-            console.log(vm.master)
-            for (var i = 0; i < vm.master.length; i++) {
-              vm.userId = vm.master[i].id;
-              console.log(vm.userId)
-            }
-          }
-        }
-        userProfileFactory.viewuser(vm.userId).then(function (response) {
+
+        userProfileFactory.viewuser(id).then(function (response) {
           if (response.status == 200) {
             if (response.data != null) {
               vm.master = response.data;
@@ -69,7 +59,6 @@
           // self.resetDisabled = false;
           // self.submitDisabled = false;
         });
-      });
     }
     //vm.user.profilePictureUrl = vm.user.profilePictureUrl + new Date().getTime();
 

@@ -3,8 +3,8 @@
 /**
  * Config for the router
  */
-app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$ocLazyLoadProvider', 'JS_REQUIRES',
-function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $ocLazyLoadProvider, jsRequires) {
+app.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$ocLazyLoadProvider', 'JS_REQUIRES',
+function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $ocLazyLoadProvider, jsRequires) {
 
     app.controller = $controllerProvider.register;
     app.directive = $compileProvider.directive;
@@ -33,6 +33,26 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         templateUrl: "app/app.html",
         resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
         abstract: true
+    }).state('app.notice', {
+      url: "/notice",
+      templateUrl: "app/notices/notice.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Notice',
+      controller: 'NoticeListCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Notice'
+      }
+    }).state('app.addNotice', {
+      url: "/addnotice",
+      templateUrl: "app/notices/addNotice.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Add Notice',
+      controller: 'NoticeListCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Add Notice'
+      }
     }).state('app.complaint', {
       url: "/complaint",
       templateUrl: "app/complaint/manageComplaint.html",
@@ -49,9 +69,9 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       controller: 'ComplaintNewCtrl',
       controllerAs: 'vm',
-      title: 'Lodge Complaint',
+      title: 'New Complaint',
       ncyBreadcrumb: {
-        label: 'Lodge Complaint'
+        label: 'New Complaint'
       }
     }).state('app.editComplaint', {
       url: "/edit/:id",
@@ -62,6 +82,16 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
       title: 'Edit Complaint',
       ncyBreadcrumb: {
         label: 'Edit Complaint'
+      }
+    }).state('app.report', {
+      url: "/report",
+      templateUrl: "app/reports/complaintReport.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Report',
+      controller: 'ComplaintReportController',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Report'
       }
     }).state('app.userManagement', {
       url: '/ui',
@@ -86,6 +116,12 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
       ncyBreadcrumb: {
         label: 'All Users'
       }
+    }).state('app.pagelayouts.sidebar', {
+      url: "/pagelayouts.sidebar",
+      templateUrl: "app/layout/sidebar.html",
+      controller: 'SidebarController',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl')
     }).state('app.pagelayouts.fixedheadersidebar', {
         url: "/fixed-header-and-sidebar",
         templateUrl: "views/dashboard-4.html",
@@ -386,6 +422,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         url: '/user-profile',
         templateUrl: "app/user-menu/user-profile.html",
         controller: 'UserProfileCtrl',
+        controllerAs: 'vm',
         title: 'User Profile',
         ncyBreadcrumb: {
             label: 'User Profile'
@@ -501,7 +538,9 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
       controllerAs: 'vm'
   }).state('auth.forgot', {
 	    url: '/forgot',
-	    templateUrl: "app/blocks/auth/login_forgot.html"
+	    templateUrl: "app/blocks/auth/login_forgot.html",
+      controller: 'ForgotController',
+      controllerAs: 'vm'
 	}).state('login.registration', {
 	    url: '/registration',
 	    templateUrl: "views/login_registration.html"

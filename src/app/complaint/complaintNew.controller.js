@@ -22,6 +22,13 @@
       })
     };
 
+    vm.populateAssignToList = function(){
+      complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
+        vm.assignTo = response.data;
+        console.log(vm.assignTo)
+      });
+    }
+
     function reset() {
       vm.complaint = '';
       vm.Form.$setPristine();
@@ -43,7 +50,6 @@
           console.log(response.data);
 
           if (response.status == 200) {
-            console.log('ab')
             toaster.info('Complaint registered');
             $state.go('app.complaint');
           }

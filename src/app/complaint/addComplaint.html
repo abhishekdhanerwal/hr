@@ -1,6 +1,6 @@
 <!-- start: BREADCRUMB -->
 <div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
-  <h4 class="mainTitle no-margin">Lodge Complaint</h4>
+  <h4 class="mainTitle no-margin">New Complaint</h4>
 
   <div ncy-breadcrumb class="pull-right"></div>
 </div>
@@ -16,7 +16,7 @@
 
           <fieldset>
             <legend>
-              Lodge Complaint
+              New Complaint
             </legend>
             <ng-form name="vm.Form" role="Form" id="Form" novalidate>
 
@@ -26,7 +26,7 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.complaintType.$dirty && vm.Form.complaintType.$invalid, 'has-success':vm.Form.complaintType.$valid}">
                     <label class="control-label"> Complaint Type <span class="symbol required"></span> </label>
-                    <select class="form-control" name="complaintType" ng-model="vm.complaint.complaintType"
+                    <select class="form-control" name="complaintType" ng-model="vm.complaint.complaintType" ng-change="vm.populateAssignToList()"
                             ng-options="complaint for complaint in vm.complaintType" required>
                     </select>
                     <span class="error text-small block"
@@ -37,6 +37,16 @@
                        ng-class="{'has-error':vm.Form.complaintText.$dirty && vm.Form.complaintText.$invalid, 'has-success':vm.Form.complaintText.$valid}">
                     <label class="control-label">Description</label>
                     <textarea class="form-control custom-control" rows="3" name="complaintText" style="resize:none" ng-model="vm.complaint.description"></textarea>
+                  </div>
+
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.assignTo.$dirty && vm.Form.assignTo.$invalid, 'has-success':vm.Form.assignTo.$valid}">
+                    <label class="control-label"> Assign To <span class="symbol required"></span> </label>
+                    <select class="form-control" name="assignTo" ng-model="vm.complaint.assignedTo.name"
+                            ng-options="complaint.name for complaint in vm.assignTo" required>
+                    </select>
+                    <span class="error text-small block"
+                          ng-if="vm.Form.assignTo.$dirty && vm.Form.assignTo.$error.required">Assign To field is required.</span>
                   </div>
 
                   <!--<div class="form-group">-->
@@ -75,6 +85,10 @@
                       <button type="reset" class="btn btn-wide btn-warning"
                               ng-click="vm.reset()">
                         Reset
+                      </button>
+                      <button type="cancel" class="btn btn-wide btn-danger"
+                              ui-sref="app.complaint">
+                        Cancel
                       </button>
                     </div>
                   </div>

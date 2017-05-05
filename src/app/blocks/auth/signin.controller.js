@@ -13,9 +13,9 @@
 
     function signin() {
 
-        principal.signin(vm.user, vm.password).then(function () {
+        principal.signin(vm.user, vm.password).then(function (user) {
 
-          $state.go('app.complaint');
+          $state.go('app.notice');
 
         }, function () {
           if(vm.user=="" && vm.password!="")

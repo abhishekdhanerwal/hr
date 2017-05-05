@@ -104,32 +104,6 @@
       }
     }
 
-    // function signin(user, password) {
-    //   var deferred = $q.defer();
-    //   $http.post(__env.dataServerUrl + '/login', {username: user, password: password})
-    //     .then(function (response) {
-    //         if (response.status == 200) {
-    //           $localStorage._identity = response.data;
-    //           $localStorage.loggedInTimeStamp = Date.now();
-    //           //_authenticated = true;
-    //           $http.defaults.headers.common['Authorization'] = 'Basic' + btoa(user + ":" + password);
-    //           deferred.resolve($localStorage._identity);
-    //         }
-    //         else {
-    //           clearLocalStorage();
-    //           //_authenticated = false;
-    //           deferred.reject("Invalid Login credentials");
-    //         }
-    //       },
-    //       function (response) {
-    //         clearLocalStorage();
-    //         //_authenticated = false;
-    //         deferred.reject("Error connecting server");
-    //       });
-    //   return deferred.promise;
-    //
-    // }
-
     function signin(user, password) {
       var deferred = $q.defer();
       var headers = {
@@ -140,14 +114,13 @@
       $http.get(__env.dataServerUrl + '/login', {
         headers : headers
       }).then(function(response) {
-console.log(response)
         if(response.status == 200){
           $localStorage._identity = response.data;
           console.log($localStorage._identity)
           $localStorage.loggedInTimeStamp = Date.now();
           _identity = response.data.principal.user;
           _authenticated = true;
-          // $rootScope.currentUser =  $localStorage._identity.principal.user;
+          // $rootScope.currentUser =  _identity.principal.user;
           // deferred.resolve(_identity);
           deferred.resolve($localStorage._identity);
         }
@@ -163,27 +136,9 @@ console.log(response)
           deferred.reject(_identity);
           toaster.error("Login Failed");
         });
-      // return deferred.promise;
-      //   $localStorage._identity = response.data;
-      //   console.log($localStorage._identity)
-      //   $localStorage.loggedInTimeStamp = Date.now();
-      //   _identity = response.data.principal.user;
-      //   _authenticated = true;
-      //   // $rootScope.currentUser =  $localStorage._identity.principal.user;
-      //   deferred.resolve(_identity);
-      // }, function(response) {
-      //   _identity = null;
-      //   _authenticated = false;
-      //   deferred.reject(_identity);
-      //   toaster.error("Login Failed");
-      // });
+
       return deferred.promise;
     }
-
-    // function signout() {
-    //   clearLocalStorage();
-    //   //_authenticated = false;
-    // }
 
     function signout() {
       var deferred = $q.defer();

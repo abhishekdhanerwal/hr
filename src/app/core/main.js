@@ -80,6 +80,7 @@ app.config(function ($breadcrumbProvider) {
         template: '<ul class="breadcrumb"><li><a ui-sref="app.dashboard"><i class="fa fa-home margin-right-5 text-large text-dark"></i>Home</a></li><li ng-repeat="step in steps">{{step.ncyBreadcrumbLabel}}</li></ul>'
     });
 });
+
 // ng-storage
 //set a prefix to avoid overwriting any local storage variables
 app.config(['$localStorageProvider',

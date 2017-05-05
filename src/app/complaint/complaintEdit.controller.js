@@ -12,7 +12,7 @@
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
-    vm.clearFlat = clearFlat;
+    vm.populateAssignToList = populateAssignToList;
 
     activate();
 
@@ -22,6 +22,7 @@
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
           console.log(vm.master)
+          console.log(vm.master.assignedTo.name)
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');
@@ -41,20 +42,20 @@
 
       complaintFactory.loadTypeDetails().then(function (response) {
         vm.complaintType = response.data;
+        console.log(vm.complaintType)
       });
 
-      vm.list = ['1', '2']
-      vm.list.map(function(item)
-      {
-        return item;
-        console.log(item)
+      complaintFactory.loadStatusDetails().then(function (response) {
+        vm.status = response.data;
       });
-      vm.flatList = vm.list;
 
     };
 
-    function clearFlat(){
-      vm.complaint.address = '';
+    function populateAssignToList(){
+      complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
+        vm.assignTo = response.data;
+        console.log(vm.assignTo.name)
+      });
     }
 
     function reset() {
@@ -78,7 +79,6 @@
           console.log(response.data);
 
           if (response.status == 200) {
-            console.log('ab')
             toaster.info('Complaint updated');
             $state.go('app.complaint');
           }
@@ -88,8 +88,8 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data[0].message;
-            toaster.error(response.data[0].message, 'error');
+            vm.errorMessage = response.data.message;
+            toaster.error(response.data.message, 'error');
             console.error(response);
           }
           else {

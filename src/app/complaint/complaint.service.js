@@ -24,8 +24,44 @@
       return promise;
     };
 
+    service.loadStatusDetails = function () {
+      var promise = $http.get(__env.dataServerUrl + '/complaint/complaintStatus')
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.getComplaintDetails = function () {
       var promise = $http.get(__env.dataServerUrl + '/complaint')
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.getComplaintByUser = function () {
+      var promise = $http.get(__env.dataServerUrl + '/complaint/findByUser')
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.userByComplaintType = function (data) {
+      var promise = $http.get(__env.dataServerUrl + '/complaint/userByComplaintType?complaintType='+ data)
         .then(
           function (response) {
             return response;
@@ -61,7 +97,7 @@
     };
 
     service.editComplaint = function (id, complaint) {
-      var promise = $http.post(__env.dataServerUrl + '/complaint/' + id, complaint)
+      var promise = $http.put(__env.dataServerUrl + '/complaint/' + id, complaint)
         .then(
           function (response) {
             return response;

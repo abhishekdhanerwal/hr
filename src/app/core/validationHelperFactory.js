@@ -24,7 +24,6 @@
           }
         }
       }
-      console.log("4");
       angular.element('.ng-invalid[name=' + firstError + ']').focus();
       // logger.error('Validation Error', 'error');
     }
