@@ -3,12 +3,12 @@
   'use strict';
 
   angular
-    .module('app.complaint')
-    .controller('ComplaintListCtrl', ComplaintListCtrl);
+    .module('app.admin')
+    .controller('SocietyListCtrl', SocietyListCtrl);
 
-  ComplaintListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
+  SocietyListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
   /* @ngInject */
-  function ComplaintListCtrl( NgTableParams, $localStorage, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function SocietyListCtrl( NgTableParams, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
 
     vm.progress = true;
@@ -16,17 +16,14 @@
 
     function activate() {
 
-      complaintFactory.getComplaintByUser().then(function (response) {
+      societyFactory.societyList().then(function (response) {
 
         vm.progress = false;
-        vm.master = response.data;
-        console.log(vm.master)
-        complaintData();
 
         if (response.status == 200) {
           vm.master = response.data;
           console.log(response.data)
-          complaintData();
+          societyData();
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');
@@ -36,7 +33,7 @@
         else if (response.status == 400) {
           console.error(response);
           vm.errorMessage = vm.master.message;
-          toaster.error(vm.master.message);
+          toaster.error(vm.master.message, 'error');
         }
         else {
           toaster.error('Some problem', 'error');
@@ -45,7 +42,7 @@
       })
     };
 
-    function complaintData() {
+    function societyData() {
       vm.tableParams = new NgTableParams(
         {
           page: 1, // show first page
@@ -60,7 +57,7 @@
           // total: data.length,
 
           getData: function (params) {
-            vm.progress = false;
+              self.progress = false;
             if (vm.master != null) {
 
               if (vm.master[0] = undefined) {

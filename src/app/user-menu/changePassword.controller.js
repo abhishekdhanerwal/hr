@@ -10,17 +10,6 @@
 
   function ChangePasswordController($q, changePasswordFactory, $state, toaster, validationHelperFactory, $location, $stateParams, $localStorage) {
     var vm = this;
-    vm.breadcrumbRoute = breadcrumbRoute;
-
-    function breadcrumbRoute() {
-      if($localStorage._identity.sites.length == 1){
-        var siteId = $localStorage._identity.sites[0].id;
-        $state.go('app.dashboard' ,({id : siteId}));
-      }
-      else{
-        $state.go('app.dashboardAll');
-      }
-    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -28,10 +17,11 @@
     };
 
     vm.passData = {};
-    // var userid = $localStorage._identity.userDetails.id;
+    var userid = $localStorage._identity.principal.id;
 
     vm.submit = function () {
       vm.passData.password = vm.password;
+      console.log(vm.passData.password)
       vm.passData.newPassword = vm.newPassword;
       vm.passData.id = userid;
 

@@ -9,6 +9,11 @@ app.constant('APP_MEDIAQUERY', {
     'tablet': 768,
     'mobile': 480
 });
+app.constant('USER_ROLE', {
+  'ROLE_SUPER_ADMIN': 'Super Admin',
+  'ROLE_CONSUMER': 'Consumer',
+  'ROLE_MANAGEMENT': 'Management'
+});
 app.constant('JS_REQUIRES', {
     //*** Scripts
     scripts: {

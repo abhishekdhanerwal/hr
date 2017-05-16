@@ -35,6 +35,7 @@
 
         userProfileFactory.viewuser(id).then(function (response) {
           if (response.status == 200) {
+            console.log(response.data)
             if (response.data != null) {
               vm.master = response.data;
 
@@ -93,18 +94,12 @@
         return;
       }
       else {
-        userProfileFactory.edit(vm.userID).then(function (response) {
+        userProfileFactory.edit(vm.userID, vm.user).then(function (response) {
+          console.log(vm.user)
           if (response.status == 200) {
             $localStorage._identity.userDetails = response.data;
             console.log(response.data);
-            toaster.info('User Saved', 'default');
-            if($localStorage._identity.sites.length == 1){
-              var siteId = $localStorage._identity.sites[0].id;
-              $state.go('app.dashboard' ,({id : siteId}));
-            }
-            else{
-              $state.go('app.dashboardAll');
-            }
+            toaster.info('User Saved');
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';
@@ -112,8 +107,8 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data.errors[0].message;
-            toaster.error(response.data.errors[0].message, 'error');
+            vm.errorMessage = response.data.message;
+            toaster.error(response.data.message, 'error');
             console.error(response);
           }
           else {

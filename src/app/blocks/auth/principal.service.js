@@ -23,6 +23,7 @@
 
       signin: signin,
       signout: signout
+
     };
     return service;
 
@@ -64,7 +65,6 @@
       }
       return deferred.promise;
     }
-
     function isAuthenticated() {
       if (isIdentityInLocalStorage()) {
         var currentTimeStamp = Date.now();
@@ -147,7 +147,9 @@
         $rootScope.currentUser = null;
         _identity = null;
         _authenticated = false;
+
       });
+      clearLocalStorage();
       return deferred.promise;
     }
   }

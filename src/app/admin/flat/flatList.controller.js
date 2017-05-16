@@ -3,12 +3,12 @@
   'use strict';
 
   angular
-    .module('app.complaint')
-    .controller('ComplaintListCtrl', ComplaintListCtrl);
+    .module('app.admin')
+    .controller('FlatListCtrl', FlatListCtrl);
 
-  ComplaintListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
+  FlatListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
   /* @ngInject */
-  function ComplaintListCtrl( NgTableParams, $localStorage, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function FlatListCtrl( NgTableParams, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
 
     vm.progress = true;
@@ -16,17 +16,28 @@
 
     function activate() {
 
-      complaintFactory.getComplaintByUser().then(function (response) {
+      flatFactory.flatList().then(function (response) {
 
         vm.progress = false;
-        vm.master = response.data;
-        console.log(vm.master)
-        complaintData();
 
         if (response.status == 200) {
           vm.master = response.data;
+          for(var i=0; i<vm.master.length; i++){
+            if(vm.master[i].hasOwner == true) {
+              vm.master[i].hasOwner = 'Yes';
+              if(vm.master[i].hasResident == true){
+                vm.master[i].hasResident = 'Yes';
+              }
+              if(vm.master[i].hasOwner == false){
+                vm.master[i].hasOwner = 'No';
+              }
+              if(vm.master[i].hasResident == false){
+                vm.master[i].hasResident = 'No';
+              }
+            }
+          }
           console.log(response.data)
-          complaintData();
+          FlatData();
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');
@@ -35,8 +46,8 @@
         }
         else if (response.status == 400) {
           console.error(response);
-          vm.errorMessage = vm.master.message;
-          toaster.error(vm.master.message);
+          vm.errorMessage = vm.master[0].message;
+          toaster.error(vm.master[0].message, 'error');
         }
         else {
           toaster.error('Some problem', 'error');
@@ -45,7 +56,7 @@
       })
     };
 
-    function complaintData() {
+    function FlatData() {
       vm.tableParams = new NgTableParams(
         {
           page: 1, // show first page
@@ -60,7 +71,7 @@
           // total: data.length,
 
           getData: function (params) {
-            vm.progress = false;
+
             if (vm.master != null) {
 
               if (vm.master[0] = undefined) {

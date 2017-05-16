@@ -48,7 +48,6 @@
 
                 <div class="col-md-6">
 
-
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.mobile.$dirty && vm.Form.mobile.$invalid, 'has-success':vm.Form.mobile.$valid}">
                     <label class="control-label"> Mobile Number <span class="symbol required"></span> </label>
@@ -59,34 +58,10 @@
                     <span class="error text-small block"
                           ng-if="vm.Form.mobile.$dirty && vm.Form.mobile.$error.required">Mobile is required</span>
                     <span class="error text-small block"
-                          ng-if="vm.Form.mobile.$error.maxlength == vm.Form.mobile.$error.minlength && vm.Form.mobile.$error.pattern">Invalid Charachters</span>
+                          ng-if="vm.Form.mobile.$error.maxlength == vm.Form.mobile.$error.minlength && vm.Form.mobile.$error.pattern">Invalid Characters</span>
                     <span class="error text-small block" ng-if="vm.Form.mobile.$error.minlength">Mobile Number should be ten characters only</span>
                     <span class="error text-small block" ng-if="vm.Form.mobile.$error.maxlength">Mobile Number should be ten characters only</span>
                   </div>
-
-                  <!--<div class="row">-->
-                    <!--<div class="col-md-6">-->
-                      <!--<div class="form-group"-->
-                           <!--ng-class="{'has-error':vm.Form.state.$dirty && vm.Form.state.$invalid, 'has-success':vm.Form.state.$valid}">-->
-                        <!--<label class="control-label"> State <span class="symbol required"></span> </label>-->
-                        <!--<input type="text" placeholder="Enter State" class="form-control" name="state"-->
-                               <!--ng-model="vm.user.state" required>-->
-                        <!--<span class="error text-small block"-->
-                              <!--ng-if="vm.Form.state.$dirty && vm.Form.state.$error.required">State is required.</span>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="col-md-6">-->
-                      <!--<div class="form-group"-->
-                           <!--ng-class="{'has-error':vm.Form.city.$dirty && vm.Form.city.$invalid, 'has-success':vm.Form.city.$valid}">-->
-                        <!--<label class="control-label"> City <span class="symbol required"></span> </label>-->
-                        <!--<input type="text" placeholder="Enter City" class="form-control" name="city"-->
-                               <!--ng-model="vm.user.city" required>-->
-                        <!--<span class="error text-small block"-->
-                              <!--ng-if="vm.Form.city.$dirty && vm.Form.city.$error.required">City is required.</span>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-
 
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.address.$dirty && vm.Form.address.$invalid, 'has-success':vm.Form.address.$valid}">
@@ -99,26 +74,44 @@
                           ng-show="vm.Form.address.$invalid && vm.Form.address.$error.minlength">Address should be six characters or more</span>
                     <span class="error text-small block"
                           ng-show="vm.Form.address.$invalid && vm.Form.address.$error.maxlength">Address should be less than 100 characters</span>
-
                   </div>
-
-                  <!--<div class="form-group"-->
-                       <!--ng-class="{'has-error':vm.Form.gender.$dirty && vm.Form.gender.$invalid, 'has-success':vm.Form.gender.$valid}">-->
-                    <!--<label class="control-label block"> Gender <span class="symbol required"></span> </label>-->
-                    <!--<div class="clip-radio radio-primary">-->
-                      <!--<input type="radio" id="us-female" name="gender" value="Female" ng-model="vm.user.gender"-->
-                             <!--required>-->
-                      <!--<label for="us-female"> Female </label>-->
-                      <!--<input type="radio" id="us-male" name="gender" value="Male" ng-model="vm.user.gender" required>-->
-                      <!--<label for="us-male"> Male </label>-->
-                    <!--</div>-->
-                    <!--<span class="error text-small block"-->
-                          <!--ng-if="vm.Form.gender.$dirty && vm.Form.gender.$error.required">Gender is required.</span>-->
-                  <!--</div>-->
 
                 </div>
 
-              </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">
+                        Role : <span class="symbol required"></span>
+                      </label><br>
+                      <div ng-class="{'has-error':vm.Form.roles.$dirty && vm.Form.roles.$invalid, 'has-success':vm.Form.roles.$valid}">
+                        <select class="form-control" style="width:250px;" name="roles" ng-model="vm.user.role" ng-options="role for role in vm.roles" required>
+                        </select>
+                        <span class="error text-small block"
+                              ng-if="vm.Form.roles.$dirty && vm.Form.roles.$error.required">Role is required.</span>
+                      </div>
+                    </div>
+
+                    <!--<div class="form-group" ng-show="vm.user.role == 'ROLE_CONSUMER'"-->
+                         <!--ng-class="{'has-error':vm.Form.residentType.$dirty && vm.Form.residentType.$invalid, 'has-success':vm.Form.residentType.$valid}">-->
+                      <!--<label class="block">-->
+                        <!--Resident Type <span class="symbol required"></span>-->
+                      <!--</label>-->
+                      <!--<div class="clip-radio radio-primary">-->
+                        <!--<input type="radio" id="user-owner" name="residentType" value="owner" ng-model="vm.user.residentType"-->
+                               <!--required>-->
+                        <!--<label for="user-owner">-->
+                          <!--Owner-->
+                        <!--</label>-->
+                        <!--<input type="radio" id="user-tenant" name="residentType" value="tenant" ng-model="vm.user.residentType"-->
+                               <!--required>-->
+                        <!--<label for="user-tenant">-->
+                          <!--Tenant-->
+                        <!--</label>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  </div>
+
+                </div>
 
               <div class="row">
                 <div class="col-md-12">

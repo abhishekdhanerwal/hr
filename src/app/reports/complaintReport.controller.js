@@ -16,7 +16,7 @@
       vm.errorMessage = false;
       vm.message = false;
     };
-
+console.log($localStorage)
     activate();
 
     function activate() {
@@ -55,22 +55,22 @@
 
     };
 
-    vm.csv = function(){
-      var randomTime = $filter('date')(new Date(), 'dd/MM hh:mm a');
-      $http({method: 'GET', url: __env.notificationServerUrl + '/csv/alarmConditions?siteId='+ vm.siteId +'&fromDate=' + vm.start.toISOString() + '&toDate=' + vm.end.toISOString()}).
-      success(function(data, status, headers, config) {
-        var anchor = angular.element('<a/>');
-        anchor.css({display: 'none'}); // Make sure it's not visible
-        angular.element(document.body).append(anchor); // Attach to document
-        anchor.attr({
-          href: 'data:attachment/csv;charset=utf-8,' + encodeURIComponent(data),
-          target: '_blank',
-          download: 'AlertsReport-'+randomTime+'.csv'
-        })[0].click();
-
-        anchor.remove(); // Clean it up afterwards
-      })
-    };
+    // vm.csv = function(){
+    //   var randomTime = $filter('date')(new Date(), 'dd/MM hh:mm a');
+    //   $http({method: 'GET', url: __env.notificationServerUrl + '/csv/alarmConditions?siteId='+ vm.siteId +'&fromDate=' + vm.start.toISOString() + '&toDate=' + vm.end.toISOString()}).
+    //   success(function(data, status, headers, config) {
+    //     var anchor = angular.element('<a/>');
+    //     anchor.css({display: 'none'}); // Make sure it's not visible
+    //     angular.element(document.body).append(anchor); // Attach to document
+    //     anchor.attr({
+    //       href: 'data:attachment/csv;charset=utf-8,' + encodeURIComponent(data),
+    //       target: '_blank',
+    //       download: 'AlertsReport-'+randomTime+'.csv'
+    //     })[0].click();
+    //
+    //     anchor.remove(); // Clean it up afterwards
+    //   })
+    // };
 
     //function to generate the report
     vm.generate = function () {
@@ -91,6 +91,7 @@
         var firstError = null;
 
         complaintReportFactory.getReports(vm.complaint.status, vm.start , vm.end).then(function (response) {
+          console.log(vm.complaint.status)
           if(response.status == 200){
             vm.master = response.data;
             console.log(response.data)

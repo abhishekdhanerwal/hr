@@ -33,6 +33,66 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         templateUrl: "app/app.html",
         resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
         abstract: true
+    }).state('app.society', {
+      url: "/society",
+      templateUrl: "app/admin/society/societyList.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Society',
+      controller: 'SocietyListCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Society'
+      }
+    }).state('app.addSociety', {
+      url: "/addSociety",
+      templateUrl: "app/admin/society/societyNew.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Society',
+      controller: 'SocietyNewCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Society'
+      }
+    }).state('app.editSociety', {
+      url: "/editSociety/:id",
+      templateUrl: "app/admin/society/societyEdit.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Society',
+      controller: 'SocietyEditCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Society'
+      }
+    }).state('app.flats', {
+      url: "/flats",
+      templateUrl: "app/admin/flat/flatList.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Flats',
+      controller: 'FlatListCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Flats'
+      }
+    }).state('app.newFlat', {
+      url: "/newFlat",
+      templateUrl: "app/admin/flat/flatNew.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'New Flat',
+      controller: 'FlatNewCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'New Flat'
+      }
+    }).state('app.editFlat', {
+      url: "/editFlat/:id",
+      templateUrl: "app/admin/flat/flatEdit.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Edit Flat',
+      controller: 'FlatEditCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Edit Flat'
+      }
     }).state('app.notice', {
       url: "/notice",
       templateUrl: "app/notices/notice.html",
@@ -116,12 +176,6 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'All Users'
       }
-    }).state('app.pagelayouts.sidebar', {
-      url: "/pagelayouts.sidebar",
-      templateUrl: "app/layout/sidebar.html",
-      controller: 'SidebarController',
-      controllerAs: 'vm',
-      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl')
     }).state('app.pagelayouts.fixedheadersidebar', {
         url: "/fixed-header-and-sidebar",
         templateUrl: "views/dashboard-4.html",
@@ -162,6 +216,16 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         ncyBreadcrumb: {
             label: 'Layouts'
         }
+    }).state('app.navigation', {
+      url: "/navigation",
+      templateUrl: "app/views/partials/nav.html",
+      controller: 'NavController',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'All Users',
+      ncyBreadcrumb: {
+        label: 'All Users'
+      }
     }).state('app.ui', {
         url: '/ui',
         template: '<div ui-view class="fade-in-up"></div>',
@@ -432,6 +496,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       url: '/changepassword',
       templateUrl: "app/user-menu/changePassword.html",
       controller: 'ChangePasswordController',
+      controllerAs: 'vm',
       title: 'Change Password',
       ncyBreadcrumb: {
         label: 'Change Password'

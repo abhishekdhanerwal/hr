@@ -1,6 +1,6 @@
 
 <div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
-  <h4 class="mainTitle no-margin">Manage Complaint</h4>
+  <h4 class="mainTitle no-margin">Manage Flats</h4>
 
   <div ncy-breadcrumb class="pull-right"></div>
 </div>
@@ -17,36 +17,42 @@
           <!--<div class="panel-body">-->
           <div class="row margin-bottom-10">
             <div class="col-md-12">
-              <a ui-sref="app.addComplaint"
+              <a ui-sref="app.newFlat"
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
-                Complaint</a>
+                Flat</a>
               <!--<a ng-click="vm.tableParams.filter({})"-->
-                 <!--class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear-->
-                <!--Filters</a>-->
+              <!--class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear-->
+              <!--Filters</a>-->
             </div>
           </div>
           <div class="table-responsive">
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in vm.master">
 
-                <td data-title="'Flat Number'">{{row.registerFor.flatNo}}</td>
+                <td data-title="'Tower'">{{row.tower}}</td>
 
-                <td data-title="'Complaint Type'">{{row.complaintType}}</td>
+                <td data-title="'Flat No.'">{{row.flatNo}}</td>
 
-                <td data-title="'Complaint Text'">{{row.description}}</td>
+                <td data-title="'Floor'">{{row.floor}}</td>
 
-                <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+                <td data-title="'Sold'">{{row.hasOwner}}</td>
 
-                <td data-title="'Resolve Date'">{{row.resolvedOn | date:'dd-MM-yyyy'}}</td>
+                <td data-title="'Resident'">{{row.hasResident}}</td>
 
-                <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
+                <td data-title="'Resident Type'">{{row.residentType}}</td>
 
-                <td data-title="'Status'">{{row.status}}</td>
+                <td data-title="'Owner Name'">{{row.ownerName}}</td>
+
+                <td data-title="'Owner Email'">{{row.ownerEmail}}</td>
+
+                <td data-title="'Owner Number'">{{row.ownerMobile}}</td>
+
+                <td data-title="'Possession Date'">{{row.dateOfPossession | date:'dd-MM-yyyy'}}</td>
 
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
+                    <a ui-sref="app.editFlat({id : row.flatId})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                   </div>
@@ -58,7 +64,7 @@
                       </button>
                       <ul class="dropdown-menu pull-right dropdown-light" role="menu">
                         <li>
-                          <a href="#" ui-sref="app.editComplaint({id : row.complaintId})"> Edit </a>
+                          <a href="#" ui-sref="app.editFlat({id : row.id})"> Edit </a>
                         </li>
                       </ul>
                     </div>

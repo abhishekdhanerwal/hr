@@ -46,6 +46,7 @@
                   </label><br>
                   <div ng-class="{'has-error':vm.Form.status.$dirty && vm.Form.status.$invalid, 'has-success':vm.Form.status.$valid}">
                     <select class="form-control" style="width:250px;" name="status" ng-model="vm.complaint.status" ng-options="complaint for complaint in vm.status" required>
+                      <option value="all">All</option>
                     </select>
                     <span class="error text-small block"
                           ng-if="vm.Form.status.$dirty && vm.Form.status.$error.required">Status is required.</span>
@@ -113,10 +114,10 @@
               <td data-title="'Created Date'" sortable="'createdOn'" filter="{ 'createdOn' : 'text' }">
                 {{row.createdOn | date: 'dd/MM/yyyy hh:mm'}}</td>
               <td data-title="'Complaint Type'">{{row.complaintType}}</td>
-              <td data-title="'Resident Name'">{{row.user.name}}</td>
+              <td data-title="'Resident Name'">{{row.registerFor.user.name}}</td>
               <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
               <td data-title="'Description'">{{row.description}}</td>
-              <td data-title="'Address'">{{row.user.address}}</td>
+              <td data-title="'Address'">{{row.registerBy.address}}</td>
               <td data-title="'Resolved Date'">{{row.resolvedOn | date: 'dd/MM/yyyy hh:mm'}}</td>
 
             </tr>

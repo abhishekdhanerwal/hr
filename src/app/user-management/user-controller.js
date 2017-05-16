@@ -12,6 +12,14 @@
     vm.reset = reset;
     vm.user = {};
 
+    activate();
+
+    function activate() {
+      userFactory.getRole().then(function (response) {
+        vm.roles = response.data;
+      });
+    };
+
     vm.submit = function () {
 
       var firstError = null;
@@ -43,8 +51,7 @@
 
     function reset() {
 
-      vm.user.firstname = null;
-      vm.user.lastname = null;
+      vm.user.name = null;
       vm.user.email = null;
       vm.user.mobile = null;
       vm.user.designation = null;
@@ -54,6 +61,8 @@
       vm.user.address = null;
       vm.user.gender = null;
       vm.user.role = null;
+      vm.user.owner = null;
+      vm.user.tenant = null;
 
 
       vm.Form.$setPristine();

@@ -3,16 +3,15 @@
   'use strict';
 
   angular
-    .module('app.complaint')
-    .controller('ComplaintEditCtrl', ComplaintEditCtrl);
+    .module('app.admin')
+    .controller('SocietyEditCtrl', SocietyEditCtrl);
 
-  ComplaintEditCtrl.$inject = [ 'NgTableParams', '$filter', 'complaintFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  SocietyEditCtrl.$inject = [ 'NgTableParams', '$filter', 'societyFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
   /* @ngInject */
-  function ComplaintEditCtrl( NgTableParams, $filter, complaintFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function SocietyEditCtrl( NgTableParams, $filter, societyFactory, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
-    vm.populateAssignToList = populateAssignToList;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -22,17 +21,10 @@
     activate();
 
     function activate() {
-
-      complaintFactory.flatList().then(function (response) {
-        vm.flat = response.data;
-        console.log(vm.flat)
-      })
-
-      complaintFactory.findComplaint($stateParams.id).then(function (response) {
+      societyFactory.findSociety($stateParams.id).then(function (response) {
+        console.log($stateParams.id)
         if (response.status == 200) {
-          vm.master = response.data;
-          vm.complaint = angular.copy(vm.master)
-          console.log(vm.complaint)
+          vm.society = response.data;
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');
@@ -50,26 +42,10 @@
         }
       });
 
-      complaintFactory.loadTypeDetails().then(function (response) {
-        vm.complaintType = response.data;
-        console.log(vm.complaintType)
-      });
-
-      complaintFactory.loadStatusDetails().then(function (response) {
-        vm.status = response.data;
-      });
-
     };
 
-    function populateAssignToList(){
-      complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
-        vm.assignTo = response.data;
-        console.log(vm.assignTo)
-      });
-    }
-
     function reset() {
-      vm.complaint = '';
+      vm.society = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
@@ -85,12 +61,12 @@
 
       } else {
 
-        complaintFactory.editComplaint($stateParams.id, vm.complaint).then(function (response) {
+        societyFactory.editSociety($stateParams.id, vm.society).then(function (response) {
           console.log(response.data);
 
           if (response.status == 200) {
-            toaster.info('Complaint updated');
-            $state.go('app.complaint');
+            toaster.info('Society updated');
+            $state.go('app.society');
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

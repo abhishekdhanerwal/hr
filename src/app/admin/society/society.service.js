@@ -2,18 +2,16 @@
   'use strict';
 
   angular
-    .module('app.user')
-    .factory('userFactory', userFactory);
+    .module('app.admin')
+    .factory('societyFactory', societyFactory);
 
-  userFactory.$inject = ['$http', '$localStorage'];
+  societyFactory.$inject = ['$http'];
 
-  function userFactory($http, $localStorage) {
+  function societyFactory($http) {
     var service = {};
 
-
-    service.save = function (user) {
-      console.log(user);
-      var promise = $http.post(__env.dataServerUrl + '/createUser', user)
+    service.newSociety = function (data) {
+      var promise = $http.post(__env.dataServerUrl + '/createSociety', data)
         .then(
           function (response) {
             return response;
@@ -24,22 +22,8 @@
       return promise;
     };
 
-    service.getRole = function () {
-      var promise = $http.get(__env.dataServerUrl + '/user/roles')
-        .then(
-          function (response) {
-            console.log(response)
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
-
-
-    service.alluser = function () {
-      var promise = $http.get(__env.dataServerUrl + '/users')
+    service.societyList = function () {
+      var promise = $http.get(__env.dataServerUrl + '/societies')
         .then(
           function (response) {
             return response;
@@ -50,8 +34,8 @@
       return promise;
     };
 
-    service.update = function (id, user) { // TODO below need to be changed
-      var promise = $http.put(__env.userServerUrl + '/editUser/' + id, user)
+    service.findSociety = function (id) {
+      var promise = $http.get(__env.dataServerUrl + '/society/' + id)
         .then(
           function (response) {
             return response;
@@ -61,6 +45,19 @@
           });
       return promise;
     };
+
+    service.editSociety = function (id,society) {
+      var promise = $http.put(__env.dataServerUrl + '/updateSociety/' + id,society)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
 
     return service;
   };

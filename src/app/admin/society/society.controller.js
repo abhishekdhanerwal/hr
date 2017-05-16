@@ -3,12 +3,12 @@
   'use strict';
 
   angular
-    .module('app.complaint')
-    .controller('ComplaintNewCtrl', ComplaintNewCtrl);
+    .module('app.admin')
+    .controller('SocietyNewCtrl', SocietyNewCtrl);
 
-  ComplaintNewCtrl.$inject = [ 'NgTableParams', '$filter', 'role', 'complaintFactory', '$state', 'validationHelperFactory', 'toaster'];
+  SocietyNewCtrl.$inject = [ 'NgTableParams', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster'];
   /* @ngInject */
-  function ComplaintNewCtrl( NgTableParams, $filter, role, complaintFactory, $state, validationHelperFactory , toaster) {
+  function SocietyNewCtrl( NgTableParams, $filter, societyFactory, $state, validationHelperFactory , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -21,30 +21,11 @@
     activate();
 
     function activate() {
-      vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
-      vm.isConsumerRole = role.isConsumerRole();
 
-      complaintFactory.flatList().then(function (response) {
-        vm.flat = response.data;
-        console.log(vm.flat)
-      })
-
-      complaintFactory.loadTypeDetails().then(function (response) {
-        vm.complaintType = response.data;
-        console.log(vm.complaintType)
-      })
     };
 
-    vm.populateAssignToList = function(){
-      complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
-        vm.assignTo = response.data;
-        console.log(vm.assignTo)
-      });
-    }
-
     function reset() {
-      vm.complaint = '';
+      vm.society = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
@@ -60,12 +41,12 @@
 
       } else {
 
-        complaintFactory.newComplaint(vm.complaint).then(function (response) {
+        societyFactory.newSociety(vm.society).then(function (response) {
           console.log(response.data);
 
           if (response.status == 200) {
-            toaster.info('Complaint registered');
-            $state.go('app.complaint');
+            toaster.info('Society Created');
+            $state.go('app.society');
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

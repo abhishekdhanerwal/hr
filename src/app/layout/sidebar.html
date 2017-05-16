@@ -12,14 +12,14 @@
 <!-- end: SEARCH FORM -->
 <!-- start: USER OPTIONS -->
 <div class="nav-user-wrapper">
-    <div class="media">
+    <div class="media"  ng-controller="SidebarController as vm">
         <div class="media-left">
             <a class="profile-card-photo" href="#"><img alt="" src="images/avatar-1.jpg"></a>
         </div>
         <div class="media-body">
-            <span class="media-heading text-white">Peter Clark</span>
+            <span class="media-heading text-white">{{vm.name}}</span>
             <div class="text-small text-white-transparent">
-                UI Designer
+              {{vm.roleName}}
             </div>
         </div>
 

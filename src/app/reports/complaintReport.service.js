@@ -24,7 +24,7 @@
     };
 
     service.loadStatusDetails = function () {
-      var promise = $http.get(__env.dataServerUrl + '/complaint/complaintStatus')
+      var promise = $http.get(__env.dataServerUrl + '/complaintStatus')
         .then(
           function (response) {
             return response;

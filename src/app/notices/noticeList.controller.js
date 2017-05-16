@@ -6,21 +6,20 @@
     .module('app.notice')
     .controller('NoticeListCtrl', NoticeListCtrl);
 
-  NoticeListCtrl.$inject = ['$state', 'validationHelperFactory', 'toaster'];
+  NoticeListCtrl.$inject = ['$state', 'validationHelperFactory', 'role', 'toaster'];
   /* @ngInject */
-  function NoticeListCtrl($state, validationHelperFactory , toaster) {
+  function NoticeListCtrl($state, validationHelperFactory , role, toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
 
-    // activate();
-    //
-    // function activate() {
-    //   complaintFactory.loadTypeDetails().then(function (response) {
-    //     vm.complaintType = response.data;
-    //     console.log(vm.complaintType)
-    //   })
-    // };
+    activate();
+
+    function activate() {
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isConsumerRole = role.isConsumerRole();
+    };
 
     function reset() {
       vm.notice = '';

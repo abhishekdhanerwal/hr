@@ -80,7 +80,14 @@ app.config(function ($breadcrumbProvider) {
         template: '<ul class="breadcrumb"><li><a ui-sref="app.dashboard"><i class="fa fa-home margin-right-5 text-large text-dark"></i>Home</a></li><li ng-repeat="step in steps">{{step.ncyBreadcrumbLabel}}</li></ul>'
     });
 });
+app.config(httpConfigurer);
 
+httpConfigurer.$inject = ['$httpProvider'];
+
+function httpConfigurer($httpProvider) {
+  $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+  $httpProvider.defaults.headers.withCredentails= true;
+}
 // ng-storage
 //set a prefix to avoid overwriting any local storage variables
 app.config(['$localStorageProvider',

@@ -8,30 +8,38 @@
   function UserList($filter, $state, NgTableParams, toaster, userFactory, $localStorage, SweetAlert) {
     var self = this;
     self.progress = true;
-    self.breadcrumbRoute = breadcrumbRoute;
-
-    function breadcrumbRoute() {
-      if($localStorage._identity.sites.length == 1){
-        var siteId = $localStorage._identity.sites[0].id;
-        $state.go('app.dashboard' ,({id : siteId}));
-      }
-      else{
-        $state.go('app.dashboardAll');
-      }
-    }
 
     activate();
 
     function activate() {
 
-      // self.disableActive = $localStorage._identity.userDetails.email;
-      // self.isUserCreationAllowed = role.isAdminRole();
-      // self.isUserEditAllowed = role.isAdminRole();
-      // self.isActiveAllowed = role.isAdminRole();
-
       userFactory.alluser().then(function (response) {
         self.userList = response.data;
         console.log(self.userList)
+        for(var i=0; i<self.userList.length; i++){
+
+        if(self.userList[i].role == "ROLE_CONSUMER"){
+          self.userList[i].role = "CONSUMER";
+        }
+        else if(self.userList[i].role == "ROLE_SUPER_ADMIN"){
+          self.userList[i].role = "SUPER ADMIN"
+        }
+        else if(self.userList[i].role == "ROLE_PLUMBER"){
+          self.userList[i].role = "PLUMBER"
+        }
+        else if(self.userList[i].role == "ROLE_MANAGEMENT"){
+          self.userList[i].role = "MANAGEMENT"
+        }
+        else if(self.userList[i].role == "ROLE_CIVIC"){
+          self.userList[i].role = "CIVIC"
+        }
+        else if(self.userList[i].role == "ROLE_CARPENTER"){
+          self.userList[i].role = "CARPENTER"
+        }
+        else if(self.userList[i].role == "ROLE_ELECTRICIAN"){
+          self.userList[i].role = "ELECTRICIAN"
+        }
+        }
         listView();
       })
     };
