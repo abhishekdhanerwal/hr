@@ -61,8 +61,21 @@
       return promise;
     };
 
-    service.update = function (id, user) { // TODO below need to be changed
+    service.update = function (id, user) {
       var promise = $http.put(__env.dataServerUrl + '/editUser/' + id, user)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.changeStatus = function (id) {
+
+      var promise = $http.put(__env.dataServerUrl + "/users/toggleStatus/" + id)
         .then(
           function (response) {
             return response;

@@ -165,7 +165,6 @@
                           <div class="form-group"
                                ng-class="{'has-error':vm.Form.residentType.$dirty && vm.Form.residentType.$invalid, 'has-success':vm.Form.residentType.$valid}">
                             <label class="control-label"> Resident Type <span class="symbol required"></span> </label>
-                            <br><br>
                             <select class="form-control" name="residentType" ng-model="vm.flat.residentType" style="width:170px;"
                                     ng-options="resident for resident in vm.residentType" required>
                             </select>
@@ -173,33 +172,33 @@
                                   ng-if="vm.Form.residentType.$dirty && vm.Form.residentType.$error.required">Resident Type is required.</span>
                           </div>
                         </div>
-                        <!--<div class="col-md-5">-->
-                        <!--<div class="form-group">-->
-                          <!--<label class="control-label">-->
-                            <!--Search-->
-                          <!--</label>-->
-                          <!--<div class="row">-->
-                            <!--<div class="col-md-6">-->
-                              <!--<input type="text" ng-model="vm.flat.selected" placeholder="Search Users"-->
-                                     <!--ng-value="vm.flat.name"-->
-                                     <!--uib-typeahead="item as item.name for item in vm.userList($viewValue)"-->
-                                     <!--typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"-->
-                                     <!--typeahead-on-select="vm.onSelect($item, $model, $label)"-->
-                                     <!--typeahead-editable='true'-->
-                                     <!--class="form-control" required></div>-->
+                        <div class="col-md-5">
+                        <div class="form-group">
+                          <label class="control-label">
+                            Search
+                          </label>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <input type="text" ng-model="vm.flat.selected" placeholder="Search Users"
+                                     ng-value="vm.flat.name"
+                                     uib-typeahead="item as item.name for item in vm.userList($viewValue)"
+                                     typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"
+                                     typeahead-on-select="vm.onSelect($item, $model, $label)"
+                                     typeahead-editable='true'
+                                     class="form-control" required></div>
 
-                            <!--<div class="col-md-6">-->
-                                <!--<span class="btn btn-danger" ng-click="vm.clearUser()" ><i-->
-                                      <!--class="fa fa-times"></i> </span>-->
-                            <!--</div>-->
-                            <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
-                            <!--<div ng-show="noResults" class="error">-->
-                              <!--<i class="glyphicon glyphicon-remove"></i> No Results Found-->
-                            <!--</div>-->
+                            <div class="col-md-6">
+                                <span class="btn btn-danger" ng-click="vm.clearUser()" ><i
+                                      class="fa fa-times"></i> </span>
+                            </div>
+                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                            <div ng-show="noResults" class="error">
+                              <i class="glyphicon glyphicon-remove"></i> No Results Found
+                            </div>
 
-                          <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
+                          </div>
+                        </div>
+                        </div>
                       </div>
                   </div>
                 </div>

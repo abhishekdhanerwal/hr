@@ -88,63 +88,64 @@
         })
     }
 
-    // self.toggleStatus = function (id) {
-    //   userFactory.changeStatus(id).then(function (response) {
-    //     if (response.status == 200) {
-    //       toaster.info('Status Changed Successfully');
-    //     }
-    //     else if (response.status == -1) {
-    //       toaster.error('Network Error');
-    //     }
-    //     else if (response.status == 404) {
-    //       toaster.error('User not found');
-    //     }
-    //     else {
-    //       toaster.error('Backend error');
-    //     }
-    //     $state.reload();
-    //   });
-    // };
-    // self.toggleStatus = function (id) {
-    //   SweetAlert.swal({
-    //     title: "Are you sure?",
-    //     text: "You want to change the status!",
-    //     type: "warning",
-    //     showCancelButton: true,
-    //     confirmButtonColor: "#4CAF50",
-    //     confirmButtonText: "Yes",
-    //     cancelButton: "#008CBA",
-    //     cancelButtonText: "No",
-    //     closeOnConfirm: true,
-    //     closeOnCancel: true
-    //   }, function (isConfirm) {
-    //     if (isConfirm) {
-    //       self.progress = true;
-    //       userFactory.changeStatus(id).then(function (response) {
-    //         if (response.status == 200) {
-    //           self.progress = false;
-    //           $state.reload();
-    //           toaster.info('Status Changed Successfully');
-    //         }
-    //         else if (response.status == -1) {
-    //           self.progress = false;
-    //           toaster.error('Network Error');
-    //         }
-    //         else if (response.status == 404) {
-    //           self.progress = false;
-    //           toaster.error('Client not found');
-    //         }
-    //         else {
-    //           self.progress = false;
-    //           toaster.error(response.data.error_description);
-    //         }
-    //
-    //
-    //       });
-    //     } else {
-    //     }
-    //   });
-    //
-    // };
+    self.toggleStatus = function (id) {
+      userFactory.changeStatus(id).then(function (response) {
+        if (response.status == 200) {
+          toaster.info('Status Changed Successfully');
+        }
+        else if (response.status == -1) {
+          toaster.error('Network Error');
+        }
+        else if (response.status == 404) {
+          toaster.error('User not found');
+        }
+        else {
+          toaster.error('Backend error');
+        }
+        $state.reload();
+      });
+    };
+    self.toggleStatus = function (id) {
+      console.log(id)
+      SweetAlert.swal({
+        title: "Are you sure?",
+        text: "You want to change the status!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#4CAF50",
+        confirmButtonText: "Yes",
+        cancelButton: "#008CBA",
+        cancelButtonText: "No",
+        closeOnConfirm: true,
+        closeOnCancel: true
+      }, function (isConfirm) {
+        if (isConfirm) {
+          self.progress = true;
+          userFactory.changeStatus(id).then(function (response) {
+            if (response.status == 200) {
+              self.progress = false;
+              $state.reload();
+              toaster.info('Status Changed Successfully');
+            }
+            else if (response.status == -1) {
+              self.progress = false;
+              toaster.error('Network Error');
+            }
+            else if (response.status == 404) {
+              self.progress = false;
+              toaster.error('Client not found');
+            }
+            else {
+              self.progress = false;
+              toaster.error(response.data.error_description);
+            }
+
+
+          });
+        } else {
+        }
+      });
+
+    };
   }
 })();

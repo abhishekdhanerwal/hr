@@ -28,6 +28,10 @@
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in $data">
 
+                <td data-title="'Active'"><i ng-if="row.status == true"
+                                             class="fa fa-lg fa-check"></i><i
+                  ng-if="row.status == false" class="fa fa-lg fa-ban"></i></td>
+
                 <td data-title="'Name'" sortable="'name'" filter="{'name': 'text'}">
                   {{row.name}}
                 </td>
@@ -47,12 +51,12 @@
                     <a ui-sref="app.editUser({id : row.id})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit" ><i class="fa fa-pencil"></i></a>
-                    <!--<a href="#" ng-click="vm.toggleStatus(row.id)"-->
-                       <!--class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"-->
-                       <!--uib-tooltip="Deactivate"><i class="fa fa-ban"></i></a>-->
-                    <!--<a href="#" ng-click="vm.toggleStatus(row.id)"-->
-                       <!--class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"-->
-                       <!--uib-tooltip="Activate"><i class="fa fa-check"></i></a>-->
+                    <a href="#" ng-click="vm.toggleStatus(row.id)"
+                       class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
+                       uib-tooltip="Deactivate"><i class="fa fa-ban"></i></a>
+                    <a href="#" ng-click="vm.toggleStatus(row.id)"
+                       class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
+                       uib-tooltip="Activate"><i class="fa fa-check"></i></a>
                   </div>
                   <div class="visible-xs visible-sm hidden-md hidden-lg">
                     <div class="btn-group" uib-dropdown>
