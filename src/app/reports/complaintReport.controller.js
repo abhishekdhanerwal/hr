@@ -16,7 +16,7 @@
       vm.errorMessage = false;
       vm.message = false;
     };
-console.log($localStorage)
+
     activate();
 
     function activate() {
@@ -91,7 +91,7 @@ console.log($localStorage)
         var firstError = null;
 
         complaintReportFactory.getReports(vm.complaint.status, vm.start , vm.end).then(function (response) {
-          console.log(vm.complaint.status)
+
           if(response.status == 200){
             vm.master = response.data;
             console.log(response.data)

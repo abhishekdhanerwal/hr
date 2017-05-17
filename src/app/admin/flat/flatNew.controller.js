@@ -45,11 +45,33 @@
     };
 
     function userList(val){
-      userFactory.alluser(val).then(function (response) {
+      flatFactory.searchUser(val).then(function (response) {
         return response.data.map(function (item) {
           return item.name;
         })
       });
+
+      // var apiUrl = __env.dataServerUrl + '/users/search';
+      // var headers = {
+      //   'X-Requested-With': 'XMLHttpRequest',
+      //   // 'Access-Control-Request-Headers' : 'X-Custom-Header',
+      //   'Authorization': 'Bearer ' + $localStorage._identity.access_token
+      // };
+      //
+      // var params = {
+      //   query: val
+      // };
+      // var req = {
+      //   method: 'GET',
+      //   url: apiUrl,
+      //   headers: headers,
+      //   params: params
+      // };
+      // return $http(req).then(function (response) {
+      //   return response.data.map(function (item) {
+      //     return item;
+      //   });
+      // });
     }
 
     function onSelect() {
@@ -91,8 +113,8 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data[0].message;
-            toaster.error(response.data[0].message, 'error');
+            vm.errorMessage = response.data.message;
+            toaster.error(response.data.message);
             console.error(response);
           }
           else {
