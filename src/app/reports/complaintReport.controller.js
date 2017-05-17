@@ -131,8 +131,7 @@ console.log($localStorage)
             createdOn: '' // initial sorting
           }, // count per page
           filter: {
-            createdOn: '',
-            status: '' // initial filter
+            createdOn: '', // initial filter
           }
         }, {
           // total: data.length,

@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('SocietyNewCtrl', SocietyNewCtrl);
 
-  SocietyNewCtrl.$inject = [ 'NgTableParams', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster'];
+  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster'];
   /* @ngInject */
-  function SocietyNewCtrl( NgTableParams, $filter, societyFactory, $state, validationHelperFactory , toaster) {
+  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -29,6 +29,10 @@
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
+
+    vm.toTheTop = function () {
+      $document.scrollTopAnimated(0, 400);
+    };
 
     function submit() {
       var firstError = null;

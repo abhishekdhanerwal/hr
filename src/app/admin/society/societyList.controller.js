@@ -10,8 +10,13 @@
   /* @ngInject */
   function SocietyListCtrl( NgTableParams, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
-
+    vm.message = false;
     vm.progress = true;
+
+    vm.hideAlertBox = function () {
+      vm.errorMessage = false;
+      vm.message = false;
+    };
     activate();
 
     function activate() {
@@ -58,11 +63,15 @@
 
           getData: function (params) {
               self.progress = false;
+            if(vm.master != null && vm.master[0] != undefined){
+              vm.IsHidden=true;
+              vm.download = true;
+            }
+            else{
+              vm.message="No data available";
+            }
             if (vm.master != null) {
 
-              if (vm.master[0] = undefined) {
-                vm.message = "No data available";
-              }
               var filteredData = null;
               var orderedData = null;
               if (params != null) {

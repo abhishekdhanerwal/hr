@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatNewCtrl', FlatNewCtrl);
 
-  FlatNewCtrl.$inject = [ 'NgTableParams', '$filter', 'societyFactory', 'flatFactory', '$state', 'validationHelperFactory', 'toaster', 'userFactory'];
+  FlatNewCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'societyFactory', 'flatFactory', '$state', 'validationHelperFactory', 'toaster', 'userFactory'];
   /* @ngInject */
-  function FlatNewCtrl( NgTableParams, $filter, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
+  function FlatNewCtrl( NgTableParams, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -39,6 +39,10 @@
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
+
+    vm.toTheTop = function () {
+      $document.scrollTopAnimated(0, 400);
+    };
 
     function userList(val){
       userFactory.alluser(val).then(function (response) {

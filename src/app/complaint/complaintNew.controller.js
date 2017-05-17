@@ -6,9 +6,9 @@
     .module('app.complaint')
     .controller('ComplaintNewCtrl', ComplaintNewCtrl);
 
-  ComplaintNewCtrl.$inject = [ 'NgTableParams', '$filter', 'role', 'complaintFactory', '$state', 'validationHelperFactory', 'toaster'];
+  ComplaintNewCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'role', 'complaintFactory', '$state', 'validationHelperFactory', 'toaster'];
   /* @ngInject */
-  function ComplaintNewCtrl( NgTableParams, $filter, role, complaintFactory, $state, validationHelperFactory , toaster) {
+  function ComplaintNewCtrl( NgTableParams, $filter, $document, role, complaintFactory, $state, validationHelperFactory , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -48,6 +48,10 @@
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
+
+    vm.toTheTop = function () {
+      $document.scrollTopAnimated(0, 400);
+    };
 
     function submit() {
       var firstError = null;

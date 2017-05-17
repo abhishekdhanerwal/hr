@@ -6,9 +6,9 @@
     .module('app.complaint')
     .controller('ComplaintEditCtrl', ComplaintEditCtrl);
 
-  ComplaintEditCtrl.$inject = [ 'NgTableParams', '$filter', 'complaintFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  ComplaintEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'complaintFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
   /* @ngInject */
-  function ComplaintEditCtrl( NgTableParams, $filter, complaintFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function ComplaintEditCtrl( NgTableParams, $filter, $document, complaintFactory, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -73,6 +73,10 @@
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
+
+    vm.toTheTop = function () {
+      $document.scrollTopAnimated(0, 400);
+    };
 
     function submit() {
       var firstError = null;

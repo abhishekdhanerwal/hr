@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('SocietyEditCtrl', SocietyEditCtrl);
 
-  SocietyEditCtrl.$inject = [ 'NgTableParams', '$filter', 'societyFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  SocietyEditCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
   /* @ngInject */
-  function SocietyEditCtrl( NgTableParams, $filter, societyFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function SocietyEditCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -42,6 +42,10 @@
         }
       });
 
+    };
+
+    vm.toTheTop = function () {
+      $document.scrollTopAnimated(0, 400);
     };
 
     function reset() {

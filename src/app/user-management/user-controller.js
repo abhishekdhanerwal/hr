@@ -5,12 +5,17 @@
     .module('app.user')
     .controller('CreateUserController', CreateUserController);
 
-  CreateUserController.$inject = ['$q', 'userFactory', 'SweetAlert', '$state', '$http', 'toaster', 'validationHelperFactory', '$stateParams', '$localStorage'];
+  CreateUserController.$inject = ['$q', 'userFactory', '$document', 'SweetAlert', '$state', '$http', 'toaster', 'validationHelperFactory', '$stateParams', '$localStorage'];
 
-  function CreateUserController($q, userFactory, SweetAlert, $state, $http, toaster, validationHelperFactory, $stateParams, $localStorage) {
+  function CreateUserController($q, userFactory, $document, SweetAlert, $state, $http, toaster, validationHelperFactory, $stateParams, $localStorage) {
     var vm = this;
     vm.reset = reset;
     vm.user = {};
+
+    vm.hideAlertBox = function () {
+      vm.errorMessage = false;
+      vm.message = false;
+    };
 
     activate();
 
@@ -20,11 +25,16 @@
       });
     };
 
+    vm.toTheTop = function () {
+      $document.scrollTopAnimated(0, 400);
+    };
+
     vm.submit = function () {
 
       var firstError = null;
       if (vm.Form.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
+        vm.errorMessage = 'Validation Error';
         return;
       }
       else {

@@ -6,9 +6,9 @@
     .module('app.user')
     .controller('UserEditCtrl', UserEditCtrl);
 
-  UserEditCtrl.$inject = ['userFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  UserEditCtrl.$inject = ['userFactory', '$document', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
   /* @ngInject */
-  function UserEditCtrl( userFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function UserEditCtrl( userFactory, $document, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -55,6 +55,10 @@
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
+
+    vm.toTheTop = function () {
+      $document.scrollTopAnimated(0, 400);
+    };
 
     function submit() {
       var firstError = null;

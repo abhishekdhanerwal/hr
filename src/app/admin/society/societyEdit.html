@@ -74,7 +74,7 @@
                   </div>
 
                   <div class="form-group"
-                       ng-class="{'has-error':vm.Form.pinCode.$dirty && vm.Form.pinCode.$invalid, 'has-success':vm.Form.address.pinCode.$valid}">
+                       ng-class="{'has-error':vm.Form.pinCode.$dirty && vm.Form.pinCode.$invalid, 'has-success':vm.Form.pinCode.$valid}">
                     <label class="control-label"> Pin Code <span class="symbol required"></span> </label>
                     <input type="text" placeholder="Enter Pin Code" class="form-control" name="pinCode"
                            ng-model="vm.society.address.pinCode" ng-pattern="/^[1-9][0-9]*$/" required>
@@ -91,7 +91,7 @@
                 <div class="col-md-12">
                   <div>
                     <button type="submit" class="btn btn-wide btn-success"
-                            ng-click="vm.submit()">
+                            ng-click="vm.submit();vm.toTheTop()">
                       Save
                     </button>
                     <button type="reset" class="btn btn-wide btn-warning"

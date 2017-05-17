@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatEditCtrl', FlatEditCtrl);
 
-  FlatEditCtrl.$inject = [ 'NgTableParams', '$filter', 'flatFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  FlatEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'flatFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
   /* @ngInject */
-  function FlatEditCtrl( NgTableParams, $filter, flatFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -59,6 +59,10 @@
       vm.Form.$setUntouched();
     }
 
+    vm.toTheTop = function () {
+      $document.scrollTopAnimated(0, 400);
+    };
+
     function submit() {
       var firstError = null;
 
@@ -83,8 +87,8 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data.errors[0].message;
-            toaster.error(response.data.errors[0].message);
+            vm.errorMessage = response.data.message;
+            toaster.error(response.data.message);
             console.error(response);
           }
           else {

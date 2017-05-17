@@ -58,6 +58,14 @@
         }, {
           getData: function (params) {
             self.progress = false;
+
+            if(self.userList != null && self.userList[0] != undefined){
+              self.IsHidden=true;
+            }
+            else{
+              vm.message="No data available";
+            }
+
             if (self.userList != null) {
 
               var filteredData = null;

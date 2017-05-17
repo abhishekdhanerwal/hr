@@ -8,6 +8,26 @@
 <wave-spinner ng-show="vm.progress" ></wave-spinner>
 
 <div ng-show="!vm.progress" class="container-fluid container-fullw" style="min-height:600px;">
+  <div class="row" ng-show="vm.errorMessage">
+    <div class="col-md-12">
+      <div class="alert alert-danger">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        <strong>Error!</strong> {{vm.errorMessage}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-white">
