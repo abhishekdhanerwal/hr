@@ -44,15 +44,15 @@
 
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a ui-sref="app.user.edit({id : row.id})" class="btn btn-transparent btn-xs"
+                    <a ui-sref="app.editUser({id : row.id})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit" ><i class="fa fa-pencil"></i></a>
-                    <a href="#" ng-click="vm.toggleStatus(row.id)"
-                       class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
-                       uib-tooltip="Deactivate"><i class="fa fa-ban"></i></a>
-                    <a href="#" ng-click="vm.toggleStatus(row.id)"
-                       class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
-                       uib-tooltip="Activate"><i class="fa fa-check"></i></a>
+                    <!--<a href="#" ng-click="vm.toggleStatus(row.id)"-->
+                       <!--class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"-->
+                       <!--uib-tooltip="Deactivate"><i class="fa fa-ban"></i></a>-->
+                    <!--<a href="#" ng-click="vm.toggleStatus(row.id)"-->
+                       <!--class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"-->
+                       <!--uib-tooltip="Activate"><i class="fa fa-check"></i></a>-->
                   </div>
                   <div class="visible-xs visible-sm hidden-md hidden-lg">
                     <div class="btn-group" uib-dropdown>
@@ -65,14 +65,14 @@
                           <a href="#" ui-sref="app.user.edit({id : row.id})"> Edit </a>
                         </li>
 
-                        <li>
-                          <a ng-if="row.active == true && row.email != vm.disableActive" href="#"
-                             ng-click="vm.toggleStatus(row.id)">
-                            Deactivate </a>
-                          <a ng-if="row.active == false && row.email != vm.disableActive" href="#"
-                             ng-click="vm.toggleStatus(row.id)">
-                            Activate </a>
-                        </li>
+                        <!--<li>-->
+                          <!--<a ng-if="row.active == true && row.email != vm.disableActive" href="#"-->
+                             <!--ng-click="vm.toggleStatus(row.id)">-->
+                            <!--Deactivate </a>-->
+                          <!--<a ng-if="row.active == false && row.email != vm.disableActive" href="#"-->
+                             <!--ng-click="vm.toggleStatus(row.id)">-->
+                            <!--Activate </a>-->
+                        <!--</li>-->
                       </ul>
                     </div>
                   </div>

@@ -176,6 +176,16 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'All Users'
       }
+    }).state('app.editUser', {
+      url: "/editUser/:id",
+      templateUrl: "app/user-management/user.edit.html",
+      controller: 'UserEditCtrl',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Edit User',
+      ncyBreadcrumb: {
+        label: 'Edit User'
+      }
     }).state('app.pagelayouts.fixedheadersidebar', {
         url: "/fixed-header-and-sidebar",
         templateUrl: "views/dashboard-4.html",

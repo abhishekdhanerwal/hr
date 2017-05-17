@@ -37,7 +37,6 @@
       return promise;
     };
 
-
     service.alluser = function () {
       var promise = $http.get(__env.dataServerUrl + '/users')
         .then(
@@ -50,8 +49,20 @@
       return promise;
     };
 
+    service.finduser = function (id) {
+      var promise = $http.get(__env.dataServerUrl + '/users/' + id)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.update = function (id, user) { // TODO below need to be changed
-      var promise = $http.put(__env.userServerUrl + '/editUser/' + id, user)
+      var promise = $http.put(__env.dataServerUrl + '/editUser/' + id, user)
         .then(
           function (response) {
             return response;
