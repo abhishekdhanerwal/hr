@@ -37,8 +37,8 @@
       <file leaf-file-name="flatNew.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="239" column="140" lean-forward="false" selection-start-line="239" selection-start-column="140" selection-end-line="239" selection-end-column="140" />
+            <state relative-caret-position="51">
+              <caret line="207" column="86" lean-forward="false" selection-start-line="207" selection-start-column="86" selection-end-line="207" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -539,12 +539,12 @@
       <workItem from="1493180890888" duration="50758000" />
       <workItem from="1493610550268" duration="181725000" />
       <workItem from="1494594228792" duration="1277000" />
-      <workItem from="1494821574786" duration="75406000" />
+      <workItem from="1494821574786" duration="75949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411704000" />
+    <option name="totallyTimeSpent" value="412247000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -557,7 +557,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20535715" sideWeight="0.49344262" order="0" side_tool="false" content_ui="combo" />
@@ -1030,8 +1030,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="239" column="140" lean-forward="false" selection-start-line="239" selection-start-column="140" selection-end-line="239" selection-end-column="140" />
+        <state relative-caret-position="51">
+          <caret line="207" column="86" lean-forward="false" selection-start-line="207" selection-start-column="86" selection-end-line="207" selection-end-column="86" />
           <folding />
         </state>
       </provider>
