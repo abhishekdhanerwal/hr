@@ -48,7 +48,7 @@
                        ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
                     <label class="control-label"> Name <span class="symbol required"></span> </label>
                     <input type="text" placeholder="Enter Society Name" class="form-control" name="name"
-                           ng-model="vm.society.name"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                           ng-model="vm.society.name" ng-maxlength="30" required/>
                     <span class="error text-small block" ng-if="vm.Form.name.$error.pattern">Invalid characters</span>
                     <span class="error text-small block" ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required</span>
                     <span class="error text-small block"
@@ -76,12 +76,13 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.pinCode.$dirty && vm.Form.pinCode.$invalid, 'has-success':vm.Form.pinCode.$valid}">
                     <label class="control-label"> Pin Code <span class="symbol required"></span> </label>
-                    <input type="text" placeholder="Enter Pin Code" class="form-control" name="pinCode"
+                    <input type="text" placeholder="Enter Pin Code" class="form-control" name="pinCode" ng-maxlength="6"
                            ng-model="vm.society.address.pinCode" ng-pattern="/^[1-9][0-9]*$/" required>
                     <span class="error text-small block"
                           ng-if="vm.Form.pinCode.$dirty && vm.Form.pinCode.$error.required">Pin Code is required.</span>
+                    <span class="error text-small block" ng-if="vm.Form.pinCode.$error.pattern">Invalid characters</span>
                     <span class="error text-small block"
-                          ng-show="vm.Form.pinCode.$invalid && vm.Form.pinCode.$error.maxlength">Invalid Characters</span>
+                          ng-show="vm.Form.pinCode.$invalid && vm.Form.pinCode.$error.maxlength">Pin Code cannot be more than 6 digits</span>
                   </div>
 
                 </div>

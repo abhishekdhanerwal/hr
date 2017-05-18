@@ -85,11 +85,11 @@
 
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.address.$dirty && vm.Form.address.$invalid, 'has-success':vm.Form.address.$valid}">
-                    <label class="control-label"> Address <span class="symbol required"></span> </label>
+                    <label class="control-label"> Address <span ng-show="vm.user.role == 'ROLE_CONSUMER'" class="symbol required"></span> </label>
                     <input type="text" placeholder="Enter your Address" class="form-control" name="address"
                            ng-model="vm.user.address" ng-minlength=6 ng-maxlength=500 required/>
                     <span class="error text-small block"
-                          ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required">Address is required</span>
+                          ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required && vm.user.role == 'ROLE_CONSUMER'">Address is required</span>
                     <span class="error text-small block"
                           ng-show="vm.Form.address.$invalid && vm.Form.address.$error.minlength">Address should be six characters or more</span>
                     <span class="error text-small block"

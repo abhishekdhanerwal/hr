@@ -22,6 +22,19 @@
       return promise;
     };
 
+    service.getRole = function () {
+      var promise = $http.get(__env.dataServerUrl + '/user/roles')
+        .then(
+          function (response) {
+            console.log(response)
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.residentType = function () {
       var promise = $http.get(__env.dataServerUrl + '/flat/residentType')
         .then(
@@ -83,7 +96,7 @@
     };
 
     service.searchUser = function (val) {
-      var promise = $http.get(__env.dataServerUrl + '/users/search' ,val)
+      var promise = $http.get(__env.dataServerUrl + '/users/search?query=' + val)
         .then(
           function (response) {
             return response;

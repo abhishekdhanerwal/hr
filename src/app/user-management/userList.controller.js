@@ -21,6 +21,9 @@
         if(self.userList[i].role == "ROLE_CONSUMER"){
           self.userList[i].role = "CONSUMER";
         }
+        else if(self.userList[i].role == "ROLE_ADMIN"){
+          self.userList[i].role = "ADMIN"
+        }
         else if(self.userList[i].role == "ROLE_SUPER_ADMIN"){
           self.userList[i].role = "SUPER ADMIN"
         }
