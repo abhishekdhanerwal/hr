@@ -10,11 +10,13 @@
   /* @ngInject */
   function FlatNewCtrl( NgTableParams, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
     var vm = this;
+    vm.userTenant = false;
     vm.submit = submit;
     vm.reset = reset;
     vm.userList = userList;
     vm.onSelect = onSelect;
     vm.clearUser = clearUser;
+    vm.addUser = addUser;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -32,6 +34,10 @@
         flatFactory.residentType().then(function (response) {
           vm.residentType = response.data;
         });
+
+      flatFactory.getRole().then(function (response) {
+        vm.roles = response.data;
+      });
     };
 
     function reset() {
@@ -45,48 +51,31 @@
     };
 
     function userList(val){
-      flatFactory.searchUser(val).then(function (response) {
+      return flatFactory.searchUser(val).then(function (response) {
+        var params = {
+          query:val
+        };
         return response.data.map(function (item) {
-          return item.name;
+          return item;
         })
       });
-
-      // var apiUrl = __env.dataServerUrl + '/users/search';
-      // var headers = {
-      //   'X-Requested-With': 'XMLHttpRequest',
-      //   // 'Access-Control-Request-Headers' : 'X-Custom-Header',
-      //   'Authorization': 'Bearer ' + $localStorage._identity.access_token
-      // };
-      //
-      // var params = {
-      //   query: val
-      // };
-      // var req = {
-      //   method: 'GET',
-      //   url: apiUrl,
-      //   headers: headers,
-      //   params: params
-      // };
-      // return $http(req).then(function (response) {
-      //   return response.data.map(function (item) {
-      //     return item;
-      //   });
-      // });
     }
 
-    function onSelect() {
-      // vm.user.name = $item.name;
-      // vm.user.email = $item.email;
-      // vm.user.mobile = $item.mobile;
-      // vm.user.address = $item.address;
-      // vm.user.role = $item.role;
-      userFactory.alluser(item.name).then(function (response) {
-        vm.searchUser = response.data;
-      });
+    function onSelect($item, $model, $label) {
+      vm.flat.user.name = $item.name;
+
+      vm.flat.user.email = $item.email;
+      vm.flat.user.mobile = $item.mobile;
+      vm.flat.user.address = $item.address;
+      vm.flat.user.role = $item.role;
     };
 
     function clearUser(){
-      vm.flat.name = {};
+      vm.flat.user= {};
+    }
+
+    function addUser(){
+      vm.userTenant = true;
     }
 
     function submit() {
