@@ -86,7 +86,7 @@ httpConfigurer.$inject = ['$httpProvider'];
 
 function httpConfigurer($httpProvider) {
   $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-  $httpProvider.defaults.headers.withCredentails= true;
+  $httpProvider.defaults.withCredentials = true;
 }
 // ng-storage
 //set a prefix to avoid overwriting any local storage variables
