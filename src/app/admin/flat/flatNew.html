@@ -51,7 +51,7 @@
                                    ng-class="{'has-error':vm.Form.society.$dirty && vm.Form.society.$invalid, 'has-success':vm.Form.society.$valid}">
                                 <label class="control-label"> Select a Society <span class="symbol required"></span> </label>
                                 <br><br>
-                                <select class="form-control" name="society" ng-model="vm.flat.society" style="width:170px;"
+                                <select class="form-control" name="society" ng-model="vm.flat.society" style="width:250px;"
                                         ng-options="society as society.name for society in vm.society" required>
                                 </select>
                                 <span class="error text-small block"
@@ -65,7 +65,7 @@
               <div class="col-lg-12 col-md-12" ng-show="vm.flat.society">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">Enter Flat Details</h5>
+                    <h5 class="panel-title">Flat Details</h5>
                   </div>
                   <div class="panel-body">
                       <div class="form-group" ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}">
@@ -94,8 +94,8 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="checkbox clip-check check-primary">
-                          <input type="checkbox" id="hasResident" value="hasResident" ng-model="vm.flat.hasResident" ng-disabled="!vm.flat.hasOwner">
+                        <div class="checkbox clip-check check-primary" ng-if="vm.flat.hasOwner">
+                          <input type="checkbox" id="hasResident" value="hasResident" ng-model="vm.flat.hasResident">
                           <label for="hasResident">
                             Has Resident
                           </label>
@@ -108,7 +108,7 @@
               <div class="col-lg-12 col-md-12" ng-if="vm.flat.hasOwner">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">Enter Owner Details</h5>
+                    <h5 class="panel-title">Owner Details</h5>
                   </div>
                   <div class="panel-body">
                       <div class="row">
@@ -146,7 +146,7 @@
                           <span class="error text-small block" ng-if="vm.Form.ownerEmail.$error.pattern">Please Enter a valid email address</span>
                         </div>
                         <div class="form-group" ng-class="{'has-error':vm.Form.dateOfPossession.$dirty && vm.Form.dateOfPossession.$invalid, 'has-success':vm.Form.dateOfPossession.$valid}">
-                          <input type="text" class="form-control" placeholder="Date of possession" uib-datepicker-popup="{{format}}" ng-model="vm.flat.dateOfPossession" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                          <input type="text" ng-readonly="true" class="form-control" placeholder="Date of possession" uib-datepicker-popup="{{format}}" ng-model="vm.flat.dateOfPossession" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                         </div>
                       </div>
                       </div>
@@ -154,10 +154,10 @@
                 </div>
               </div>
 
-              <div class="col-lg-12 col-md-12" ng-if="vm.flat.hasResident">
+              <div class="col-lg-12 col-md-12" ng-if="vm.flat.hasResident && vm.flat.hasOwner">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">Enter Resident Details</h5>
+                    <h5 class="panel-title">Resident Details</h5>
                   </div>
                   <div class="panel-body">
                       <div class="row">
@@ -205,10 +205,10 @@
                 </div>
               </div>
 
-              <div class="col-lg-12 col-md-12" ng-if="vm.flat.residentType == 'Tenant'">
+              <div class="col-lg-12 col-md-12" ng-if="vm.flat.hasResident == true && vm.flat.residentType == 'Tenant'">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">Enter User Details</h5>
+                    <h5 class="panel-title">User Details</h5>
                   </div>
                   <div class="panel-body">
 

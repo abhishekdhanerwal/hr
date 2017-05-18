@@ -20,6 +20,7 @@
     activate();
 
     function activate() {
+
       userFactory.getRole().then(function (response) {
         vm.roles = response.data;
       });
@@ -32,7 +33,7 @@
     vm.submit = function () {
 
       var firstError = null;
-      if (vm.Form.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;
@@ -41,7 +42,8 @@
         userFactory.save(vm.user).then(function (response) {
           if (response.status == 201) {
             console.log(response)
-            toaster.info('user Saved', 'default');
+            toaster.info('User Saved');
+            $state.go('app.allUsers')
           }
           else if (response.status == -1) {
             toaster.error('Network Error', 'error');

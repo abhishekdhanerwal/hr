@@ -31,6 +31,7 @@
           for(var i=0; i<vm.master.length; i++){
             if(vm.master[i].hasOwner == true) {
               vm.master[i].hasOwner = 'Yes';
+            }
               if(vm.master[i].hasResident == true){
                 vm.master[i].hasResident = 'Yes';
               }
@@ -40,7 +41,6 @@
               if(vm.master[i].hasResident == false){
                 vm.master[i].hasResident = 'No';
               }
-            }
           }
           console.log(response.data)
           FlatData();

@@ -13,6 +13,7 @@
     vm.userTenant = false;
     vm.submit = submit;
     vm.reset = reset;
+    // vm.residentData = residentData;
     vm.userList = userList;
     vm.onSelect = onSelect;
     vm.clearUser = clearUser;
@@ -50,6 +51,16 @@
       $document.scrollTopAnimated(0, 400);
     };
 
+    // function residentData() {
+    //   if(vm.flat.hasOwner || vm.flat.hasResident) {
+    //     vm.flat.residentType = '';
+    //     // vm.flat.user.selected = '';
+    //     vm.flat.user.name = '';
+    //     vm.flat.user.email = '';
+    //     vm.flat.user.mobile = '';
+    //   }
+    // }
+
     function userList(val){
       return flatFactory.searchUser(val).then(function (response) {
         var params = {
@@ -63,7 +74,6 @@
 
     function onSelect($item, $model, $label) {
       vm.flat.user.name = $item.name;
-
       vm.flat.user.email = $item.email;
       vm.flat.user.mobile = $item.mobile;
       vm.flat.user.address = $item.address;
