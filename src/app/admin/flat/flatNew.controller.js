@@ -13,11 +13,11 @@
     vm.userTenant = false;
     vm.submit = submit;
     vm.reset = reset;
-    // vm.residentData = residentData;
     vm.userList = userList;
     vm.onSelect = onSelect;
     vm.clearUser = clearUser;
     vm.addUser = addUser;
+    vm.flat = {};
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -51,16 +51,6 @@
       $document.scrollTopAnimated(0, 400);
     };
 
-    // function residentData() {
-    //   if(vm.flat.hasOwner || vm.flat.hasResident) {
-    //     vm.flat.residentType = '';
-    //     // vm.flat.user.selected = '';
-    //     vm.flat.user.name = '';
-    //     vm.flat.user.email = '';
-    //     vm.flat.user.mobile = '';
-    //   }
-    // }
-
     function userList(val){
       return flatFactory.searchUser(val).then(function (response) {
         var params = {
@@ -90,6 +80,20 @@
 
     function submit() {
       var firstError = null;
+
+      if(!vm.flat.hasOwner){
+        delete vm.flat.ownerName;
+        delete vm.flat.ownerMobile;
+        delete vm.flat.ownerEmail;
+        delete vm.flat.dateOfPossession;
+        delete vm.flat.hasResident;
+        delete vm.flat.user;
+        delete vm.flat.residentType;
+      }
+      if(!vm.flat.hasResident){
+        delete vm.flat.user;
+        delete vm.flat.residentType;
+      }
 
       if (vm.Form.$invalid) {
 

@@ -22,17 +22,34 @@
     activate();
 
     function activate() {
-
       complaintFactory.flatList().then(function (response) {
         vm.flat = response.data;
-        console.log(vm.flat)
+        getEditInfo();
       })
 
+      complaintFactory.loadTypeDetails().then(function (response) {
+        vm.complaintType = response.data;
+        console.log(vm.complaintType)
+      });
+
+      complaintFactory.loadStatusDetails().then(function (response) {
+        vm.status = response.data;
+      });
+
+    };
+
+    function getEditInfo(){
       complaintFactory.findComplaint($stateParams.id).then(function (response) {
         if (response.status == 200) {
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
+          populateAssignToList(vm.complaint.complaintType);
           console.log(vm.complaint)
+          for(var index = 0 ; index < vm.flat.length ; index++){
+            if(vm.complaint.registerFor.id == vm.flat[index].id){
+              vm.complaint.registerFor = vm.flat[index];
+            }
+          };
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');
@@ -49,22 +66,18 @@
           console.error(response);
         }
       });
+    }
 
-      complaintFactory.loadTypeDetails().then(function (response) {
-        vm.complaintType = response.data;
-        console.log(vm.complaintType)
-      });
-
-      complaintFactory.loadStatusDetails().then(function (response) {
-        vm.status = response.data;
-      });
-
-    };
-
-    function populateAssignToList(){
-      complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
+    function populateAssignToList(complaintType){
+      complaintFactory.userByComplaintType(complaintType).then(function (response) {
         vm.assignTo = response.data;
         console.log(vm.assignTo)
+        for(var index = 0 ; index < vm.assignTo.length ; index++){
+          if(vm.complaint.assignedTo.id == vm.assignTo[index].id){
+            vm.complaint.assignedTo = vm.assignTo[index];
+            console.log(vm.complaint.assignedTo)
+          }
+        };
       });
     }
 

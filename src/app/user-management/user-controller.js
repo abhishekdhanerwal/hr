@@ -50,7 +50,8 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            toaster.error(response.data[0].message, 'error');
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
             console.error(response);
           }
           else {

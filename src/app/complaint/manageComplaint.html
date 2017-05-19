@@ -50,7 +50,7 @@
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in vm.master">
 
-                <td data-title="'Flat Number'">{{row.registerFor.flatNo}}</td>
+                <td ng-if="!vm.isConsumerRole" data-title="'Flat Number'">{{row.registerFor.flatNo}}</td>
 
                 <td data-title="'Complaint Type'">{{row.complaintType}}</td>
 

@@ -15,7 +15,7 @@
       window.__env.dataServerUrl = 'http://localhost:8080';
       window.__env.baseUrl = '/';
       window.__env.enableDebug = true;
-      window.__env.user = "user0@datiot.com";
+      window.__env.user = "superadmin@datiot.com";
       window.__env.password = "secret";
     }
 

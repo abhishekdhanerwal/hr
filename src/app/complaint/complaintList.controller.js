@@ -22,6 +22,10 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isConsumerRole = role.isConsumerRole();
+
       complaintFactory.getComplaintByUser().then(function (response) {
 
         vm.progress = false;

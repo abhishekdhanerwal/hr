@@ -21,19 +21,26 @@
     activate();
 
     function activate() {
-
       flatFactory.societyList().then(function (response) {
         vm.society = response.data;
+        getEditInfo();
       });
 
       flatFactory.residentType().then(function (response) {
         vm.residentType = response.data;
       });
 
+    };
+
+    function getEditInfo(){
       flatFactory.findFlat($stateParams.id).then(function (response) {
         if (response.status == 200) {
           vm.flat = response.data;
-          console.log(vm.flat)
+          for(var index = 0 ; index < vm.society.length ; index++){
+            if(vm.flat.society.id == vm.society[index].id){
+              vm.flat.society = vm.society[index];
+            }
+          };
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');
@@ -50,7 +57,6 @@
           console.error(response);
         }
       });
-
     };
 
     function reset() {
@@ -65,6 +71,19 @@
 
     function submit() {
       var firstError = null;
+      if(!vm.flat.hasOwner){
+        delete vm.flat.ownerName;
+        delete vm.flat.ownerMobile;
+        delete vm.flat.ownerEmail;
+        delete vm.flat.dateOfPossession;
+        delete vm.flat.hasResident;
+        delete vm.flat.user;
+        delete vm.flat.residentType;
+      }
+      if(!vm.flat.hasResident){
+        delete vm.flat.user;
+        delete vm.flat.residentType;
+      }
 
       if (vm.Form.$invalid) {
 

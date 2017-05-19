@@ -43,20 +43,20 @@
               <div class="row">
                 <div class="col-md-6">
 
-                  <div class="form-group"
+                  <div class="form-group" ng-if="!vm.isConsumerRole"
                        ng-class="{'has-error':vm.Form.flat.$dirty && vm.Form.flat.$invalid, 'has-success':vm.Form.flat.$valid}" ng-if="!vm.isConsumerRole">
                     <label class="control-label"> Flat <span class="symbol required"></span> </label>
-                    <select class="form-control" name="flat" ng-model="vm.complaint.registerFor"
+                    <select ng-disabled="true" class="form-control" name="flat" ng-model="vm.complaint.registerFor"
                             ng-options="complaint as complaint.tower + ',' + complaint.flatNo for complaint in vm.flat" required>
                     </select>
                     <span class="error text-small block"
-                          ng-if="vm.Form.complaintType.$dirty && vm.Form.complaintType.$error.required">Complaint Type is required.</span>
+                          ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required">Flat is required.</span>
                   </div>
 
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.complaintType.$dirty && vm.Form.complaintType.$invalid, 'has-success':vm.Form.complaintType.$valid}">
                     <label class="control-label"> Complaint Type <span class="symbol required"></span> </label>
-                    <select class="form-control" name="complaintType" ng-model="vm.complaint.complaintType" ng-change="vm.populateAssignToList()"
+                    <select ng-disabled="true" class="form-control" name="complaintType" ng-model="vm.complaint.complaintType" ng-change="vm.populateAssignToList(vm.complaint.complaintType)"
                             ng-options="complaint for complaint in vm.complaintType" required>
                     </select>
                     <span class="error text-small block"
@@ -69,7 +69,7 @@
                     <textarea class="form-control custom-control" rows="3" name="complaintText" style="resize:none" ng-model="vm.complaint.description"></textarea>
                   </div>
 
-                  <div class="form-group"
+                  <div class="form-group" ng-if="!vm.isConsumerRole"
                        ng-class="{'has-error':vm.Form.assignedTo.name.$dirty && vm.Form.assignedTo.name.$invalid, 'has-success':vm.Form.assignedTo.name.$valid}">
                     <label class="control-label"> Assign To <span class="symbol required"></span> </label>
                     <select class="form-control" name="assignedTo" ng-model="vm.complaint.assignedTo"

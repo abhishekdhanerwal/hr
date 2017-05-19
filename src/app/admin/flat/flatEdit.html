@@ -38,12 +38,13 @@
             <legend>
               Edit Flat
             </legend>
-            <ng-form name="vm.Form" role="Form" id="Form" class="form-inline" novalidate>
+
+            <form name="vm.Form" role="Form" id="Form" class="form-inline" novalidate>
 
               <div class="col-lg-12 col-md-12">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">Society</h5>
+                    <h5 class="panel-title"><em>Society</em></h5>
                   </div>
                   <div class="panel-body">
                     <div class="col-md-3">
@@ -51,8 +52,8 @@
                            ng-class="{'has-error':vm.Form.society.$dirty && vm.Form.society.$invalid, 'has-success':vm.Form.society.$valid}">
                         <label class="control-label"> Select a Society <span class="symbol required"></span> </label>
                         <br><br>
-                        <select class="form-control" name="society" ng-model="vm.flat.society" style="width:250px;"
-                                ng-options="society as society.name for society in vm.society" required>
+                        <select class="form-control" name="society" ng-model="vm.flat.society"
+                                ng-options="row as row.name for row in vm.society" style="width:250px;"required>
                         </select>
                         <span class="error text-small block"
                               ng-if="vm.Form.society.$dirty && vm.Form.society.$error.required">Society is required.</span>
@@ -65,7 +66,7 @@
               <div class="col-lg-12 col-md-12" ng-show="vm.flat.society">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">Flat Details</h5>
+                    <h5 class="panel-title"><em>Flat Details</em></h5>
                   </div>
                   <div class="panel-body">
                     <div class="form-group" ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}">
@@ -87,7 +88,7 @@
                     </div>
                     <div class="form-group">
                       <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="hasOwner" value="isSold" ng-model="vm.flat.hasOwner">
+                        <input type="checkbox" id="hasOwner" value="isSold" ng-model="vm.flat.hasOwner" >
                         <label for="hasOwner">
                           Flat Sold
                         </label>
@@ -95,7 +96,7 @@
                     </div>
                     <div class="form-group">
                       <div class="checkbox clip-check check-primary" ng-if="vm.flat.hasOwner">
-                        <input type="checkbox" id="hasResident" value="hasResident" ng-model="vm.flat.hasResident">
+                        <input type="checkbox" id="hasResident" value="hasResident" ng-model="vm.flat.hasResident" >
                         <label for="hasResident">
                           Has Resident
                         </label>
@@ -108,7 +109,7 @@
               <div class="col-lg-12 col-md-12" ng-if="vm.flat.hasOwner">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">Owner Details</h5>
+                    <h5 class="panel-title"><em>Owner Details</em></h5>
                   </div>
                   <div class="panel-body">
                     <div class="row">
@@ -146,7 +147,7 @@
                           <span class="error text-small block" ng-if="vm.Form.ownerEmail.$error.pattern">Please Enter a valid email address</span>
                         </div>
                         <div class="form-group" ng-class="{'has-error':vm.Form.dateOfPossession.$dirty && vm.Form.dateOfPossession.$invalid, 'has-success':vm.Form.dateOfPossession.$valid}">
-                          <input type="text" ng-readonly="true" class="form-control" placeholder="Date of possession" uib-datepicker-popup="{{format}}" ng-model="vm.flat.dateOfPossession" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                          <input type="text" name="dateOfPossession" ng-readonly="true" class="form-control" placeholder="Date of possession" uib-datepicker-popup="{{format}}" ng-model="vm.flat.dateOfPossession" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                         </div>
                       </div>
                     </div>
@@ -157,7 +158,7 @@
               <div class="col-lg-12 col-md-12" ng-if="vm.flat.hasResident && vm.flat.hasOwner">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">Resident Details</h5>
+                    <h5 class="panel-title"><em>Resident Details</em></h5>
                   </div>
                   <div class="panel-body">
                     <div class="row">
@@ -205,16 +206,16 @@
                 </div>
               </div>
 
-              <div class="col-lg-12 col-md-12" ng-if="vm.flat.hasResident == true && vm.flat.residentType == 'Tenant'">
+              <div class="col-lg-12 col-md-12" ng-if="vm.flat.hasResident == true && vm.flat.hasOwner == true && vm.flat.residentType == 'Tenant'">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title">User Details</h5>
+                    <h5 class="panel-title"><em>User Details</em></h5>
                   </div>
                   <div class="panel-body">
 
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
-                      <input type="text" placeholder="Enter Name" class="form-control" name="name"
+                      <input ng-readonly="true" type="text" placeholder="Enter Name" class="form-control" name="name"
                              ng-model="vm.flat.user.name"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
                       <span class="error text-small block" ng-if="vm.Form.name.$error.pattern">Invalid characters</span>
                       <span class="error text-small block" ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required</span>
@@ -224,7 +225,7 @@
 
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.email.$dirty && vm.Form.email.$invalid, 'has-success':vm.Form.email.$valid}">
-                      <input type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
+                      <input ng-readonly="true" type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
                              ng-model="vm.flat.user.email" ng-pattern="/^[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z]+\.[A-Za-z.]{2,5}$/" required>
                       <span class="error text-small block" ng-if="vm.Form.email.$dirty && vm.Form.email.$error.required">Email is required.</span>
                       <span class="error text-small block" ng-if="vm.Form.email.$error.pattern">Please Enter a valid email address</span>
@@ -232,7 +233,7 @@
 
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.mobile.$dirty && vm.Form.mobile.$invalid, 'has-success':vm.Form.mobile.$valid}">
-                      <input type="text" placeholder="Enter Mobile Number" class="form-control" name="mobile"
+                      <input ng-readonly="true" type="text" placeholder="Enter Mobile Number" class="form-control" name="mobile"
                              ng-model="vm.flat.user.mobile" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
                              ng-maxlength=10 required/>
 
@@ -268,7 +269,7 @@
               </div>
 
 
-            </ng-form>
+            </form>
           </fieldset>
         </div>
       </div>
