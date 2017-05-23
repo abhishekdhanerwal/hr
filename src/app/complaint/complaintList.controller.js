@@ -31,7 +31,6 @@
         vm.progress = false;
         vm.master = response.data;
         console.log(vm.master)
-        complaintData();
 
         if (response.status == 200) {
           vm.master = response.data;
@@ -61,10 +60,12 @@
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-            date: '' // initial sorting
+            complaintType: '',
+            status: ''   // initial sorting
           }, // count per page
           filter: {
-            date: '' // initial filter
+            complaintType: '',
+            status: ''// initial filter
           }
         }, {
           // total: data.length,

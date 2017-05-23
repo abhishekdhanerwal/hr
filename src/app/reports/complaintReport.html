@@ -107,7 +107,7 @@
           <!--<div class="panel panel-white">-->
           <!--<div class="panel-body">-->
           <table ng-table="vm.tableParams" show-filter="true" class="table table-striped table-bordered">
-            <tr ng-repeat="row in vm.master">
+            <tr ng-repeat="row in $data">
 
               <td data-title="'Created Date'" sortable="'createdOn'" filter="{ 'createdOn' : 'text' }">
                 {{row.createdOn | date: 'dd/MM/yyyy hh:mm'}}</td>

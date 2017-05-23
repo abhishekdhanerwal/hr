@@ -50,6 +50,7 @@
 
           if (response.status == 200) {
             toaster.info('Society Created');
+            vm.message = "Society created successfully";
             $state.go('app.society');
           }
           else if (response.status == -1) {

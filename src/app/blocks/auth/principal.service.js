@@ -38,7 +38,7 @@
           deferred.resolve($localStorage._identity);
         }
         else {
-          $http.post(__env.uiServerUrl + '/session/refresh', {refreshToken: $localStorage._identity.refresh_token})
+          $http.post(__env.dataServerUrl + '/session/refresh', {refreshToken: $localStorage._identity.refresh_token})
             .then(function (response) {
                 if (response.status == 200) {
                   $localStorage._identity = response.data;
@@ -67,18 +67,15 @@
     }
     function isAuthenticated() {
       if (isIdentityInLocalStorage()) {
-        var currentTimeStamp = Date.now();
-        var loggedInTimeStamp = $localStorage.loggedInTimeStamp;
-        var expiryTimePeriod = $localStorage._identity.expires_in * 1000;//in seconds as rest of things are in milliseconds
-        if ((currentTimeStamp - loggedInTimeStamp) < expiryTimePeriod) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      }
-      else {
-        return false;
+        // var currentTimeStamp = Date.now();
+        // var loggedInTimeStamp = $localStorage.loggedInTimeStamp;
+        // var expiryTimePeriod = $localStorage._identity.expires_in * 1000;//in seconds as rest of things are in milliseconds
+        // if ((currentTimeStamp - loggedInTimeStamp) < expiryTimePeriod) {
+        //   return true;
+        // }
+        // else {
+        //   return false;
+        // }
       }
     }
 

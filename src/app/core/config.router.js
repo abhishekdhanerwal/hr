@@ -32,6 +32,13 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         url: "/app",
         templateUrl: "app/app.html",
         resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
+      // resolve: {
+      //   authorize: ['authorization',
+      //     function(authorization) {
+      //       return authorization.authorize();
+      //     }
+      //   ]
+      // },
         abstract: true
     }).state('app.society', {
       url: "/society",

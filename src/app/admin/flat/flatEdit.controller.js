@@ -11,6 +11,7 @@
   function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.submit = submit;
+    vm.clearUser = clearUser;
     vm.reset = reset;
 
     vm.hideAlertBox = function () {
@@ -36,6 +37,7 @@
       flatFactory.findFlat($stateParams.id).then(function (response) {
         if (response.status == 200) {
           vm.flat = response.data;
+          console.log(vm.flat)
           for(var index = 0 ; index < vm.society.length ; index++){
             if(vm.flat.society.id == vm.society[index].id){
               vm.flat.society = vm.society[index];
@@ -60,9 +62,14 @@
     };
 
     function reset() {
-      vm.flat = '';
+      activate($stateParams.id)
+      activate(vm.flat.ownerName)
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
+    }
+
+    function clearUser(){
+      vm.flat.user= '';
     }
 
     vm.toTheTop = function () {
@@ -106,8 +113,8 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data.message;
-            toaster.error(response.data.message);
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
             console.error(response);
           }
           else {

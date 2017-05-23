@@ -53,10 +53,10 @@
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-            date: '' // initial sorting
+            lastModified: 'desc' // initial sorting
           }, // count per page
           filter: {
-            date: '' // initial filter
+            name: '' // initial filter
           }
         }, {
           // total: data.length,

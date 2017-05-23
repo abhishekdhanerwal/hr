@@ -6,9 +6,9 @@
     .module('app.complaint')
     .controller('ComplaintEditCtrl', ComplaintEditCtrl);
 
-  ComplaintEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'complaintFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  ComplaintEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'complaintFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
   /* @ngInject */
-  function ComplaintEditCtrl( NgTableParams, $filter, $document, complaintFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function ComplaintEditCtrl( NgTableParams, $filter, $document, complaintFactory, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -22,6 +22,10 @@
     activate();
 
     function activate() {
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isConsumerRole = role.isConsumerRole();
+
       complaintFactory.flatList().then(function (response) {
         vm.flat = response.data;
         getEditInfo();
@@ -82,7 +86,7 @@
     }
 
     function reset() {
-      vm.complaint = '';
+      activate($stateParams.id)
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }

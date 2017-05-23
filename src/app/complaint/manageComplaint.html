@@ -41,28 +41,26 @@
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
                 Complaint</a>
-              <!--<a ng-click="vm.tableParams.filter({})"-->
-                 <!--class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear-->
-                <!--Filters</a>-->
+              <a ng-click="vm.tableParams.filter({})"
+                 class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear
+                Filters</a>
             </div>
           </div>
           <div class="table-responsive">
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
-              <tr ng-repeat="row in vm.master">
+              <tr ng-repeat="row in $data">
 
                 <td ng-if="!vm.isConsumerRole" data-title="'Flat Number'">{{row.registerFor.flatNo}}</td>
 
-                <td data-title="'Complaint Type'">{{row.complaintType}}</td>
+                <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
                 <td data-title="'Complaint Text'">{{row.description}}</td>
 
                 <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 
-                <td data-title="'Resolve Date'">{{row.resolvedOn | date:'dd-MM-yyyy'}}</td>
-
                 <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
 
-                <td data-title="'Status'">{{row.status}}</td>
+                <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
 
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">

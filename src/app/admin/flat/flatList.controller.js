@@ -68,15 +68,16 @@
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-            date: '' // initial sorting
+            lastModified: 'asc' // initial sorting
           }, // count per page
           filter: {
-            date: '' // initial filter
+            tower: '' // initial filter
           }
         }, {
           // total: data.length,
 
           getData: function (params) {
+            vm.progress = false;
 
             if(vm.master != null && vm.master[0] != undefined){
               vm.IsHidden=true;

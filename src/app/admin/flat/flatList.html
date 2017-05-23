@@ -41,16 +41,16 @@
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
                 Flat</a>
-              <!--<a ng-click="vm.tableParams.filter({})"-->
-              <!--class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear-->
-              <!--Filters</a>-->
+              <a ng-click="vm.tableParams.filter({})"
+              class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear
+              Filters</a>
             </div>
           </div>
           <div class="table-responsive">
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
-              <tr ng-repeat="row in vm.master">
+              <tr ng-repeat="row in $data">
 
-                <td data-title="'Tower'">{{row.tower}}</td>
+                <td data-title="'Tower'" sortable="'tower'" filter="{ 'tower' : 'text' }">{{row.tower}}</td>
 
                 <td data-title="'Flat No.'">{{row.flatNo}}</td>
 

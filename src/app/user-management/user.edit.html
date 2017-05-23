@@ -57,7 +57,7 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.email.$dirty && vm.Form.email.$invalid, 'has-success':vm.Form.email.$valid}">
                     <label class="control-label"> Email <span class="symbol required"></span> </label>
-                    <input type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
+                    <input ng-disabled="true" type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
                            ng-model="vm.user.email" ng-pattern="/^[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z]+\.[A-Za-z.]{2,5}$/" required>
                     <span class="error text-small block" ng-if="vm.Form.email.$dirty && vm.Form.email.$error.required">Email is required.</span>
                     <span class="error text-small block" ng-if="vm.Form.email.$error.pattern">Please Enter a valid email address</span>

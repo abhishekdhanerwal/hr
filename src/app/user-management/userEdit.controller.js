@@ -51,7 +51,8 @@
     };
 
     function reset() {
-      vm.user = '';
+      // vm.user = '';
+      activate($stateParams.id)
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }

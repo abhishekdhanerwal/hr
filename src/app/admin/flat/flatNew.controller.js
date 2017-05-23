@@ -68,10 +68,11 @@
       vm.flat.user.mobile = $item.mobile;
       vm.flat.user.address = $item.address;
       vm.flat.user.role = $item.role;
+      vm.flat.user.id = $item.id;
     };
 
     function clearUser(){
-      vm.flat.user= {};
+      vm.flat.user= '';
     }
 
     function addUser(){
@@ -116,9 +117,9 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data.message;
-            toaster.error(response.data.message);
-            console.error(response);
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
+            console.error( vm.errorMessage);
           }
           else {
             vm.errorMessage = 'Some problem';

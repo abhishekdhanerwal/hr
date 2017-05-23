@@ -49,7 +49,7 @@
     };
 
     function reset() {
-      vm.society = '';
+      activate($stateParams.id)
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
