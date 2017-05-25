@@ -58,6 +58,17 @@
       return promise;
     };
 
+    service.searchUser = function (val) {
+      var promise = $http.get(__env.dataServerUrl + '/users/search?query=' + val)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
 
     return service;
   };

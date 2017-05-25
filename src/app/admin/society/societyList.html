@@ -18,13 +18,13 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-controller="SocietyNewCtrl" ng-show="vm.message">
+  <div class="row" ng-controller="SocietyNewCtrl" ng-show="listMessage">
     <div class="col-md-12">
       <div class="alert alert-success">
         <button class="close" ng-click="vm.hideAlertBox()">
           &times;
         </button>
-        {{vm.message}}
+        {{listMessage}}
       </div>
     </div>
   </div>
@@ -50,13 +50,17 @@
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in vm.master">
 
-                <td data-title="'Name'" sortable="'name'" filter="{ 'name' : 'text' }">{{row.name}}</td>
+                <td data-title="'Society name'" sortable="'name'" filter="{ 'name' : 'text' }">{{row.name}}</td>
 
-                <td data-title="'Manager name'">{{row.managerName}}</td>
+                <td data-title="'Manager name'">{{row.admin.name}}</td>
 
-                <td data-title="'Address'">{{row.address.cityName}},{{row.address.areaName}},{{row.address.pinCode}}</td>
+                <td data-title="'Address'">{{row.address.cityName}}, {{row.address.areaName}}, {{row.address.pinCode}}</td>
 
-                <td data-title="'Number of Flats'">{{row.flatNo}}</td>
+                <td data-title="'Towers'">{{row.noOfTowers}}</td>
+
+                <td data-title="'Floors'">{{row.noOfFloors}}</td>
+
+                <td data-title="'Flats'">{{row.noOfFlats}}</td>
 
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">

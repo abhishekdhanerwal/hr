@@ -6,12 +6,16 @@
     .module('app.admin')
     .controller('SocietyNewCtrl', SocietyNewCtrl);
 
-  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster'];
+  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster', '$rootScope'];
   /* @ngInject */
-  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster) {
+  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster, $rootScope) {
     var vm = this;
     vm.submit = submit;
+    vm.userList = userList;
+    vm.onSelect = onSelect;
+    vm.clearUser = clearUser;
     vm.reset = reset;
+    $rootScope.listMessage = false;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -23,6 +27,30 @@
     function activate() {
 
     };
+
+    function userList(val){
+      return societyFactory.searchUser(val).then(function (response) {
+        var params = {
+          query:val
+        };
+        return response.data.map(function (item) {
+          return item;
+        })
+      });
+    }
+
+    function onSelect($item, $model, $label) {
+      vm.society.admin.name = $item.name;
+      vm.society.admin.email = $item.email;
+      vm.society.admin.mobile = $item.mobile;
+      vm.society.admin.address = $item.address;
+      vm.society.admin.role = $item.role;
+      vm.society.admin.id = $item.id;
+    };
+
+    function clearUser(){
+      vm.society.admin= '';
+    }
 
     function reset() {
       vm.society = '';
@@ -50,7 +78,7 @@
 
           if (response.status == 200) {
             toaster.info('Society Created');
-            vm.message = "Society created successfully";
+            $rootScope.listMessage = "Society created successfully";
             $state.go('app.society');
           }
           else if (response.status == -1) {

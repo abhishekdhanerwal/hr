@@ -10,6 +10,8 @@
   /* @ngInject */
   function ComplaintListCtrl( NgTableParams, $localStorage, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
+    vm.resolved = resolved;
+    vm.active = active;
     vm.message = false;
     vm.progress = true;
 
@@ -19,13 +21,15 @@
     };
 
     activate();
+    active();
 
     function activate() {
-
       vm.isAdminRole = role.isAdminRole();
       vm.isManagementRole = role.isManagementRole();
       vm.isConsumerRole = role.isConsumerRole();
+    };
 
+    function active() {
       complaintFactory.getComplaintByUser().then(function (response) {
 
         vm.progress = false;
@@ -54,14 +58,43 @@
       })
     };
 
+     function resolved() {
+      complaintFactory.getResolvedComplaintByUser().then(function (response) {
+
+        vm.progress = false;
+        vm.master = response.data;
+        console.log(vm.master)
+
+        if (response.status == 200) {
+          vm.master = response.data;
+          console.log(response.data)
+          complaintData();
+        }
+        else if (response.status == -1) {
+          toaster.error('Network Error', 'error');
+          vm.errorMessage = "Network Error";
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          console.error(response);
+          vm.errorMessage = vm.master.message;
+          toaster.error(vm.master.message);
+        }
+        else {
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
+      })
+    };
+
+
     function complaintData() {
       vm.tableParams = new NgTableParams(
         {
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-            complaintType: '',
-            status: ''   // initial sorting
+            lastModified: 'desc'   // initial sorting
           }, // count per page
           filter: {
             complaintType: '',

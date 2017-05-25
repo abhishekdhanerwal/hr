@@ -5,9 +5,9 @@
   <div ncy-breadcrumb class="pull-right"></div>
 </div>
 
-<wave-spinner ng-show="vm.progress" ></wave-spinner>
+<!--<wave-spinner ng-show="vm.progress" ></wave-spinner>-->
 
-<div ng-show="!vm.progress" class="container-fluid container-fullw" style="min-height:600px;">
+<div ng-show="!vm.progress" class="container-fluid container-fullw" style="min-height:600px;" ng-if="!vm.isConsumerRole">
   <div class="row" ng-show="vm.errorMessage">
     <div class="col-md-12">
       <div class="alert alert-danger">
@@ -88,6 +88,107 @@
           <!--</div>-->
           <!--</div>-->
           <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid container-fullw" ng-if="vm.isConsumerRole">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body">
+          <div class="row margin-bottom-10">
+            <div class="col-md-12">
+              <a ui-sref="app.addComplaint"
+                 class="btn btn-wide btn-primary pull-left"><i
+                class="ti-plus"></i> New
+                Complaint</a>
+              <a ng-click="vm.tableParams.filter({})"
+                 class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear
+                Filters</a>
+            </div>
+          </div><br>
+          <uib-tabset class="tabbable">
+            <uib-tab heading="Active Complaints" ng-click="vm.active();">
+              <div class="table-responsive">
+                <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
+                  <tr ng-repeat="row in $data">
+
+                    <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+
+                    <td data-title="'Complaint Text'">{{row.description}}</td>
+
+                    <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+
+                    <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
+
+                    <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
+
+                    <td class="center">
+                      <div class="visible-md visible-lg hidden-sm hidden-xs">
+                        <a ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
+                           tooltip-placement="top"
+                           uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                      </div>
+                      <div class="visible-xs visible-sm hidden-md hidden-lg">
+                        <div class="btn-group" uib-dropdown>
+                          <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
+                                  uib-dropdown-toggle>
+                            <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                            <li>
+                              <a href="#" ui-sref="app.editComplaint({id : row.complaintId})"> Edit </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </uib-tab>
+            <uib-tab heading="Resolved Complaints" active="tab.active" ng-click="vm.resolved();">
+              <div class="table-responsive">
+                <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
+                  <tr ng-repeat="row in $data">
+
+                    <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+
+                    <td data-title="'Complaint Text'">{{row.description}}</td>
+
+                    <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+
+                    <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
+
+                    <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
+
+                    <td class="center">
+                      <div class="visible-md visible-lg hidden-sm hidden-xs">
+                        <a ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
+                           tooltip-placement="top"
+                           uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                      </div>
+                      <div class="visible-xs visible-sm hidden-md hidden-lg">
+                        <div class="btn-group" uib-dropdown>
+                          <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
+                                  uib-dropdown-toggle>
+                            <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                            <li>
+                              <a href="#" ui-sref="app.editComplaint({id : row.complaintId})"> Edit </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </uib-tab>
+          </uib-tabset>
         </div>
       </div>
     </div>

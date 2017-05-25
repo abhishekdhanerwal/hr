@@ -37,7 +37,7 @@
     };
 
     service.getComplaintDetails = function () {
-      var promise = $http.get(__env.dataServerUrl + '/complaint')
+      var promise = $http.get(__env.dataServerUrl + '/complaints')
         .then(
           function (response) {
             return response;
@@ -62,6 +62,19 @@
 
     service.getComplaintByUser = function () {
       var promise = $http.get(__env.dataServerUrl + '/complaint/findByUser')
+        .then(
+          function (response) {
+            console.log(response)
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.getResolvedComplaintByUser = function (status) {
+      var promise = $http.get(__env.dataServerUrl + '/complaint/findByUser?status=Resolved')
         .then(
           function (response) {
             console.log(response)

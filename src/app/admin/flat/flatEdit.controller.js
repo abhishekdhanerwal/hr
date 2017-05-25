@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatEditCtrl', FlatEditCtrl);
 
-  FlatEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'flatFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  FlatEditCtrl.$inject = [ 'NgTableParams', 'role', '$filter', '$document', 'flatFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
   /* @ngInject */
-  function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function FlatEditCtrl( NgTableParams, role, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.submit = submit;
     vm.clearUser = clearUser;
@@ -22,6 +22,11 @@
     activate();
 
     function activate() {
+
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isConsumerRole = role.isConsumerRole();
+
       flatFactory.societyList().then(function (response) {
         vm.society = response.data;
         getEditInfo();

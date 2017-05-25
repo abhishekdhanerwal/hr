@@ -10,8 +10,12 @@
   /* @ngInject */
   function SocietyEditCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
+    vm.userList = userList;
+    vm.onSelect = onSelect;
+    vm.clearUser = clearUser;
     vm.submit = submit;
     vm.reset = reset;
+    $rootScope.editListMessage = false;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -48,6 +52,30 @@
       $document.scrollTopAnimated(0, 400);
     };
 
+    function userList(val){
+      return societyFactory.searchUser(val).then(function (response) {
+        var params = {
+          query:val
+        };
+        return response.data.map(function (item) {
+          return item;
+        })
+      });
+    }
+
+    function onSelect($item, $model, $label) {
+      vm.society.admin.name = $item.name;
+      vm.society.admin.email = $item.email;
+      vm.society.admin.mobile = $item.mobile;
+      vm.society.admin.address = $item.address;
+      vm.society.admin.role = $item.role;
+      vm.society.admin.id = $item.id;
+    };
+
+    function clearUser(){
+      vm.society.admin= '';
+    }
+
     function reset() {
       activate($stateParams.id)
       vm.Form.$setPristine();
@@ -70,6 +98,7 @@
 
           if (response.status == 200) {
             toaster.info('Society updated');
+            $rootScope.editListMessage = "Society updated";
             $state.go('app.society');
           }
           else if (response.status == -1) {
