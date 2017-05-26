@@ -74,8 +74,19 @@
     };
 
     service.changeStatus = function (id) {
-
       var promise = $http.put(__env.dataServerUrl + "/users/toggleStatus/" + id)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.societyList = function () {
+      var promise = $http.get(__env.dataServerUrl + '/societies')
         .then(
           function (response) {
             return response;

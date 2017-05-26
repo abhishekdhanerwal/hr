@@ -5,9 +5,9 @@
     .module('app.user')
     .controller('CreateUserController', CreateUserController);
 
-  CreateUserController.$inject = ['$q', 'userFactory', '$document', 'SweetAlert', '$state', '$http', 'toaster', 'validationHelperFactory', '$stateParams', '$localStorage'];
+  CreateUserController.$inject = ['$q', 'userFactory', 'role', '$document', 'SweetAlert', '$state', '$http', 'toaster', 'validationHelperFactory', '$stateParams', '$localStorage'];
 
-  function CreateUserController($q, userFactory, $document, SweetAlert, $state, $http, toaster, validationHelperFactory, $stateParams, $localStorage) {
+  function CreateUserController($q, userFactory, role, $document, SweetAlert, $state, $http, toaster, validationHelperFactory, $stateParams, $localStorage) {
     var vm = this;
     vm.reset = reset;
     vm.user = {};
@@ -21,34 +21,22 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isConsumerRole = role.isConsumerRole();
+
+      userFactory.societyList().then(function (response) {
+        vm.society = response.data;
+        // for(var i=0; i<vm.society.length; i++) {
+        //   vm.user.SocietyId = vm.society.id;
+        // }
+        console.log(vm.society)
+      });
+
       userFactory.getRole().then(function (response) {
         vm.roles = response.data;
-        // for(var i=0; i<vm.roles.length; i++) {
-        //   if (vm.roles[i] == "ROLE_SUPER_ADMIN") {
-        //     vm.roles[i] = 'SUPER ADMIN';
-        //   }
-        //   else if(vm.roles[i] == "ROLE_CONSUMER"){
-        //     vm.roles[i] = 'CONSUMER';
-        //   }
-        //   else if(vm.roles[i] == "ROLE_MANAGEMENT"){
-        //     vm.roles[i] = "MANAGEMENT";
-        //   }
-        //   else if(vm.roles[i] == "ROLE_ADMIN"){
-        //     vm.roles[i] = "ADMIN";
-        //   }
-        //   else if(vm.roles[i] == "ROLE_PLUMBER"){
-        //     vm.roles[i] = "PLUMBER";
-        //   }
-        //   else if(vm.roles[i] == "ROLE_CIVIC"){
-        //     vm.roles[i] = "CIVIC";
-        //   }
-        //   else if(vm.roles[i] == "ROLE_ELECTRICIAN"){
-        //     vm.roles[i] = "ELECTRICIAN";
-        //   }
-        //   else if(vm.roles[i] == "ROLE_CARPENTER"){
-        //     vm.roles[i] = "CARPENTER";
-        //   }
-        // }
+        vm.roles.splice(0,1);
+        console.log(vm.roles);
       });
     };
 
@@ -65,7 +53,9 @@
         return;
       }
       else {
+        vm.user.societyId = vm.user.society.id;
         userFactory.save(vm.user).then(function (response) {
+          console.log(vm.user);
           if (response.status == 201) {
             console.log(response)
             toaster.info('User Saved');

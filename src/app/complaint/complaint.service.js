@@ -48,8 +48,20 @@
       return promise;
     };
 
+    service.societyList = function () {
+      var promise = $http.get(__env.dataServerUrl + '/societies')
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.flatList = function () {
-      var promise = $http.get(__env.dataServerUrl + '/flats')
+      var promise = $http.get(__env.dataServerUrl + '/flatsWithResident')
         .then(
           function (response) {
             return response;

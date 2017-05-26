@@ -15,7 +15,6 @@
     vm.clearUser = clearUser;
     vm.submit = submit;
     vm.reset = reset;
-    $rootScope.editListMessage = false;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -98,7 +97,6 @@
 
           if (response.status == 200) {
             toaster.info('Society updated');
-            $rootScope.editListMessage = "Society updated";
             $state.go('app.society');
           }
           else if (response.status == -1) {

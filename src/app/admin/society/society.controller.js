@@ -6,16 +6,16 @@
     .module('app.admin')
     .controller('SocietyNewCtrl', SocietyNewCtrl);
 
-  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster', '$rootScope'];
+  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster'];
   /* @ngInject */
-  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster, $rootScope) {
+  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster) {
     var vm = this;
+    vm.message = false;
     vm.submit = submit;
     vm.userList = userList;
     vm.onSelect = onSelect;
     vm.clearUser = clearUser;
     vm.reset = reset;
-    $rootScope.listMessage = false;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -78,7 +78,7 @@
 
           if (response.status == 200) {
             toaster.info('Society Created');
-            $rootScope.listMessage = "Society created successfully";
+            vm.message = "Society Created";
             $state.go('app.society');
           }
           else if (response.status == -1) {

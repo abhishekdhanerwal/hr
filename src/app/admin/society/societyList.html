@@ -18,13 +18,13 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-controller="SocietyNewCtrl" ng-show="listMessage">
+  <div class="row" ng-controller="SocietyNewCtrl" ng-show="vm.message">
     <div class="col-md-12">
       <div class="alert alert-success">
         <button class="close" ng-click="vm.hideAlertBox()">
           &times;
         </button>
-        {{listMessage}}
+        {{vm.message}}
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
           </div>
           <div class="table-responsive">
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
-              <tr ng-repeat="row in vm.master">
+              <tr ng-repeat="row in $data">
 
                 <td data-title="'Society name'" sortable="'name'" filter="{ 'name' : 'text' }">{{row.name}}</td>
 

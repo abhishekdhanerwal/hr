@@ -27,6 +27,12 @@
       vm.isAdminRole = role.isAdminRole();
       vm.isManagementRole = role.isManagementRole();
       vm.isConsumerRole = role.isConsumerRole();
+
+      complaintFactory.societyList().then(function (response) {
+        vm.society = response.data;
+        console.log(vm.society)
+      });
+
     };
 
     function active() {

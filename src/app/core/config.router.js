@@ -41,7 +41,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       // },
         abstract: true
     }).state('app.society', {
-      url: "/society",
+      url: "/society/:message",
       templateUrl: "app/admin/society/societyList.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Society',
@@ -641,7 +641,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
 	    url: '/welcome',
 	    templateUrl: "views/landing_page.html"
 	});
-    // Generates a resolve object previously configured in constant.JS_REQUIRES (config.constant.js)
+  // Generates a resolve object previously configured in constant.JS_REQUIRES (config.constant.js)
     function loadSequence() {
         var _args = arguments;
         return {
