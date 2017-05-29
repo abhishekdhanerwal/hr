@@ -54,7 +54,10 @@
         return;
       }
       else {
+        console.log(vm.user.society)
+        if(vm.user.society != undefined){
         vm.user.societyId = vm.user.society.id;
+        }
         userFactory.save(vm.user).then(function (response) {
           console.log(vm.user);
           if (response.status == 201) {

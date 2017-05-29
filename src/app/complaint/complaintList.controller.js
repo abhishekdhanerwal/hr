@@ -22,7 +22,7 @@
     };
 
     activate();
-    active();
+
 
     function activate() {
       vm.isAdminRole = role.isAdminRole();
@@ -34,12 +34,14 @@
         vm.society = response.data;
         console.log(vm.society)
         vm.flat.society = vm.society[0];
+        active();
       });
 
     };
 
     function active() {
-      complaintFactory.getComplaintByUser().then(function (response) {
+      complaintFactory.getComplaintByUser(vm.flat.society.id).then(function (response) {
+        console.log(vm.flat.society.id)
 
         vm.progress = false;
         vm.master = response.data;

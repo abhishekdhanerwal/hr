@@ -72,8 +72,8 @@
       return promise;
     };
 
-    service.getComplaintByUser = function () {
-      var promise = $http.get(__env.dataServerUrl + '/complaint/findByUser')
+    service.getComplaintByUser = function (id) {
+      var promise = $http.get(__env.dataServerUrl + '/complaint/findByUser?societyId=' +id)
         .then(
           function (response) {
             console.log(response)
