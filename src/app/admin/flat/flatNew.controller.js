@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatNewCtrl', FlatNewCtrl);
 
-  FlatNewCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'societyFactory', 'flatFactory', '$state', 'validationHelperFactory', 'toaster', 'userFactory'];
+  FlatNewCtrl.$inject = [ 'NgTableParams', 'role', '$filter', '$document', 'societyFactory', 'flatFactory', '$state', 'validationHelperFactory', 'toaster', 'userFactory'];
   /* @ngInject */
-  function FlatNewCtrl( NgTableParams, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
+  function FlatNewCtrl( NgTableParams, role, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
     var vm = this;
     vm.userTenant = false;
     vm.submit = submit;
@@ -28,9 +28,15 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+
       societyFactory.societyList().then(function (response) {
         vm.society = response.data;
         console.log(vm.society)
+       // vm.flat.society.id = vm.society[0].admin.societyId;
       });
 
         flatFactory.residentType().then(function (response) {

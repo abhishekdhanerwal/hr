@@ -23,6 +23,7 @@
 
       vm.isAdminRole = role.isAdminRole();
       vm.isManagementRole = role.isManagementRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
 
       userFactory.societyList().then(function (response) {

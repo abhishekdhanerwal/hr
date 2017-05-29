@@ -18,13 +18,23 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-controller="SocietyNewCtrl" ng-show="$stateParams.msg != null">
+  <div class="row" ng-show="$stateParams.msg != null">
     <div class="col-md-12">
       <div class="alert alert-success">
         <button class="close" ng-click="vm.hideAlertBox()">
           &times;
         </button>
         {{$stateParams.msg}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
       </div>
     </div>
   </div>

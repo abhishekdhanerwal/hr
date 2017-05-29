@@ -28,6 +28,16 @@
       </div>
     </div>
   </div>
+  <div class="row" ng-show="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-white">

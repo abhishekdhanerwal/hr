@@ -12,6 +12,7 @@
     console.log($localStorage._identity)
     var service = {
       isAdminRole: isAdminRole,
+      isSuperAdminRole: isSuperAdminRole,
       isManagementRole: isManagementRole,
       isConsumerRole : isConsumerRole,
       currentAccessLevel : currentAccessLevel,
@@ -21,12 +22,27 @@
 
     ////////////////
 
-    function isAdminRole() {
+    function isSuperAdminRole() {
       if($localStorage._identity) {
         var roles = $localStorage._identity.principal.role;
         var index = _.findIndex(roles, function(o) {
           index = 0 ;
           if (roles.match(/SUPER_ADMIN/g)){
+            index++;
+            console.log(index)
+          }
+          return index
+        });
+        return index >= 0;
+      }
+    }
+
+    function isAdminRole() {
+      if($localStorage._identity) {
+        var roles = $localStorage._identity.principal.role;
+        var index = _.findIndex(roles, function(o) {
+          index = 0 ;
+          if (roles.match(/ROLE_ADMIN/g)){
             index++;
             console.log(index)
           }

@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('SocietyListCtrl', SocietyListCtrl);
 
-  SocietyListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
+  SocietyListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams' , 'toaster'];
   /* @ngInject */
-  function SocietyListCtrl( NgTableParams, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function SocietyListCtrl( NgTableParams, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.message = false;
     vm.progress = true;

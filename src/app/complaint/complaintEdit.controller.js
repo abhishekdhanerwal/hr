@@ -23,6 +23,7 @@
 
     function activate() {
       vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isManagementRole = role.isManagementRole();
       vm.isConsumerRole = role.isConsumerRole();
 

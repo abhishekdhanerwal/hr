@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatListCtrl', FlatListCtrl);
 
-  FlatListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
+  FlatListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster'];
   /* @ngInject */
-  function FlatListCtrl( NgTableParams, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function FlatListCtrl( NgTableParams, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.message = false;
     vm.progress = true;
