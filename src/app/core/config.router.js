@@ -189,6 +189,9 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       controllerAs: 'vm',
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'All Users',
+      params:{
+        msg:null
+      },
       ncyBreadcrumb: {
         label: 'All Users'
       }

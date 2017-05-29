@@ -12,9 +12,15 @@
     var vm = this;
     vm.message = false;
     vm.progress = true;
+    vm.flatMsg = $stateParams.msg;
+
+    vm.flatAlertBox = function(){
+      vm.flatMsg = false;
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
+      vm.message = false;
       $stateParams.msg = false;
     };
 

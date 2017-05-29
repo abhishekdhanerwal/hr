@@ -18,13 +18,13 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-show="$stateParams.msg != null">
+  <div class="row" ng-show="vm.societyMsg">
     <div class="col-md-12">
       <div class="alert alert-success">
-        <button class="close" ng-click="vm.hideAlertBox()">
+        <button class="close" ng-click="vm.societyAlertBox()">
           &times;
         </button>
-        {{$stateParams.msg}}
+        {{vm.societyMsg}}
       </div>
     </div>
   </div>
@@ -68,7 +68,7 @@
 
                 <td data-title="'Towers'">{{row.noOfTowers}}</td>
 
-                <td data-title="'Floors'">{{row.noOfFloors}}</td>
+                <!--<td data-title="'Floors'">{{row.noOfFloors}}</td>-->
 
                 <td data-title="'Flats'">{{row.noOfFlats}}</td>
 

@@ -18,13 +18,13 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-show="$stateParams.msg != null">
+  <div class="row" ng-show="vm.complaintMsg">
     <div class="col-md-12">
       <div class="alert alert-success">
-        <button class="close" ng-click="vm.hideAlertBox()">
+        <button class="close" ng-click="vm.hideComplaintBox()">
           &times;
         </button>
-        {{$stateParams.msg}}
+        {{vm.complaintMsg}}
       </div>
     </div>
   </div>

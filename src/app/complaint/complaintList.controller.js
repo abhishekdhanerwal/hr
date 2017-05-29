@@ -16,9 +16,15 @@
     vm.progress = true;
     vm.flat = {};
 
+    vm.complaintMsg = $stateParams.msg;
+
+    vm.hideComplaintBox = function () {
+      vm.complaintMsg = false;
+    }
+
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
-      $stateParams.msg = false;
+      vm.message = false;
     };
 
     activate();

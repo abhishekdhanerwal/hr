@@ -17,6 +17,10 @@
       vm.message = false;
     };
 
+    vm.hideUserBox = function () {
+      $stateParams.msg = false;
+    }
+
     activate();
 
     function activate() {
@@ -63,7 +67,8 @@
           if (response.status == 201) {
             console.log(response)
             toaster.info('User Saved');
-            $state.go('app.allUsers')
+            vm.message = "User Saved"
+            $state.go('app.allUsers',{msg:vm.message})
           }
           else if (response.status == -1) {
             toaster.error('Network Error', 'error');

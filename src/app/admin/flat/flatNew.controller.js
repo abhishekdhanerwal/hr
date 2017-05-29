@@ -36,7 +36,8 @@
       societyFactory.societyList().then(function (response) {
         vm.society = response.data;
         console.log(vm.society)
-       // vm.flat.society.id = vm.society[0].admin.societyId;
+        vm.flat.society = vm.society[0].admin;
+        vm.flat.society.id = vm.flat.society.societyId;
       });
 
         flatFactory.residentType().then(function (response) {
