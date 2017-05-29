@@ -32,7 +32,7 @@
       complaintFactory.societyList().then(function (response) {
         vm.society = response.data;
         console.log(vm.society)
-        vm.flat.society = vm.society[0].name;
+        vm.flat.society = vm.society[0];
       });
 
     };
