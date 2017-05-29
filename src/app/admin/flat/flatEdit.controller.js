@@ -106,7 +106,8 @@
 
           if (response.status == 200) {
             toaster.info('Flat updated');
-            $state.go('app.flats');
+            vm.message = "Flat updated";
+            $state.go('app.flats',{msg : vm.message});
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

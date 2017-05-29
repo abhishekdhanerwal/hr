@@ -18,13 +18,13 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-show="vm.message">
+  <div class="row" ng-show="$stateParams.msg != null">
     <div class="col-md-12">
       <div class="alert alert-success">
         <button class="close" ng-click="vm.hideAlertBox()">
           &times;
         </button>
-        {{vm.message}}
+        {{$stateParams.msg}}
       </div>
     </div>
   </div>
@@ -47,19 +47,19 @@
             </div>
           </div><br>
 
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group"
-                   ng-class="{'has-error':vm.Form.society.$dirty && vm.Form.society.$invalid, 'has-success':vm.Form.society.$valid}">
-                <label class="control-label"> Select a Society <span class="symbol required"></span> </label>
-                <select class=" cs-select cs-skin-slide" name="society" ng-model="vm.flat.society"
-                        ng-options="society as society.name for society in vm.society" required>
-                </select>
-                <span class="error text-small block"
-                      ng-if="vm.Form.society.$dirty && vm.Form.society.$error.required">Society is required.</span>
-              </div>
-            </div>
-          </div>
+          <!--<div class="row">-->
+            <!--<div class="col-md-4">-->
+              <!--<div class="form-group"-->
+                   <!--ng-class="{'has-error':vm.Form.society.$dirty && vm.Form.society.$invalid, 'has-success':vm.Form.society.$valid}">-->
+                <!--<label class="control-label"> Select a Society <span class="symbol required"></span> </label>-->
+                <!--<select class="cs-select cs-skin-slide" name="society" ng-model="vm.flat.society"-->
+                        <!--ng-options="society as society.name for society in vm.society" required>-->
+                <!--</select>-->
+                <!--<span class="error text-small block"-->
+                      <!--ng-if="vm.Form.society.$dirty && vm.Form.society.$error.required">Society is required.</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
 
           <div class="table-responsive">

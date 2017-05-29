@@ -14,10 +14,11 @@
     vm.active = active;
     vm.message = false;
     vm.progress = true;
+    vm.flat = {};
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
-      vm.message = false;
+      $stateParams.msg = false;
     };
 
     activate();
@@ -31,6 +32,7 @@
       complaintFactory.societyList().then(function (response) {
         vm.society = response.data;
         console.log(vm.society)
+        vm.flat.society = vm.society[0].name;
       });
 
     };

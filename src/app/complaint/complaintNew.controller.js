@@ -69,7 +69,8 @@
 
           if (response.status == 200) {
             toaster.info('Complaint registered');
-            $state.go('app.complaint');
+            vm.message = "Complaint registered";
+            $state.go('app.complaint', {msg: vm.message});
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

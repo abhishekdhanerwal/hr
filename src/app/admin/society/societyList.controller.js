@@ -15,11 +15,13 @@
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
-      vm.message = false;
+      $stateParams.msg = false;
     };
     activate();
 
     function activate() {
+
+      console.log($stateParams.msg)
 
       societyFactory.societyList().then(function (response) {
 

@@ -18,13 +18,13 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-controller="SocietyNewCtrl" ng-show="vm.message">
+  <div class="row" ng-controller="SocietyNewCtrl" ng-show="$stateParams.msg != null">
     <div class="col-md-12">
       <div class="alert alert-success">
         <button class="close" ng-click="vm.hideAlertBox()">
           &times;
         </button>
-        {{vm.message}}
+        {{$stateParams.msg}}
       </div>
     </div>
   </div>

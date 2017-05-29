@@ -15,7 +15,7 @@
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
-      vm.message = false;
+      $stateParams.msg = false;
     };
 
     activate();
@@ -28,6 +28,7 @@
 
         if (response.status == 200) {
           vm.master = response.data;
+          console.log(vm.master)
           for(var i=0; i<vm.master.length; i++){
             if(vm.master[i].hasOwner == true) {
               vm.master[i].hasOwner = 'Yes';

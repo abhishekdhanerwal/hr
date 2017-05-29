@@ -111,7 +111,8 @@
 
           if (response.status == 200) {
             toaster.info('Complaint updated');
-            $state.go('app.complaint');
+            vm.message = "Complaint updated";
+            $state.go('app.complaint',{msg:vm.message});
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

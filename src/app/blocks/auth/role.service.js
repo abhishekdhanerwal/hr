@@ -26,7 +26,7 @@
         var roles = $localStorage._identity.principal.role;
         var index = _.findIndex(roles, function(o) {
           index = 0 ;
-          if (roles.match(/ADMIN/g)){
+          if (roles.match(/SUPER_ADMIN/g)){
             index++;
             console.log(index)
           }

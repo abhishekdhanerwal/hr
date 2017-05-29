@@ -79,7 +79,7 @@
           if (response.status == 200) {
             toaster.info('Society Created');
             vm.message = "Society Created";
-            $state.go('app.society');
+            $state.go('app.society',{msg: vm.message});
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

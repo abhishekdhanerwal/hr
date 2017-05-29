@@ -69,16 +69,16 @@
                   </div>
                   <div class="panel-body">
                       <div class="form-group" ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}">
-                        <label class="control-label"> Select tower <span class="symbol required"></span> </label>
-                        <br><br>
-                        <select class="form-control" name="tower" ng-model="vm.flat.tower" style="width:250px;"
-                                ng-options="society as society.noOfTowers for society in vm.society" required>
-                          <span class="error text-small block" ng-if="vm.Form.tower.$dirty && vm.Form.tower.$error.required">Tower is required</span>
-                        </select>
-                        <!--<div class="input-group">-->
-                          <!--<input type="text" placeholder="Enter Tower" class="form-control" name="tower" ng-model="vm.flat.tower" required/>-->
+                        <!--<label class="control-label"> Select tower <span class="symbol required"></span> </label>-->
+                        <!--<br><br>-->
+                        <!--<select class="form-control" name="tower" ng-model="vm.flat.tower" style="width:250px;"-->
+                                <!--ng-options="society as society.noOfTowers for society in vm.society" required>-->
                           <!--<span class="error text-small block" ng-if="vm.Form.tower.$dirty && vm.Form.tower.$error.required">Tower is required</span>-->
-                        <!--</div>-->
+                        <!--</select>-->
+                        <div class="input-group">
+                          <input type="text" placeholder="Enter Tower" class="form-control" name="tower" ng-model="vm.flat.tower" required/>
+                          <span class="error text-small block" ng-if="vm.Form.tower.$dirty && vm.Form.tower.$error.required">Tower is required</span>
+                        </div>
                       </div>
                       <div class="form-group" ng-class="{'has-error':vm.Form.floor.$dirty && vm.Form.floor.$invalid, 'has-success':vm.Form.floor.$valid}">
                         <input type="text" placeholder="Enter Floor" class="form-control" name="floor" ng-model="vm.flat.floor" ng-pattern="/^[1-9][0-9]*$/" required>

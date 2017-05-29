@@ -41,10 +41,13 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       // },
         abstract: true
     }).state('app.society', {
-      url: "/society/:message",
+      url: "/society",
       templateUrl: "app/admin/society/societyList.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Society',
+      params: {
+        msg: null
+      },
       controller: 'SocietyListCtrl',
       controllerAs: 'vm',
       ncyBreadcrumb: {
@@ -75,6 +78,9 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       templateUrl: "app/admin/flat/flatList.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Flats',
+      params: {
+        msg: null
+      },
       controller: 'FlatListCtrl',
       controllerAs: 'vm',
       ncyBreadcrumb: {
@@ -125,6 +131,9 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       templateUrl: "app/complaint/manageComplaint.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Complaint',
+      params:{
+        msg:null
+      },
       controller: 'ComplaintListCtrl',
       controllerAs: 'vm',
       ncyBreadcrumb: {

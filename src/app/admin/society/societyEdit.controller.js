@@ -97,7 +97,8 @@
 
           if (response.status == 200) {
             toaster.info('Society updated');
-            $state.go('app.society');
+            vm.message = "Society updated";
+            $state.go('app.society',{msg: vm.message});
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';
