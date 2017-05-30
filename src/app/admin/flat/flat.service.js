@@ -59,8 +59,8 @@
       return promise;
     };
 
-    service.flatList = function () {
-      var promise = $http.get(__env.dataServerUrl + '/flat/findBySociety')
+    service.flatList = function (id) {
+      var promise = $http.get(__env.dataServerUrl + '/flat/findBySociety?societyId=' + id)
         .then(
           function (response) {
             return response;

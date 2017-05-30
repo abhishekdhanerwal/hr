@@ -74,7 +74,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         label: 'Society'
       }
     }).state('app.flats', {
-      url: "/flats",
+      url: "/flats/:id",
       templateUrl: "app/admin/flat/flatList.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Flats',

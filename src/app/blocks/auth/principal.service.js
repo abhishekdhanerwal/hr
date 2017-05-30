@@ -67,22 +67,7 @@
     }
     function isAuthenticated() {
       if (isIdentityInLocalStorage()) {
-        // public class NoCacheAttribute : ActionFilterAttribute
-        // {
-        //   public override void OnResultExecuting(ResultExecutingContext filterContext)
-        //   {
-        //     filterContext.HttpContext.Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
-        //     filterContext.HttpContext.Response.Cache.SetValidUntilExpires(false);
-        //     filterContext.HttpContext.Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
-        //     filterContext.HttpContext.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-        //     filterContext.HttpContext.Response.Cache.SetNoStore();
-        //
-        //     base.OnResultExecuting(filterContext);
-        //   }
-        // }
-        // var backlen = history.length;
-        // history.go(-backlen);
-        // window.location.href = loggedOutPageUrl
+
         // var currentTimeStamp = Date.now();
         // var loggedInTimeStamp = $localStorage.loggedInTimeStamp;
         // var expiryTimePeriod = $localStorage._identity.expires_in * 1000;//in seconds as rest of things are in milliseconds

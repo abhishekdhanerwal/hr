@@ -60,7 +60,7 @@
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in $data">
 
-                <td data-title="'Society name'" sortable="'name'" filter="{ 'name' : 'text' }">{{row.name}}</td>
+                <td data-title="'Society name'" sortable="'name'" filter="{ 'name' : 'text' }"><a ui-sref="app.flats({id: row.id})"><b>{{row.name}}</b></a></td>
 
                 <td data-title="'Manager name'">{{row.admin.name}}</td>
 

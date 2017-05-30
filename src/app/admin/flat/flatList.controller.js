@@ -27,8 +27,9 @@
     activate();
 
     function activate() {
+      console.log($stateParams.id)
 
-      flatFactory.flatList().then(function (response) {
+      flatFactory.flatList($stateParams.id).then(function (response) {
 
         vm.progress = false;
 
