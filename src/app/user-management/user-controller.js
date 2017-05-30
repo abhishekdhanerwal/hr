@@ -40,8 +40,11 @@
 
       userFactory.getRole().then(function (response) {
         vm.roles = response.data;
+        console.log(vm.roles)
         vm.roles.splice(0,1);
-        console.log(vm.roles);
+        if(vm.isSuperAdminRole){
+          vm.roles.splice(3,5);
+        }
       });
     };
 

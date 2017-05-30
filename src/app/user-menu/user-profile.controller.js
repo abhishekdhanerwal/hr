@@ -88,7 +88,7 @@
 
     vm.submit = function () {
       var firstError = null;
-      if (vm.Form.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = "Validation error";
         return;

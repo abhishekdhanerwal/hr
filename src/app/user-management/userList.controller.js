@@ -14,36 +14,52 @@
     function activate() {
 
       userFactory.alluser().then(function (response) {
-        self.userList = response.data;
-        console.log(self.userList)
-        for(var i=0; i<self.userList.length; i++){
+        if (response.status == 200) {
+          self.userList = response.data;
+          console.log(self.userList)
+          for (var i = 0; i < self.userList.length; i++) {
 
-        if(self.userList[i].role == "ROLE_CONSUMER"){
-          self.userList[i].role = "CONSUMER";
+            if (self.userList[i].role == "ROLE_CONSUMER") {
+              self.userList[i].role = "CONSUMER";
+            }
+            else if (self.userList[i].role == "ROLE_ADMIN") {
+              self.userList[i].role = "ADMIN"
+            }
+            else if (self.userList[i].role == "ROLE_SUPER_ADMIN") {
+              self.userList[i].role = "SUPER ADMIN"
+            }
+            else if (self.userList[i].role == "ROLE_PLUMBER") {
+              self.userList[i].role = "PLUMBER"
+            }
+            else if (self.userList[i].role == "ROLE_MANAGEMENT") {
+              self.userList[i].role = "MANAGEMENT"
+            }
+            else if (self.userList[i].role == "ROLE_CIVIC") {
+              self.userList[i].role = "CIVIC"
+            }
+            else if (self.userList[i].role == "ROLE_CARPENTER") {
+              self.userList[i].role = "CARPENTER"
+            }
+            else if (self.userList[i].role == "ROLE_ELECTRICIAN") {
+              self.userList[i].role = "ELECTRICIAN"
+            }
+          }
+          listView();
         }
-        else if(self.userList[i].role == "ROLE_ADMIN"){
-          self.userList[i].role = "ADMIN"
+        else if (response.status == -1) {
+          toaster.error('Network Error', 'error');
+          self.errorMessage = "Network Error";
+          console.error(response);
         }
-        else if(self.userList[i].role == "ROLE_SUPER_ADMIN"){
-          self.userList[i].role = "SUPER ADMIN"
+        else if (response.status == 400) {
+          console.error(response);
+          self.errorMessage = self.userList[0].message;
+          toaster.error(self.userList[0].message);
         }
-        else if(self.userList[i].role == "ROLE_PLUMBER"){
-          self.userList[i].role = "PLUMBER"
+        else {
+          toaster.error('Some problem', 'error');
+          console.error(response);
         }
-        else if(self.userList[i].role == "ROLE_MANAGEMENT"){
-          self.userList[i].role = "MANAGEMENT"
-        }
-        else if(self.userList[i].role == "ROLE_CIVIC"){
-          self.userList[i].role = "CIVIC"
-        }
-        else if(self.userList[i].role == "ROLE_CARPENTER"){
-          self.userList[i].role = "CARPENTER"
-        }
-        else if(self.userList[i].role == "ROLE_ELECTRICIAN"){
-          self.userList[i].role = "ELECTRICIAN"
-        }
-        }
-        listView();
       })
     };
 
@@ -148,9 +164,9 @@
             }
             else {
               self.progress = false;
-              toaster.error(response.data.error_description);
+              toaster.error(response.data[0].message);
+              self.errorMessage = response.data[0].message;
             }
-
 
           });
         } else {

@@ -15,6 +15,7 @@
     vm.message = false;
     vm.progress = true;
     vm.flat = {};
+    vm.char = 4;
 
     vm.complaintMsg = $stateParams.msg;
 
@@ -40,39 +41,46 @@
         vm.society = response.data;
         console.log(vm.society)
         vm.flat.society = vm.society[0];
+        console.log(vm.flat.society)
         active();
       });
 
     };
 
     function active() {
-      complaintFactory.getComplaintByUser(vm.flat.society.id).then(function (response) {
-        console.log(vm.flat.society.id)
-
+      if(vm.flat.society == undefined){
         vm.progress = false;
-        vm.master = response.data;
-        console.log(vm.master)
+        vm.message = "No data available";
+      }
+      else {
+        complaintFactory.getComplaintByUser(vm.flat.society.id).then(function (response) {
+          console.log(vm.flat.society.id)
 
-        if (response.status == 200) {
+          vm.progress = false;
           vm.master = response.data;
-          console.log(response.data)
-          complaintData();
-        }
-        else if (response.status == -1) {
-          toaster.error('Network Error', 'error');
-          vm.errorMessage = "Network Error";
-          console.error(response);
-        }
-        else if (response.status == 400) {
-          console.error(response);
-          vm.errorMessage = vm.master.message;
-          toaster.error(vm.master.message);
-        }
-        else {
-          toaster.error('Some problem', 'error');
-          console.error(response);
-        }
-      })
+          console.log(vm.master)
+
+          if (response.status == 200) {
+            vm.master = response.data;
+            console.log(response.data)
+            complaintData();
+          }
+          else if (response.status == -1) {
+            toaster.error('Network Error', 'error');
+            vm.errorMessage = "Network Error";
+            console.error(response);
+          }
+          else if (response.status == 400) {
+            console.error(response);
+            vm.errorMessage = vm.master.message;
+            toaster.error(vm.master.message);
+          }
+          else {
+            toaster.error('Some problem', 'error');
+            console.error(response);
+          }
+        })
+      }
     };
 
      function resolved() {

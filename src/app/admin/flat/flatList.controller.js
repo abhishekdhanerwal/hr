@@ -60,7 +60,7 @@
         else if (response.status == 400) {
           console.error(response);
           vm.errorMessage = vm.master[0].message;
-          toaster.error(vm.master[0].message, 'error');
+          toaster.error(vm.master[0].message);
         }
         else {
           toaster.error('Some problem', 'error');

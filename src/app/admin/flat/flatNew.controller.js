@@ -88,6 +88,7 @@
     }
 
     function submit() {
+
       var firstError = null;
 
       if(!vm.flat.hasOwner){

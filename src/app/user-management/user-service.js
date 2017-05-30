@@ -38,7 +38,7 @@
     };
 
     service.alluser = function () {
-      var promise = $http.get(__env.dataServerUrl + '/users')
+      var promise = $http.get(__env.dataServerUrl + '/usersByRole')
         .then(
           function (response) {
             return response;

@@ -39,6 +39,9 @@
 
       complaintFactory.loadStatusDetails().then(function (response) {
         vm.status = response.data;
+        if(vm.status == 'Resolved'){
+         vm.status.splice(0,1);
+        }
       });
 
     };

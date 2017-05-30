@@ -54,6 +54,7 @@
 
     function reset() {
       vm.society = '';
+      vm.society.admin = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }

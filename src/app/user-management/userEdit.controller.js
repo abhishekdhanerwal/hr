@@ -6,9 +6,9 @@
     .module('app.user')
     .controller('UserEditCtrl', UserEditCtrl);
 
-  UserEditCtrl.$inject = ['userFactory', '$document', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  UserEditCtrl.$inject = ['userFactory', '$document', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
   /* @ngInject */
-  function UserEditCtrl( userFactory, $document, $state, validationHelperFactory, $stateParams , toaster) {
+  function UserEditCtrl( userFactory, $document, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -22,10 +22,18 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+
       userFactory.getRole().then(function (response) {
         vm.roles = response.data;
+        vm.roles.splice(0,1);
+        if(vm.isSuperAdminRole){
+          vm.roles.splice(3,5);
+        }
       });
-
 
       userFactory.finduser($stateParams.id).then(function (response) {
         if (response.status == 200) {

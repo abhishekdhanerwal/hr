@@ -47,7 +47,7 @@
           <!--<div class="panel-body">-->
           <div class="row margin-bottom-10">
             <div class="col-md-12">
-              <a ui-sref="app.addComplaint"
+              <a ui-sref="app.addComplaint" ng-if="!vm.isSuperAdminRole"
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
                 Complaint</a>
@@ -55,7 +55,7 @@
                  class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear
                 Filters</a>
             </div>
-          </div><br>
+          </div>
 
           <div class="row" ng-if="vm.isSuperAdminRole">
             <div class="col-md-4">
@@ -69,8 +69,7 @@
                       ng-if="vm.Form.society.$dirty && vm.Form.society.$error.required">Society is required.</span>
               </div>
             </div>
-          </div>
-
+          </div><br>
 
           <div class="table-responsive">
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
@@ -80,7 +79,7 @@
 
                 <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
-                <td data-title="'Complaint Text'">{{row.description}}</td>
+                <td data-title="'Complaint Text'">{{row.description | limitTo:30}}</td>
 
                 <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 
@@ -143,7 +142,7 @@
 
                     <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
-                    <td data-title="'Complaint Text'">{{row.description}}</td>
+                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}}</td>
 
                     <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 
@@ -182,7 +181,7 @@
 
                     <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
-                    <td data-title="'Complaint Text'">{{row.description}}</td>
+                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}}</td>
 
                     <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 
