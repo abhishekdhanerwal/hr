@@ -28,18 +28,18 @@
 
     function activate() {
       console.log($stateParams.id)
+      if($stateParams.id == ''){
+        flatFactory.flatList().then(function (response) {
 
-      flatFactory.flatList($stateParams.id).then(function (response) {
+          vm.progress = false;
 
-        vm.progress = false;
-
-        if (response.status == 200) {
-          vm.master = response.data;
-          console.log(vm.master)
-          for(var i=0; i<vm.master.length; i++){
-            if(vm.master[i].hasOwner == true) {
-              vm.master[i].hasOwner = 'Yes';
-            }
+          if (response.status == 200) {
+            vm.master = response.data;
+            console.log(vm.master)
+            for(var i=0; i<vm.master.length; i++){
+              if(vm.master[i].hasOwner == true) {
+                vm.master[i].hasOwner = 'Yes';
+              }
               if(vm.master[i].hasResident == true){
                 vm.master[i].hasResident = 'Yes';
               }
@@ -49,25 +49,67 @@
               if(vm.master[i].hasResident == false){
                 vm.master[i].hasResident = 'No';
               }
+            }
+            console.log(response.data)
+            FlatData();
           }
-          console.log(response.data)
-          FlatData();
-        }
-        else if (response.status == -1) {
-          toaster.error('Network Error', 'error');
-          vm.errorMessage = "Network Error";
-          console.error(response);
-        }
-        else if (response.status == 400) {
-          console.error(response);
-          vm.errorMessage = vm.master[0].message;
-          toaster.error(vm.master[0].message);
-        }
-        else {
-          toaster.error('Some problem', 'error');
-          console.error(response);
-        }
-      })
+          else if (response.status == -1) {
+            toaster.error('Network Error', 'error');
+            vm.errorMessage = "Network Error";
+            console.error(response);
+          }
+          else if (response.status == 400) {
+            console.error(response);
+            vm.errorMessage = vm.master[0].message;
+            toaster.error(vm.master[0].message);
+          }
+          else {
+            toaster.error('Some problem', 'error');
+            console.error(response);
+          }
+        })
+      }
+      else {
+        flatFactory.flatListBySociety($stateParams.id).then(function (response) {
+
+          vm.progress = false;
+
+          if (response.status == 200) {
+            vm.master = response.data;
+            console.log(vm.master)
+            for (var i = 0; i < vm.master.length; i++) {
+              if (vm.master[i].hasOwner == true) {
+                vm.master[i].hasOwner = 'Yes';
+              }
+              if (vm.master[i].hasResident == true) {
+                vm.master[i].hasResident = 'Yes';
+              }
+              if (vm.master[i].hasOwner == false) {
+                vm.master[i].hasOwner = 'No';
+              }
+              if (vm.master[i].hasResident == false) {
+                vm.master[i].hasResident = 'No';
+              }
+            }
+            console.log(response.data)
+            FlatData();
+          }
+          else if (response.status == -1) {
+            toaster.error('Network Error', 'error');
+            vm.errorMessage = "Network Error";
+            console.error(response);
+          }
+          else if (response.status == 400) {
+            console.error(response);
+            vm.errorMessage = vm.master[0].message;
+            toaster.error(vm.master[0].message);
+          }
+          else {
+            toaster.error('Some problem', 'error');
+            console.error(response);
+          }
+        })
+      }
     };
 
     function FlatData() {

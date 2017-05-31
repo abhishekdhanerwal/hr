@@ -46,6 +46,7 @@
       vm.society.admin.address = $item.address;
       vm.society.admin.role = $item.role;
       vm.society.admin.id = $item.id;
+      vm.society.admin.societyId = $item.societyId;
     };
 
     function clearUser(){

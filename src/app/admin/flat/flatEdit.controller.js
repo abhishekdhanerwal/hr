@@ -105,9 +105,10 @@
           console.log(response.data);
 
           if (response.status == 200) {
+            console.log(vm.flat.society.id)
             toaster.info('Flat updated');
             vm.message = "Flat updated";
-            $state.go('app.flats',{msg : vm.message});
+            $state.go('app.flats({id: vm.flat.society.id})',{msg : vm.message});
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

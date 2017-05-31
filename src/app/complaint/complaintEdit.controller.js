@@ -40,11 +40,13 @@
       complaintFactory.loadStatusDetails().then(function (response) {
         vm.status = response.data;
         console.log(vm.status)
-        for(var i=0; i<vm.status.length; i++) {
-          if (vm.status[i] == 'Resolved') {
-            vm.status.splice(0, 2);
-          }
-        }
+        getEditInfo();
+        // for(var i=0; i<vm.status.length; i++) {
+        //   if (vm.status[i] == 'Resolved') {
+        //     console.log('dsh')
+        //     vm.status.splice(0, 2);
+        //   }
+        // }
       });
 
     };
@@ -54,6 +56,12 @@
         if (response.status == 200) {
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
+          if(vm.complaint.status == 'Resolved'){
+            vm.status.splice(0,1);
+          }
+          if(vm.isConsumerRole && vm.complaint.status == 'New'){
+            vm.status.splice(1,4);
+          }
           populateAssignToList(vm.complaint.complaintType);
           console.log(vm.complaint)
           for(var index = 0 ; index < vm.flat.length ; index++){
