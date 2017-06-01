@@ -71,18 +71,6 @@
       return promise;
     };
 
-    service.flatListBySociety = function (id) {
-      var promise = $http.get(__env.dataServerUrl + '/flat/findBySociety?societyId=' + id)
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
-
     service.findFlat = function (id) {
       var promise = $http.get(__env.dataServerUrl + '/flat/' + id)
         .then(

@@ -54,7 +54,6 @@
       }
       else {
         complaintFactory.getComplaintByUser(vm.flat.society.id).then(function (response) {
-          console.log(vm.flat.society.id)
 
           vm.progress = false;
           vm.master = response.data;

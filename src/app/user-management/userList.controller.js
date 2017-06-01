@@ -4,14 +4,19 @@
     .module('app.user')
     .controller('UserList', UserList);
 
-  UserList.$inject = ['$filter', '$state', 'NgTableParams', 'toaster', 'userFactory', '$localStorage', 'SweetAlert']
-  function UserList($filter, $state, NgTableParams, toaster, userFactory, $localStorage, SweetAlert) {
+  UserList.$inject = ['$filter', '$state', 'NgTableParams', 'toaster', 'userFactory', '$localStorage', 'SweetAlert', 'role']
+  function UserList($filter, $state, NgTableParams, toaster, userFactory, $localStorage, SweetAlert, role) {
     var self = this;
     self.progress = true;
 
     activate();
 
     function activate() {
+
+      self.isAdminRole = role.isAdminRole();
+      self.isSuperAdminRole = role.isSuperAdminRole();
+      self.isManagementRole = role.isManagementRole();
+      self.isConsumerRole = role.isConsumerRole();
 
       userFactory.alluser().then(function (response) {
         if (response.status == 200) {

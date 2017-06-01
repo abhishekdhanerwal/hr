@@ -73,8 +73,21 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'Society'
       }
-    }).state('app.flats', {
+    }).state('app.flatsBySociety', {
       url: "/flats/:id",
+      templateUrl: "app/admin/flat/flatList.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Flats',
+      params: {
+        msg: null
+      },
+      controller: 'FlatDataCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Flats'
+      }
+    }).state('app.flats', {
+      url: "/flats",
       templateUrl: "app/admin/flat/flatList.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Flats',

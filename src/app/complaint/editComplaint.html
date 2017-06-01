@@ -73,7 +73,7 @@
                        ng-class="{'has-error':vm.Form.assignedTo.$dirty && vm.Form.assignedTo.$invalid, 'has-success':vm.Form.assignedTo.$valid}">
                     <label class="control-label"> Assign To <span class="symbol required"></span> </label>
                     <select class="form-control" name="assignedTo" ng-model="vm.complaint.assignedTo"
-                            ng-options="complaint.name for complaint in vm.assignTo" required>
+                            ng-options="complaint.name for complaint in vm.assignTo" ng-change="vm.changeStatus()" required>
                     </select>
                     <span class="error text-small block"
                           ng-if="vm.Form.assignedTo.$dirty && vm.Form.assignedTo.$error.required">Assign To field is required.</span>

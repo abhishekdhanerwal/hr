@@ -34,7 +34,7 @@
       }
       else {
         console.log(vm.passData);
-        changePasswordFactory.change(vm.passData).then(function (response) {
+        changePasswordFactory.change(vm.passData, userid).then(function (response) {
 
           if (response.status == 200) {
             toaster.info('Password Changed', 'default');
@@ -46,8 +46,8 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data[0].message;
-            toaster.error(response.data[0].message, 'error');
+            vm.errorMessage = response.data.message;
+            toaster.error(response.data.message, 'error');
 
             console.error(response);
           }

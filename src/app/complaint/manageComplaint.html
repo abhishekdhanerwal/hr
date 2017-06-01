@@ -75,7 +75,7 @@
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in $data">
 
-                <td ng-if="!vm.isConsumerRole" data-title="'Flat Number'">{{row.registerFor.flatNo}}</td>
+                <td ng-if="!vm.isConsumerRole" data-title="'Flat Number'">Tower:{{row.registerFor.tower}} Flat no:{{row.registerFor.flatNo}}</td>
 
                 <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
@@ -118,7 +118,7 @@
     </div>
   </div>
 </div>
-<div class="container-fluid container-fullw" ng-if="vm.isConsumerRole">
+<div ng-show="!vm.progress" class="container-fluid container-fullw" ng-if="vm.isConsumerRole">
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-white">

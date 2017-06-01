@@ -29,7 +29,6 @@
           index = 0 ;
           if (roles.match(/SUPER_ADMIN/g)){
             index++;
-            console.log(index)
           }
           return index
         });
@@ -44,7 +43,6 @@
           index = 0 ;
           if (roles.match(/ROLE_ADMIN/g)){
             index++;
-            console.log(index)
           }
           return index
         });
@@ -59,7 +57,6 @@
           index = 0 ;
           if (roles.match(/MANAGEMENT/g)){
             index++;
-            console.log(index)
           }
           return index
         });
@@ -74,7 +71,6 @@
           index = 0 ;
           if (roles.match(/CONSUMER/g)){
             index++;
-            console.log(index)
           }
           return index
         });
@@ -102,7 +98,6 @@
         index = 0 ;
         if (roles.match(/ADMIN/g)){
           index++;
-          console.log(index)
         }
         return index
       });
@@ -111,7 +106,6 @@
         index = 0 ;
         if (roles.match(/CONSUMER/g)){
           index++;
-          console.log(index)
         }
         return index
       });
@@ -120,7 +114,6 @@
         index = 0 ;
         if (roles.match(/MANAGEMENT/g)){
           index++;
-          console.log(index)
         }
         return index
       });

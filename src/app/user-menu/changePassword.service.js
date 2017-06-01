@@ -12,8 +12,8 @@
     var service = {};
     var apiUser = __env.apiUser;
 
-    service.change = function (passData) {
-      var promise = $http.put(__env.dataServerUrl + '/changePassword', passData)
+    service.change = function (passData,id) {
+      var promise = $http.put(__env.dataServerUrl + '/changePassword/' + id, passData)
         .then(
           function (response) {
             return response;

@@ -4,11 +4,11 @@
 
   angular
     .module('app.admin')
-    .controller('FlatListCtrl', FlatListCtrl);
+    .controller('FlatDataCtrl', FlatDataCtrl);
 
-  FlatListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster', '$rootScope'];
+  FlatDataCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams' , 'toaster', '$rootScope'];
   /* @ngInject */
-  function FlatListCtrl( NgTableParams, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster, $rootScope) {
+  function FlatDataCtrl( NgTableParams, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster, $rootScope) {
     var vm = this;
     vm.message = false;
     vm.progress = true;
@@ -28,27 +28,27 @@
 
     function activate() {
 
-      $localStorage._identity.societyId = null;
+      $localStorage._identity.societyId = $stateParams.id;
 
-        flatFactory.flatList().then(function (response) {
+        societyFactory.flatListBySociety($stateParams.id).then(function (response) {
 
           vm.progress = false;
-          vm.SocietyFlatData = false;
+          vm.SocietyFlatData = true;
 
           if (response.status == 200) {
             vm.master = response.data;
             console.log(vm.master)
-            for(var i=0; i<vm.master.length; i++){
-              if(vm.master[i].hasOwner == true) {
+            for (var i = 0; i < vm.master.length; i++) {
+              if (vm.master[i].hasOwner == true) {
                 vm.master[i].hasOwner = 'Yes';
               }
-              if(vm.master[i].hasResident == true){
+              if (vm.master[i].hasResident == true) {
                 vm.master[i].hasResident = 'Yes';
               }
-              if(vm.master[i].hasOwner == false){
+              if (vm.master[i].hasOwner == false) {
                 vm.master[i].hasOwner = 'No';
               }
-              if(vm.master[i].hasResident == false){
+              if (vm.master[i].hasResident == false) {
                 vm.master[i].hasResident = 'No';
               }
             }
@@ -70,48 +70,6 @@
             console.error(response);
           }
         })
-
-      // else {
-      //   flatFactory.flatListBySociety($stateParams.id).then(function (response) {
-      //
-      //     vm.progress = false;
-      //
-      //     if (response.status == 200) {
-      //       vm.master = response.data;
-      //       console.log(vm.master)
-      //       for (var i = 0; i < vm.master.length; i++) {
-      //         if (vm.master[i].hasOwner == true) {
-      //           vm.master[i].hasOwner = 'Yes';
-      //         }
-      //         if (vm.master[i].hasResident == true) {
-      //           vm.master[i].hasResident = 'Yes';
-      //         }
-      //         if (vm.master[i].hasOwner == false) {
-      //           vm.master[i].hasOwner = 'No';
-      //         }
-      //         if (vm.master[i].hasResident == false) {
-      //           vm.master[i].hasResident = 'No';
-      //         }
-      //       }
-      //       console.log(response.data)
-      //       FlatData();
-      //     }
-      //     else if (response.status == -1) {
-      //       toaster.error('Network Error', 'error');
-      //       vm.errorMessage = "Network Error";
-      //       console.error(response);
-      //     }
-      //     else if (response.status == 400) {
-      //       console.error(response);
-      //       vm.errorMessage = vm.master[0].message;
-      //       toaster.error(vm.master[0].message);
-      //     }
-      //     else {
-      //       toaster.error('Some problem', 'error');
-      //       console.error(response);
-      //     }
-      //   })
-      // }
     };
 
     function FlatData() {

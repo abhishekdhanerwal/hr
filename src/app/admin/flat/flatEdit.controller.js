@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatEditCtrl', FlatEditCtrl);
 
-  FlatEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'flatFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  FlatEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'flatFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', '$localStorage', '$rootScope'];
   /* @ngInject */
-  function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster, $localStorage, $rootScope) {
     var vm = this;
     vm.submit = submit;
     vm.clearUser = clearUser;
@@ -22,6 +22,13 @@
     activate();
 
     function activate() {
+      if($localStorage._identity.societyId != null){
+        vm.SocietyFlatData = true;
+      }
+      else{
+        vm.SocietyFlatData = false;
+      }
+      console.log($localStorage._identity)
 
       flatFactory.societyList().then(function (response) {
         vm.society = response.data;
@@ -108,7 +115,12 @@
             console.log(vm.flat.society.id)
             toaster.info('Flat updated');
             vm.message = "Flat updated";
-            $state.go('app.flats({id: vm.flat.society.id})',{msg : vm.message});
+            if(vm.SocietyFlatData) {
+              $state.go('app.flatsBySociety',({id: vm.flat.society.id , msg: vm.message}));
+            }
+            else if(vm.SocietyFlatData == false){
+              $state.go('app.flats', {msg: vm.message});
+            }
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

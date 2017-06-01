@@ -13,6 +13,7 @@
     vm.submit = submit;
     vm.reset = reset;
     vm.populateAssignToList = populateAssignToList;
+    vm.changeStatus = changeStatus;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -29,8 +30,9 @@
 
       complaintFactory.flatList().then(function (response) {
         vm.flat = response.data;
+        console.log(vm.flat)
         getEditInfo();
-      })
+      });
 
       complaintFactory.loadTypeDetails().then(function (response) {
         vm.complaintType = response.data;
@@ -41,26 +43,37 @@
         vm.status = response.data;
         console.log(vm.status)
         getEditInfo();
-        // for(var i=0; i<vm.status.length; i++) {
-        //   if (vm.status[i] == 'Resolved') {
-        //     console.log('dsh')
-        //     vm.status.splice(0, 2);
-        //   }
-        // }
       });
 
     };
+
+    function changeStatus(){
+      if(!vm.isConsumerRole && vm.complaint.status == 'New'){
+        vm.complaint.status = 'In_Progress';
+      }
+    }
 
     function getEditInfo(){
       complaintFactory.findComplaint($stateParams.id).then(function (response) {
         if (response.status == 200) {
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
-          if(vm.complaint.status == 'Resolved'){
-            vm.status.splice(0,1);
-          }
           if(vm.isConsumerRole && vm.complaint.status == 'New'){
             vm.status.splice(1,4);
+          }
+          else if(vm.isConsumerRole && vm.complaint.status == 'In_Progress'){
+            vm.status.splice(-1,-2);
+            console.log(vm.status);
+          }
+          else if(vm.isConsumerRole && vm.complaint.status == 'Resolved'){
+            vm.status.splice(0,1);
+          }
+          else if(vm.isConsumerRole && vm.complaint.status == 'Re_Opened'){
+            vm.status.splice(0,1);
+            //vm.status.splice(1,1);
+          }
+          else if(vm.isConsumerRole && vm.complaint.status == 'Closed'){
+            vm.status.splice(0,2);
           }
           populateAssignToList(vm.complaint.complaintType);
           console.log(vm.complaint)
@@ -91,12 +104,18 @@
       complaintFactory.userByComplaintType(complaintType).then(function (response) {
         vm.assignTo = response.data;
         console.log(vm.assignTo)
-        for(var index = 0 ; index < vm.assignTo.length ; index++){
-          if(vm.complaint.assignedTo.id == vm.assignTo[index].id){
-            vm.complaint.assignedTo = vm.assignTo[index];
-            console.log(vm.complaint.assignedTo)
+        console.log(vm.complaint.assignedTo)
+        if(vm.complaint.assignedTo != null) {
+          for (var index = 0; index < vm.assignTo.length; index++) {
+            if (vm.complaint.assignedTo.id == vm.assignTo[index].id) {
+              vm.complaint.assignedTo = vm.assignTo[index];
+              console.log(vm.complaint.assignedTo)
+            }
           }
-        };
+        }
+        else{
+
+        }
       });
     }
 
