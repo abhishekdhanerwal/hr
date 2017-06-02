@@ -3,25 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="16d9d364-3880-4526-b193-f5912f7b8799" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flat.service.js" afterPath="$PROJECT_DIR$/src/app/admin/flat/flat.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatEdit.html" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatEdit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatList.html" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/society.service.js" afterPath="$PROJECT_DIR$/src/app/admin/society/society.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/societyList.html" afterPath="$PROJECT_DIR$/src/app/admin/society/societyList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/blocks/auth/role.service.js" afterPath="$PROJECT_DIR$/src/app/blocks/auth/role.service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatNew.html" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatNew.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/society.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/society/society.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/societyEdit.html" afterPath="$PROJECT_DIR$/src/app/admin/society/societyEdit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/societyNew.html" afterPath="$PROJECT_DIR$/src/app/admin/society/societyNew.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/editComplaint.html" afterPath="$PROJECT_DIR$/src/app/complaint/editComplaint.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/manageComplaint.html" afterPath="$PROJECT_DIR$/src/app/complaint/manageComplaint.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/core/config.router.js" afterPath="$PROJECT_DIR$/src/app/core/config.router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/layout/sidebar.controller.js" afterPath="$PROJECT_DIR$/src/app/layout/sidebar.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-management/list.html" afterPath="$PROJECT_DIR$/src/app/user-management/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-management/userList.controller.js" afterPath="$PROJECT_DIR$/src/app/user-management/userList.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-menu/changePassword.controller.js" afterPath="$PROJECT_DIR$/src/app/user-menu/changePassword.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-menu/changePassword.service.js" afterPath="$PROJECT_DIR$/src/app/user-menu/changePassword.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,38 +34,38 @@
       <file leaf-file-name="complaintEdit.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="28" column="48" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="28" selection-end-column="48" />
+            <state relative-caret-position="2142">
+              <caret line="126" column="36" lean-forward="false" selection-start-line="126" selection-start-column="36" selection-end-line="126" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/user-management/list.html">
+      <file leaf-file-name="manageComplaint.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/complaint/manageComplaint.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="80" column="34" lean-forward="false" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="34" />
+            <state relative-caret-position="-38">
+              <caret line="120" column="28" lean-forward="false" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userList.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/user-management/userList.controller.js">
+      <file leaf-file-name="complaint.service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/complaint/complaint.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+            <state relative-caret-position="-233">
+              <caret line="60" column="6" lean-forward="true" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.router.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/core/config.router.js">
+      <file leaf-file-name="complaintList.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintList.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-697">
-              <caret line="131" column="5" lean-forward="false" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+            <state relative-caret-position="133">
+              <caret line="87" column="28" lean-forward="true" selection-start-line="87" selection-start-column="28" selection-end-line="87" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -151,9 +140,6 @@
         <option value="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js" />
         <option value="$PROJECT_DIR$/src/views/ui_tabs_accordions.html" />
-        <option value="$PROJECT_DIR$/src/app/admin/society/societyNew.html" />
-        <option value="$PROJECT_DIR$/src/app/admin/flat/flatNew.html" />
-        <option value="$PROJECT_DIR$/src/app/admin/society/societyEdit.html" />
         <option value="$PROJECT_DIR$/src/app/complaint/complaint.service.js" />
         <option value="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" />
         <option value="$PROJECT_DIR$/src/app/complaint/addComplaint.html" />
@@ -163,12 +149,10 @@
         <option value="$PROJECT_DIR$/src/app/user-management/user-service.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/user-controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/userEdit.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js" />
         <option value="$PROJECT_DIR$/src/app/layout/nav.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-menu/user-profile.html" />
         <option value="$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js" />
         <option value="$PROJECT_DIR$/src/app/blocks/auth/principal.service.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/society/society.controller.js" />
         <option value="$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js" />
         <option value="$PROJECT_DIR$/src/app/layout/nav.html" />
         <option value="$PROJECT_DIR$/src/index.html" />
@@ -182,15 +166,20 @@
         <option value="$PROJECT_DIR$/src/app/admin/flat/flatList.html" />
         <option value="$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/admin/society/FlatData.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/flat/flatEdit.html" />
-        <option value="$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js" />
         <option value="$PROJECT_DIR$/src/app/blocks/auth/role.service.js" />
         <option value="$PROJECT_DIR$/src/app/layout/sidebar.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/complaint/manageComplaint.html" />
-        <option value="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/userList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/list.html" />
+        <option value="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/flat/flatEdit.html" />
+        <option value="$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/flat/flatNew.html" />
+        <option value="$PROJECT_DIR$/src/app/admin/society/society.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/society/societyNew.html" />
+        <option value="$PROJECT_DIR$/src/app/admin/society/societyEdit.html" />
+        <option value="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" />
       </list>
     </option>
   </component>
@@ -302,6 +291,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -386,28 +377,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user-management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smsUi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smsUi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="complaint" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -434,36 +403,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smsUi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smsUi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="flat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -570,12 +511,13 @@
       <workItem from="1495098987747" duration="38603000" />
       <workItem from="1495424112522" duration="84176000" />
       <workItem from="1496028884042" duration="1827000" />
-      <workItem from="1496030820031" duration="85193000" />
+      <workItem from="1496030820031" duration="96693000" />
+      <workItem from="1496394607881" duration="2626000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="625545000" />
+    <option name="totallyTimeSpent" value="639671000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -598,7 +540,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5614618" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -704,7 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -712,7 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -720,7 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="48" column="3" lean-forward="false" selection-start-line="48" selection-start-column="3" selection-end-line="48" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -728,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,35 +678,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/user-management/create_user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="95" column="55" lean-forward="true" selection-start-line="95" selection-start-column="55" selection-end-line="95" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/user-management/user.edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="90" column="63" lean-forward="true" selection-start-line="90" selection-start-column="63" selection-end-line="90" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyNew.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1054">
-          <caret line="93" column="7" lean-forward="false" selection-start-line="93" selection-start-column="7" selection-end-line="93" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -776,7 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -784,7 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="21" column="23" lean-forward="false" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -792,7 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -800,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="99" column="39" lean-forward="true" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -808,7 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="85" column="0" lean-forward="true" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -816,7 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="127" column="2" lean-forward="false" selection-start-line="127" selection-start-column="2" selection-end-line="127" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -824,7 +731,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="1018" column="0" lean-forward="false" selection-start-line="1018" selection-start-column="0" selection-end-line="1018" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -832,7 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -844,27 +749,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/society.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="48" column="51" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-191">
-          <caret line="71" column="51" lean-forward="false" selection-start-line="71" selection-start-column="51" selection-end-line="71" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/layout/nav.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,7 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
           <caret line="208" column="38" lean-forward="false" selection-start-line="208" selection-start-column="38" selection-end-line="208" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,7 +774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -896,7 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="472">
           <caret line="70" column="6" lean-forward="false" selection-start-line="70" selection-start-column="6" selection-end-line="70" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,7 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1037">
           <caret line="61" column="57" lean-forward="true" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -912,7 +795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -920,7 +802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="41" lean-forward="true" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -928,15 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
           <caret line="38" column="39" lean-forward="true" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaint.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="60" column="6" lean-forward="true" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -944,23 +816,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="75" column="113" lean-forward="false" selection-start-line="75" selection-start-column="113" selection-end-line="75" selection-end-column="113" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatEdit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="267" column="48" lean-forward="true" selection-start-line="267" selection-start-column="48" selection-end-line="267" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -968,7 +823,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -976,7 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
           <caret line="84" column="20" lean-forward="false" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1000,7 +853,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-55">
           <caret line="115" column="18" lean-forward="false" selection-start-line="115" selection-start-column="18" selection-end-line="115" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,41 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="19" column="55" lean-forward="false" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1955">
-          <caret line="115" column="27" lean-forward="false" selection-start-line="115" selection-start-column="20" selection-end-line="115" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="88" column="78" lean-forward="false" selection-start-line="88" selection-start-column="78" selection-end-line="88" selection-end-column="78" />
-          <folding>
-            <marker date="1496056948298" expanded="false" signature="3236:3248" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/manageComplaint.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="120" column="28" lean-forward="false" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintList.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="51" column="19" lean-forward="false" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1050,21 +867,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-697">
           <caret line="131" column="5" lean-forward="false" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="28" column="48" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="28" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/user-management/userList.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
+        <state relative-caret-position="-1139">
           <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
           <folding />
         </state>
@@ -1072,8 +880,113 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/user-management/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="80" column="34" lean-forward="false" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="34" />
+        <state relative-caret-position="289">
+          <caret line="80" column="55" lean-forward="false" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatEdit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="235" column="29" lean-forward="false" selection-start-line="235" selection-start-column="29" selection-end-line="235" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="73" column="8" lean-forward="false" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-663">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1479">
+          <caret line="114" column="61" lean-forward="false" selection-start-line="114" selection-start-column="61" selection-end-line="114" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/society.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="42" column="12" lean-forward="false" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="65" column="46" lean-forward="false" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
+          <folding>
+            <marker date="1496388675564" expanded="false" signature="3214:3226" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyNew.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="170" column="70" lean-forward="true" selection-start-line="170" selection-start-column="70" selection-end-line="170" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/user-management/create_user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="95" column="55" lean-forward="true" selection-start-line="95" selection-start-column="55" selection-end-line="95" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaint.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-233">
+          <caret line="60" column="6" lean-forward="true" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="126" column="36" lean-forward="false" selection-start-line="126" selection-start-column="36" selection-end-line="126" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/manageComplaint.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-38">
+          <caret line="120" column="28" lean-forward="false" selection-start-line="120" selection-start-column="28" selection-end-line="120" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintList.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="87" column="28" lean-forward="true" selection-start-line="87" selection-start-column="28" selection-end-line="87" selection-end-column="28" />
           <folding />
         </state>
       </provider>

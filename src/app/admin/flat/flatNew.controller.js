@@ -36,8 +36,8 @@
       societyFactory.societyList().then(function (response) {
         vm.society = response.data;
         console.log(vm.society)
-        vm.flat.society = vm.society[0].admin;
-        vm.flat.society.id = vm.flat.society.societyId;
+        // vm.flat.society = vm.society[0].admin;
+        // vm.flat.society.id = vm.flat.society.societyId;
       });
 
         flatFactory.residentType().then(function (response) {
@@ -123,7 +123,7 @@
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';
-            toaster.error('Network Error', 'error');
+            toaster.error('Network Error');
             console.error(response);
           }
           else if (response.status == 400) {
@@ -133,7 +133,7 @@
           }
           else {
             vm.errorMessage = 'Some problem';
-            toaster.error('Some problem', 'error');
+            toaster.error('Some problem');
             console.error(response);
           }
         });

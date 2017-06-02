@@ -58,22 +58,44 @@
         if (response.status == 200) {
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
-          if(vm.isConsumerRole && vm.complaint.status == 'New'){
+          if(vm.isConsumerRole && vm.complaint.status == 'New')
+          {
             vm.status.splice(1,4);
           }
-          else if(vm.isConsumerRole && vm.complaint.status == 'In_Progress'){
-            vm.status.splice(-1,-2);
-            console.log(vm.status);
+          else if(vm.isConsumerRole && vm.complaint.status == 'In_Progress')
+          {
+            vm.status.splice(3,2);
+            for(var i=0; i<vm.status.length; i++)
+            {
+              if(vm.status[i]=='New')
+                vm.status.splice(i,1);
+            }
           }
-          else if(vm.isConsumerRole && vm.complaint.status == 'Resolved'){
+          else if(vm.isConsumerRole && vm.complaint.status == 'Resolved')
+          {
             vm.status.splice(0,1);
           }
-          else if(vm.isConsumerRole && vm.complaint.status == 'Re_Opened'){
-            vm.status.splice(0,1);
-            //vm.status.splice(1,1);
+          else if(vm.isConsumerRole && vm.complaint.status == 'Re_Opened')
+          {
+            vm.status.splice(0,1)
+            for(var i=0; i<vm.status.length; i++)
+            {
+              if(vm.status[i]=='Resolved')
+                vm.status.splice(i,1);
+            }
+            for(var i=0; i<vm.status.length; i++)
+            {
+              if(vm.status[i]=='Closed')
+                vm.status.splice(i,1);
+            }
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'Closed'){
-            vm.status.splice(0,2);
+            vm.status.splice(0,1);
+            for(var i=0; i<vm.status.length; i++)
+            {
+              if(vm.status[i]=='Resolved')
+                vm.status.splice(i,1);
+            }
           }
           populateAssignToList(vm.complaint.complaintType);
           console.log(vm.complaint)
@@ -103,8 +125,6 @@
     function populateAssignToList(complaintType){
       complaintFactory.userByComplaintType(complaintType).then(function (response) {
         vm.assignTo = response.data;
-        console.log(vm.assignTo)
-        console.log(vm.complaint.assignedTo)
         if(vm.complaint.assignedTo != null) {
           for (var index = 0; index < vm.assignTo.length; index++) {
             if (vm.complaint.assignedTo.id == vm.assignTo[index].id) {

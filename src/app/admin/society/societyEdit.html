@@ -112,7 +112,7 @@
               <div class="col-lg-12 col-md-12">
                 <div class="panel panel-white">
                   <div class="panel-heading">
-                    <h5 class="panel-title"><em>Manager Details</em></h5>
+                    <h5 class="panel-title"><em>Primary Admin Details</em></h5>
                   </div>
                   <div class="panel-body">
                     <div class="row">
@@ -120,7 +120,7 @@
                         <div class="form-group"
                              ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
                           <label class="control-label"> Enter Manager Name <span class="symbol required"></span> </label>
-                          <input type="text" placeholder="Enter Name" class="form-control" name="name"
+                          <input ng-readonly="true" type="text" placeholder="Enter Name" class="form-control" name="name"
                                  ng-model="vm.society.admin.name"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
                           <span class="error text-small block" ng-if="vm.Form.name.$error.pattern">Invalid characters</span>
                           <span class="error text-small block" ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required</span>
@@ -131,7 +131,7 @@
                         <div class="form-group"
                              ng-class="{'has-error':vm.Form.email.$dirty && vm.Form.email.$invalid, 'has-success':vm.Form.email.$valid}">
                           <label class="control-label"> Enter Manager Email <span class="symbol required"></span> </label>
-                          <input type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
+                          <input ng-readonly="true" type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
                                  ng-model="vm.society.admin.email" ng-pattern="/^[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z]+\.[A-Za-z.]{2,5}$/" required>
                           <span class="error text-small block" ng-if="vm.Form.email.$dirty && vm.Form.email.$error.required">Email is required.</span>
                           <span class="error text-small block" ng-if="vm.Form.email.$error.pattern">Please Enter a valid email address</span>
@@ -140,7 +140,7 @@
                         <div class="form-group"
                              ng-class="{'has-error':vm.Form.mobile.$dirty && vm.Form.mobile.$invalid, 'has-success':vm.Form.mobile.$valid}">
                           <label class="control-label"> Enter Manager Mobile Number <span class="symbol required"></span> </label>
-                          <input type="text" placeholder="Enter Mobile Number" class="form-control" name="mobile"
+                          <input ng-readonly="true" type="text" placeholder="Enter Mobile Number" class="form-control" name="mobile"
                                  ng-model="vm.society.admin.mobile" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
                                  ng-maxlength=10 required/>
                           <span class="error text-small block"

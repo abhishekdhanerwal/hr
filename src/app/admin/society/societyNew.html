@@ -151,34 +151,34 @@
                     </div>
                     </div>
 
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label class="control-label">
-                          Search
-                        </label>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <input type="text" ng-model="vm.society.admin.selected" placeholder="Search admin"
-                                   ng-value="vm.society.admin.name"
-                                   uib-typeahead="item.name for item in vm.userList($viewValue)"
-                                   typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"
-                                   typeahead-on-select="vm.onSelect($item, $model, $label)"
-                                   typeahead-editable='true'
-                                   class="form-control">
-                          </div>
+                    <!--<div class="col-md-6">-->
+                      <!--<div class="form-group">-->
+                        <!--<label class="control-label">-->
+                          <!--Search-->
+                        <!--</label>-->
+                        <!--<div class="row">-->
+                          <!--<div class="col-md-6">-->
+                            <!--<input type="text" ng-model="vm.society.admin.selected" placeholder="Search admin"-->
+                                   <!--ng-value="vm.society.admin.name"-->
+                                   <!--uib-typeahead="item.name for item in vm.userList($viewValue)"-->
+                                   <!--typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"-->
+                                   <!--typeahead-on-select="vm.onSelect($item, $model, $label)"-->
+                                   <!--typeahead-editable='true'-->
+                                   <!--class="form-control">-->
+                          <!--</div>-->
 
-                          <div class="col-md-6">
-                                <span class="btn btn-danger" ng-click="vm.clearUser()" ><i
-                                  class="fa fa-times"></i> </span>
-                          </div>
-                          <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                          <div ng-show="noResults" class="error">
-                            <i class="glyphicon glyphicon-remove"></i> No Results Found
-                          </div>
+                          <!--<div class="col-md-6">-->
+                                <!--<span class="btn btn-danger" ng-click="vm.clearUser()" ><i-->
+                                  <!--class="fa fa-times"></i> </span>-->
+                          <!--</div>-->
+                          <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
+                          <!--<div ng-show="noResults" class="error">-->
+                            <!--<i class="glyphicon glyphicon-remove"></i> No Results Found-->
+                          <!--</div>-->
 
-                        </div>
-                      </div>
-                    </div>
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
                     </div>
 
                   </div>

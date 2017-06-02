@@ -70,8 +70,8 @@
     };
 
     function reset() {
-      activate($stateParams.id)
-      activate(vm.flat.ownerName)
+      //activate($stateParams.id)
+      //activate(vm.flat.society)
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
