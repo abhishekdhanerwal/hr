@@ -33,9 +33,9 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         templateUrl: "app/app.html",
         resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
       // resolve: {
-      //   authorize: ['authorization',
-      //     function(authorization) {
-      //       return authorization.authorize();
+      //   authorize: ['principal',
+      //     function(principal) {
+      //       return principal.signin();
       //     }
       //   ]
       // },

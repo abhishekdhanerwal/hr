@@ -31,12 +31,24 @@
       console.log($localStorage._identity)
 
       flatFactory.societyList().then(function (response) {
-        vm.society = response.data;
-        getEditInfo();
+        if(response.status == 200) {
+          vm.society = response.data;
+          getEditInfo();
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
 
       flatFactory.residentType().then(function (response) {
-        vm.residentType = response.data;
+        if(response.status == 200) {
+          vm.residentType = response.data;
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
 
     };
@@ -61,6 +73,10 @@
           console.error(response);
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message, 'error');
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
         }
         else {
           toaster.error('Some problem', 'error');
@@ -131,6 +147,10 @@
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message);
             console.error(response);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             vm.errorMessage = 'Some problem';

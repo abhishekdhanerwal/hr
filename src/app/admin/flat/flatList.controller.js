@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatListCtrl', FlatListCtrl);
 
-  FlatListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster', '$rootScope'];
+  FlatListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster', '$rootScope'];
   /* @ngInject */
-  function FlatListCtrl( NgTableParams, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster, $rootScope) {
+  function FlatListCtrl( NgTableParams, $state, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster, $rootScope) {
     var vm = this;
     vm.message = false;
     vm.progress = true;
@@ -28,7 +28,9 @@
 
     function activate() {
 
-      $localStorage._identity.societyId = null;
+      if($localStorage._identity !=null) {
+        $localStorage._identity.societyId = null;
+      }
 
         flatFactory.flatList().then(function (response) {
 
@@ -64,6 +66,10 @@
             console.error(response);
             vm.errorMessage = vm.master[0].message;
             toaster.error(vm.master[0].message);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             toaster.error('Some problem', 'error');

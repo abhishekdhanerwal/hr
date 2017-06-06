@@ -61,6 +61,10 @@
           self.errorMessage = self.userList[0].message;
           toaster.error(self.userList[0].message);
         }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
         else {
           toaster.error('Some problem', 'error');
           console.error(response);
@@ -131,6 +135,10 @@
         else if (response.status == 404) {
           toaster.error('User not found');
         }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
         else {
           toaster.error('Backend error');
         }
@@ -162,6 +170,10 @@
             else if (response.status == -1) {
               self.progress = false;
               toaster.error('Network Error');
+            }
+            else if( response.status == 401){
+              toaster.info("User is not logged in. Redirecting to Login Page");
+              $state.go('auth.signout')
             }
             else if (response.status == 404) {
               self.progress = false;

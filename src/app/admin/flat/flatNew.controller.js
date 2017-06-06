@@ -34,18 +34,36 @@
       vm.isManagementRole = role.isManagementRole();
 
       societyFactory.societyList().then(function (response) {
-        vm.society = response.data;
-        console.log(vm.society)
-        // vm.flat.society = vm.society[0].admin;
-        // vm.flat.society.id = vm.flat.society.societyId;
+        if(response.status == 200) {
+          vm.society = response.data;
+          console.log(vm.society)
+          // vm.flat.society = vm.society[0].admin;
+          // vm.flat.society.id = vm.flat.society.societyId;
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
 
         flatFactory.residentType().then(function (response) {
-          vm.residentType = response.data;
+          if(response.status == 200) {
+            vm.residentType = response.data;
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
+          }
         });
 
       flatFactory.getRole().then(function (response) {
-        vm.roles = response.data;
+        if(response.status == 200) {
+          vm.roles = response.data;
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
     };
 
@@ -61,12 +79,18 @@
 
     function userList(val){
       return flatFactory.searchUser(val).then(function (response) {
-        var params = {
-          query:val
-        };
-        return response.data.map(function (item) {
-          return item;
-        })
+        if(response.status == 200) {
+          var params = {
+            query: val
+          };
+          return response.data.map(function (item) {
+            return item;
+          })
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
     }
 
@@ -130,6 +154,10 @@
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message);
             console.error( vm.errorMessage);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             vm.errorMessage = 'Some problem';

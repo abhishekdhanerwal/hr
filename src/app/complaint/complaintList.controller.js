@@ -6,9 +6,9 @@
     .module('app.complaint')
     .controller('ComplaintListCtrl', ComplaintListCtrl);
 
-  ComplaintListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
+  ComplaintListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
   /* @ngInject */
-  function ComplaintListCtrl( NgTableParams, $localStorage, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function ComplaintListCtrl( NgTableParams, $state, $localStorage, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.resolved = resolved;
     vm.active = active;
@@ -38,11 +38,17 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       complaintFactory.societyList().then(function (response) {
-        vm.society = response.data;
-        console.log(vm.society)
-        vm.flat.society = vm.society[0];
-        console.log(vm.flat.society)
-        active();
+        if(response.status == 200){
+          vm.society = response.data;
+          console.log(vm.society)
+          vm.flat.society = vm.society[0];
+          console.log(vm.flat.society)
+          active();
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
 
     };
@@ -74,6 +80,10 @@
             vm.errorMessage = vm.master.message;
             toaster.error(vm.master.message);
           }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
+          }
           else {
             toaster.error('Some problem', 'error');
             console.error(response);
@@ -104,11 +114,46 @@
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message);
         }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
         else {
           toaster.error('Some problem', 'error');
           console.error(response);
         }
-      })
+      });
+
+       complaintFactory.getClosedComplaintByUser().then(function (response) {
+
+         vm.progress = false;
+         vm.master = response.data;
+         console.log(vm.master)
+
+         if (response.status == 200) {
+           vm.master = response.data;
+           console.log(response.data)
+           complaintData();
+         }
+         else if (response.status == -1) {
+           toaster.error('Network Error', 'error');
+           vm.errorMessage = "Network Error";
+           console.error(response);
+         }
+         else if (response.status == 400) {
+           console.error(response);
+           vm.errorMessage = vm.master.message;
+           toaster.error(vm.master.message);
+         }
+         else if( response.status == 401){
+           toaster.info("User is not logged in. Redirecting to Login Page");
+           $state.go('auth.signout')
+         }
+         else {
+           toaster.error('Some problem', 'error');
+           console.error(response);
+         }
+       })
     };
 
 

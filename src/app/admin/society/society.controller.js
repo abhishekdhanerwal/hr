@@ -93,6 +93,10 @@
             toaster.error(response.data[0].message, 'error');
             console.error(response);
           }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
+          }
           else {
             vm.errorMessage = 'Some problem';
             toaster.error('Some problem', 'error');

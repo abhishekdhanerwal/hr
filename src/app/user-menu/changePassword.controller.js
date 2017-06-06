@@ -17,7 +17,9 @@
     };
 
     vm.passData = {};
-    var userid = $localStorage._identity.principal.id;
+    if($localStorage._identity){
+      var userid = $localStorage._identity.principal.id;
+    }
 
     vm.submit = function () {
       vm.passData.password = vm.password;
@@ -48,8 +50,11 @@
           else if (response.status == 400) {
             vm.errorMessage = response.data.message;
             toaster.error(response.data.message, 'error');
-
             console.error(response);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             vm.errorMessage = response.data[0].message;

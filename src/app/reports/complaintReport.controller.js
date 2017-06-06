@@ -22,7 +22,13 @@
     function activate() {
 
       complaintReportFactory.loadStatusDetails().then(function (response) {
-        vm.status = response.data;
+        if(response.status == 200){
+          vm.status = response.data;
+        }
+        else if(response.status == 401){
+          console.log('jd')
+          $state.go('auth.signout');
+        }
       });
 
       //function for end date
@@ -114,6 +120,10 @@
             console.error(response);
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message, 'error');
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             toaster.error('Some problem', 'error');

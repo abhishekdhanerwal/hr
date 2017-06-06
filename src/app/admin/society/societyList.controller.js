@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('SocietyListCtrl', SocietyListCtrl);
 
-  SocietyListCtrl.$inject = [ 'NgTableParams', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams' , 'toaster'];
+  SocietyListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams' , 'toaster'];
   /* @ngInject */
-  function SocietyListCtrl( NgTableParams, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster) {
+  function SocietyListCtrl( NgTableParams, $state, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster) {
     var vm = this;
     vm.message = false;
     vm.progress = true;
@@ -47,6 +47,10 @@
           console.error(response);
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message, 'error');
+        }
+        else if (response.status == 401) {
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
         }
         else {
           toaster.error('Some problem', 'error');

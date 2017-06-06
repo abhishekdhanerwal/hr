@@ -10,9 +10,9 @@
   function forgotFactory($http) {
     var service = {};
 
-    service.abc = function (email) {
-      console.log(email);
-      var promise = $http.post(__env.uiServerUrl + '/users/forgot_password', email)
+    service.forgetPwd = function (phoneNo) {
+      console.log(phoneNo);
+      var promise = $http.post(__env.dataServerUrl + '/forgotPassword?phoneNo=' + phoneNo)
         .then(
           function (response) {
             return response;

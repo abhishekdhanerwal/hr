@@ -29,20 +29,38 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       complaintFactory.flatList().then(function (response) {
-        vm.flat = response.data;
-        console.log(vm.flat)
-        getEditInfo();
+        if(response.status == 200) {
+          vm.flat = response.data;
+          console.log(vm.flat)
+          getEditInfo();
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
 
       complaintFactory.loadTypeDetails().then(function (response) {
-        vm.complaintType = response.data;
-        console.log(vm.complaintType)
+        if(response.status == 200) {
+          vm.complaintType = response.data;
+          console.log(vm.complaintType)
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
 
       complaintFactory.loadStatusDetails().then(function (response) {
-        vm.status = response.data;
-        console.log(vm.status)
-        getEditInfo();
+        if(response.status == 200) {
+          vm.status = response.data;
+          console.log(vm.status)
+          getEditInfo();
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
 
     };
@@ -115,6 +133,10 @@
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message, 'error');
         }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
         else {
           toaster.error('Some problem', 'error');
           console.error(response);
@@ -124,17 +146,23 @@
 
     function populateAssignToList(complaintType){
       complaintFactory.userByComplaintType(complaintType).then(function (response) {
-        vm.assignTo = response.data;
-        if(vm.complaint.assignedTo != null) {
-          for (var index = 0; index < vm.assignTo.length; index++) {
-            if (vm.complaint.assignedTo.id == vm.assignTo[index].id) {
-              vm.complaint.assignedTo = vm.assignTo[index];
-              console.log(vm.complaint.assignedTo)
+        if(response.status == 200) {
+          vm.assignTo = response.data;
+          if (vm.complaint.assignedTo != null) {
+            for (var index = 0; index < vm.assignTo.length; index++) {
+              if (vm.complaint.assignedTo.id == vm.assignTo[index].id) {
+                vm.complaint.assignedTo = vm.assignTo[index];
+                console.log(vm.complaint.assignedTo)
+              }
             }
           }
-        }
-        else{
+          else {
 
+          }
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
         }
       });
     }
@@ -177,6 +205,10 @@
             vm.errorMessage = response.data.message;
             toaster.error(response.data.message, 'error');
             console.error(response);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             vm.errorMessage = 'Some problem';

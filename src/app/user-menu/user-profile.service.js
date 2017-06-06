@@ -32,7 +32,6 @@
             return data;
           },
           function (errors) {
-            console.log("data error service.getAll : ");
             console.log(errors);
             return errors;
           });

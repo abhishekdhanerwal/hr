@@ -98,6 +98,19 @@
       return promise;
     };
 
+    service.getClosedComplaintByUser = function (status) {
+      var promise = $http.get(__env.dataServerUrl + '/complaint/findByUser?status=Closed')
+        .then(
+          function (response) {
+            console.log(response)
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.userByComplaintType = function (data) {
       var promise = $http.get(__env.dataServerUrl + '/userByComplaintType?complaintType='+ data)
         .then(

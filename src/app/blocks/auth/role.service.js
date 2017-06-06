@@ -8,17 +8,19 @@
   role.$inject = ['$localStorage', 'USER_ROLE'];
 
   /* @ngInject */
-  function role($localStorage, USER_ROLE) {
-    console.log($localStorage._identity)
-    var service = {
-      isAdminRole: isAdminRole,
-      isSuperAdminRole: isSuperAdminRole,
-      isManagementRole: isManagementRole,
-      isConsumerRole : isConsumerRole,
-      currentAccessLevel : currentAccessLevel,
-      // getMainRole : getMainRole
-    };
-    return service;
+
+    function role($localStorage, USER_ROLE) {
+     // console.log($localStorage._identity)
+      var service = {
+        isAdminRole: isAdminRole,
+        isSuperAdminRole: isSuperAdminRole,
+        isManagementRole: isManagementRole,
+        isConsumerRole : isConsumerRole,
+        currentAccessLevel : currentAccessLevel,
+        // getMainRole : getMainRole
+      };
+      return service;
+
 
     ////////////////
 

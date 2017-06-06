@@ -27,20 +27,38 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       complaintFactory.flatList().then(function (response) {
-        vm.flat = response.data;
-        console.log(vm.flat)
+        if(response.status == 200) {
+          vm.flat = response.data;
+          console.log(vm.flat)
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       })
 
       complaintFactory.loadTypeDetails().then(function (response) {
-        vm.complaintType = response.data;
-        console.log(vm.complaintType)
+        if(response.status == 200) {
+          vm.complaintType = response.data;
+          console.log(vm.complaintType)
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       })
     };
 
     vm.populateAssignToList = function(){
       complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
-        vm.assignTo = response.data;
-        console.log(vm.assignTo)
+        if(response.status == 200) {
+          vm.assignTo = response.data;
+          console.log(vm.assignTo)
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
     }
 
@@ -82,6 +100,10 @@
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message, 'error');
             console.error(response);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             vm.errorMessage = 'Some problem';

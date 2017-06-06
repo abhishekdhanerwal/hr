@@ -21,7 +21,10 @@
       vm.message = false;
     };
 
-    vm.userID = $localStorage._identity.principal.id;
+    if($localStorage._identity)
+    {
+      vm.userID = $localStorage._identity.principal.id;
+    }
 
     activate(vm.userID);
 
@@ -38,7 +41,6 @@
             console.log(response.data)
             if (response.data != null) {
               vm.master = response.data;
-
               vm.user = angular.copy(vm.master);
               console.log(vm.user.name)
             }
@@ -48,6 +50,10 @@
             vm.errorMessage = 'User not found';
             toaster.error('User not found', 'error');
             console.error(response);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else if (response.status == -1) {
             toaster.error('Network Error', 'error');
@@ -100,6 +106,7 @@
             $localStorage._identity.userDetails = response.data;
             console.log(response.data);
             toaster.info('User Saved');
+            $state.go('app.notice')
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';
@@ -110,6 +117,10 @@
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message);
             console.error(response);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             toaster.error('Some problem');

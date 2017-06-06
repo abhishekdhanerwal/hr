@@ -5,10 +5,10 @@
     .module('blocks.auth')
     .factory('principal', principal);
 
-  principal.$inject = ['$q', '$http', '$timeout', 'toaster', '$localStorage'];
+  principal.$inject = ['$q', '$http', '$timeout', 'toaster', '$localStorage' , '$rootScope'];
 
   /* @ngInject */
-  function principal($q, $http, $timeout, toaster, $localStorage) {
+  function principal($q, $http, $timeout, toaster, $localStorage , $rootScope) {
     var _identity = undefined;
     var _authenticated = false;
 
@@ -67,16 +67,15 @@
     }
     function isAuthenticated() {
       if (isIdentityInLocalStorage()) {
-
-        // var currentTimeStamp = Date.now();
-        // var loggedInTimeStamp = $localStorage.loggedInTimeStamp;
-        // var expiryTimePeriod = $localStorage._identity.expires_in * 1000;//in seconds as rest of things are in milliseconds
-        // if ((currentTimeStamp - loggedInTimeStamp) < expiryTimePeriod) {
-        //   return true;
-        // }
-        // else {
-        //   return false;
-        // }
+        var currentTimeStamp = Date.now();
+        var loggedInTimeStamp = $localStorage.loggedInTimeStamp;
+        var expiryTimePeriod = $localStorage._identity.expires_in * 1000;//in seconds as rest of things are in milliseconds
+        if ((currentTimeStamp - loggedInTimeStamp) < expiryTimePeriod) {
+          return true;
+        }
+        else {
+          return false;
+        }
       }
     }
 
@@ -142,11 +141,11 @@
       var deferred = $q.defer();
       $http.post(__env.dataServerUrl + '/logout', {}).finally(function() {
         deferred.resolve(_identity);
-        $rootScope.currentUser = null;
-        _identity = null;
-        _authenticated = false;
 
       });
+      $rootScope.currentUser = null;
+      _identity = null;
+      _authenticated = false;
       clearLocalStorage();
       return deferred.promise;
     }

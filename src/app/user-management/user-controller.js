@@ -31,19 +31,31 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       userFactory.societyList().then(function (response) {
-        vm.society = response.data;
-        // for(var i=0; i<vm.society.length; i++) {
-        //   vm.user.SocietyId = vm.society.id;
-        // }
-        console.log(vm.society)
+        if(response.status == 200){
+          vm.society = response.data;
+          // for(var i=0; i<vm.society.length; i++) {
+          //   vm.user.SocietyId = vm.society.id;
+          // }
+          console.log(vm.society)
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
       });
 
       userFactory.getRole().then(function (response) {
-        vm.roles = response.data;
-        console.log(vm.roles)
-        vm.roles.splice(0,1);
-        if(vm.isSuperAdminRole){
-          vm.roles.splice(3,5);
+        if(response.status == 200) {
+          vm.roles = response.data;
+          console.log(vm.roles)
+          vm.roles.splice(0, 1);
+          if (vm.isSuperAdminRole) {
+            vm.roles.splice(3, 5);
+          }
+        }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
         }
       });
     };
@@ -55,13 +67,12 @@
     vm.submit = function () {
 
       var firstError = null;
-      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid || vm.Form.society.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;
       }
       else {
-        console.log(vm.user.society)
         if(vm.user.society != undefined){
         vm.user.societyId = vm.user.society.id;
         }
@@ -81,6 +92,10 @@
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message);
             console.error(response);
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             toaster.error('Some problem', 'error');

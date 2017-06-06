@@ -39,6 +39,10 @@
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message, 'error');
         }
+        else if( response.status == 401){
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
         else {
           toaster.error('Some problem', 'error');
           console.error(response);
@@ -52,14 +56,20 @@
     };
 
     function userList(val){
-      return societyFactory.searchUser(val).then(function (response) {
-        var params = {
-          query:val
-        };
-        return response.data.map(function (item) {
-          return item;
-        })
-      });
+        return societyFactory.searchUser(val).then(function (response) {
+          if (response.status == 200) {
+            var params = {
+              query: val
+            };
+            return response.data.map(function (item) {
+              return item;
+            })
+          }
+          else if (response.status == 401) {
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
+          }
+        });
     }
 
     function onSelect($item, $model, $label) {
@@ -110,6 +120,10 @@
             vm.errorMessage = response.data.message;
             toaster.error(response.data.message, 'error');
             console.error(response);
+          }
+          else if (response.status == 401) {
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
             vm.errorMessage = 'Some problem';

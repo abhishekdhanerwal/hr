@@ -17,10 +17,10 @@
         return;
       }
       else {
-        forgotFactory.abc(vm.email).then(function (response) {
+        forgotFactory.forgetPwd(vm.phoneNo).then(function (response) {
 
           if (response.status == 200) {
-            toaster.info('Email Sent', 'default');
+            toaster.info('Message Sent');
             $state.go('auth.signin');
           }
           else if (response.status == -1) {
@@ -28,14 +28,15 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            toaster.info(response.data[0].message, 'error');
+            toaster.info(response.data[0].message);
             console.error(response);
-          } else if (response.status == 404) {
-            toaster.error(response.data[0].message, 'error');
+          }
+          else if( response.status == 401){
+            toaster.info("User is not logged in. Redirecting to Login Page");
+            $state.go('auth.signout')
           }
           else {
-            toaster.set(response.data[0].message, 'error');
-            console.error(response);
+            toaster.error(response.data[0].message);
           }
         });
 
