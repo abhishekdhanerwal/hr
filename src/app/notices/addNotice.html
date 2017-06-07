@@ -9,6 +9,27 @@
 <wave-spinner ng-show="vm.progress" ></wave-spinner>
 
 <div ng-show="!vm.progress" class="container-fluid container-fullw">
+  <div class="row" ng-show="vm.errorMessage">
+    <div class="col-md-12">
+      <div class="alert alert-danger">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        <strong>Error!</strong> {{vm.errorMessage}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-white">
@@ -26,87 +47,288 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.startDate.$dirty && vm.Form.startDate.$invalid, 'has-success':vm.Form.startDate.$valid}">
                     <label>
-                     Start Date
+                     Start Date<span class="symbol required"></span>
                     </label>
-                    <input type="text" placeholder="Start Date" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.notice.startdt" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                    <!--<div class="input-group range-picker">-->
-                      <!--<div class="start-date" ng-class="{'has-error':vm.Form.start.$dirty && vm.Form.start.$invalid, 'has-success':vm.Form.start.$valid}">-->
-                        <!--<input type="text" name="start" class="form-control" style="width:490px;"-->
-                               <!--uib-datepicker-popup="yyyy/MM/dd"-->
-                               <!--datepicker-options="vm.startDateOption" ng-model="vm.start" is-open="vm.startOpened"-->
-                               <!--ng-init="vm.startOpened = false;" ng-required="true" close-text="Close"-->
-                               <!--ng-click="vm.startOpen($event)" min-date="'1970-12-31'" max-date="vm.end" readonly />-->
-                        <!--<span class="error text-small block"-->
-                              <!--ng-if="vm.Form.start.$dirty && vm.Form.start.$error.required">Start Date is required.</span>-->
-                      <!--</div>-->
-                    <!--</div>-->
+                    <input type="text" name="startDate" placeholder="Start Date" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.notice.startDate" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   </div>
 
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.endDate.$dirty && vm.Form.endDate.$invalid, 'has-success':vm.Form.endDate.$valid}">
                     <label>
-                      End Date
+                      End Date<span class="symbol required"></span>
                     </label>
-                    <input type="text" placeholder="End Date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.notice.enddt" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                    <!--<div class="input-group range-picker">-->
-                      <!--<div class="end-date"-->
-                           <!--ng-class="{'has-error':vm.Form.end.$dirty && vm.Form.end.$invalid, 'has-success':vm.Form.end.$valid}">-->
-                        <!--<input type="text" name="end" class="form-control" style="width:490px;"-->
-                               <!--uib-datepicker-popup="yyyy/MM/dd"-->
-                               <!--datepicker-options="vm.endDateOption" ng-model="vm.end" is-open="vm.endOpened"-->
-                               <!--ng-init="vm.endOpened = false;" ng-required="true" close-text="Close"-->
-                               <!--ng-click="vm.endOpen($event)" min-date="vm.start" max-date="vm.maxDate" readonly />-->
-                        <!--<span class="error text-small block"-->
-                              <!--ng-if="vm.Form.end.$dirty && vm.Form.end.$error.required">End Date is required.</span>-->
-                      <!--</div>-->
-                    <!--</div>-->
+                    <input type="text" name="endDate" placeholder="End Date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.notice.endDate" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   </div>
 
 
                   <div class="form-group"
-                       ng-class="{'has-error':vm.Form.noticeType.$dirty && vm.Form.noticeType.$invalid, 'has-success':vm.Form.noticeType.$valid}">
+                       ng-class="{'has-error':vm.Form.noticetype.$dirty && vm.Form.noticetype.$invalid, 'has-success':vm.Form.noticetype.$valid}">
                     <label class="control-label"> Notice Type <span class="symbol required"></span> </label>
-                    <select class="form-control" name="noticeType" ng-model="vm.notice.noticeType" required>
+                    <select class="form-control" name="noticetype" ng-model="vm.notice.type" required>
                       <option value=""></option>
-                      <option value="">Festival</option>
-                      <option value="">Voilation</option>
-                      <option value="">General</option>
+                      <option value="Festival">Festival</option>
+                      <option value="Violation">Violation</option>
+                      <option value="Announcement">Announcement</option>
+                      <option value="Other">Other</option>
                     </select>
                     <!--<span class="error text-small block"-->
                           <!--ng-if="vm.Form.noticeType.$dirty && vm.Form.noticeType.$error.required">Notice Type is required.</span>-->
                   </div>
 
                   <div class="form-group"
-                       ng-class="{'has-error':vm.Form.description.$dirty && vm.Form.description.$invalid, 'has-success':vm.Form.description.$valid}">
-                    <label class="control-label">Description</label>
-                    <textarea class="form-control custom-control" rows="3" name="description" style="resize:none" ng-model="vm.notice.description"></textarea>
+                       ng-class="{'has-error':vm.Form.subject.$dirty && vm.Form.subject.$invalid, 'has-success':vm.Form.subject.$valid}">
+                    <label class="control-label"> Subject <span class="symbol required"></span></label>
+                    <input type="text" placeholder="Subject" class="form-control" name="subject"
+                           ng-model="vm.notice.subject" ng-minlength=2 ng-maxlength=20 required/>
+                    <!--<span class="error text-small block"-->
+                    <!--ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required && vm.user.role == 'ROLE_CONSUMER'">Address is required</span>-->
+                    <span class="error text-small block"
+                          ng-show="vm.Form.subject.$invalid && vm.Form.subject.$error.minlength">Subject should be six characters or more</span>
+                    <span class="error text-small block"
+                          ng-show="vm.Form.subject.$invalid && vm.Form.subject.$error.maxlength">Subject should be less than 20 characters</span>
                   </div>
 
-                  <!--<div class="form-group">-->
-                  <!--<label class="control-label">-->
-                  <!--Address-->
-                  <!--</label>-->
-                  <!--<div class="row">-->
-                  <!--<div class="col-md-6">-->
-                  <!--<input type="text" ng-model="vm.complaint.address" placeholder="Search Address"-->
-                  <!--ng-value="vm.complaint.address"-->
-                  <!--uib-typeahead="item for item in vm.flatList"-->
-                  <!--typeahead-loading="loadingLocations" typeahead-min-length="1" typeahead-no-results="noResults"-->
-                  <!--typeahead-editable='true'-->
-                  <!--class="form-control" required>-->
-                  <!--</div>-->
-                  <!--<div class="col-md-6">-->
-                  <!--<span class="btn btn-danger" ng-click="vm.clearFlat()" ><i-->
-                  <!--class="fa fa-times"></i> </span>-->
-                  <!--</div>-->
-                  <!--</div>-->
-                  <!--&lt;!&ndash;<div ng-show="noResults" class="error">&ndash;&gt;-->
-                  <!--&lt;!&ndash;<i class="glyphicon glyphicon-remove"></i> No Results Found&ndash;&gt;-->
-                  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                  <!--</div>-->
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.description.$dirty && vm.Form.description.$invalid, 'has-success':vm.Form.description.$valid}">
+                    <label class="control-label">Description<span class="symbol required"></span></label>
+                    <textarea class="form-control custom-control" rows="3" name="description" style="resize:none" ng-model="vm.notice.description"
+                              ng-minlength=5 ng-maxlength=500 required></textarea>
+                  </div>
 
                 </div>
+
+
+
+                <div class="col-md-6">
+
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.audience.$dirty && vm.Form.audience.$invalid, 'has-success':vm.Form.audience.$valid}">
+                    <label class="block">
+                      Audience <span class="symbol required"></span>
+                    </label>
+                    <div class="clip-radio radio-primary">
+                      <input type="radio" id="all" name="audience" value="All" ng-model="vm.audience"
+                             required>
+                      <label for="all">
+                        All
+                      </label>
+                      <input type="radio" id="choose" name="audience" value="Choose" ng-click="vm.openUserList()" ng-model="vm.audience"
+                             required>
+                      <label for="choose">
+                        Choose
+                      </label>
+                    </div>
+                  </div>
+
+                  <div ng-if="vm.audience == 'Choose' && vm.hideUserList" class="form-group scrollUserList">
+
+                    <div class="table-responsive">
+                      <table ng-table="vm.tableParams" show-filter="true" class="table">
+
+                        <tr ng-repeat="row in $data">
+
+                          <td data-title=""  filter="{ 'name': 'text' }">{{row.name}}
+                          </td>
+
+                          <td data-title="">
+                            <div class="checkbox clip-check check-primary checkbox-inline">
+                              <input type="checkbox" id="{{row.name}}" value="hasResident" ng-model="row.checked" >
+                              <label for="{{row.name}}">
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                      <button type="submit" class="btn btn-success pull-right"
+                              ng-click="vm.updateAudienceList()">
+                        Save
+                      </button>
+                    </div>
+
+                  </div>
+
+                  <!--<div class="form-group"-->
+                       <!--ng-class="{'has-error':vm.Form.audience.$dirty && vm.Form.audience.$invalid, 'has-success':vm.Form.audience.$valid}">-->
+                    <!--<label class="block">-->
+                      <!--Attachment <span class="symbol required"></span>-->
+                    <!--</label>-->
+
+                  <!--</div>-->
+
+                  <div class="form-group">
+                    <label class="block">
+                      Communication Type
+                    </label>
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                      <input type="checkbox" id="sms" value="hasResident" ng-model="vm.sms" >
+                      <label for="sms">
+                        SMS
+                      </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                      <input type="checkbox" id="email" value="hasResident" ng-model="vm.email" >
+                      <label for="email">
+                        E-Mail
+                      </label>
+                    </div>
+                    <div class="checkbox clip-check check-primary checkbox-inline">
+                      <input type="checkbox" id="mobileNotifiction" value="hasResident" ng-model="vm.mobileNotification" >
+                      <label for="mobileNotifiction">
+                        Mobile Notification
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.activationTime.$dirty && vm.Form.activationTime.$invalid, 'has-success':vm.Form.activationTime.$valid}">
+                    <label class="control-label"> Activation Time <span class="symbol required"></span></label>
+                    <input type="text" ng-click="vm.openModal()" placeholder="activation time" class="form-control" name="activationTime"
+                           ng-model="vm.notice.activationTime" required/>
+                    <!--<span class="error text-small block"-->
+                    <!--ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required && vm.user.role == 'ROLE_CONSUMER'">Address is required</span>-->
+                    <!--<span class="error text-small block"-->
+                          <!--ng-show="vm.Form.subject.$invalid && vm.Form.subject.$error.minlength">Subject should be six characters or more</span>-->
+                    <!--<span class="error text-small block"-->
+                          <!--ng-show="vm.Form.subject.$invalid && vm.Form.subject.$error.maxlength">Subject should be less than 20 characters</span>-->
+
+                  </div>
+                </div>
               </div>
+
+
+              <!-- start: UPLOADS ALL FILES -->
+              <div class="container-fluid container-fullw">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="panel panel-white">
+                      <div class="panel-body">
+                        <h5 class="over-title margin-bottom-15">Attach <span class="text-bold">files</span></h5>
+
+                        <!-- /// controller:  'UploadCtrl2' -  localtion: assets/js/controllers/uploadCtrl.js /// -->
+                        <div nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <h5>Select files</h5>
+                              <div class="panel panel-white">
+                                <div class="panel-body">
+                                  <!--<div ng-show="uploader.isHTML5">-->
+                                    <!--&lt;!&ndash; 3. nv-file-over uploader="link" over-class="className" &ndash;&gt;-->
+                                    <!--<div class="well my-drop-zone" nv-file-over="" uploader="uploader">-->
+                                      <!--Base drop zone-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash; Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" &ndash;&gt;-->
+                                    <!--<div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">-->
+                                      <!--<div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">-->
+                                        <!--Another drop zone with its own settings-->
+                                      <!--</div>-->
+                                    <!--</div>-->
+                                  <!--</div>-->
+                                  <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+                                  <!--<span class="btn btn-primary btn-o btn-file margin-bottom-15">-->
+                                            <!--Select multiple files-->
+                                            <!--<input type="file" nv-file-select="" uploader="uploader" multiple />-->
+                                        <!--</span>-->
+                                  <br />
+                                  <span class="btn btn-primary btn-o btn-file">
+                                            Select single file
+                                            <input type="file" nv-file-select="" uploader="uploader" />
+                                        </span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-9" style="margin-bottom: 40px">
+                              <div class="panel panel-transparent">
+                                <div class="panel-body">
+                                  <div class="table-responsive">
+                                    <table class="table">
+                                      <thead>
+                                      <tr>
+                                        <th width="50%">Name</th>
+                                        <th ng-show="uploader.isHTML5">Size</th>
+                                        <th ng-show="uploader.isHTML5">Progress</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr ng-repeat="item in uploader.queue">
+                                        <td><strong>{{ item.file.name }}</strong></td>
+                                        <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                        <td ng-show="uploader.isHTML5">
+                                          <div class="progress progress-xs margin-bottom-0">
+                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                          </div>
+                                        </td>
+                                        <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                        <td nowrap>
+                                          <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                            <span class="glyphicon glyphicon-upload"></span> Upload
+                                          </button>
+                                          <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                          </button>
+                                          <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                            <span class="glyphicon glyphicon-trash"></span> Remove
+                                          </button>
+                                        </td>
+                                      </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  <div>
+                                    <div>
+                                      Queue progress:
+                                      <div class="progress progress-xs margin-top-5 margin-bottom-20">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                      </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                                      <span class="glyphicon glyphicon-upload"></span> Upload all
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-o  btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                                      <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-o btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                                      <span class="glyphicon glyphicon-trash"></span> Remove all
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <script type="text/ng-template" id="activationTime.html">
+                <div class="modal-header">
+                  <h3 class="modal-title">Set Schedule</h3>
+                </div>
+                <div class="modal-body">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5 class="text-bold margin-top-25 margin-bottom-15">Time</h5>
+                      <uib-timepicker ng-model="time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+                    </div>
+                    <div class="col-md-6">
+                      <h5 class="text-bold margin-top-25 margin-bottom-15">Date</h5>
+                      <div class="inline-block min-height-180">
+                        <uib-datepicker ng-model="date" min-date="minDate" show-weeks="false" class="well well-sm clip-datepicker"></uib-datepicker>
+                      </div>
+                    </div>
+                  </div>
+
+                    <pre class="alert alert-info">{{date | date}} {{time | date:'shortTime' }}</pre>
+
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-success" ng-click="ok()">OK</button>
+                  <button class="btn btn-danger " ng-click="cancel()">Cancel</button>
+                </div>
+              </script>
 
               <div class="row">
                 <div class="col-md-12">
@@ -130,6 +352,8 @@
       </div>
     </div>
   </div>
+
+</div>
 
 
 
