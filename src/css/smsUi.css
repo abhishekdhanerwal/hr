@@ -7,3 +7,9 @@
   background-color: #B22222; }
 .sweet-alert button.cancel:active {
   background-color: #B22222; }
+
+div.scrollUserList {
+  border:1px solid lightgrey;
+  height: 150px;
+  overflow-y: scroll;
+}

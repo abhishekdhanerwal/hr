@@ -119,12 +119,23 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     }).state('app.addNotice', {
       url: "/addnotice",
       templateUrl: "app/notices/addNotice.html",
-      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      // resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      resolve: loadSequence('angularFileUpload', 'uploadCtrl'),
       title: 'Add Notice',
-      controller: 'NoticeListCtrl',
+      controller: 'NoticeNewCtrl',
       controllerAs: 'vm',
       ncyBreadcrumb: {
         label: 'Add Notice'
+      }
+    }).state('app.editNotice', {
+      url: "/addnotice/:id",
+      templateUrl: "app/notices/addNotice.html",
+      resolve: loadSequence('angularFileUpload', 'uploadCtrl'),
+      title: 'Edit Notice',
+      controller: 'NoticeEditCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Edit Notice'
       }
     }).state('app.complaint', {
       url: "/complaint",
