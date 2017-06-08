@@ -44,6 +44,16 @@
         }
       });
 
+      userFactory.findSociety($localStorage._identity.principal.societyId).then(function(response){
+        if(response.status == 200){
+          vm.user.society = response.data;
+          vm.user.societyId = vm.user.society.societyId;
+        }
+        else if(response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
+
       userFactory.getRole().then(function (response) {
         if(response.status == 200) {
           vm.roles = response.data;
