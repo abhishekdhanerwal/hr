@@ -14,6 +14,7 @@
     function activate() {
 
       console.log($localStorage._identity.principal.email)
+      self.disable = $localStorage._identity.principal.email;
 
       self.isAdminRole = role.isAdminRole();
       self.isSuperAdminRole = role.isSuperAdminRole();

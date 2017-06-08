@@ -34,6 +34,12 @@
           if (vm.isSuperAdminRole) {
             vm.roles.splice(3, 5);
           }
+          else if(vm.isAdminRole){
+            vm.roles.splice(1,2);
+          }
+          else if(vm.isManagementRole){
+            vm.roles.splice(0,3);
+          }
         }
         else if( response.status == 401){
           toaster.info("User is not logged in. Redirecting to Login Page");
@@ -97,13 +103,20 @@
     function submit() {
       var firstError = null;
 
-      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid || vm.Form.society.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;
 
-      } else {
+      }
+      else if(vm.isSuperAdminRole && vm.Form.society.$invalid)
+      {
+        validationHelperFactory.manageValidationFailed(vm.Form);
+        vm.errorMessage = 'Validation Error';
+        return;
+      }
+      else {
         if(vm.user.society != undefined){
           vm.user.societyId = vm.user.society.id;
         }

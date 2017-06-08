@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatNewCtrl', FlatNewCtrl);
 
-  FlatNewCtrl.$inject = [ 'NgTableParams', 'role', '$filter', '$document', 'societyFactory', 'flatFactory', '$state', 'validationHelperFactory', 'toaster', 'userFactory'];
+  FlatNewCtrl.$inject = [ 'NgTableParams', '$localStorage', 'role', '$filter', '$document', 'societyFactory', 'flatFactory', '$state', 'validationHelperFactory', 'toaster', 'userFactory'];
   /* @ngInject */
-  function FlatNewCtrl( NgTableParams, role, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
+  function FlatNewCtrl( NgTableParams, $localStorage, role, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
     var vm = this;
     vm.userTenant = false;
     vm.submit = submit;
@@ -37,7 +37,7 @@
         if(response.status == 200) {
           vm.society = response.data;
           console.log(vm.society)
-          vm.flat.society = vm.society[0].admin;
+          vm.flat.society = $localStorage._identity.principal;
           vm.flat.society.id = vm.flat.society.societyId;
         }
         else if( response.status == 401){
