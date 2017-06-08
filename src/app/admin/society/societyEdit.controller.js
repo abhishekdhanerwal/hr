@@ -113,12 +113,12 @@
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';
-            toaster.error('Network Error', 'error');
+            toaster.error('Network Error');
             console.error(response);
           }
           else if (response.status == 400) {
             vm.errorMessage = response.data.message;
-            toaster.error(response.data.message, 'error');
+            toaster.error(response.data.message);
             console.error(response);
           }
           else if (response.status == 401) {
@@ -127,7 +127,7 @@
           }
           else {
             vm.errorMessage = 'Some problem';
-            toaster.error('Some problem', 'error');
+            toaster.error('Some problem');
             console.error(response);
           }
           vm.resetDisabled = false;

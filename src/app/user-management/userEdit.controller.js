@@ -97,7 +97,7 @@
     function submit() {
       var firstError = null;
 
-      if (vm.Form.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid || vm.Form.society.$invalid) {
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';

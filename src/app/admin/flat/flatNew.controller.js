@@ -37,8 +37,8 @@
         if(response.status == 200) {
           vm.society = response.data;
           console.log(vm.society)
-          // vm.flat.society = vm.society[0].admin;
-          // vm.flat.society.id = vm.flat.society.societyId;
+          vm.flat.society = vm.society[0].admin;
+          vm.flat.society.id = vm.flat.society.societyId;
         }
         else if( response.status == 401){
           toaster.info("User is not logged in. Redirecting to Login Page");
