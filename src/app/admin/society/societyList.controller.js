@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('SocietyListCtrl', SocietyListCtrl);
 
-  SocietyListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams' , 'toaster'];
+  SocietyListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
   /* @ngInject */
-  function SocietyListCtrl( NgTableParams, $state, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster) {
+  function SocietyListCtrl( NgTableParams, $state, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.message = false;
     vm.progress = true;
@@ -27,7 +27,10 @@
 
     function activate() {
 
-      console.log($stateParams.msg)
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
 
       societyFactory.societyList().then(function (response) {
 
