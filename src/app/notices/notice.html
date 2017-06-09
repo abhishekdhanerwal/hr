@@ -35,6 +35,7 @@
       <div class="panel panel-white">
         <div class="panel-body">
           <div>
+            <span ng-if="vm.noticeList.length > 0">
             <label>
               Notice Type
             </label><br>
@@ -42,6 +43,7 @@
                     ng-change="vm.populateNoticeList()" ng-options="notice for notice in vm.noticeTypeList"
                     required>
             </select>
+              </span>
           <a ng-if="!vm.isConsumerRole" ui-sref="app.addNotice" class="btn btn-info btn-wide pull-right"> Add Notice</a>
           </div>
           <div id="timeline">

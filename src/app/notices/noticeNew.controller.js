@@ -16,6 +16,7 @@
     vm.submit = submit;
     vm.reset = reset;
     vm.disableActivationTime = false;
+    vm.editNotice = false;
 
     activate();
 
@@ -35,7 +36,11 @@
     };
 
     vm.endDateValidation = function () {
-      vm.endMinDate = vm.notice.startDate;
+      var currentDate = Date.now()
+      if(currentDate > vm.notice.startDate)
+        vm.endMinDate = currentDate;
+      else
+        vm.endMinDate = vm.notice.startDate;
     }
 
     vm.openUserList = function () {
@@ -344,6 +349,8 @@
 
 
     $scope.ok = function () {
+      $scope.schedule.push($filter('date')(new Date($scope.date),'yyyy-MM-dd'));
+      $scope.schedule.push($filter('date')(new Date($scope.time),'hh:mm:a'));
       $uibModalInstance.close($scope.schedule);
     };
 

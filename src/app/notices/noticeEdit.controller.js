@@ -16,6 +16,7 @@
     vm.reset = reset;
     vm.noticeType = ['Festival', 'Voilation', 'General'];
     vm.disableActivationTime = false;
+    vm.editNotice = true;
 
     activate();
 
@@ -121,7 +122,7 @@
               }
             }
             console.log(count)
-            if(count == vm.notice.audience.length){
+            if(count == vm.societyUserList.length){
               vm.audience = 'All';
               tableData();
             }
@@ -133,8 +134,6 @@
             var currentTime = Date.now();
             if(currentTime > vm.notice.activationTime)
               vm.disableActivationTime = true;
-
-            console.log(vm.disableActivationTime)
 
             var repeatInLoopSMS = true;
             var repeatInLoopEmail = true;
@@ -225,7 +224,6 @@
         console.log(time)
 
         vm.notice.activationTime =new Date(date[0],date[1]-1,date[2], time[0], time[1]);
-        console.log(vm.notice.activationTime)
       });
 
     };
@@ -244,10 +242,13 @@
         vm.notice.communicationType = [];
         vm.notice.audience = [];
         if(vm.audience == 'All'){
-          vm.notice.audience = angular.copy(vm.tempAudienceAll);
+          vm.notice.audience = angular.copy(vm.societyUserList);
         }
         else if(vm.audience == 'Choose'){
-
+          for(var index=0 ;index < vm.societyUserList.length ; index++){
+            if(vm.societyUserList[index].checked)
+              vm.notice.audience.push(vm.societyUserList[index]);
+          }
         }
         if(vm.sms == true)
           vm.notice.communicationType.push('SMS');
@@ -258,14 +259,48 @@
         if(vm.mobileNotification == true)
           vm.notice.communicationType.push('MOBILE_NOTIFICATION');
 
-        console.log(vm.notice)
+        var editActivationTime = vm.notice.activationTime.split(" ")
+        if(editActivationTime[editActivationTime.length-1] == 'AM' || editActivationTime[editActivationTime.length-1] == 'PM'){
+          var editTime = editActivationTime[editActivationTime.length-2].split(":");
+          if(editActivationTime[editActivationTime.length-1] == 'AM' && parseInt(editTime[0]) > 11)
+            editTime[0] = parseInt(editTime[0]) - 12;
+          if(editActivationTime[editActivationTime.length-1] == 'PM')
+            editTime[0] = parseInt(editTime[0]) + 12;
 
-        noticeFactory.newNotice(vm.notice).then(function (response) {
+          if(editActivationTime[1] == 'Jan')
+            editActivationTime[1] = 0
+          if(editActivationTime[1] == 'Feb')
+            editActivationTime[1] = 1
+          if(editActivationTime[1] == 'Mar')
+            editActivationTime[1] = 2
+          if(editActivationTime[1] == 'Apr')
+            editActivationTime[1] = 3
+          if(editActivationTime[1] == 'May')
+            editActivationTime[1] = 4
+          if(editActivationTime[1] == 'Jun')
+            editActivationTime[1] = 5
+          if(editActivationTime[1] == 'Jul')
+            editActivationTime[1] = 6
+          if(editActivationTime[1] == 'Aug')
+            editActivationTime[1] = 7
+          if(editActivationTime[1] == 'Sep')
+            editActivationTime[1] = 8
+          if(editActivationTime[1] == 'Oct')
+            editActivationTime[1] = 9
+          if(editActivationTime[1] == 'Nov')
+            editActivationTime[1] = 10
+          if(editActivationTime[1] == 'Dec')
+            editActivationTime[1] = 11
+
+          vm.notice.activationTime = new Date(editActivationTime[3], editActivationTime[1],editActivationTime[2],editTime[0],editTime[1]);
+        }
+
+        noticeFactory.updateNotice(vm.notice ,vm.notice.id).then(function (response) {
           console.log(response.data);
 
           if (response.status == 200) {
-            toaster.info('Notice Created');
-            vm.message = "Notice Created";
+            toaster.info('Notice Updated');
+            vm.message = "Notice updated";
             $state.go('app.notice');
           }
           else if (response.status == -1) {
@@ -346,7 +381,38 @@
         console.info('onCompleteAll');
       };
 
-      console.info('uploader', uploader);
+      uploader.cancelAll = function(){
+        for(var item = 0; item<uploader.queue.length ; item++){
+          uploader.queue[item].remove();
+        }
+        vm.notice.attachmentUrl = [];
+      };
+
+
+      uploader.clearQueue = function(){
+        for(var item = 0; item<uploader.queue.length ; item++){
+          uploader.queue[item].remove();
+        }
+        vm.notice.attachmentUrl = [];
+      };
+
+      vm.deleteFromList = function (item) {
+        if(vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined){
+          if (item > -1) {
+            vm.notice.attachmentUrl.splice(item, 1);
+          }
+        }
+      };
+
+      vm.deleteFromDb = function (item) {
+        if(vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined){
+          if (item > -1) {
+            vm.notice.attachmentUrl.splice(item, 1);
+          }
+        }
+      };
+
+      // console.info('uploader', uploader);
 
   }
 })();
@@ -405,6 +471,8 @@
 
 
     $scope.ok = function () {
+      $scope.schedule.push($filter('date')(new Date($scope.date),'yyyy-MM-dd'));
+      $scope.schedule.push($filter('date')(new Date($scope.time),'hh:mm:a'));
       $uibModalInstance.close($scope.schedule);
     };
 

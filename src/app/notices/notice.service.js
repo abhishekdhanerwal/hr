@@ -22,6 +22,18 @@
       return promise;
     };
 
+    service.updateNotice = function (data , noticeId) {
+      var promise = $http.put(__env.dataServerUrl + '/notice/'+noticeId, data)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.getSociety = function(data){
       var promise = $http.get(__env.dataServerUrl + '/societies')
         .then(
@@ -84,18 +96,6 @@
 
     service.editNotice = function(noticeId){
       var promise = $http.get(__env.dataServerUrl + '/getNotice/'+ noticeId)
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
-
-    service.uploadFile = function(noticeId){
-      var promise = $http.post(__env.dataServerUrl + '/' + noticeId +'/noticeUpload')
         .then(
           function (response) {
             return response;
