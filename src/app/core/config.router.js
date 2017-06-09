@@ -141,7 +141,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         label: 'Add Notice'
       }
     }).state('app.editNotice', {
-      url: "/addnotice/:id",
+      url: "/editnotice/:id",
       templateUrl: "app/notices/addNotice.html",
       resolve: loadSequence('angularFileUpload', 'uploadCtrl'),
       title: 'Edit Notice',

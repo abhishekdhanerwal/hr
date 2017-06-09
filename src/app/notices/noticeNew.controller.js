@@ -15,7 +15,7 @@
     vm.hideUserList = true;
     vm.submit = submit;
     vm.reset = reset;
-    vm.noticeType = ['Festival', 'Voilation', 'General'];
+    vm.disableActivationTime = false;
 
     activate();
 
@@ -95,21 +95,36 @@
     }
 
     vm.openModal = function () {
-      console.log('row')
       var modalInstance = $uibModal.open({
         templateUrl: 'activationTime.html',
         controller: 'activationTimeCtrl',
         resolve: {
           items: function () {
             return vm.notice.activationTime;
+          },
+          startDate: function () {
+            return vm.notice.startDate;
+          },
+          endDate: function () {
+            return vm.notice.endDate;
           }
         }
       });
 
       modalInstance.result.then(function (activationTime) {
         console.log(activationTime)
-        // vm.notice.activationTime = activationTime[0] + ' ' + activationTime[1];
-        vm.notice.activationTime =new Date(1970,0,1, 0, 0);
+        var date = activationTime[0].split("-");
+        var time = activationTime[1].split(":");
+        if(time[2] == 'PM'){
+          time[0] = parseInt(time[0]) + 12;
+        }
+        if(time[2] == 'AM' &&  parseInt(time[0])>11)
+          time[0] = parseInt(time[0]) - 12;
+        console.log(date);
+        console.log(time)
+
+        vm.notice.activationTime =new Date(date[0],date[1]-1,date[2], time[0], time[1]);
+        console.log(vm.notice.activationTime)
 
       });
 
@@ -248,7 +263,29 @@
         console.info('onCompleteAll');
       };
 
-      console.info('uploader', uploader);
+      uploader.cancelAll = function(){
+        for(var item = 0; item<uploader.queue.length ; item++){
+          uploader.queue[item].remove();
+        }
+        vm.notice.attachmentUrl = [];
+      };
+
+      uploader.clearQueue = function(){
+        for(var item = 0; item<uploader.queue.length ; item++){
+          uploader.queue[item].remove();
+        }
+        vm.notice.attachmentUrl = [];
+      };
+
+      vm.deleteFromList = function (item) {
+        if(vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined){
+          if (item > -1) {
+            vm.notice.attachmentUrl.splice(item, 1);
+          }
+        }
+      };
+
+      // console.info('uploader', uploader);
 
   }
 })();
@@ -261,9 +298,12 @@
     .module('app.notice')
     .controller('activationTimeCtrl', activationTimeCtrl);
 
-  activationTimeCtrl.$inject = ["$scope", "$uibModalInstance" , "items" , "$log" , "$filter"];
+  activationTimeCtrl.$inject = ["$scope", "$uibModalInstance" , "items" ,"startDate", "endDate", "$log" , "$filter"];
   /* @ngInject */
-  function activationTimeCtrl($scope, $uibModalInstance, items , $log , $filter) {
+  function activationTimeCtrl($scope, $uibModalInstance, items ,startDate ,endDate ,  $log , $filter) {
+
+    $scope.minDate = startDate;
+    $scope.maxDate = endDate;
 
     if(items != undefined){
 
@@ -304,8 +344,6 @@
 
 
     $scope.ok = function () {
-      $scope.schedule.push($filter('date')(new Date($scope.date),'yyyy-MM-dd'));
-      $scope.schedule.push($filter('date')(new Date($scope.time),'hh:mm:a'));
       $uibModalInstance.close($scope.schedule);
     };
 

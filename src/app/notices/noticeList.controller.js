@@ -10,10 +10,9 @@
   /* @ngInject */
   function NoticeListCtrl($state, validationHelperFactory , role, toaster , noticeFactory , $filter , $uibModal, $localStorage , SweetAlert) {
     var vm = this;
-    vm.submit = submit;
-    vm.reset = reset;
     vm.progress = true;
-
+    vm.noticeTypeList = ['All', 'Festival' , 'Violation' , 'Announcement' , 'Other'];
+    vm.noticeType = vm.noticeTypeList[0];
     activate();
 
     function activate() {
@@ -23,8 +22,30 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       noticeFactory.getNotices().then(function (response) {
-        vm.noticeList = response.data;
-        vm.progress = false;
+        if (response.status == 200) {
+          vm.masterNoticeList = response.data;
+          vm.noticeList = angular.copy(vm.masterNoticeList);
+          vm.progress = false;
+          if(response.data.length == 0)
+          vm.message = "Notice dashboard is empty";
+          else
+            vm.message = false;
+        }
+        else if (response.status == -1) {
+          vm.errorMessage = 'Network Error';
+          toaster.error('Network Error', 'error');
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          vm.errorMessage = response.data[0].message;
+          toaster.error(response.data[0].message, 'error');
+          console.error(response);
+        }
+        else {
+          vm.errorMessage = 'Some problem';
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
       })
     };
 
@@ -52,21 +73,22 @@
     };
 
     vm.addReadRecipient = function (noticeId , notice) {
-      console.log($localStorage._identity.principal);
+      var modalInstance = $uibModal.open({
+        templateUrl: 'readNotice.html',
+        controller: 'readNoticeCtrl',
+        resolve: {
+          noticeData: function () {
+            return notice;
+          }
+        }
+      });
+      modalInstance.result.then(function () {
+      });
       noticeFactory.addReadRecipient(noticeId , $localStorage._identity.principal).then(function (response) {
         console.log(response)
         if (response.status == 200) {
-          var modalInstance = $uibModal.open({
-            templateUrl: 'readNotice.html',
-            controller: 'readNoticeCtrl',
-            resolve: {
-              noticeData: function () {
-                return notice;
-              }
-            }
-          });
-          modalInstance.result.then(function () {
-          });
+
+          $state.reload();
         }
         else if (response.status == -1) {
           vm.errorMessage = 'Network Error';
@@ -139,29 +161,22 @@
           // });
         }
       });
-
     }
 
-    function reset() {
-      vm.notice = '';
-      vm.Form.$setPristine();
-      vm.Form.$setUntouched();
+    vm.populateNoticeList = function () {
+      vm.noticeList = [];
+      if(vm.noticeType == 'All'){
+        vm.noticeList = vm.masterNoticeList;
+      }
+      else{
+        for(var index = 0;index<vm.masterNoticeList.length ; index++){
+          if(vm.noticeType == vm.masterNoticeList[index].type){
+            vm.noticeList.push(vm.masterNoticeList[index]);
+          }
+        }
+      }
     }
 
-    function submit() {
-      var firstError = null;
-
-      // if (vm.Form.$invalid) {
-      //   validationHelperFactory.manageValidationFailed(vm.Form);
-      //   vm.errorMessage = 'Validation Error';
-      //   return;
-      //
-      // }
-
-      var noticeData = vm.Form;
-      $state.go('app.notice')
-      console.log(noticeData)
-    };
   }
 })();
 
@@ -172,11 +187,9 @@
     .module('app.notice')
     .controller('userModalInstanceCtrl', userModalInstanceCtrl);
 
-  userModalInstanceCtrl.$inject = ["$scope", "$uibModalInstance" , "users" , "noticeFactory"];
+  userModalInstanceCtrl.$inject = ["$scope", "$uibModalInstance" , "users"];
   /* @ngInject */
-  function userModalInstanceCtrl($scope, $uibModalInstance, users , noticeFactory) {
-    console.log(users)
-
+  function userModalInstanceCtrl($scope, $uibModalInstance, users) {
     $scope.userList = users;
 
     $scope.ok = function () {
@@ -196,10 +209,9 @@
     .module('app.notice')
     .controller('readNoticeCtrl', readNoticeCtrl);
 
-  readNoticeCtrl.$inject = ["$scope", "$uibModalInstance" , "noticeData" , "noticeFactory"];
+  readNoticeCtrl.$inject = ["$scope", "$uibModalInstance" , "noticeData"];
   /* @ngInject */
-  function readNoticeCtrl($scope, $uibModalInstance, noticeData , noticeFactory) {
-    console.log(noticeData)
+  function readNoticeCtrl($scope, $uibModalInstance, noticeData) {
     $scope.notice = noticeData;
     $scope.ok = function () {
       $uibModalInstance.close();

@@ -10,12 +10,39 @@
 <wave-spinner ng-show="vm.progress" ></wave-spinner>
 
 <div ng-if="!vm.progress" class="container-fluid container-fullw">
+  <div class="row" ng-show="vm.errorMessage">
+    <div class="col-md-12">
+      <div class="alert alert-danger">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        <strong>Error!</strong> {{vm.errorMessage}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-white">
         <div class="panel-body">
-          <div ng-if="!vm.isConsumerRole">
-          <a ui-sref="app.addNotice" class="btn btn-primary btn-wide pull-right"> Add Notice</a>
+          <div>
+            <label>
+              Notice Type
+            </label><br>
+            <select name="noticeType" ng-model="vm.noticeType" style="width: 250px"
+                    ng-change="vm.populateNoticeList()" ng-options="notice for notice in vm.noticeTypeList"
+                    required>
+            </select>
+          <a ng-if="!vm.isConsumerRole" ui-sref="app.addNotice" class="btn btn-info btn-wide pull-right"> Add Notice</a>
           </div>
           <div id="timeline">
             <div class="timeline">
@@ -23,15 +50,15 @@
 
                 <ul class="columns">
                   <li ng-repeat="notice in vm.noticeList">
-                    <div class="timeline_element partition-white">
+                    <div ng-class="notice.type == 'Violation' ? 'timeline_element partition-blue' : 'timeline_element partition-white' ">
                       <div class="timeline_date">
                         <div ng-if="vm.isSuperAdminRole || vm.isAdminRole || vm.isManagementRole">
                         <a ng-click="vm.deleteNotice(notice.id)"><i class="fa fa-trash fa-2x pull-right" tooltip-placement="top"
-                              uib-tooltip="Delete"></i></a>
+                           ng-style="notice.type == 'Violation' ? {'color': 'white'}: {}" uib-tooltip="Delete"></i></a>
                         <a ui-sref="app.editNotice({id : notice.id})"><i class="fa fa-pencil fa-2x pull-right margin-right-20 margin-top-5" tooltip-placement="top"
-                                                                         uib-tooltip="Edit"></i></a>
+                           ng-style="notice.type == 'Violation' ? {'color': 'white'}: {}" uib-tooltip="Edit"></i></a>
                         <a ng-click="vm.openModalUserList(notice.id)"><i class="fa fa-align-justify fa-2x pull-right margin-right-30 margin-top-5" tooltip-placement="top"
-                              uib-tooltip="Read By"></i></a>
+                           ng-style="notice.type == 'Violation' ? {'color': 'white'}: {}" uib-tooltip="Read By"></i></a>
                         </div>
                         <div>
                           <div class="inline-block">
@@ -39,19 +66,19 @@
                           </div>
                           <div class="inline-block">
                             <span class="block week-day text-extra-large">{{notice.startDate | date:'EEEE'}}</span>
-                            <span class="block month text-large text-light">{{notice.startDate | date:'MMM yyyy'}}</span>
+                            <span ng-class="notice.type == 'Violation' ? 'block month text-large text-white' :'block month text-large text-light'">{{notice.startDate | date:'MMM yyyy'}}</span>
                           </div>
                         </div>
                       </div>
                       <div class="timeline_title">
                         <i class="fa fa-envelope fa-2x pull-left fa-border"></i>
-                        <h4 class="light-text no-margin padding-5">{{notice.subject}}</h4>
+                        <h4 ng-class="notice.type == 'Violation' ? 'text-white no-margin padding-5' : 'light-text no-margin padding-5'">{{notice.subject}}</h4>
                       </div>
                       <div class="timeline_content">
-                            {{notice.description}}
+                            {{notice.description| limitTo:80}}
                       </div>
                       <div class="readmore">
-                         <a ng-click="vm.addReadRecipient(notice.id , notice)" class="btn btn-primary btn-o btn-wide"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
+                         <a ng-click="vm.addReadRecipient(notice.id , notice)" class="btn btn-info btn-wide"> Read More <i class="fa fa-arrow-circle-right"></i> </a>
                       </div>
                     </div>
                   </li>
@@ -277,7 +304,7 @@
   <div class="modal-header">
     <h3 class="modal-title">Notice Read By</h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body scrollModalList">
 
     <span ng-if="userList.length == 0">
       No one has read this notice
@@ -299,13 +326,19 @@
     <h3 class="modal-title">{{notice.startDate | date:'dd MMM yyyy'}}  {{notice.startDate | date:'EEEE'}}</h3>
   </div>
   <div class="modal-body">
-      <span class="counter text-azure">{{notice.subject}}</span>
-
     <h3>
-      {{notice.description}}
+      <span class="text-azure">{{notice.subject}}</span>
     </h3>
+    <h5>
+      {{notice.description}}
+    </h5>
 
-        <img ng-src="{{notice.attachmentUrl[0]}}" width="100%" height="300px">
+    <div class="row">
+      <div class="col-md-6" ng-repeat="url in notice.attachmentUrl">
+        <img ng-src="{{url}}" width="100%" height="300px">
+      </div>
+    </div>
+
 
 
   </div>

@@ -13,3 +13,9 @@ div.scrollUserList {
   height: 150px;
   overflow-y: scroll;
 }
+div.scrollUserList {
+  border:1px solid lightgrey;
+  height: 300px;
+  overflow-y: scroll;
+}
+

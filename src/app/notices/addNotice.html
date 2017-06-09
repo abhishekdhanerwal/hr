@@ -181,8 +181,8 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.activationTime.$dirty && vm.Form.activationTime.$invalid, 'has-success':vm.Form.activationTime.$valid}">
                     <label class="control-label"> Activation Time <span class="symbol required"></span></label>
-                    <input type="text" ng-click="vm.openModal()" placeholder="activation time" class="form-control" name="activationTime"
-                           ng-model="vm.notice.activationTime" required/>
+                    <input type="text" ng-disabled="vm.disableActivationTime" ng-click="vm.openModal()" placeholder="activation time" class="form-control" name="activationTime"
+                           ng-model="vm.notice.activationTime" datetime="yyyy-MM-dd HH:mm:ss" required/>
                     <!--<span class="error text-small block"-->
                     <!--ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required && vm.user.role == 'ROLE_CONSUMER'">Address is required</span>-->
                     <!--<span class="error text-small block"-->
@@ -228,8 +228,8 @@
                                             <!--<input type="file" nv-file-select="" uploader="uploader" multiple />-->
                                         <!--</span>-->
                                   <br />
-                                  <span class="btn btn-primary btn-o btn-file">
-                                            Select single file
+                                  <span class="btn btn-info btn-file">
+                                            Select file
                                             <input type="file" nv-file-select="" uploader="uploader" />
                                         </span>
                                 </div>
@@ -263,10 +263,10 @@
                                           <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
                                             <span class="glyphicon glyphicon-upload"></span> Upload
                                           </button>
-                                          <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
-                                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                                          </button>
-                                          <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                          <!--<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">-->
+                                            <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
+                                          <!--</button>-->
+                                          <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove() ; vm.deleteFromList($index)">
                                             <span class="glyphicon glyphicon-trash"></span> Remove
                                           </button>
                                         </td>
@@ -281,13 +281,13 @@
                                         <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                                       </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                                    <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
                                       <span class="glyphicon glyphicon-upload"></span> Upload all
                                     </button>
-                                    <button type="button" class="btn btn-primary btn-o  btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
-                                      <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
-                                    </button>
-                                    <button type="button" class="btn btn-primary btn-o btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                                    <!--<button type="button" class="btn btn-warning btn-o  btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">-->
+                                      <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel all-->
+                                    <!--</button>-->
+                                    <button type="button" class="btn btn-danger btn-o btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
                                       <span class="glyphicon glyphicon-trash"></span> Remove all
                                     </button>
                                   </div>
@@ -316,7 +316,7 @@
                     <div class="col-md-6">
                       <h5 class="text-bold margin-top-25 margin-bottom-15">Date</h5>
                       <div class="inline-block min-height-180">
-                        <uib-datepicker ng-model="date" min-date="minDate" show-weeks="false" class="well well-sm clip-datepicker"></uib-datepicker>
+                        <uib-datepicker ng-model="date" min-date="minDate" max-date="maxDate" show-weeks="false" class="well well-sm clip-datepicker"></uib-datepicker>
                       </div>
                     </div>
                   </div>

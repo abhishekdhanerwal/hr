@@ -15,6 +15,7 @@
     vm.submit = submit;
     vm.reset = reset;
     vm.noticeType = ['Festival', 'Voilation', 'General'];
+    vm.disableActivationTime = false;
 
     activate();
 
@@ -104,6 +105,8 @@
           if (response.status == 200) {
             vm.notice = response.data;
 
+            vm.notice.activationTime = $filter('date')(vm.notice.activationTime, 'EEE MMM dd yyyy  hh:mm a');
+
             var count = 0;
             for (var temp = 0 ;temp < vm.societyUserList.length ; temp ++){
               for (var index = 0 ;index < vm.notice.audience.length ; index++){
@@ -127,13 +130,43 @@
               tableData();
             }
 
+            var currentTime = Date.now();
+            if(currentTime > vm.notice.activationTime)
+              vm.disableActivationTime = true;
+
+            console.log(vm.disableActivationTime)
+
+            var repeatInLoopSMS = true;
+            var repeatInLoopEmail = true;
+            var repeatInLoopMobile = true;
             for(var index = 0 ;index < vm.notice.communicationType.length ; index++){
-              if(vm.notice.communicationType[index] == 'SMS')
-                vm.sms = true;
-              if(vm.notice.communicationType[index] == 'EMAIL')
-                vm.email = true;
-              if(vm.notice.communicationType[index] == 'MOBILE_NOTIFICATION')
-                vm.mobileNotification = true;
+              if(repeatInLoopSMS){
+                if(vm.notice.communicationType[index] == 'SMS'){
+                  vm.sms = true;
+                  repeatInLoopSMS = false;
+                }
+                else{
+                  vm.sms = false;
+                }
+              }
+              if(repeatInLoopEmail){
+                if(vm.notice.communicationType[index] == 'EMAIL'){
+                  repeatInLoopEmail = false;
+                  vm.email = true;
+                }
+                else{
+                  vm.email = false;
+                }
+              }
+              if(repeatInLoopMobile){
+                if(vm.notice.communicationType[index] == 'MOBILE_NOTIFICATION'){
+                  vm.mobileNotification = true;
+                  repeatInLoopMobile = false;
+                }
+                else{
+                  vm.mobileNotification = false;
+                }
+              }
             }
             vm.progress = false;
           }
@@ -165,19 +198,34 @@
       console.log('row')
       var modalInstance = $uibModal.open({
         templateUrl: 'activationTime.html',
-        controller: 'activationTimeCtrl',
+        controller: 'editActivationTimeCtrl',
         resolve: {
           items: function () {
             return vm.notice.activationTime;
+          },
+          startDate: function () {
+            return vm.notice.startDate;
+          },
+          endDate: function () {
+            return vm.notice.endDate;
           }
         }
       });
 
       modalInstance.result.then(function (activationTime) {
         console.log(activationTime)
-        // vm.notice.activationTime = activationTime[0] + ' ' + activationTime[1];
-        vm.notice.activationTime =new Date(1970,0,1, 0, 0);
+        var date = activationTime[0].split("-");
+        var time = activationTime[1].split(":");
+        if(time[2] == 'PM'){
+          time[0] = parseInt(time[0]) + 12;
+        }
+        if(time[2] == 'AM' &&  parseInt(time[0])>11)
+          time[0] = parseInt(time[0]) - 12;
+        console.log(date);
+        console.log(time)
 
+        vm.notice.activationTime =new Date(date[0],date[1]-1,date[2], time[0], time[1]);
+        console.log(vm.notice.activationTime)
       });
 
     };
@@ -245,59 +293,61 @@
       activate();
     }
 
-    var uploader = $scope.uploader = new FileUploader({
-      url: 'http://localhost:8080/fileUpload/noticeUpload'
-    });
+      var uploader = $scope.uploader = new FileUploader({
+        url: 'http://localhost:8080/fileUpload/noticeUpload'
+      });
 
-    // FILTERS
+      // FILTERS
 
-    uploader.filters.push({
-      name: 'customFilter',
-      fn: function (item/*{File|FileLikeObject}*/, options) {
-        return this.queue.length < 10;
-      }
-    });
+      uploader.filters.push({
+        // item: 'vm.notice.attachmentUrl',
+        name: 'customFilter',
+        fn: function (item/*{File|FileLikeObject}*/, options) {
+          return this.queue.length < 10;
+        }
+      });
 
-    // CALLBACKS
+      // CALLBACKS
 
-    uploader.onWhenAddingFileFailed = function (item/*{File|FileLikeObject}*/, filter, options) {
-      console.info('onWhenAddingFileFailed', item, filter, options);
-    };
-    uploader.onAfterAddingFile = function (fileItem) {
-      console.info('onAfterAddingFile', fileItem);
-    };
-    uploader.onAfterAddingAll = function (addedFileItems) {
-      console.info('onAfterAddingAll', addedFileItems);
-    };
-    uploader.onBeforeUploadItem = function (item) {
-      console.info('onBeforeUploadItem', item);
-    };
-    uploader.onProgressItem = function (fileItem, progress) {
-      console.info('onProgressItem', fileItem, progress);
-    };
-    uploader.onProgressAll = function (progress) {
-      console.info('onProgressAll', progress);
-    };
-    uploader.onSuccessItem = function (fileItem, response, status, headers) {
-      vm.notice.attachmentUrl.push(response);
-      console.info('onSuccessItem', fileItem, response, status, headers);
-    };
-    uploader.onErrorItem = function (fileItem, response, status, headers) {
-      toaster.error('Image Not Saved');
-      console.info('onErrorItem', fileItem, response, status, headers);
-    };
-    uploader.onCancelItem = function (fileItem, response, status, headers) {
-      console.info('onCancelItem', fileItem, response, status, headers);
-    };
-    uploader.onCompleteItem = function (fileItem, response, status, headers) {
-      toaster.info('Image Saved');
-      console.info('onCompleteItem', fileItem, response, status, headers);
-    };
-    uploader.onCompleteAll = function () {
-      console.info('onCompleteAll');
-    };
+      uploader.onWhenAddingFileFailed = function (item/*{File|FileLikeObject}*/, filter, options) {
+        console.info('onWhenAddingFileFailed', item, filter, options);
+      };
+      uploader.onAfterAddingFile = function (fileItem) {
+        console.info('onAfterAddingFile', fileItem);
+      };
+      uploader.onAfterAddingAll = function (addedFileItems) {
+        console.info('onAfterAddingAll', addedFileItems);
+      };
+      uploader.onBeforeUploadItem = function (item) {
+        console.info('onBeforeUploadItem', item);
+      };
+      uploader.onProgressItem = function (fileItem, progress) {
+        console.info('onProgressItem', fileItem, progress);
+      };
+      uploader.onProgressAll = function (progress) {
+        console.info('onProgressAll', progress);
+      };
+      uploader.onSuccessItem = function (fileItem, response, status, headers) {
+        vm.notice.attachmentUrl.push(response);
+        console.info('onSuccessItem', fileItem, response, status, headers);
+      };
+      uploader.onErrorItem = function (fileItem, response, status, headers) {
+        toaster.error('Image Not Saved');
+        console.info('onErrorItem', fileItem, response, status, headers);
+      };
+      uploader.onCancelItem = function (fileItem, response, status, headers) {
+        console.info('onCancelItem', fileItem, response, status, headers);
+      };
+      uploader.onCompleteItem = function (fileItem, response, status, headers) {
+        toaster.info('Image Saved');
+        console.info('onCompleteItem', fileItem, response, status, headers);
+      };
+      uploader.onCompleteAll = function () {
+        console.info('onCompleteAll');
+      };
 
-    console.info('uploader', uploader);
+      console.info('uploader', uploader);
+
   }
 })();
 
@@ -307,11 +357,14 @@
 
   angular
     .module('app.notice')
-    .controller('activationTimeCtrl', activationTimeCtrl);
+    .controller('editActivationTimeCtrl', editActivationTimeCtrl);
 
-  activationTimeCtrl.$inject = ["$scope", "$uibModalInstance" , "items" , "$log" , "$filter"];
+  editActivationTimeCtrl.$inject = ["$scope", "$uibModalInstance" , "items" ,"startDate", "endDate", "$log" , "$filter"];
   /* @ngInject */
-  function activationTimeCtrl($scope, $uibModalInstance, items , $log , $filter) {
+  function editActivationTimeCtrl($scope, $uibModalInstance, items ,startDate ,endDate , $log , $filter) {
+
+    $scope.minDate = startDate;
+    $scope.maxDate = endDate;
 
     if(items != undefined){
 
@@ -352,8 +405,6 @@
 
 
     $scope.ok = function () {
-      $scope.schedule.push($filter('date')(new Date($scope.date),'yyyy-MM-dd'));
-      $scope.schedule.push($filter('date')(new Date($scope.time),'hh:mm:a'));
       $uibModalInstance.close($scope.schedule);
     };
 
