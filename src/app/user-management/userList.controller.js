@@ -13,6 +13,8 @@
 
     function activate() {
 
+      self.disable = $localStorage._identity.principal.email;
+
       self.isAdminRole = role.isAdminRole();
       self.isSuperAdminRole = role.isSuperAdminRole();
       self.isManagementRole = role.isManagementRole();

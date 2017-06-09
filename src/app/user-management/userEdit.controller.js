@@ -6,9 +6,9 @@
     .module('app.user')
     .controller('UserEditCtrl', UserEditCtrl);
 
-  UserEditCtrl.$inject = ['userFactory', '$document', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
+  UserEditCtrl.$inject = ['userFactory', '$localStorage', '$document', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
   /* @ngInject */
-  function UserEditCtrl( userFactory, $document, $state, validationHelperFactory, $stateParams , toaster, role) {
+  function UserEditCtrl( userFactory, $localStorage, $document, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.submit = submit;
     vm.reset = reset;
@@ -33,6 +33,12 @@
           vm.roles.splice(0, 1);
           if (vm.isSuperAdminRole) {
             vm.roles.splice(3, 5);
+          }
+          else if(vm.isAdminRole){
+            vm.roles.splice(1,2);
+          }
+          else if(vm.isManagementRole){
+            vm.roles.splice(0,3);
           }
         }
         else if( response.status == 401){
@@ -59,7 +65,7 @@
         if (response.status == 200) {
           vm.user = response.data;
           console.log(vm.user)
-          console.log(vm.user.role)
+          console.log(vm.user.societyId)
         }
         else if (response.status == -1) {
           toaster.error('Network Error');
@@ -79,6 +85,19 @@
           toaster.error('Some problem', 'error');
           console.error(response);
         }
+
+        // userFactory.findSociety(vm.user.societyId).then(function(response){
+        //     if(response.status == 200){
+        //       vm.societyy = response.data;
+        //       vm.societyy.name = vm.societyy.name
+        //       console.log(vm.society)
+        //       //vm.user.name = vm.user.society.name;
+        //     }
+        //     else if(response.status == 401){
+        //       $state.go('auth.signout')
+        //     }
+        //   });
+
       });
 
     };
@@ -97,13 +116,20 @@
     function submit() {
       var firstError = null;
 
-      if (vm.Form.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;
 
-      } else {
+      }
+      else if(vm.isSuperAdminRole && vm.Form.society.$invalid)
+      {
+        validationHelperFactory.manageValidationFailed(vm.Form);
+        vm.errorMessage = 'Validation Error';
+        return;
+      }
+      else {
         if(vm.user.society != undefined){
           vm.user.societyId = vm.user.society.id;
         }

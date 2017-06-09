@@ -83,6 +83,18 @@
       return promise;
     };
 
+    service.findSociety = function (id) {
+      var promise = $http.get(__env.dataServerUrl + '/society/' + id)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.editFlat = function (id,flat) {
       var promise = $http.put(__env.dataServerUrl + '/updateFlat/' + id,flat)
         .then(

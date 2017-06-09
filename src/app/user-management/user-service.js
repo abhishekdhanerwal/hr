@@ -97,6 +97,18 @@
       return promise;
     };
 
+    service.findSociety = function (id) {
+      var promise = $http.get(__env.dataServerUrl + '/society/' + id)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     return service;
   };
 }());

@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatNewCtrl', FlatNewCtrl);
 
-  FlatNewCtrl.$inject = [ 'NgTableParams', 'role', '$filter', '$document', 'societyFactory', 'flatFactory', '$state', 'validationHelperFactory', 'toaster', 'userFactory'];
+  FlatNewCtrl.$inject = [ 'NgTableParams', '$localStorage', 'role', '$filter', '$document', 'societyFactory', 'flatFactory', '$state', 'validationHelperFactory', 'toaster', 'userFactory'];
   /* @ngInject */
-  function FlatNewCtrl( NgTableParams, role, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
+  function FlatNewCtrl( NgTableParams, $localStorage, role, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
     var vm = this;
     vm.userTenant = false;
     vm.submit = submit;
@@ -37,11 +37,20 @@
         if(response.status == 200) {
           vm.society = response.data;
           console.log(vm.society)
-          // vm.flat.society = vm.society[0].admin;
-          // vm.flat.society.id = vm.flat.society.societyId;
         }
         else if( response.status == 401){
           toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
+      });
+
+      flatFactory.findSociety($localStorage._identity.principal.societyId).then(function(response)
+      {
+        if (response.status == 200) {
+          vm.flat.society = response.data;
+          vm.flat.society.id = vm.societyById.admin.societyId;
+        }
+        else if (response.status == 401) {
           $state.go('auth.signout')
         }
       });
@@ -139,6 +148,7 @@
 
         flatFactory.newFlat(vm.flat.society.id, vm.flat).then(function (response) {
           console.log(vm.flat.society.id);
+          console.log(vm.flat)
 
           if (response.status == 200) {
             toaster.info('Flat Created');
@@ -151,8 +161,8 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data[0].message;
-            toaster.error(response.data[0].message);
+            vm.errorMessage = response.data.message;
+            toaster.error(response.data.message);
             console.error( vm.errorMessage);
           }
           else if( response.status == 401){

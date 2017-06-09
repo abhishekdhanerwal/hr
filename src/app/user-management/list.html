@@ -81,7 +81,7 @@
                     <a ng-hide="vm.isSuperAdminRole && row.role == 'CONSUMER' || vm.isSuperAdminRole && row.role == 'PLUMBER' || vm.isSuperAdminRole && row.role == 'CARPENTER' || vm.isSuperAdminRole && row.role == 'CIVIC' || vm.isSuperAdminRole && row.role == 'ELECTRICIAN'" ui-sref="app.editUser({id : row.id})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit" ><i class="fa fa-pencil"></i></a>
-                    <a ng-if="row.status == true" href="#" ng-click="vm.toggleStatus(row.id)"
+                    <a ng-if="row.status == true && row.email != vm.disable" href="#" ng-click="vm.toggleStatus(row.id)"
                        class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
                        uib-tooltip="Deactivate"><i class="fa fa-ban"></i></a>
                     <a ng-if="row.status == false" href="#" ng-click="vm.toggleStatus(row.id)"
