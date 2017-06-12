@@ -122,24 +122,38 @@
 
                   <div ng-if="vm.audience == 'Choose' && vm.hideUserList" class="form-group scrollUserList">
 
-                    <div class="table-responsive">
-                      <table ng-table="vm.tableParams" show-filter="true" class="table">
+                    <div class="margin-left-20 margin-top-20 margin-right-25">
+                      <input type="text" id="myInput" ng-keyup="vm.filterAudienceTable()" placeholder="Search for names..">
 
-                        <tr ng-repeat="row in $data">
-
-                          <td data-title=""  filter="{ 'name': 'text' }">{{row.name}}
-                          </td>
-
-                          <td data-title="">
-                            <div class="checkbox clip-check check-primary checkbox-inline">
+                      <table id="myTable">
+                        <tr ng-repeat="row in vm.societyUserList">
+                          <td style="width:95%;">{{row.name}}</td>
+                          <td style="width:5%;">
+                            <div class="checkbox clip-check check-primary checkbox-inline pull-right">
                               <input type="checkbox" id="{{row.name}}" value="hasResident" ng-model="row.checked" >
-                              <label for="{{row.name}}">
-                              </label>
+                                <label for="{{row.name}}">
+                                </label>
                             </div>
                           </td>
                         </tr>
                       </table>
-                      <button type="submit" class="btn btn-success pull-right"
+                      <!--<table ng-table="vm.tableParams" show-filter="true" class="table">-->
+
+                        <!--<tr ng-repeat="row in $data">-->
+
+                          <!--<td  filter="{ 'name': 'text' }">{{row.name}}-->
+                          <!--</td>-->
+
+                          <!--<td >-->
+                            <!--<div class="checkbox clip-check check-primary checkbox-inline">-->
+                              <!--<input type="checkbox" id="{{row.name}}" value="hasResident" ng-model="row.checked" >-->
+                              <!--<label for="{{row.name}}">-->
+                              <!--</label>-->
+                            <!--</div>-->
+                          <!--</td>-->
+                        <!--</tr>-->
+                      <!--</table>-->
+                      <button type="submit" class="btn btn-success pull-right margin-right-25"
                               ng-click="vm.updateAudienceList()">
                         Save
                       </button>
