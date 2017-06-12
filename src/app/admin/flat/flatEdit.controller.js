@@ -13,6 +13,7 @@
     vm.submit = submit;
     vm.clearUser = clearUser;
     vm.reset = reset;
+    vm.data = {};
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -86,10 +87,12 @@
     };
 
     function reset() {
-      //activate($stateParams.id)
-      //activate(vm.flat.society)
-      vm.Form.$setPristine();
-      vm.Form.$setUntouched();
+      // activate($stateParams.id)
+      // activate(vm.flat)
+      // vm.Form.$setPristine();
+      // vm.Form.$setUntouched();
+      angular.copy(vm.data,vm.flat);
+      activate(vm.data);
     }
 
     function clearUser(){

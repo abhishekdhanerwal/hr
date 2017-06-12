@@ -89,7 +89,7 @@
 
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
+                    <a ng-if="!vm.isSuperAdminRole" ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                   </div>
@@ -119,6 +119,36 @@
   </div>
 </div>
 <div ng-show="!vm.progress" class="container-fluid container-fullw" ng-if="vm.isConsumerRole">
+  <div class="row" ng-show="vm.errorMessage">
+    <div class="col-md-12">
+      <div class="alert alert-danger">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        <strong>Error!</strong> {{vm.errorMessage}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.complaintMsg">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideComplaintBox()">
+          &times;
+        </button>
+        {{vm.complaintMsg}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-white">

@@ -26,57 +26,14 @@
           vm.status = response.data;
         }
         else if(response.status == 401){
-          console.log('jd')
           $state.go('auth.signout');
         }
       });
 
-      //function for end date
-      vm.endOpen = function ($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        vm.startOpened = false;
-        vm.endOpened = !vm.endOpened;
-      };
-      //function for start date
-      vm.startOpen = function ($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        vm.endOpened = false;
-        vm.startOpened = !vm.startOpened;
-      };
-
-      vm.startDateOption = {
-        showWeeks: false,
-        maxDate: vm.end,
-        minDate: new Date(1970, 12, 31),
-        startingDay: 1
-      };
-      vm.endDateOption = {
-        showWeeks: false,
-        maxDate: new Date(2020, 5, 22),
-        minDate: vm.start,
-        startingDay: 1
-      };
-
+      vm.endDateValidation = function () {
+        vm.endMinDate = vm.start;
+      }
     };
-
-    // vm.csv = function(){
-    //   var randomTime = $filter('date')(new Date(), 'dd/MM hh:mm a');
-    //   $http({method: 'GET', url: __env.notificationServerUrl + '/csv/alarmConditions?siteId='+ vm.siteId +'&fromDate=' + vm.start.toISOString() + '&toDate=' + vm.end.toISOString()}).
-    //   success(function(data, status, headers, config) {
-    //     var anchor = angular.element('<a/>');
-    //     anchor.css({display: 'none'}); // Make sure it's not visible
-    //     angular.element(document.body).append(anchor); // Attach to document
-    //     anchor.attr({
-    //       href: 'data:attachment/csv;charset=utf-8,' + encodeURIComponent(data),
-    //       target: '_blank',
-    //       download: 'AlertsReport-'+randomTime+'.csv'
-    //     })[0].click();
-    //
-    //     anchor.remove(); // Clean it up afterwards
-    //   })
-    // };
 
     //function to generate the report
     vm.generate = function () {
@@ -138,10 +95,10 @@
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-            createdOn: '' // initial sorting
+            lastModified: 'asc' // initial sorting
           }, // count per page
           filter: {
-            createdOn: '', // initial filter
+            createdOn: '' // initial filter
           }
         }, {
           // total: data.length,
