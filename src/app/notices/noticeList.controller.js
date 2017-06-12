@@ -41,6 +41,9 @@
           toaster.error(response.data[0].message, 'error');
           console.error(response);
         }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
         else {
           vm.errorMessage = 'Some problem';
           toaster.error('Some problem', 'error');
@@ -100,6 +103,9 @@
           toaster.error(response.data[0].message, 'error');
           console.error(response);
         }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
         else {
           vm.errorMessage = 'Some problem';
           toaster.error('Some problem', 'error');
@@ -138,6 +144,9 @@
               vm.errorMessage = response.data[0].message;
               toaster.error(response.data[0].message, 'error');
               console.error(response);
+            }
+            else if( response.status == 401){
+              $state.go('auth.signout')
             }
             else {
               vm.errorMessage = 'Some problem';

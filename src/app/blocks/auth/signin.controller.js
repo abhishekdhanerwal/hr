@@ -5,9 +5,9 @@
     .module('blocks.auth')
     .controller('SigninController', SigninController);
 
-  SigninController.$inject = ['$scope', '$state', 'principal', 'toaster', '$localStorage' ];
+  SigninController.$inject = ['$scope', '$state', 'principal', 'toaster', '$localStorage' , '$timeout' ];
   /* @ngInject */
-  function SigninController($scope, $state, principal, toaster, $localStorage ) {
+  function SigninController($scope, $state, principal, toaster, $localStorage, $timeout ) {
     var vm = this;
     vm.signin = signin;
 
@@ -45,6 +45,11 @@
       //TODO to be removed;
       vm.user = __env.user;
       vm.password = __env.password;
+
+      $timeout(function () {
+        toaster.info("User is not logged in");
+      }, 1000);
+
     }
   }
 })();

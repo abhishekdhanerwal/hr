@@ -16,6 +16,7 @@
     vm.submit = submit;
     vm.reset = reset;
     vm.disableActivationTime = false;
+    vm.editNotice = false;
 
     activate();
 
@@ -25,17 +26,63 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       noticeFactory.getSocietyUser().then(function (response) {
-        console.log(response)
-        vm.progress = false;
-        vm.societyUserList = response.data;
-        tableData();
+
+        if (response.status == 200) {
+
+          vm.progress = false;
+          vm.societyUserList = response.data;
+          tableData();
+        }
+        else if (response.status == -1) {
+          vm.errorMessage = 'Network Error';
+          toaster.error('Network Error', 'error');
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          vm.errorMessage = response.data[0].message;
+          toaster.error(response.data[0].message, 'error');
+          console.error(response);
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+        else {
+          vm.errorMessage = 'Some problem';
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
       })
 
       vm.notice.attachmentUrl = [];
     };
 
+     vm.filterAudienceTable = function() {
+      // Declare variables
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
     vm.endDateValidation = function () {
-      vm.endMinDate = vm.notice.startDate;
+      var currentDate = Date.now()
+      if(currentDate > vm.notice.startDate)
+        vm.endMinDate = currentDate;
+      else
+        vm.endMinDate = vm.notice.startDate;
     }
 
     vm.openUserList = function () {
@@ -52,7 +99,7 @@
           //   lastModified: 'desc' // initial sorting
           // }, // count per page
           filter: {
-            name: '' // initial filter
+            name: '' // initial filter,
           }
         }, {
           counts: [],
@@ -163,7 +210,6 @@
         console.log(vm.notice)
 
         noticeFactory.newNotice(vm.notice).then(function (response) {
-          console.log(response.data);
 
           if (response.status == 200) {
 
@@ -184,6 +230,9 @@
             toaster.error(response.data[0].message, 'error');
             console.error(response);
           }
+          else if( response.status == 401){
+            $state.go('auth.signout')
+          }
           else {
             vm.errorMessage = 'Some problem';
             toaster.error('Some problem', 'error');
@@ -203,9 +252,28 @@
       vm.audience = null;
       vm.errorMessage = null;
       noticeFactory.getSocietyUser().then(function (response) {
-        console.log(response)
-        vm.societyUserList = response.data;
-        tableData();
+        if (response.status == 200) {
+          vm.societyUserList = response.data;
+          tableData();
+        }
+        else if (response.status == -1) {
+          vm.errorMessage = 'Network Error';
+          toaster.error('Network Error', 'error');
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          vm.errorMessage = response.data[0].message;
+          toaster.error(response.data[0].message, 'error');
+          console.error(response);
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+        else {
+          vm.errorMessage = 'Some problem';
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
       })
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
@@ -344,6 +412,8 @@
 
 
     $scope.ok = function () {
+      $scope.schedule.push($filter('date')(new Date($scope.date),'yyyy-MM-dd'));
+      $scope.schedule.push($filter('date')(new Date($scope.time),'hh:mm:a'));
       $uibModalInstance.close($scope.schedule);
     };
 
