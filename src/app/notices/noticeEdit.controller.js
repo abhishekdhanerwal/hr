@@ -26,7 +26,6 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       noticeFactory.getSocietyUser().then(function (response) {
-        console.log(response.data);
 
         if (response.status == 200) {
           vm.societyUserList = response.data;
@@ -41,6 +40,9 @@
           vm.errorMessage = response.data[0].message;
           toaster.error(response.data[0].message, 'error');
           console.error(response);
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
         }
         else {
           vm.errorMessage = 'Some problem';
@@ -101,7 +103,6 @@
 
       function getNoticeData() {
         noticeFactory.editNotice($stateParams.id).then(function (response) {
-          console.log(response);
 
           if (response.status == 200) {
             vm.notice = response.data;
@@ -179,6 +180,9 @@
             toaster.error(response.data[0].message, 'error');
             console.error(response);
           }
+          else if( response.status == 401){
+            $state.go('auth.signout')
+          }
           else {
             vm.errorMessage = 'Some problem';
             toaster.error('Some problem', 'error');
@@ -212,7 +216,6 @@
       });
 
       modalInstance.result.then(function (activationTime) {
-        console.log(activationTime)
         var date = activationTime[0].split("-");
         var time = activationTime[1].split(":");
         if(time[2] == 'PM'){
@@ -230,7 +233,6 @@
 
 
     function submit() {
-      console.log(vm.Form)
 
       if (vm.Form.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
@@ -296,7 +298,6 @@
         }
 
         noticeFactory.updateNotice(vm.notice ,vm.notice.id).then(function (response) {
-          console.log(response.data);
 
           if (response.status == 200) {
             toaster.info('Notice Updated');
@@ -312,6 +313,9 @@
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message, 'error');
             console.error(response);
+          }
+          else if( response.status == 401){
+            $state.go('auth.signout')
           }
           else {
             vm.errorMessage = 'Some problem';

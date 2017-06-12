@@ -26,10 +26,31 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       noticeFactory.getSocietyUser().then(function (response) {
-        console.log(response)
-        vm.progress = false;
-        vm.societyUserList = response.data;
-        tableData();
+
+        if (response.status == 200) {
+
+          vm.progress = false;
+          vm.societyUserList = response.data;
+          tableData();
+        }
+        else if (response.status == -1) {
+          vm.errorMessage = 'Network Error';
+          toaster.error('Network Error', 'error');
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          vm.errorMessage = response.data[0].message;
+          toaster.error(response.data[0].message, 'error');
+          console.error(response);
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+        else {
+          vm.errorMessage = 'Some problem';
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
       })
 
       vm.notice.attachmentUrl = [];
@@ -189,7 +210,6 @@
         console.log(vm.notice)
 
         noticeFactory.newNotice(vm.notice).then(function (response) {
-          console.log(response.data);
 
           if (response.status == 200) {
 
@@ -210,6 +230,9 @@
             toaster.error(response.data[0].message, 'error');
             console.error(response);
           }
+          else if( response.status == 401){
+            $state.go('auth.signout')
+          }
           else {
             vm.errorMessage = 'Some problem';
             toaster.error('Some problem', 'error');
@@ -229,9 +252,28 @@
       vm.audience = null;
       vm.errorMessage = null;
       noticeFactory.getSocietyUser().then(function (response) {
-        console.log(response)
-        vm.societyUserList = response.data;
-        tableData();
+        if (response.status == 200) {
+          vm.societyUserList = response.data;
+          tableData();
+        }
+        else if (response.status == -1) {
+          vm.errorMessage = 'Network Error';
+          toaster.error('Network Error', 'error');
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          vm.errorMessage = response.data[0].message;
+          toaster.error(response.data[0].message, 'error');
+          console.error(response);
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+        else {
+          vm.errorMessage = 'Some problem';
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
       })
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
