@@ -84,7 +84,7 @@
                     <a ng-if="row.status == true && row.email != vm.disable" href="#" ng-click="vm.toggleStatus(row.id)"
                        class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
                        uib-tooltip="Deactivate"><i class="fa fa-ban"></i></a>
-                    <a ng-if="row.status == false" href="#" ng-click="vm.toggleStatus(row.id)"
+                    <a ng-if="row.status == false && row.role != 'CARPENTER' && row.role != 'CIVIC' && row.role != 'PLUMBER' && row.role != 'ELECTRICIAN'" href="#" ng-click="vm.toggleStatus(row.id)"
                        class="btn btn-transparent btn-xs tooltips" tooltip-placement="top"
                        uib-tooltip="Activate"><i class="fa fa-check"></i></a>
                   </div>

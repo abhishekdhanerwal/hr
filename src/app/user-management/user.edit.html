@@ -87,11 +87,11 @@
                        ng-class="{'has-error':vm.Form.address.$dirty && vm.Form.address.$invalid, 'has-success':vm.Form.address.$valid}">
                     <label class="control-label"> Address </label>
                     <input type="text" placeholder="Enter your Address" class="form-control" name="address"
-                           ng-model="vm.user.address" ng-minlength=6 ng-maxlength=500 required/>
+                           ng-model="vm.user.address" ng-maxlength=500 required/>
                     <!--<span class="error text-small block"-->
                           <!--ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required && vm.user.role == 'ROLE_CONSUMER'">Address is required</span>-->
-                    <span class="error text-small block"
-                          ng-show="vm.Form.address.$invalid && vm.Form.address.$error.minlength">Address should be six characters or more</span>
+                    <!--<span class="error text-small block"-->
+                          <!--ng-show="vm.Form.address.$invalid && vm.Form.address.$error.minlength">Address should be six characters or more</span>-->
                     <span class="error text-small block"
                           ng-show="vm.Form.address.$invalid && vm.Form.address.$error.maxlength">Address should be less than 100 characters</span>
                   </div>

@@ -51,9 +51,13 @@
         if(response.status == 200) {
           vm.society = response.data;
           // for(var i=0; i<vm.society.length; i++) {
-          //   vm.user.SocietyId = vm.society.id;
+          //   if(vm.society[i].id == vm.user.societyId){
+          //     vm.user.society = vm.society[i].name;
+          //     console.log(vm.user.society)
+          //   };
           // }
           console.log(vm.society)
+          console.log(vm.user.societyId)
         }
         else if( response.status == 401){
           toaster.info("User is not logged in. Redirecting to Login Page");

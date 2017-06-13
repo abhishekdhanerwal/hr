@@ -141,6 +141,10 @@
       var deferred = $q.defer();
       $http.post(__env.dataServerUrl + '/logout', {}).finally(function() {
         deferred.resolve(_identity);
+         if (response.status == 401) {
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
 
       });
       $rootScope.currentUser = null;

@@ -18,6 +18,7 @@
     vm.clearUser = clearUser;
     vm.addUser = addUser;
     vm.flat = {};
+    vm.flat.society = {};
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -27,6 +28,14 @@
     activate();
 
     function activate() {
+
+      if($localStorage._identity.societyId != null){
+        vm.SocietyFlatData = true;
+        vm.flat.society.id = $localStorage._identity.societyId;
+      }
+      else{
+        vm.SocietyFlatData = false;
+      }
 
       vm.isAdminRole = role.isAdminRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
@@ -39,7 +48,6 @@
           console.log(vm.society)
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -48,7 +56,7 @@
       {
         if (response.status == 200) {
           vm.flat.society = response.data;
-          vm.flat.society.id = vm.societyById.admin.societyId;
+         // vm.flat.society.id = vm.societyById.admin.societyId;
         }
         else if (response.status == 401) {
           $state.go('auth.signout')
@@ -60,7 +68,6 @@
             vm.residentType = response.data;
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
         });
@@ -70,7 +77,6 @@
           vm.roles = response.data;
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -97,7 +103,6 @@
           })
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -153,7 +158,13 @@
           if (response.status == 200) {
             toaster.info('Flat Created');
             vm.message = "Flat Created";
-            $state.go('app.flats', {msg: vm.message});
+            if(vm.SocietyFlatData) {
+              $state.go('app.flatsBySociety',({id: vm.flat.society.id , msg: vm.message}));
+            }
+            else if(vm.SocietyFlatData == false){
+              $state.go('app.flats', {msg: vm.message});
+            }
+            // $state.go('app.flats', {msg: vm.message});
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';
@@ -161,12 +172,11 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data.message;
-            toaster.error(response.data.message);
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
             console.error( vm.errorMessage);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {

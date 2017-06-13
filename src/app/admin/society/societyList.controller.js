@@ -27,11 +27,17 @@
 
     function activate() {
 
+      if($localStorage._identity!=null) {
+        vm.societyId = $localStorage._identity.principal.societyId;
+      }
+
       vm.isAdminRole = role.isAdminRole();
       vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
 
+
+    if(vm.isSuperAdminRole) {
       societyFactory.societyList().then(function (response) {
 
         vm.progress = false;
@@ -60,6 +66,40 @@
           console.error(response);
         }
       })
+    }
+    else if(vm.isManagementRole || vm.isAdminRole){
+      societyFactory.findSociety(vm.societyId).then(function (response) {
+
+        vm.progress = false;
+
+        if (response.status == 200) {
+          vm.master = [];
+          console.log(vm.master)
+          vm.master[0] = response.data;
+          //vm.abc = angular.copy(vm.master)
+          console.log(vm.master)
+          societyData();
+        }
+        else if (response.status == -1) {
+          toaster.error('Network Error', 'error');
+          vm.errorMessage = "Network Error";
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          console.error(response);
+          vm.errorMessage = vm.master.message;
+          toaster.error(vm.master.message, 'error');
+        }
+        else if (response.status == 401) {
+          toaster.info("User is not logged in. Redirecting to Login Page");
+          $state.go('auth.signout')
+        }
+        else {
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
+      })
+    }
     };
 
     function societyData() {
