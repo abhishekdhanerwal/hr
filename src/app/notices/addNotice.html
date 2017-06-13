@@ -192,11 +192,10 @@
                       </label>
                     </div>
                   </div>
-                  <div class="form-group"
-                       ng-class="{'has-error':vm.Form.activationTime.$dirty && vm.Form.activationTime.$invalid, 'has-success':vm.Form.activationTime.$valid}">
-                    <label class="control-label"> Activation Time <span class="symbol required"></span></label>
+                  <div class="form-group">
+                    <label class="control-label"> Activation Time </label>
                     <input type="text" ng-disabled="vm.disableActivationTime" ng-click="vm.openModal()" placeholder="activation time" class="form-control" name="activationTime"
-                           ng-model="vm.notice.activationTime" required/>
+                           ng-model="vm.notice.activationTime"/>
                     <!--<span class="error text-small block"-->
                     <!--ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required && vm.user.role == 'ROLE_CONSUMER'">Address is required</span>-->
                     <!--<span class="error text-small block"-->
