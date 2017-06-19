@@ -20,6 +20,7 @@ var config = require('./gulp/config.js');
 var Server = require('karma').Server;
 var browserSync = require('browser-sync').create();
 var fallback = require('connect-history-api-fallback');
+var connect = require('gulp-connect');
 
 var args = require('minimist')(process.argv.slice(2));
 
@@ -46,9 +47,11 @@ gulp.task('clean', function(done) {
 });
 
 gulp.task('server:dev', function() {
-  browserSync.init({
+  browserSync.instance = browserSync.init({
     port: 8000,
     open: false,
+    ghostMode: false,
+    notify: false,
     server: {
       baseDir: [config.src, config.tmp],
       routes: {

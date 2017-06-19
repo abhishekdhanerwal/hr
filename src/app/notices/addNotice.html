@@ -47,9 +47,9 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.startDate.$dirty && vm.Form.startDate.$invalid, 'has-success':vm.Form.startDate.$valid}">
                     <label>
-                     Start Date<span class="symbol required"></span>
+                      Start Date<span class="symbol required"></span>
                     </label>
-                    <input type="text" name="startDate" placeholder="Start Date" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.notice.startDate" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <input type="text" name="startDate" show-button-bar="false" placeholder="Start Date" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.notice.startDate" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   </div>
 
                   <div class="form-group"
@@ -57,7 +57,7 @@
                     <label>
                       End Date<span class="symbol required"></span>
                     </label>
-                    <input type="text" name="endDate" placeholder="End Date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.notice.endDate" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                    <input type="text" show-button-bar="false" name="endDate" placeholder="End Date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.notice.endDate" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                   </div>
 
 
@@ -72,7 +72,7 @@
                       <option value="Other">Other</option>
                     </select>
                     <!--<span class="error text-small block"-->
-                          <!--ng-if="vm.Form.noticeType.$dirty && vm.Form.noticeType.$error.required">Notice Type is required.</span>-->
+                    <!--ng-if="vm.Form.noticeType.$dirty && vm.Form.noticeType.$error.required">Notice Type is required.</span>-->
                   </div>
 
                   <div class="form-group"
@@ -131,27 +131,27 @@
                           <td style="width:5%;">
                             <div class="checkbox clip-check check-primary checkbox-inline pull-right">
                               <input type="checkbox" id="{{row.name}}" value="hasResident" ng-model="row.checked" >
-                                <label for="{{row.name}}">
-                                </label>
+                              <label for="{{row.name}}">
+                              </label>
                             </div>
                           </td>
                         </tr>
                       </table>
                       <!--<table ng-table="vm.tableParams" show-filter="true" class="table">-->
 
-                        <!--<tr ng-repeat="row in $data">-->
+                      <!--<tr ng-repeat="row in $data">-->
 
-                          <!--<td  filter="{ 'name': 'text' }">{{row.name}}-->
-                          <!--</td>-->
+                      <!--<td  filter="{ 'name': 'text' }">{{row.name}}-->
+                      <!--</td>-->
 
-                          <!--<td >-->
-                            <!--<div class="checkbox clip-check check-primary checkbox-inline">-->
-                              <!--<input type="checkbox" id="{{row.name}}" value="hasResident" ng-model="row.checked" >-->
-                              <!--<label for="{{row.name}}">-->
-                              <!--</label>-->
-                            <!--</div>-->
-                          <!--</td>-->
-                        <!--</tr>-->
+                      <!--<td >-->
+                      <!--<div class="checkbox clip-check check-primary checkbox-inline">-->
+                      <!--<input type="checkbox" id="{{row.name}}" value="hasResident" ng-model="row.checked" >-->
+                      <!--<label for="{{row.name}}">-->
+                      <!--</label>-->
+                      <!--</div>-->
+                      <!--</td>-->
+                      <!--</tr>-->
                       <!--</table>-->
                       <button type="submit" class="btn btn-success pull-right margin-right-25"
                               ng-click="vm.updateAudienceList()">
@@ -162,10 +162,10 @@
                   </div>
 
                   <!--<div class="form-group"-->
-                       <!--ng-class="{'has-error':vm.Form.audience.$dirty && vm.Form.audience.$invalid, 'has-success':vm.Form.audience.$valid}">-->
-                    <!--<label class="block">-->
-                      <!--Attachment <span class="symbol required"></span>-->
-                    <!--</label>-->
+                  <!--ng-class="{'has-error':vm.Form.audience.$dirty && vm.Form.audience.$invalid, 'has-success':vm.Form.audience.$valid}">-->
+                  <!--<label class="block">-->
+                  <!--Attachment <span class="symbol required"></span>-->
+                  <!--</label>-->
 
                   <!--</div>-->
 
@@ -192,17 +192,16 @@
                       </label>
                     </div>
                   </div>
-                  <div class="form-group"
-                       ng-class="{'has-error':vm.Form.activationTime.$dirty && vm.Form.activationTime.$invalid, 'has-success':vm.Form.activationTime.$valid}">
-                    <label class="control-label"> Activation Time <span class="symbol required"></span></label>
+                  <div class="form-group" ng-class="{'has-error':vm.Form.activationTime.$dirty && vm.Form.activationTime.$invalid && (vm.sms || vm.email || vm.mobileNotification)}">
+                    <label class="control-label"> Activation Time </label>
                     <input type="text" ng-disabled="vm.disableActivationTime" ng-click="vm.openModal()" placeholder="activation time" class="form-control" name="activationTime"
-                           ng-model="vm.notice.activationTime" required/>
+                           ng-model="vm.notice.activationTime" ng-required="vm.sms || vm.email || vm.mobileNotification"/>
+                    <span class="error text-small block"
+                          ng-if="vm.Form.activationTime.$dirty && vm.Form.activationTime.$error.required">Activation time is required</span>
                     <!--<span class="error text-small block"-->
-                    <!--ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required && vm.user.role == 'ROLE_CONSUMER'">Address is required</span>-->
+                    <!--ng-show="vm.Form.subject.$invalid && vm.Form.subject.$error.minlength">Subject should be six characters or more</span>-->
                     <!--<span class="error text-small block"-->
-                          <!--ng-show="vm.Form.subject.$invalid && vm.Form.subject.$error.minlength">Subject should be six characters or more</span>-->
-                    <!--<span class="error text-small block"-->
-                          <!--ng-show="vm.Form.subject.$invalid && vm.Form.subject.$error.maxlength">Subject should be less than 20 characters</span>-->
+                    <!--ng-show="vm.Form.subject.$invalid && vm.Form.subject.$error.maxlength">Subject should be less than 20 characters</span>-->
 
                   </div>
                 </div>
@@ -214,20 +213,20 @@
                   <div class="panel panel-white">
                     <div class="panel-body">
 
-                        <label class="text-bold">Attached Files</label><br>
-                            <div class="row">
-                              <div ng-repeat="url in vm.notice.attachmentUrl" class="col-md-3">
-                                <img ng-src="{{url}}" class="media-object" width="80%" height="200px" alt="image"/>
-                                <div class="row">
-                                  <div class="col-md-3"></div>
-                                  <div class="col-md-4">
-                                    <button type="button" class="btn btn-danger btn-xs" ng-click="vm.deleteFromList($index)">
-                                      <span class="glyphicon glyphicon-trash"></span> Remove
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
+                      <label class="text-bold">Attached Files</label><br>
+                      <div class="row">
+                        <div ng-repeat="url in vm.notice.attachmentUrl" class="col-md-3">
+                          <img ng-src="{{url}}" class="media-object" width="80%" height="200px" alt="image"/>
+                          <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-4">
+                              <button type="button" class="btn btn-danger btn-xs" ng-click="vm.deleteFromList($index)">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                              </button>
                             </div>
+                          </div>
+                        </div>
+                      </div>
 
                     </div>
                   </div>
@@ -251,22 +250,22 @@
                               <div class="panel panel-white">
                                 <div class="panel-body">
                                   <!--<div ng-show="uploader.isHTML5">-->
-                                    <!--&lt;!&ndash; 3. nv-file-over uploader="link" over-class="className" &ndash;&gt;-->
-                                    <!--<div class="well my-drop-zone" nv-file-over="" uploader="uploader">-->
-                                      <!--Base drop zone-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash; Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" &ndash;&gt;-->
-                                    <!--<div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">-->
-                                      <!--<div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">-->
-                                        <!--Another drop zone with its own settings-->
-                                      <!--</div>-->
-                                    <!--</div>-->
+                                  <!--&lt;!&ndash; 3. nv-file-over uploader="link" over-class="className" &ndash;&gt;-->
+                                  <!--<div class="well my-drop-zone" nv-file-over="" uploader="uploader">-->
+                                  <!--Base drop zone-->
+                                  <!--</div>-->
+                                  <!--&lt;!&ndash; Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" &ndash;&gt;-->
+                                  <!--<div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">-->
+                                  <!--<div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">-->
+                                  <!--Another drop zone with its own settings-->
+                                  <!--</div>-->
+                                  <!--</div>-->
                                   <!--</div>-->
                                   <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
                                   <!--<span class="btn btn-primary btn-o btn-file margin-bottom-15">-->
-                                            <!--Select multiple files-->
-                                            <!--<input type="file" nv-file-select="" uploader="uploader" multiple />-->
-                                        <!--</span>-->
+                                  <!--Select multiple files-->
+                                  <!--<input type="file" nv-file-select="" uploader="uploader" multiple />-->
+                                  <!--</span>-->
                                   <br />
                                   <span class="btn btn-info btn-file">
                                             Select file
@@ -305,7 +304,7 @@
                                             <span class="glyphicon glyphicon-upload"></span> Upload
                                           </button>
                                           <!--<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">-->
-                                            <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
+                                          <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
                                           <!--</button>-->
                                           <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove() ; vm.deleteFromList($index)">
                                             <span class="glyphicon glyphicon-trash"></span> Remove
@@ -326,7 +325,7 @@
                                       <span class="glyphicon glyphicon-upload"></span> Upload all
                                     </button>
                                     <!--<button type="button" class="btn btn-warning btn-o  btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">-->
-                                      <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel all-->
+                                    <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel all-->
                                     <!--</button>-->
                                     <button type="button" class="btn btn-danger btn-o btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
                                       <span class="glyphicon glyphicon-trash"></span> Remove all
@@ -362,7 +361,7 @@
                     </div>
                   </div>
 
-                    <pre class="alert alert-info">{{date | date}} {{time | date:'shortTime' }}</pre>
+                  <pre class="alert alert-info">{{date | date}} {{time | date:'shortTime' }}</pre>
 
                 </div>
                 <div class="modal-footer">
@@ -395,6 +394,3 @@
   </div>
 
 </div>
-
-
-
