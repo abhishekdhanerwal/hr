@@ -57,7 +57,7 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.email.$dirty && vm.Form.email.$invalid, 'has-success':vm.Form.email.$valid}">
                     <label class="control-label"> Email <span class="symbol required"></span> </label>
-                    <input ng-disabled="true" type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
+                    <input type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
                            ng-model="vm.user.email" ng-pattern="/^[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z]+\.[A-Za-z.]{2,5}$/" required>
                     <span class="error text-small block" ng-if="vm.Form.email.$dirty && vm.Form.email.$error.required">Email is required.</span>
                     <span class="error text-small block" ng-if="vm.Form.email.$error.pattern">Please Enter a valid email address</span>
@@ -71,7 +71,7 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.mobile.$dirty && vm.Form.mobile.$invalid, 'has-success':vm.Form.mobile.$valid}">
                     <label class="control-label"> Mobile Number <span class="symbol required"></span> </label>
-                    <input type="text" placeholder="Enter your Mobile Number" class="form-control" name="mobile"
+                    <input ng-disabled="true" type="text" placeholder="Enter your Mobile Number" class="form-control" name="mobile"
                            ng-model="vm.user.mobile" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
                            ng-maxlength=10 required/>
 
@@ -100,7 +100,7 @@
               </div>
 
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-3" ng-hide="vm.isAdminRole && vm.user.role=='ROLE_CONSUMER' || vm.isAdminRole && vm.user.role=='ROLE_ADMIN' || vm.isManagementRole && vm.user.role=='ROLE_ADMIN' || vm.isManagementRole && vm.user.role=='ROLE_CONSUMER' || vm.isManagementRole && vm.user.role=='ROLE_MANAGEMENT'">
                     <div class="form-group">
                       <label class="control-label">
                         Role : <span class="symbol required"></span>

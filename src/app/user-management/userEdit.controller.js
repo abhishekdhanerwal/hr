@@ -42,7 +42,6 @@
           }
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -50,17 +49,15 @@
       userFactory.societyList().then(function (response) {
         if(response.status == 200) {
           vm.society = response.data;
-          // for(var i=0; i<vm.society.length; i++) {
-          //   if(vm.society[i].id == vm.user.societyId){
-          //     vm.user.society = vm.society[i].name;
-          //     console.log(vm.user.society)
-          //   };
-          // }
+          for(var i=0; i<vm.society.length; i++) {
+            if(vm.society[i].id == vm.user.societyId){
+              vm.user.society = vm.society[i];
+              console.log(vm.user.society)
+            };
+          }
           console.log(vm.society)
-          console.log(vm.user.societyId)
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -69,7 +66,6 @@
         if (response.status == 200) {
           vm.user = response.data;
           console.log(vm.user)
-          console.log(vm.user.societyId)
         }
         else if (response.status == -1) {
           toaster.error('Network Error');
@@ -82,7 +78,6 @@
           toaster.error(vm.master.message);
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
         else {
@@ -120,7 +115,7 @@
     function submit() {
       var firstError = null;
 
-      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid) {
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -155,7 +150,6 @@
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {

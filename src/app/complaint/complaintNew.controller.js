@@ -43,7 +43,6 @@
           console.log(vm.complaintType)
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       })

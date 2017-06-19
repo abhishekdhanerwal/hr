@@ -147,7 +147,7 @@
                           <span class="error text-small block" ng-if="vm.Form.ownerEmail.$error.pattern">Please Enter a valid email address</span>
                         </div>
                         <div class="form-group" ng-class="{'has-error':vm.Form.dateOfPossession.$dirty && vm.Form.dateOfPossession.$invalid, 'has-success':vm.Form.dateOfPossession.$valid}">
-                          <input type="text" name="dateOfPossession" ng-readonly="true" class="form-control" placeholder="Date of possession" uib-datepicker-popup="{{format}}" ng-model="vm.flat.dateOfPossession" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                          <input type="text" name="dateOfPossession" show-button-bar="false" ng-readonly="true" class="form-control" placeholder="Date of possession" uib-datepicker-popup="{{format}}" ng-model="vm.flat.dateOfPossession" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
                         </div>
                       </div>
                     </div>
@@ -173,34 +173,34 @@
                                 ng-if="vm.Form.residentType.$dirty && vm.Form.residentType.$error.required">Resident Type is required.</span>
                         </div>
                       </div>
-                      <div class="col-md-5" ng-if="vm.flat.residentType == 'Tenant'">
-                        <div class="form-group">
-                          <label class="control-label">
-                            Search
-                          </label>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <input type="text" ng-model="vm.flat.user.selected" placeholder="Search Users"
-                                     ng-value="vm.flat.user.name"
-                                     uib-typeahead="item.name for item in vm.userList($viewValue)"
-                                     typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"
-                                     typeahead-on-select="vm.onSelect($item, $model, $label)"
-                                     typeahead-editable='true'
-                                     class="form-control">
-                            </div>
+                      <!--<div class="col-md-5" ng-if="vm.flat.residentType == 'Tenant'">-->
+                        <!--<div class="form-group">-->
+                          <!--<label class="control-label">-->
+                            <!--Search-->
+                          <!--</label>-->
+                          <!--<div class="row">-->
+                            <!--<div class="col-md-6">-->
+                              <!--<input type="text" ng-model="vm.flat.user.selected" placeholder="Search Users"-->
+                                     <!--ng-value="vm.flat.user.name"-->
+                                     <!--uib-typeahead="item.name for item in vm.userList($viewValue)"-->
+                                     <!--typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"-->
+                                     <!--typeahead-on-select="vm.onSelect($item, $model, $label)"-->
+                                     <!--typeahead-editable='true'-->
+                                     <!--class="form-control">-->
+                            <!--</div>-->
 
-                            <div class="col-md-6">
-                                <span class="btn btn-danger" ng-click="vm.clearUser()" ><i
-                                  class="fa fa-times"></i> </span>
-                            </div>
-                            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                            <div ng-show="noResults" class="error">
-                              <i class="glyphicon glyphicon-remove"></i> No Results Found
-                            </div>
+                            <!--<div class="col-md-6">-->
+                                <!--<span class="btn btn-danger" ng-click="vm.clearUser()" ><i-->
+                                  <!--class="fa fa-times"></i> </span>-->
+                            <!--</div>-->
+                            <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
+                            <!--<div ng-show="noResults" class="error">-->
+                              <!--<i class="glyphicon glyphicon-remove"></i> No Results Found-->
+                            <!--</div>-->
 
-                          </div>
-                        </div>
-                      </div>
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
                     </div>
                   </div>
                 </div>
@@ -215,7 +215,7 @@
 
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
-                      <input type="text" placeholder="Enter Name" class="form-control" name="name"
+                      <input type="text" ng-readonly="true" placeholder="Enter Name" class="form-control" name="name"
                              ng-model="vm.flat.user.name"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
                       <span class="error text-small block" ng-if="vm.Form.name.$error.pattern">Invalid characters</span>
                       <span class="error text-small block" ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required</span>
@@ -225,7 +225,7 @@
 
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.email.$dirty && vm.Form.email.$invalid, 'has-success':vm.Form.email.$valid}">
-                      <input type="email" placeholder="Enter a valid e-mail" class="form-control" name="email"
+                      <input type="email" ng-readonly="true" placeholder="Enter a valid e-mail" class="form-control" name="email"
                              ng-model="vm.flat.user.email" ng-pattern="/^[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z]+\.[A-Za-z.]{2,5}$/" required>
                       <span class="error text-small block" ng-if="vm.Form.email.$dirty && vm.Form.email.$error.required">Email is required.</span>
                       <span class="error text-small block" ng-if="vm.Form.email.$error.pattern">Please Enter a valid email address</span>
@@ -233,7 +233,7 @@
 
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.mobile.$dirty && vm.Form.mobile.$invalid, 'has-success':vm.Form.mobile.$valid}">
-                      <input type="text" placeholder="Enter Mobile Number" class="form-control" name="mobile"
+                      <input type="text" ng-readonly="true" placeholder="Enter Mobile Number" class="form-control" name="mobile"
                              ng-model="vm.flat.user.mobile" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
                              ng-maxlength=10 required/>
 

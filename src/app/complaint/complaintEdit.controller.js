@@ -35,7 +35,6 @@
           getEditInfo();
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -46,7 +45,6 @@
           console.log(vm.complaintType)
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -58,7 +56,6 @@
           getEditInfo();
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -99,11 +96,6 @@
             vm.status.splice(0,1)
             for(var i=0; i<vm.status.length; i++)
             {
-              if(vm.status[i]=='Resolved')
-                vm.status.splice(i,1);
-            }
-            for(var i=0; i<vm.status.length; i++)
-            {
               if(vm.status[i]=='Closed')
                 vm.status.splice(i,1);
             }
@@ -119,7 +111,7 @@
           populateAssignToList(vm.complaint.complaintType);
           if(vm.flat != null){
             for(var index = 0 ; index < vm.flat.length ; index++){
-              if(vm.complaint.registerFor.id == vm.flat[index].id){
+              if(vm.complaint.registerFor.flatId == vm.flat[index].flatId){
                 vm.complaint.registerFor = vm.flat[index];
               }
             };

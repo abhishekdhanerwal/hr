@@ -93,47 +93,15 @@
     };
 
      function resolved() {
-      complaintFactory.getResolvedComplaintByUser().then(function (response) {
-
-        vm.progress = false;
-        vm.master = response.data;
-        console.log(vm.master)
-
-        if (response.status == 200) {
-          vm.master = response.data;
-          console.log(response.data)
-          complaintData();
-        }
-        else if (response.status == -1) {
-          toaster.error('Network Error', 'error');
-          vm.errorMessage = "Network Error";
-          console.error(response);
-        }
-        else if (response.status == 400) {
-          console.error(response);
-          vm.errorMessage = vm.master.message;
-          toaster.error(vm.master.message);
-        }
-        else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
-          $state.go('auth.signout')
-        }
-        else {
-          toaster.error('Some problem', 'error');
-          console.error(response);
-        }
-      });
-
-       complaintFactory.getClosedComplaintByUser().then(function (response) {
+       complaintFactory.getResolvedComplaintByUser().then(function (response) {
 
          vm.progress = false;
-         vm.master = response.data;
-         console.log(vm.master)
 
          if (response.status == 200) {
-           vm.master = response.data;
+           vm.masterResolved = response.data;
            console.log(response.data)
-           complaintData();
+           closedComplaint();
+           resolvedComplaintData();
          }
          else if (response.status == -1) {
            toaster.error('Network Error', 'error');
@@ -142,11 +110,40 @@
          }
          else if (response.status == 400) {
            console.error(response);
-           vm.errorMessage = vm.master.message;
-           toaster.error(vm.master.message);
+           vm.errorMessage = vm.masterResolved.message;
+           toaster.error(vm.masterResolved.message);
+         }
+         else if (response.status == 401) {
+           $state.go('auth.signout')
+         }
+         else {
+           toaster.error('Some problem', 'error');
+           console.error(response);
+         }
+       });
+     };
+
+      function closedComplaint(){
+      complaintFactory.getClosedComplaintByUser().then(function (response) {
+
+         vm.progress = false;
+
+         if (response.status == 200) {
+           vm.masterClosed = response.data;
+           console.log(response.data)
+           resolvedComplaintData();
+         }
+         else if (response.status == -1) {
+           toaster.error('Network Error', 'error');
+           vm.errorMessage = "Network Error";
+           console.error(response);
+         }
+         else if (response.status == 400) {
+           console.error(response);
+           vm.errorMessage = vm.masterClosed.message;
+           toaster.error(vm.masterClosed.message);
          }
          else if( response.status == 401){
-           toaster.info("User is not logged in. Redirecting to Login Page");
            $state.go('auth.signout')
          }
          else {
@@ -210,5 +207,61 @@
           }
         });
     };
+
+    function resolvedComplaintData(){
+      var complaintList = [];
+      complaintList = vm.masterResolved.concat(vm.masterClosed)
+      vm.resolvedTableParams = new NgTableParams(
+        {
+          page: 1, // show first page
+          count: 10, // count per page
+          sorting: {
+            lastModified: 'desc'   // initial sorting
+          }, // count per page
+          filter: {
+            complaintType: '',
+            status: ''// initial filter
+          }
+        }, {
+          // total: data.length,
+
+          getData: function (params) {
+            vm.progress = false;
+
+            if(complaintList != null && complaintList[0] != undefined){
+              vm.IsHidden=true;
+            }
+            else{
+              vm.message="No data available";
+            }
+
+            if (complaintList  != null) {
+              var filteredData = null;
+              var orderedData = null;
+              if (params != null) {
+                if (params.filter()) {
+                  filteredData = $filter('filter')(complaintList , params.filter())
+                }
+                else {
+                  filteredData = complaintList ;
+                }
+                if (params.sorting()) {
+                  orderedData = $filter('orderBy')(filteredData, params.orderBy());
+                }
+                else {
+                  orderedData = filteredData;
+                }
+                params.total(orderedData.length);
+                var returnData = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count())
+                return returnData;
+              }
+              else {
+                return complaintList;
+              }
+
+            }
+          }
+        });
+    }
   }
 })();
