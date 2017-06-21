@@ -13,7 +13,9 @@
 
     function activate() {
 
-      self.disable = $localStorage._identity.principal.email;
+      if($localStorage._identity != null){
+        self.disable = $localStorage._identity.principal.email;
+      }
 
       self.isAdminRole = role.isAdminRole();
       self.isSuperAdminRole = role.isSuperAdminRole();
@@ -64,7 +66,6 @@
           toaster.error(self.userList[0].message);
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
         else {

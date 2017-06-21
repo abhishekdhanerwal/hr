@@ -88,7 +88,7 @@
         vm.errorMessage = 'Validation Error';
         return;
       }
-      else if(vm.isSuperAdminRole && vm.Form.society.$invalid)
+      else if(vm.isSuperAdminRole && vm.user.role!="ROLE_SUPER_ADMIN" && vm.Form.society.$invalid)
       {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -116,7 +116,6 @@
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {

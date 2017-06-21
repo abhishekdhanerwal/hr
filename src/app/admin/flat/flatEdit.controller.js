@@ -11,9 +11,12 @@
   function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster, $localStorage, $rootScope) {
     var vm = this;
     vm.submit = submit;
+    vm.userList = userList;
+    vm.onSelect = onSelect;
     vm.clearUser = clearUser;
     vm.reset = reset;
     vm.data = {};
+    vm.noneditableUserDetails = false;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -37,7 +40,6 @@
           getEditInfo();
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -47,7 +49,6 @@
           vm.residentType = response.data;
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -58,6 +59,16 @@
       flatFactory.findFlat($stateParams.id).then(function (response) {
         if (response.status == 200) {
           vm.flat = response.data;
+          if(vm.flat.residentType == 'Owner'){
+            vm.flat.user.name = '';
+            vm.flat.user.email = '';
+            vm.flat.user.mobile = '';
+            console.log('AN')
+          }
+          else if(vm.flat.residentType == 'Tenant'){
+            vm.noneditableUserDetails = true;
+            console.log('mm')
+          }
           console.log(vm.flat)
           for(var index = 0 ; index < vm.society.length ; index++){
             if(vm.flat.society.id == vm.society[index].id){
@@ -76,7 +87,6 @@
           toaster.error(vm.master.message, 'error');
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
         else {
@@ -94,6 +104,31 @@
       angular.copy(vm.data,vm.flat);
       activate(vm.data);
     }
+
+    function userList(val){
+      return flatFactory.searchUser(val).then(function (response) {
+        if(response.status == 200) {
+          var params = {
+            query: val
+          };
+          return response.data.map(function (item) {
+            return item;
+          })
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
+    }
+
+    function onSelect($item, $model, $label) {
+      vm.flat.user.name = $item.name;
+      vm.flat.user.email = $item.email;
+      vm.flat.user.mobile = $item.mobile;
+      vm.flat.user.address = $item.address;
+      vm.flat.user.role = $item.role;
+      vm.flat.user.id = $item.id;
+    };
 
     function clearUser(){
       vm.flat.user= '';

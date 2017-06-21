@@ -108,7 +108,7 @@
     };
 
     service.searchUser = function (val) {
-      var promise = $http.get(__env.dataServerUrl + '/users/search?query=' + val)
+      var promise = $http.get(__env.dataServerUrl + '/deactivateUsers/search?query=' + val)
         .then(
           function (response) {
             return response;

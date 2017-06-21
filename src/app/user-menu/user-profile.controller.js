@@ -42,30 +42,38 @@
             if (response.data != null) {
               vm.master = response.data;
               vm.user = angular.copy(vm.master);
-              console.log(vm.user.name)
+              console.log(vm.user)
             }
 
           }
           else if (response.status == 404) {
             vm.errorMessage = 'User not found';
-            toaster.error('User not found', 'error');
+            toaster.error('User not found');
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else if (response.status == -1) {
-            toaster.error('Network Error', 'error');
+            toaster.error('Network Error');
             console.error(response);
           }
           else {
-            toaster.error('Backend error', 'error');
+            toaster.error('Backend error');
             console.error(response);
           }
           // self.resetDisabled = false;
           // self.submitDisabled = false;
         });
+
+        userProfileFactory.userAddress(id).then(function(response){
+          if(response.status == 200){
+            vm.user.address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+          }
+          else if(response.status == 401){
+            $state.go('auth.signout')
+          }
+        })
     }
     //vm.user.profilePictureUrl = vm.user.profilePictureUrl + new Date().getTime();
 

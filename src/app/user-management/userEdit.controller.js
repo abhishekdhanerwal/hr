@@ -122,7 +122,7 @@
         return;
 
       }
-      else if(vm.isSuperAdminRole && vm.Form.society.$invalid)
+      else if(vm.isSuperAdminRole && vm.user.role!="ROLE_SUPER_ADMIN" && vm.Form.society.$invalid)
       {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';

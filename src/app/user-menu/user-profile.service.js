@@ -38,6 +38,20 @@
       return promise;
     };
 
+    service.userAddress = function (userID) {
+      var promise = $http.get(__env.dataServerUrl + '/flatByUser/'  + userID)
+        .then(
+          function (data) {
+            console.log(data);
+            return data;
+          },
+          function (errors) {
+            console.log(errors);
+            return errors;
+          });
+      return promise;
+    };
+
     return service;
   };
 
