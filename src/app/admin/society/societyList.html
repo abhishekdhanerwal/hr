@@ -71,7 +71,7 @@
                 <td data-title="'Flats'">{{row.noOfFlats}}</td>
 
                 <td class="center">
-                  <div class="visible-md visible-lg hidden-sm hidden-xs">
+                  <div class="visible-md visible-lg hidden-sm hidden-xs" ng-if="vm.isCreatorRole">
                     <a ui-sref="app.editSociety({id : row.id})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
@@ -82,7 +82,7 @@
                               uib-dropdown-toggle>
                         <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
                       </button>
-                      <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                      <ul class="dropdown-menu pull-right dropdown-light" role="menu" ng-if="vm.isCreatorRole">
                         <li>
                           <a href="#" ui-sref="app.editSociety({id : row.id})"> Edit </a>
                         </li>

@@ -35,9 +35,10 @@
       vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isCreatorRole = role.isCreatorRole();
 
 
-    if(vm.isSuperAdminRole) {
+    if(vm.isSuperAdminRole || vm.isCreatorRole) {
       societyFactory.societyList().then(function (response) {
 
         vm.progress = false;
@@ -58,7 +59,6 @@
           toaster.error(vm.master.message, 'error');
         }
         else if (response.status == 401) {
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
         else {

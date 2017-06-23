@@ -11,6 +11,7 @@
 
     var vm = this;
     vm.progress = true;
+   // vm.complaint = {};
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -20,6 +21,17 @@
     activate();
 
     function activate() {
+
+      complaintReportFactory.societyList().then(function (response) {
+        if(response.status == 200){
+          vm.society = response.data;
+          console.log(vm.society)
+          // vm.complaint.society = vm.society[0];
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
 
       complaintReportFactory.loadStatusDetails().then(function (response) {
         if(response.status == 200){
@@ -53,7 +65,7 @@
 
         var firstError = null;
 
-        complaintReportFactory.getReports(vm.complaint.status, vm.start , vm.end).then(function (response) {
+        complaintReportFactory.getReports(vm.complaint.status, vm.start , vm.end, vm.complaint.society.id).then(function (response) {
 
           if(response.status == 200){
             vm.master = response.data;

@@ -3,7 +3,7 @@
   <span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
 </div>
 <ul class="main-navigation-menu" ng-controller="NavController as vm">
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="!vm.isCreatorRole">
     <a ui-sref="app.notice">
       <div class="item-content">
         <div class="item-media">
@@ -15,7 +15,7 @@
       </div>
     </a>
   </li>
-  <li ui-sref-active="active">
+  <li ui-sref-active="active" ng-if="!vm.isCreatorRole">
     <a ui-sref="app.complaint">
       <div class="item-content">
         <div class="item-media">
@@ -28,18 +28,23 @@
     </a>
   </li>
   <li ui-sref-active="active">
-    <a ui-sref="app.report" ng-if="!vm.isConsumerRole">
+    <a href="javascript:void(0)" ng-if="!vm.isConsumerRole && !vm.isCreatorRole">
       <div class="item-content">
         <div class="item-media">
           <i class="glyphicon glyphicon-book"></i>
         </div>
         <div class="item-inner">
-          <span class="title"> Report </span>
+          <span class="title"> Report </span><i class="icon-arrow"></i>
         </div>
       </div>
     </a>
+    <ul class="sub-menu">
+      <li ui-sref-active="active">
+        <a ui-sref="app.report"> <span class="title"> Complaints Report </span> </a>
+      </li>
+    </ul>
   </li>
-  <li ng-class="{'active open':$state.includes('app.userManagement')}" ng-if="!vm.isConsumerRole">
+  <li ng-class="{'active open':$state.includes('app.userManagement')}" ng-if="!vm.isConsumerRole && !vm.isCreatorRole">
     <a href="javascript:void(0)">
       <div class="item-content">
         <div class="item-media">
@@ -72,12 +77,12 @@
       </div>
     </a>
     <ul class="sub-menu">
-      <li ui-sref-active="active" ng-if="vm.isSuperAdminRole || vm.isAdminRole">
+      <li ui-sref-active="active" ng-if="vm.isSuperAdminRole || vm.isAdminRole || vm.isCreatorRole">
         <a ui-sref="app.society"> <span class="title"> Society </span> </a>
       </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.flats"> <span class="title"> Flats </span> </a>
-      </li>
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.flats"> <span class="title"> Flats </span> </a>-->
+      <!--</li>-->
     </ul>
   </li>
 

@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatListCtrl', FlatListCtrl);
 
-  FlatListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster', '$rootScope'];
+  FlatListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster', '$rootScope', 'role'];
   /* @ngInject */
-  function FlatListCtrl( NgTableParams, $state, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster, $rootScope) {
+  function FlatListCtrl( NgTableParams, $state, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster, $rootScope, role) {
     var vm = this;
     vm.message = false;
     vm.progress = true;
@@ -27,6 +27,8 @@
     activate();
 
     function activate() {
+
+      vm.isCreatorRole = role.isCreatorRole();
 
       if($localStorage._identity !=null) {
         $localStorage._identity.societyId = null;
@@ -173,5 +175,6 @@
           }
         });
     };
+
   }
 })();

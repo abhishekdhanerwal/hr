@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('FlatDataCtrl', FlatDataCtrl);
 
-  FlatDataCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'societyFactory', 'validationHelperFactory', '$stateParams' , 'toaster', '$rootScope'];
+  FlatDataCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'societyFactory', 'flatFactory', 'validationHelperFactory', '$stateParams' , 'toaster', '$rootScope', 'role'];
   /* @ngInject */
-  function FlatDataCtrl( NgTableParams, $state, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster, $rootScope) {
+  function FlatDataCtrl( NgTableParams, $state, $localStorage, $filter, societyFactory, flatFactory, validationHelperFactory, $stateParams , toaster, $rootScope, role) {
     var vm = this;
     vm.message = false;
     vm.progress = true;
@@ -27,6 +27,9 @@
     activate();
 
     function activate() {
+
+      vm.isCreatorRole = role.isCreatorRole();
+
       if($localStorage._identity != null) {
         $localStorage._identity.societyId = $stateParams.id;
       }
@@ -53,6 +56,14 @@
                 vm.master[i].hasResident = 'No';
               }
             }
+            // if(vm.isCreatorRole) {
+            //   for (var i = 0; i < vm.master.length; i++) {
+            //     if (vm.master[i].hasOwner == 'Yes') {
+            //       vm.ab = delete vm.master[i];
+            //       console.log(vm.master)
+            //     }
+            //   }
+            // }
             console.log(response.data)
             FlatData();
           }
@@ -67,7 +78,6 @@
             toaster.error(vm.master[0].message);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {
@@ -130,5 +140,6 @@
           }
         });
     };
-  }
+
+    };
 })();

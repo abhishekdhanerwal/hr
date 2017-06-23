@@ -33,6 +33,9 @@
         else if(vm.roleName == "ROLE_ADMIN"){
           vm.roleName = "ADMIN";
         }
+        else if(vm.roleName == "ROLE_SOCIETY_CREATOR"){
+          vm.roleName = "CREATOR";
+        }
       }
     };
 

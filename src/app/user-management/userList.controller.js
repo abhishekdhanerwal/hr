@@ -21,6 +21,7 @@
       self.isSuperAdminRole = role.isSuperAdminRole();
       self.isManagementRole = role.isManagementRole();
       self.isConsumerRole = role.isConsumerRole();
+      self.isCreatorRole = role.isCreatorRole();
 
       userFactory.alluser().then(function (response) {
         if (response.status == 200) {
@@ -36,6 +37,9 @@
             }
             else if (self.userList[i].role == "ROLE_SUPER_ADMIN") {
               self.userList[i].role = "SUPER ADMIN"
+            }
+            else if (self.userList[i].role == "ROLE_SOCIETY_CREATOR") {
+              self.userList[i].role = "SOCIETY CREATOR"
             }
             else if (self.userList[i].role == "ROLE_PLUMBER") {
               self.userList[i].role = "PLUMBER"
@@ -139,7 +143,6 @@
           toaster.error('User not found');
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
         else {
@@ -175,7 +178,6 @@
               toaster.error('Network Error');
             }
             else if( response.status == 401){
-              toaster.info("User is not logged in. Redirecting to Login Page");
               $state.go('auth.signout')
             }
             else if (response.status == 404) {

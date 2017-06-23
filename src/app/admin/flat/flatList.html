@@ -47,7 +47,7 @@
           <!--<div class="panel-body">-->
           <div class="row margin-bottom-10">
             <div class="col-md-12">
-              <a ui-sref="app.newFlat"
+              <a ui-sref="app.newFlat" ng-if="!vm.isCreatorRole"
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
                 Flat</a>
@@ -70,27 +70,51 @@
                 <td data-title="'Owner Email'">{{row.ownerEmail}}</td>
                 <td data-title="'Owner Number'">{{row.ownerMobile}}</td>
                 <td data-title="'Possession Date'">{{row.dateOfPossession | date:'dd-MM-yyyy'}}</td>
-
-                <td class="center">
-                  <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a ui-sref="app.editFlat({id : row.flatId})" class="btn btn-transparent btn-xs"
-                       tooltip-placement="top"
-                       uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                  </div>
-                  <div class="visible-xs visible-sm hidden-md hidden-lg">
-                    <div class="btn-group" uib-dropdown>
-                      <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
-                              uib-dropdown-toggle>
-                        <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu pull-right dropdown-light" role="menu">
-                        <li>
-                          <a href="#" ui-sref="app.editFlat({id : row.id})"> Edit </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                <td>
+                <div class="btn-group" uib-dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle>
+                    Action
+                  <span class="caret"></span>
+                  </button>
+                  <!--<button type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle>-->
+                    <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
+                    <!--<i class="fa fa-pencil"></i>-->
+                    <!--<span class="sr-only">Split button!</span>-->
+                  <!--</button>-->
+                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li ng-if="vm.isCreatorRole && row.hasOwner=='No'">
+                      <a ui-sref="app.editFlat({id : row.flatId})"> Update Flat Details </a>
+                    </li>
+                    <li ng-if="!vm.isCreatorRole">
+                      <a ui-sref="app.editOwner({id : row.flatId})"> Update Owner Details </a>
+                    </li>
+                    <li ng-if="!vm.isCreatorRole">
+                      <a ui-sref="app.editResident({id : row.flatId})"> Update Resident Details</a>
+                    </li>
+                  </ul>
+                </div>
                 </td>
+
+                <!--<td class="center">-->
+                  <!--<div class="visible-md visible-lg hidden-sm hidden-xs">-->
+                    <!--<a ui-sref="app.editFlat({id : row.flatId})" class="btn btn-transparent btn-xs"-->
+                       <!--tooltip-placement="top"-->
+                       <!--uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>-->
+                  <!--</div>-->
+                  <!--<div class="visible-xs visible-sm hidden-md hidden-lg">-->
+                    <!--<div class="btn-group" uib-dropdown>-->
+                      <!--<button type="button" class="btn btn-primary btn-sm dropdown-toggle"-->
+                              <!--uib-dropdown-toggle>-->
+                        <!--<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>-->
+                      <!--</button>-->
+                      <!--<ul class="dropdown-menu pull-right dropdown-light" role="menu">-->
+                        <!--<li>-->
+                          <!--<a href="#" ui-sref="app.editFlat({id : row.id})"> Edit </a>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</td>-->
               </tr>
             </table>
           </div>

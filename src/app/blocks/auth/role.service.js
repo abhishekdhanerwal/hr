@@ -16,6 +16,7 @@
         isSuperAdminRole: isSuperAdminRole,
         isManagementRole: isManagementRole,
         isConsumerRole : isConsumerRole,
+        isCreatorRole : isCreatorRole,
         currentAccessLevel : currentAccessLevel,
         // getMainRole : getMainRole
       };
@@ -78,6 +79,20 @@
         });
         return index >= 0;
       }
+    }
+
+    function isCreatorRole() {
+        if($localStorage._identity) {
+          var roles = $localStorage._identity.principal.role;
+          var index = _.findIndex(roles, function(o) {
+            index = 0 ;
+            if (roles.match(/CREATOR/g)){
+              index++;
+            }
+            return index
+          });
+          return index >= 0;
+        }
     }
 
     function currentAccessLevel() {

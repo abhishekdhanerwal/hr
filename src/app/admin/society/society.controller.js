@@ -28,31 +28,6 @@
 
     };
 
-    // function userList(val){
-    //   return societyFactory.searchUser(val).then(function (response) {
-    //     var params = {
-    //       query:val
-    //     };
-    //     return response.data.map(function (item) {
-    //       return item;
-    //     })
-    //   });
-    // }
-    //
-    // function onSelect($item, $model, $label) {
-    //   vm.society.admin.name = $item.name;
-    //   vm.society.admin.email = $item.email;
-    //   vm.society.admin.mobile = $item.mobile;
-    //   vm.society.admin.address = $item.address;
-    //   vm.society.admin.role = $item.role;
-    //   vm.society.admin.id = $item.id;
-    //   vm.society.admin.societyId = $item.societyId;
-    // };
-    //
-    // function clearUser(){
-    //   vm.society.admin= '';
-    // }
-
     function reset() {
       vm.society = '';
       vm.society.admin = '';

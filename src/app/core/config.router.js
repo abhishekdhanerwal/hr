@@ -119,6 +119,26 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'Edit Flat'
       }
+    }).state('app.editOwner', {
+      url: "/editOwner/:id",
+      templateUrl: "app/admin/flat/ownerEdit.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Edit Flat',
+      controller: 'FlatEditCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Edit Flat'
+      }
+    }).state('app.editResident', {
+      url: "/editResident/:id",
+      templateUrl: "app/admin/flat/residentEdit.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Edit Flat',
+      controller: 'FlatEditCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Edit Flat'
+      }
     }).state('app.notice', {
       url: "/notice",
       templateUrl: "app/notices/notice.html",

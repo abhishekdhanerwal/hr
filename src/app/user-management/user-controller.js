@@ -29,6 +29,7 @@
       vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isCreatorRole = role.isCreatorRole();
 
       userFactory.societyList().then(function (response) {
         if(response.status == 200){
@@ -60,7 +61,7 @@
           console.log(vm.roles)
           vm.roles.splice(0, 1);
           if (vm.isSuperAdminRole) {
-            vm.roles.splice(3, 5);
+            vm.roles.splice(3, 4);
           }
           else if(vm.isAdminRole){
             vm.roles.splice(1,2);
@@ -70,7 +71,6 @@
           }
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -88,8 +88,9 @@
         vm.errorMessage = 'Validation Error';
         return;
       }
-      else if(vm.isSuperAdminRole && vm.user.role!="ROLE_SUPER_ADMIN" && vm.Form.society.$invalid)
+      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid)
       {
+        console.log('ab')
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;

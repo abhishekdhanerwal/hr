@@ -46,7 +46,6 @@
           active();
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -81,7 +80,6 @@
             toaster.error(vm.master.message);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {

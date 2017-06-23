@@ -6,17 +6,17 @@
     .module('app.admin')
     .controller('FlatEditCtrl', FlatEditCtrl);
 
-  FlatEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'flatFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', '$localStorage', '$rootScope'];
+  FlatEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'flatFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', '$localStorage', '$rootScope', 'role'];
   /* @ngInject */
-  function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster, $localStorage, $rootScope) {
+  function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster, $localStorage, $rootScope, role) {
     var vm = this;
     vm.submit = submit;
     vm.userList = userList;
     vm.onSelect = onSelect;
-    vm.clearUser = clearUser;
     vm.reset = reset;
     vm.data = {};
-    vm.noneditableUserDetails = false;
+    vm.disableResidentDetails = false;
+    vm.hideOwnerCheckbox = false;
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -26,6 +26,9 @@
     activate();
 
     function activate() {
+
+      vm.isCreatorRole = role.isCreatorRole();
+
       if($localStorage._identity.societyId != null){
         vm.SocietyFlatData = true;
       }
@@ -63,11 +66,15 @@
             vm.flat.user.name = '';
             vm.flat.user.email = '';
             vm.flat.user.mobile = '';
-            console.log('AN')
           }
-          else if(vm.flat.residentType == 'Tenant'){
-            vm.noneditableUserDetails = true;
-            console.log('mm')
+          if(vm.flat.hasResident == true){
+            vm.disableResidentDetails = true;
+          }
+          if(vm.flat.hasOwner == true){
+            vm.hideOwnerCheckbox = true;
+          }
+          if(vm.isCreatorRole && vm.flat.hasOwner==false){
+            vm.noneditableFlatDetails = false;
           }
           console.log(vm.flat)
           for(var index = 0 ; index < vm.society.length ; index++){
@@ -97,6 +104,7 @@
     };
 
     function reset() {
+
       // activate($stateParams.id)
       // activate(vm.flat)
       // vm.Form.$setPristine();
@@ -130,13 +138,41 @@
       vm.flat.user.id = $item.id;
     };
 
-    function clearUser(){
-      vm.flat.user= '';
-    }
+
+      vm.clearUser = function() {
+        if(vm.disableResidentDetails == false) {
+          vm.flat.user = '';
+        }
+      }
 
     vm.toTheTop = function () {
       $document.scrollTopAnimated(0, 400);
     };
+
+    // vm.toggleChanges = function () {
+    //   if(vm.Form.$dirty){
+    //     SweetAlert.swal({
+    //       title: "Are you sure?",
+    //       text: "You want to discard the changes!",
+    //       type: "warning",
+    //       showCancelButton: true,
+    //       confirmButtonColor: "#4CAF50",
+    //       confirmButtonText: "Yes",
+    //       cancelButton: "#008CBA",
+    //       cancelButtonText: "No",
+    //       closeOnConfirm: true,
+    //       closeOnCancel: true
+    //     }, function (isConfirm) {
+    //       if (isConfirm) {
+    //         self.progress = true;
+    //         reset();
+    //       } else {
+    //
+    //       }
+    //     });
+    //   }
+    //
+    // };
 
     function submit() {
       var firstError = null;
@@ -187,7 +223,6 @@
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {

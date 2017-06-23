@@ -13,6 +13,7 @@
     vm.userTenant = false;
     vm.submit = submit;
     vm.reset = reset;
+    vm.validateDate = validateDate;
     vm.userList = userList;
     vm.onSelect = onSelect;
     vm.clearUser = clearUser;
@@ -41,6 +42,7 @@
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
       vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
 
       societyFactory.societyList().then(function (response) {
         if(response.status == 200) {
@@ -81,6 +83,11 @@
         }
       });
     };
+
+    function validateDate(){
+      vm.minDate = new Date();
+      console.log(m.minDate)
+    }
 
     function reset() {
       vm.flat = '';
