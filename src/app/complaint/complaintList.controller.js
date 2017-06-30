@@ -67,6 +67,14 @@
           if (response.status == 200) {
             vm.master = response.data;
             console.log(response.data)
+            for(var i=0; i<vm.master.length; i++){
+              if(vm.master[i].status == 'In_Progress'){
+                vm.master[i].status = 'In Progress';
+              }
+              if(vm.master[i].status == 'Re_Opened'){
+                vm.master[i].status = 'Re Opened';
+              }
+            }
             complaintData();
           }
           else if (response.status == -1) {
@@ -98,6 +106,14 @@
          if (response.status == 200) {
            vm.masterResolved = response.data;
            console.log(response.data)
+           for(var i=0; i<vm.masterResolved.length; i++){
+             if(vm.masterResolved[i].status == 'In_Progress'){
+               vm.masterResolved[i].status = 'In Progress';
+             }
+             if(vm.masterResolved[i].status == 'Re_Opened'){
+               vm.masterResolved[i].status = 'Re Opened';
+             }
+           }
            closedComplaint();
            resolvedComplaintData();
          }

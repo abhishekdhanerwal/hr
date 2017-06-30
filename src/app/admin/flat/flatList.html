@@ -60,7 +60,7 @@
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in $data">
 
-                <td data-title="'Tower'" sortable="'tower'" filter="{ 'tower' : 'text' }">{{row.tower}}</td>
+                <td data-title="'Tower'" style="width:100px;" sortable="'tower'" filter="{ 'tower' : 'text' }">{{row.tower}}</td>
                 <td data-title="'Flat No.'">{{row.flatNo}}</td>
                 <td data-title="'Floor'">{{row.floor}}</td>
                 <td data-title="'Sold'">{{row.hasOwner}}</td>
@@ -71,11 +71,13 @@
                 <td data-title="'Owner Number'">{{row.ownerMobile}}</td>
                 <td data-title="'Possession Date'">{{row.dateOfPossession | date:'dd-MM-yyyy'}}</td>
                 <td>
-                <div class="btn-group" uib-dropdown>
-                  <button type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle>
+                <div uib-dropdown>
+                  <!--<button type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle>-->
+                  <a href="#" uib-dropdown-toggle>
                     Action
                   <span class="caret"></span>
-                  </button>
+                  </a>
+                  <!--</button>-->
                   <!--<button type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle>-->
                     <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
                     <!--<i class="fa fa-pencil"></i>-->
@@ -88,7 +90,7 @@
                     <li ng-if="!vm.isCreatorRole">
                       <a ui-sref="app.editOwner({id : row.flatId})"> Update Owner Details </a>
                     </li>
-                    <li ng-if="!vm.isCreatorRole">
+                    <li ng-if="!vm.isCreatorRole && row.hasOwner=='Yes'">
                       <a ui-sref="app.editResident({id : row.flatId})"> Update Resident Details</a>
                     </li>
                   </ul>

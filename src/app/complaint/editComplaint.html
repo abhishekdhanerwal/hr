@@ -83,7 +83,7 @@
                        ng-class="{'has-error':vm.Form.status.$dirty && vm.Form.status.$invalid, 'has-success':vm.Form.status.$valid}">
                     <label class="control-label"> Status <span class="symbol required"></span> </label>
                     <select class="form-control" name="status" ng-model="vm.complaint.status"
-                            ng-options="complaint for complaint in vm.status" required>
+                            ng-options="complaint for complaint in vm.statusList" required>
                     </select>
                     <span class="error text-small block"
                           ng-if="vm.Form.status.$dirty && vm.Form.status.$error.required">Status is required.</span>

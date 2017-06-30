@@ -5,17 +5,24 @@
     .module('blocks.auth')
     .controller('SigninController', SigninController);
 
-  SigninController.$inject = ['$scope', '$state', 'principal', 'toaster', '$localStorage' , '$timeout' ];
+  SigninController.$inject = ['$scope', '$state', 'principal', 'toaster', '$localStorage', '$timeout', 'role'];
   /* @ngInject */
-  function SigninController($scope, $state, principal, toaster, $localStorage, $timeout ) {
+  function SigninController($scope, $state, principal, toaster, $localStorage, $timeout, role) {
     var vm = this;
     vm.signin = signin;
 
     function signin() {
 
-        principal.signin(vm.user, vm.password).then(function (user) {
+      principal.signin(vm.user, vm.password).then(function (user) {
 
-          $state.go('app.notice');
+        vm.isCreatorRole = role.isCreatorRole();
+
+        if(vm.isCreatorRole){
+            $state.go('app.society');
+          }
+          else if(!vm.isCreatorRole) {
+            $state.go('app.notice');
+          }
 
         }, function () {
           if(vm.user=="" && vm.password!="")

@@ -40,7 +40,6 @@
           console.log(vm.society)
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -59,15 +58,48 @@
         if(response.status == 200) {
           vm.roles = response.data;
           console.log(vm.roles)
-          vm.roles.splice(0, 1);
+          vm.rolesList = [];
+          for(var index=0 ; index<vm.roles.length ; index++){
+            var temp = vm.roles[index].split("_");
+            if(temp.length > 1){
+              var newTemp = "";
+              for(var j=1 ; j<temp.length ; j++){
+                newTemp = newTemp + temp[j] + " ";
+              }
+              vm.rolesList.push(newTemp);
+            }
+            else
+              vm.rolesList.push(vm.roles[index]);
+          }
+          console.log(vm.rolesList)
+          console.log(vm.roles)
+          vm.roles.splice(0,1);
+          vm.rolesList.splice(0, 1);
           if (vm.isSuperAdminRole) {
-            vm.roles.splice(3, 4);
+            vm.roles.splice(3,4);
+            vm.rolesList.splice(3, 4);
           }
           else if(vm.isAdminRole){
             vm.roles.splice(1,2);
+            vm.rolesList.splice(1,2);
+            for(var i=0; i<vm.rolesList.length; i++)
+            {
+              if(vm.rolesList[i]=='SOCIETY CREATOR ' && vm.roles[i]=='ROLE_SOCIETY_CREATOR'){
+                vm.rolesList.splice(i,1);
+                vm.roles.splice(i,1);
+              }
+            }
           }
           else if(vm.isManagementRole){
             vm.roles.splice(0,3);
+            vm.rolesList.splice(0,3);
+            for(var i=0; i<vm.rolesList.length; i++)
+            {
+              if(vm.rolesList[i]=='SOCIETY CREATOR ' && vm.roles[i]=='ROLE_SOCIETY_CREATOR'){
+                vm.rolesList.splice(i,1);
+                vm.roles.splice(i,1);
+              }
+            }
           }
         }
         else if( response.status == 401){
@@ -83,6 +115,11 @@
     vm.submit = function () {
 
       var firstError = null;
+      for(var index=0 ; index < vm.rolesList.length ; index++){
+        console.log(vm.user.role)
+        if(vm.rolesList[index] == vm.user.role)
+          vm.user.role = vm.roles[index];
+      }
       if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -90,7 +127,6 @@
       }
       else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid)
       {
-        console.log('ab')
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;

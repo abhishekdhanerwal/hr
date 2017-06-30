@@ -106,7 +106,7 @@
                         Role : <span class="symbol required"></span>
                       </label><br>
                       <div ng-class="{'has-error':vm.Form.roles.$dirty && vm.Form.roles.$invalid, 'has-success':vm.Form.roles.$valid}">
-                        <select class="form-control" name="roles" ng-model="vm.user.role" ng-options="role for role in vm.roles" required>
+                        <select class="form-control" name="roles" ng-model="vm.user.role" ng-options="role for role in vm.rolesList" required>
                         </select>
                         <span class="error text-small block"
                               ng-if="vm.Form.roles.$dirty && vm.Form.roles.$error.required">Role is required.</span>
@@ -114,7 +114,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-3" ng-if="vm.isSuperAdminRole && vm.user.role=='ROLE_MANAGEMENT' || vm.user.role=='ROLE_ADMIN'">
+                  <div class="col-md-3" ng-if="vm.isSuperAdminRole && vm.user.role=='MANAGEMENT ' || vm.user.role=='ADMIN '">
                     <div class="form-group">
                       <label class="control-label">
                         Society : <span class="symbol required"></span>
