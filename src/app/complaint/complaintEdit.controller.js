@@ -52,7 +52,20 @@
       complaintFactory.loadStatusDetails().then(function (response) {
         if(response.status == 200) {
           vm.status = response.data;
-          console.log(vm.status)
+          vm.statusList = [];
+          for(var index=0 ; index<vm.status.length ; index++){
+            var temp = vm.status[index].split("_");
+            if(temp.length > 1){
+              console.log(temp)
+              var newTemp = "";
+              for(var j=0 ; j<temp.length ; j++){
+                newTemp = newTemp + temp[j] + " ";
+              }
+              vm.statusList.push(newTemp);
+            }
+            else
+              vm.statusList.push(vm.status[index]);
+          }
           getEditInfo();
         }
         else if( response.status == 401){
@@ -63,8 +76,8 @@
     };
 
     function changeStatus(){
-      if(!vm.isConsumerRole && vm.complaint.status == 'New'){
-        vm.complaint.status = 'In_Progress';
+      if(!vm.isConsumerRole && vm.complaint.statusList == 'New'){
+        vm.complaint.status = 'In Progress';
       }
     }
 
@@ -74,11 +87,16 @@
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
           console.log(vm.complaint)
+          for(var i=0; i<vm.status.length; i++){
+            if(vm.status[i] == vm.complaint.status){
+              vm.complaint.status = vm.statusList[i];
+            }
+          }
           if(vm.isConsumerRole && vm.complaint.status == 'New')
           {
             vm.status.splice(1,4);
           }
-          else if(vm.isConsumerRole && vm.complaint.status == 'In_Progress')
+          else if(vm.isConsumerRole && vm.complaint.status == 'In Progress ')
           {
             vm.status.splice(3,2);
             for(var i=0; i<vm.status.length; i++)
@@ -128,7 +146,6 @@
           toaster.error(vm.master.message, 'error');
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
         else {
@@ -155,7 +172,6 @@
           }
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
@@ -173,6 +189,11 @@
 
     function submit() {
       var firstError = null;
+
+      for(var index=0 ; index < vm.statusList.length ; index++){
+        if(vm.statusList[index] == vm.complaint.status)
+          vm.complaint.status = vm.status[index];
+      }
 
       if (vm.Form.$invalid) {
 
@@ -201,7 +222,6 @@
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {
