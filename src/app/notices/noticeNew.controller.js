@@ -280,7 +280,7 @@
     }
 
       var uploader = $scope.uploader = new FileUploader({
-        url: 'http://localhost:8080/fileUpload/noticeUpload'
+        url: __env.dataServerUrl + '/fileUpload/noticeUpload'
       });
 
       // FILTERS

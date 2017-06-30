@@ -261,40 +261,42 @@
         if(vm.mobileNotification == true)
           vm.notice.communicationType.push('MOBILE_NOTIFICATION');
 
-        var editActivationTime = vm.notice.activationTime.split(" ")
-        if(editActivationTime[editActivationTime.length-1] == 'AM' || editActivationTime[editActivationTime.length-1] == 'PM'){
-          var editTime = editActivationTime[editActivationTime.length-2].split(":");
-          if(editActivationTime[editActivationTime.length-1] == 'AM' && parseInt(editTime[0]) > 11)
-            editTime[0] = parseInt(editTime[0]) - 12;
-          if(editActivationTime[editActivationTime.length-1] == 'PM')
-            editTime[0] = parseInt(editTime[0]) + 12;
+        if(vm.notice.activationTime != null || vm.notice.activationTime != undefined) {
+          var editActivationTime = vm.notice.activationTime.split(" ")
+          if(editActivationTime[editActivationTime.length-1] == 'AM' || editActivationTime[editActivationTime.length-1] == 'PM'){
+            var editTime = editActivationTime[editActivationTime.length-2].split(":");
+            if(editActivationTime[editActivationTime.length-1] == 'AM' && parseInt(editTime[0]) > 11)
+              editTime[0] = parseInt(editTime[0]) - 12;
+            if(editActivationTime[editActivationTime.length-1] == 'PM')
+              editTime[0] = parseInt(editTime[0]) + 12;
 
-          if(editActivationTime[1] == 'Jan')
-            editActivationTime[1] = 0
-          if(editActivationTime[1] == 'Feb')
-            editActivationTime[1] = 1
-          if(editActivationTime[1] == 'Mar')
-            editActivationTime[1] = 2
-          if(editActivationTime[1] == 'Apr')
-            editActivationTime[1] = 3
-          if(editActivationTime[1] == 'May')
-            editActivationTime[1] = 4
-          if(editActivationTime[1] == 'Jun')
-            editActivationTime[1] = 5
-          if(editActivationTime[1] == 'Jul')
-            editActivationTime[1] = 6
-          if(editActivationTime[1] == 'Aug')
-            editActivationTime[1] = 7
-          if(editActivationTime[1] == 'Sep')
-            editActivationTime[1] = 8
-          if(editActivationTime[1] == 'Oct')
-            editActivationTime[1] = 9
-          if(editActivationTime[1] == 'Nov')
-            editActivationTime[1] = 10
-          if(editActivationTime[1] == 'Dec')
-            editActivationTime[1] = 11
+            if(editActivationTime[1] == 'Jan')
+              editActivationTime[1] = 0
+            if(editActivationTime[1] == 'Feb')
+              editActivationTime[1] = 1
+            if(editActivationTime[1] == 'Mar')
+              editActivationTime[1] = 2
+            if(editActivationTime[1] == 'Apr')
+              editActivationTime[1] = 3
+            if(editActivationTime[1] == 'May')
+              editActivationTime[1] = 4
+            if(editActivationTime[1] == 'Jun')
+              editActivationTime[1] = 5
+            if(editActivationTime[1] == 'Jul')
+              editActivationTime[1] = 6
+            if(editActivationTime[1] == 'Aug')
+              editActivationTime[1] = 7
+            if(editActivationTime[1] == 'Sep')
+              editActivationTime[1] = 8
+            if(editActivationTime[1] == 'Oct')
+              editActivationTime[1] = 9
+            if(editActivationTime[1] == 'Nov')
+              editActivationTime[1] = 10
+            if(editActivationTime[1] == 'Dec')
+              editActivationTime[1] = 11
 
-          vm.notice.activationTime = new Date(editActivationTime[3], editActivationTime[1],editActivationTime[2],editTime[0],editTime[1]);
+            vm.notice.activationTime = new Date(editActivationTime[3], editActivationTime[1],editActivationTime[2],editTime[0],editTime[1]);
+          }
         }
 
         noticeFactory.updateNotice(vm.notice ,vm.notice.id).then(function (response) {
