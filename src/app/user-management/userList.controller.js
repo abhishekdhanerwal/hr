@@ -7,7 +7,12 @@
   UserList.$inject = ['$filter', '$state', 'NgTableParams', 'toaster', 'userFactory', '$localStorage', 'SweetAlert', 'role']
   function UserList($filter, $state, NgTableParams, toaster, userFactory, $localStorage, SweetAlert, role) {
     var self = this;
+    self.breadcrumbRoute = breadcrumbRoute;
     self.progress = true;
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     activate();
 

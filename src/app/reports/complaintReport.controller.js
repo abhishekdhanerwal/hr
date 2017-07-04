@@ -10,8 +10,13 @@
   function ComplaintReportController($q, $http, validationHelperFactory,  toaster,complaintReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state ) {
 
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.progress = true;
    // vm.complaint = {};
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;

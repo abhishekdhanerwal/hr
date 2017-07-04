@@ -1,5 +1,5 @@
 <!-- start: BREADCRUMB -->
-<div class="breadcrumb-wrapper">
+<div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
   <h4 class="mainTitle no-margin">Edit Flat</h4>
 
   <div ncy-breadcrumb class="pull-right"></div>
@@ -80,7 +80,7 @@
                   </div>
                   <div class="panel-body">
                     <div class="row">
-                      <div class="col-md-6" ng-if="vm.flat.residentType == 'Tenant'">
+                      <div class="col-md-6" ng-if="vm.flat.residentType == 'Tenant' && !vm.disableResidentDetails">
                         <div class="form-group">
                           <label class="control-label">
                             Search

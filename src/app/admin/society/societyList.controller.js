@@ -10,9 +10,19 @@
   /* @ngInject */
   function SocietyListCtrl( NgTableParams, $state, $localStorage, $filter, societyFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.message = false;
     vm.progress = true;
     vm.societyMsg = $stateParams.msg;
+
+    function breadcrumbRoute() {
+      if(!vm.isCreatorRole) {
+        $state.go('app.notice')
+      }
+      else{
+        $state.go('app.society')
+      }
+    }
 
     vm.societyAlertBox = function(){
       vm.societyMsg = false;

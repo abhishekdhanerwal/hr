@@ -10,6 +10,7 @@
   /* @ngInject */
   function NoticeEditCtrl($state, validationHelperFactory , role, toaster , $uibModal , noticeFactory ,$stateParams , NgTableParams, $filter , FileUploader , $scope) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.notice = {};
     vm.progress = true;
     vm.submit = submit;
@@ -17,6 +18,10 @@
     vm.noticeType = ['Festival', 'Voilation', 'General'];
     vm.disableActivationTime = false;
     vm.editNotice = true;
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     activate();
 

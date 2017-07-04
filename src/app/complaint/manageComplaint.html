@@ -139,7 +139,7 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-show="vm.message">
+  <div class="row" ng-if="vm.message && !vm.hideMsg">
     <div class="col-md-12">
       <div class="alert alert-success">
         <button class="close" ng-click="vm.hideAlertBox()">

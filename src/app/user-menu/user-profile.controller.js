@@ -6,11 +6,22 @@
     .module('app.userMenu')
     .controller('UserProfileCtrl', UserProfileCtrl);
 
-  UserProfileCtrl.$inject = ['$http' , 'flowFactory', 'toaster', 'validationHelperFactory', '$localStorage', 'userProfileFactory', '$state'  ,'$scope' ,'$rootScope'];
+  UserProfileCtrl.$inject = ['$http' , 'flowFactory', 'toaster', 'validationHelperFactory', '$localStorage', 'userProfileFactory', '$state'  ,'$scope' ,'$rootScope', 'role'];
 
-  function UserProfileCtrl($http , flowFactory, toaster, validationHelperFactory, $localStorage,  userProfileFactory, $state  , $scope , $rootScope) {
+  function UserProfileCtrl($http , flowFactory, toaster, validationHelperFactory, $localStorage,  userProfileFactory, $state  , $scope , $rootScope, role) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.reset = reset;
+    vm.isCreatorRole = role.isCreatorRole();
+
+    function breadcrumbRoute() {
+      if(!vm.isCreatorRole) {
+        $state.go('app.notice')
+      }
+      else{
+        $state.go('app.society')
+      }
+    }
     // vm.removeImage = function () {
     //   vm.noImage = true;
     //   vm.user.profilePictureUrl = null;

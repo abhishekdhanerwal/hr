@@ -10,10 +10,15 @@
   /* @ngInject */
   function ComplaintEditCtrl( NgTableParams, $filter, $document, complaintFactory, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.submit = submit;
     vm.reset = reset;
     vm.populateAssignToList = populateAssignToList;
     vm.changeStatus = changeStatus;
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -94,36 +99,47 @@
           }
           if(vm.isConsumerRole && vm.complaint.status == 'New')
           {
+            vm.statusList.splice(1,4);
             vm.status.splice(1,4);
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'In Progress ')
           {
+            vm.statusList.splice(3,2);
             vm.status.splice(3,2);
             for(var i=0; i<vm.status.length; i++)
             {
               if(vm.status[i]=='New')
+                vm.statusList.splice(i,1);
                 vm.status.splice(i,1);
             }
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'Resolved')
           {
+            vm.statusList.splice(0,1);
             vm.status.splice(0,1);
           }
-          else if(vm.isConsumerRole && vm.complaint.status == 'Re_Opened')
+          else if(vm.isConsumerRole && vm.complaint.status == 'Re Opened ')
           {
-            vm.status.splice(0,1)
+            vm.statusList.splice(0,1);
+            vm.status.splice(0,1);
             for(var i=0; i<vm.status.length; i++)
             {
-              if(vm.status[i]=='Closed')
-                vm.status.splice(i,1);
+              if(vm.status[i]=='Closed') {
+                vm.statusList.splice(i, 1);
+                vm.status.splice(i, 1);
+              }
             }
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'Closed'){
+            vm.statusList.splice(0,1);
             vm.status.splice(0,1);
             for(var i=0; i<vm.status.length; i++)
             {
-              if(vm.status[i]=='Resolved')
-                vm.status.splice(i,1);
+              if(vm.status[i]=='Resolved') {
+                vm.statusList.splice(i, 1);
+                vm.status.splice(i, 1);
+                console.log(vm.status)
+              }
             }
           }
           populateAssignToList(vm.complaint.complaintType);

@@ -15,9 +15,13 @@
     vm.message = false;
     vm.progress = true;
     vm.flat = {};
-    vm.char = 4;
+    vm.breadcrumbRoute = breadcrumbRoute;
 
     vm.complaintMsg = $stateParams.msg;
+
+    function breadcrumbRoute(){
+      $state.go('app.notice')
+    }
 
     vm.hideComplaintBox = function () {
       vm.complaintMsg = false;
@@ -53,6 +57,7 @@
     };
 
     function active() {
+      vm.hideMsg = true;
       if(vm.flat.society == undefined){
         vm.progress = false;
         vm.message = "No data available";
@@ -99,6 +104,7 @@
     };
 
      function resolved() {
+       vm.hideMsg = false;
        complaintFactory.getResolvedComplaintByUser().then(function (response) {
 
          vm.progress = false;
@@ -138,6 +144,7 @@
      };
 
       function closedComplaint(){
+        vm.hideMsg = false;
       complaintFactory.getClosedComplaintByUser().then(function (response) {
 
          vm.progress = false;

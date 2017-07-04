@@ -6,15 +6,25 @@
     .module('app.admin')
     .controller('SocietyEditCtrl', SocietyEditCtrl);
 
-  SocietyEditCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster'];
+  SocietyEditCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
   /* @ngInject */
-  function SocietyEditCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory, $stateParams , toaster) {
+  function SocietyEditCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.userList = userList;
     vm.onSelect = onSelect;
     vm.clearUser = clearUser;
     vm.submit = submit;
     vm.reset = reset;
+
+    function breadcrumbRoute() {
+      if(!vm.isCreatorRole) {
+        $state.go('app.notice')
+      }
+      else{
+        $state.go('app.society')
+      }
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -24,6 +34,13 @@
     activate();
 
     function activate() {
+
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isCreatorRole = role.isCreatorRole();
+
       societyFactory.findSociety($stateParams.id).then(function (response) {
         console.log($stateParams.id)
         if (response.status == 200) {

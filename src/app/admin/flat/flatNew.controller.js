@@ -10,6 +10,7 @@
   /* @ngInject */
   function FlatNewCtrl( NgTableParams, $localStorage, role, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.userTenant = false;
     vm.submit = submit;
     vm.reset = reset;
@@ -20,6 +21,10 @@
     vm.addUser = addUser;
     vm.flat = {};
     vm.flat.society = {};
+
+    function breadcrumbRoute(){
+      $state.go('app.notice')
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
