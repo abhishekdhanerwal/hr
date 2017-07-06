@@ -17,6 +17,19 @@
     vm.reset = reset;
     vm.disableActivationTime = false;
     vm.editNotice = false;
+    vm.breadcrumbRoute = breadcrumbRoute;
+
+    function breadcrumbRoute() {
+      vm.isCreatorRole = role.isCreatorRole();
+
+      if(vm.isCreatorRole){
+        $state.go('app.society');
+      }
+      else if(!vm.isCreatorRole) {
+        $state.go('app.notice');
+      }
+    }
+
 
     activate();
 
@@ -317,14 +330,14 @@
         console.info('onSuccessItem', fileItem, response, status, headers);
       };
       uploader.onErrorItem = function (fileItem, response, status, headers) {
-        toaster.error('Image Not Saved');
+        toaster.error('Attachment Not Saved');
         console.info('onErrorItem', fileItem, response, status, headers);
       };
       uploader.onCancelItem = function (fileItem, response, status, headers) {
         console.info('onCancelItem', fileItem, response, status, headers);
       };
       uploader.onCompleteItem = function (fileItem, response, status, headers) {
-        toaster.info('Image Saved');
+        toaster.info('Attachment Saved');
         console.info('onCompleteItem', fileItem, response, status, headers);
       };
       uploader.onCompleteAll = function () {

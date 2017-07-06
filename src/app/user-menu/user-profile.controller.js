@@ -67,6 +67,7 @@
         });
 
         userProfileFactory.userAddress(id).then(function(response){
+          vm.user = {};
           if(response.status == 200){
             vm.user.address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
           }
