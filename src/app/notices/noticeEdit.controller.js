@@ -10,6 +10,7 @@
   /* @ngInject */
   function NoticeEditCtrl($state, validationHelperFactory , role, toaster , $uibModal , noticeFactory ,$stateParams , NgTableParams, $filter , FileUploader , $scope) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.notice = {};
     vm.progress = true;
     vm.submit = submit;
@@ -28,6 +29,10 @@
       else if(!vm.isCreatorRole) {
         $state.go('app.notice');
       }
+    }
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
     }
 
     activate();

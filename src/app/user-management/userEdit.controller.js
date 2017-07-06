@@ -10,9 +10,14 @@
   /* @ngInject */
   function UserEditCtrl( userFactory, $localStorage, $document, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.submit = submit;
     vm.reset = reset;
     vm.findSociety = findSociety;
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;

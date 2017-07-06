@@ -10,9 +10,19 @@
   /* @ngInject */
   function FlatListCtrl( NgTableParams, $state, $localStorage, $filter, flatFactory, validationHelperFactory, $stateParams , toaster, $rootScope, role) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.message = false;
     vm.progress = true;
     vm.flatMsg = $stateParams.msg;
+
+    function breadcrumbRoute() {
+      if(!vm.isCreatorRole) {
+        $state.go('app.notice')
+      }
+      else{
+        $state.go('app.society')
+      }
+    }
 
     vm.flatAlertBox = function(){
       vm.flatMsg = false;

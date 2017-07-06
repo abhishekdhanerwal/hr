@@ -9,8 +9,13 @@
 
   function CreateUserController($q, userFactory, role, $document, SweetAlert, $state, $http, toaster, validationHelperFactory, $stateParams, $localStorage) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.reset = reset;
     vm.user = {};
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;

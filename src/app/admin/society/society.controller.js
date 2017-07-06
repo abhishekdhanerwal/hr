@@ -10,12 +10,17 @@
   /* @ngInject */
   function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.message = false;
     vm.submit = submit;
     // vm.userList = userList;
     // vm.onSelect = onSelect;
     // vm.clearUser = clearUser;
     vm.reset = reset;
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;

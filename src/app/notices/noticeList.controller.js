@@ -10,11 +10,15 @@
   /* @ngInject */
   function NoticeListCtrl($state, validationHelperFactory , role, toaster , noticeFactory , $filter , $uibModal, $localStorage , SweetAlert) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.progress = true;
     vm.noticeTypeList = ['All', 'Festival' , 'Violation' , 'Announcement' , 'Other'];
     vm.noticeType = vm.noticeTypeList[0];
 
-    activate();
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
+
 
     function activate() {
       vm.isSuperAdminRole = role.isSuperAdminRole();

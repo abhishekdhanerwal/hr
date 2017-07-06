@@ -6,10 +6,21 @@
     .module('app.userMenu')
     .controller('ChangePasswordController', ChangePasswordController);
 
-  ChangePasswordController.$inject = ['$q', 'changePasswordFactory', '$state', 'toaster', 'validationHelperFactory', '$location', '$stateParams', '$localStorage'];
+  ChangePasswordController.$inject = ['$q', 'changePasswordFactory', '$state', 'toaster', 'validationHelperFactory', '$location', '$stateParams', '$localStorage', 'role'];
 
-  function ChangePasswordController($q, changePasswordFactory, $state, toaster, validationHelperFactory, $location, $stateParams, $localStorage) {
+  function ChangePasswordController($q, changePasswordFactory, $state, toaster, validationHelperFactory, $location, $stateParams, $localStorage, role) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
+    vm.isCreatorRole = role.isCreatorRole();
+
+    function breadcrumbRoute() {
+      if(!vm.isCreatorRole) {
+        $state.go('app.notice')
+      }
+      else{
+        $state.go('app.society')
+      }
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;

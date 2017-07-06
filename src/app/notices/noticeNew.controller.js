@@ -10,6 +10,7 @@
   /* @ngInject */
   function NoticeNewCtrl($state, validationHelperFactory , role, toaster , $uibModal , noticeFactory , NgTableParams, $filter , $scope , FileUploader , $cookies ) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.notice = {};
     vm.progress = true;
     vm.hideUserList = true;
@@ -30,6 +31,10 @@
       }
     }
 
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     activate();
 

@@ -10,6 +10,7 @@
   /* @ngInject */
   function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster, $localStorage, $rootScope, role) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.submit = submit;
     vm.userList = userList;
     vm.onSelect = onSelect;
@@ -17,6 +18,15 @@
     vm.data = {};
     vm.disableResidentDetails = false;
     vm.hideOwnerCheckbox = false;
+
+    function breadcrumbRoute() {
+      if(!vm.isCreatorRole) {
+        $state.go('app.notice')
+      }
+      else{
+        $state.go('app.society')
+      }
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;

@@ -10,8 +10,13 @@
   /* @ngInject */
   function ComplaintNewCtrl( NgTableParams, $filter, $document, role, complaintFactory, $state, validationHelperFactory , toaster) {
     var vm = this;
+    vm.breadcrumbRoute = breadcrumbRoute;
     vm.submit = submit;
     vm.reset = reset;
+
+    function breadcrumbRoute() {
+      $state.go('app.notice')
+    }
 
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
@@ -32,7 +37,6 @@
           console.log(vm.flat)
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       })
@@ -55,7 +59,6 @@
           console.log(vm.assignTo)
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
       });
