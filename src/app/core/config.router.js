@@ -139,6 +139,16 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'Edit Flat'
       }
+    }).state('app.createHelper', {
+      url: "/createHelper",
+      templateUrl: "app/admin/household/helperNew.html",
+      controller: 'HelperNewCtrl',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'New Helper',
+      ncyBreadcrumb: {
+        label: 'New Helper'
+      }
     }).state('app.notice', {
       url: "/notice",
       templateUrl: "app/notices/notice.html",
