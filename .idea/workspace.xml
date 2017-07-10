@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="16d9d364-3880-4526-b193-f5912f7b8799" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/core/config.router.js" afterPath="$PROJECT_DIR$/src/app/core/config.router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/layout/nav.html" afterPath="$PROJECT_DIR$/src/app/layout/nav.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/household/helperNew.html" afterPath="$PROJECT_DIR$/src/app/admin/household/helperNew.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,21 +26,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="flatNew.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
+      <file leaf-file-name="helperNew.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperNew.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="188" column="13" lean-forward="false" selection-start-line="188" selection-start-column="13" selection-end-line="188" selection-end-column="13" />
+            <state relative-caret-position="353">
+              <caret line="330" column="28" lean-forward="true" selection-start-line="330" selection-start-column="28" selection-end-line="330" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.html">
+      <file leaf-file-name="complaintReport.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="224" column="64" lean-forward="true" selection-start-line="224" selection-start-column="64" selection-end-line="224" selection-end-column="64" />
+            <state relative-caret-position="-201">
+              <caret line="55" column="40" lean-forward="true" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flatNew.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="346">
+              <caret line="255" column="83" lean-forward="false" selection-start-line="255" selection-start-column="83" selection-end-line="255" selection-end-column="83" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="helperNew.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="78" column="37" lean-forward="true" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="complaintReport.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flatNew.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="133" column="5" lean-forward="true" selection-start-line="106" selection-start-column="4" selection-end-line="133" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="helper.service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/admin/household/helper.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="25" column="78" lean-forward="false" selection-start-line="25" selection-start-column="78" selection-end-line="25" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -59,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>userDetails</find>
-      <find>disableFlat</find>
       <find>disableOwner</find>
       <find>dateOf</find>
       <find>tower</find>
@@ -89,6 +137,8 @@
       <find>addRow</find>
       <find>add</find>
       <find>date</find>
+      <find>type</find>
+      <find>mobil</find>
     </findStrings>
     <replaceStrings>
       <replace>$scope</replace>
@@ -107,7 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/app/blocks/auth/principal.service.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/list.html" />
         <option value="$PROJECT_DIR$/src/app/admin/flat/flat.service.js" />
         <option value="$PROJECT_DIR$/src/app/user-menu/user-profile.service.js" />
@@ -153,11 +202,12 @@
         <option value="$PROJECT_DIR$/src/app/user-menu/changePassword.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js" />
         <option value="$PROJECT_DIR$/src/views/ui_buttons.html" />
-        <option value="$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/household/helperNew.html" />
         <option value="$PROJECT_DIR$/src/app/layout/nav.html" />
         <option value="$PROJECT_DIR$/src/app/core/config.router.js" />
         <option value="$PROJECT_DIR$/src/index.html" />
+        <option value="$PROJECT_DIR$/src/app/admin/household/helper.service.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/household/helperNew.html" />
+        <option value="$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js" />
       </list>
     </option>
   </component>
@@ -269,6 +319,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -419,6 +470,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="society" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smsUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smsUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="household" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -451,19 +528,18 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../iAccelUi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="editor.config.accepted" value="true" />
     <property name="js.eslint.eslintPackage" value="C:\GitCOde\smsUi\node_modules\eslint" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;confi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;nav&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;config&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;side&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;top&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/top-navbar.html&#10;na&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;role&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/role.service.js&#10;sig&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.hhtml&#9;null&#9;null&#10;configr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;princi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;nav.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;navbar.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/bootstrap-rtl/examples/rtl/navbar.html&#10;notice&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/notices/noticeNew.controller.js&#10;princ&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;form&#9;FILE&#9;file://C:/GitCOde/smsUi/src/views/form_pickers.html&#10;env.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;auth&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/authorization.service.js&#10;user&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-menu/user-profile.html&#10;com&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/addComplaint.html&#10;conf&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;flat&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatEdit.html&#10;society&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyList.html&#10;fl&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatNew.controller.js&#10;sidebar&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;societyN&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyNew.html&#10;socie&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/society.controller.js&#10;list.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/list.html&#10;sideb&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;complaint&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;compla&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/complaintList.controller.js&#10;ma&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;side\&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;principal&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;pri&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;env&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;pr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;sign&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;edit&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user.edit.html&#10;sideba&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;create&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/create_user.html&#10;autho&#9;null&#9;null&#10;footer&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/footer.html&#10;inde&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;manage&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;sid&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;con&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js" />
+    <property name="SearchEverywhereHistoryKey" value="config&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;confi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;nav&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;side&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;top&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/top-navbar.html&#10;na&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;role&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/role.service.js&#10;sig&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.hhtml&#9;null&#9;null&#10;configr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;princi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;nav.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;navbar.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/bootstrap-rtl/examples/rtl/navbar.html&#10;notice&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/notices/noticeNew.controller.js&#10;princ&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;form&#9;FILE&#9;file://C:/GitCOde/smsUi/src/views/form_pickers.html&#10;env.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;auth&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/authorization.service.js&#10;user&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-menu/user-profile.html&#10;com&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/addComplaint.html&#10;conf&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;flat&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatEdit.html&#10;society&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyList.html&#10;fl&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatNew.controller.js&#10;sidebar&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;societyN&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyNew.html&#10;socie&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/society.controller.js&#10;list.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/list.html&#10;sideb&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;complaint&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;compla&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/complaintList.controller.js&#10;ma&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;side\&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;principal&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;pri&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;env&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;pr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;sign&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;edit&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user.edit.html&#10;sideba&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;create&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/create_user.html&#10;autho&#9;null&#9;null&#10;footer&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/footer.html&#10;inde&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;manage&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;sid&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;con&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="C:\GitCOde\smsUi\node_modules\gulp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -566,12 +642,13 @@
       <workItem from="1497944846944" duration="223000" />
       <workItem from="1497945096854" duration="1356000" />
       <workItem from="1497948990064" duration="101440000" />
-      <workItem from="1499065180898" duration="67212000" />
+      <workItem from="1499065180898" duration="68740000" />
+      <workItem from="1499660661577" duration="12141000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="936831000" />
+    <option name="totallyTimeSpent" value="950500000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -589,16 +666,16 @@
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21056548" sideWeight="0.49344262" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.502455" sideWeight="0.5029762" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.50595236" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5482815" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.004909984" sideWeight="0.4940476" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -670,30 +747,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/residentEdit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyNew.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="62" lean-forward="false" selection-start-line="1" selection-start-column="62" selection-end-line="1" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/admin/society/society.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -706,7 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="61" lean-forward="false" selection-start-line="1" selection-start-column="61" selection-end-line="1" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,7 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,7 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -754,7 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,7 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -794,7 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="61" lean-forward="false" selection-start-line="1" selection-start-column="61" selection-end-line="1" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,7 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -826,7 +872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -834,7 +879,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="61" lean-forward="false" selection-start-line="0" selection-start-column="61" selection-end-line="0" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -842,7 +886,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -906,7 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -914,7 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,7 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="292" column="35" lean-forward="true" selection-start-line="292" selection-start-column="35" selection-end-line="292" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,7 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -938,15 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="97" column="26" lean-forward="true" selection-start-line="83" selection-start-column="20" selection-end-line="97" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -962,9 +992,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="539" column="47" lean-forward="false" selection-start-line="539" selection-start-column="43" selection-end-line="539" selection-end-column="47" />
-          <folding>
-            <marker date="1492154249518" expanded="true" signature="19214:19228" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -977,7 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
           <caret line="98" column="45" lean-forward="false" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -993,7 +1019,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
           <caret line="69" column="49" lean-forward="true" selection-start-line="65" selection-start-column="44" selection-end-line="69" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1001,7 +1026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
           <caret line="35" column="31" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="35" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1009,39 +1033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="996" column="45" lean-forward="true" selection-start-line="996" selection-start-column="45" selection-end-line="996" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="122" column="58" lean-forward="false" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="92" column="38" lean-forward="true" selection-start-line="92" selection-start-column="38" selection-end-line="92" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperNew.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="292" column="22" lean-forward="false" selection-start-line="292" selection-start-column="22" selection-end-line="292" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1049,30 +1040,93 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="93" column="31" lean-forward="true" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/core/config.router.js">
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/society.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="153" column="21" lean-forward="false" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="224" column="64" lean-forward="true" selection-start-line="224" selection-start-column="64" selection-end-line="224" selection-end-column="64" />
+        <state relative-caret-position="336">
+          <caret line="226" column="56" lean-forward="false" selection-start-line="226" selection-start-column="56" selection-end-line="226" selection-end-column="56" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="188" column="13" lean-forward="false" selection-start-line="188" selection-start-column="13" selection-end-line="188" selection-end-column="13" />
+        <state relative-caret-position="346">
+          <caret line="255" column="83" lean-forward="false" selection-start-line="255" selection-start-column="83" selection-end-line="255" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/core/config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="142" column="27" lean-forward="true" selection-start-line="142" selection-start-column="27" selection-end-line="142" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="133" column="5" lean-forward="true" selection-start-line="106" selection-start-column="4" selection-end-line="133" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flat.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="99" column="14" lean-forward="true" selection-start-line="99" selection-start-column="14" selection-end-line="99" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helper.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="25" column="78" lean-forward="false" selection-start-line="25" selection-start-column="78" selection-end-line="25" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="30" lean-forward="true" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-201">
+          <caret line="55" column="40" lean-forward="true" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperNew.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="330" column="28" lean-forward="true" selection-start-line="330" selection-start-column="28" selection-end-line="330" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="78" column="37" lean-forward="true" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
           <folding />
         </state>
       </provider>

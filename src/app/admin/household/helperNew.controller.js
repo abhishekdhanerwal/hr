@@ -6,15 +6,18 @@
     .module('app.admin')
     .controller('HelperNewCtrl', HelperNewCtrl);
 
-  HelperNewCtrl.$inject = [ 'NgTableParams', '$localStorage', 'role', '$filter', '$document', '$state', 'validationHelperFactory', 'toaster'];
+  HelperNewCtrl.$inject = [ 'NgTableParams', 'helperFactory', '$localStorage', 'role', '$filter', '$document', '$state', 'validationHelperFactory', 'toaster'];
   /* @ngInject */
-  function HelperNewCtrl( NgTableParams, $localStorage, role, $filter, $document, $state, validationHelperFactory , toaster) {
+  function HelperNewCtrl( NgTableParams, helperFactory, $localStorage, role, $filter, $document, $state, validationHelperFactory , toaster) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.flatList = flatList;
+    vm.onSelect = onSelect;
     vm.submit = submit;
     vm.reset = reset;
     vm.addResident = addResident;
     vm.helper = [];
+    vm.helper.workingAt = [];
    // vm.progress = true;
 
     vm.removeImage = function () {
@@ -41,16 +44,44 @@
       vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
 
-      // societyFactory.societyList().then(function (response) {
-      //   if (response.status == 200) {
-      //     vm.society = response.data;
-      //     console.log(vm.society)
-      //   }
-      //   else if (response.status == 401) {
-      //     $state.go('auth.signout')
-      //   }
-      // });
+      helperFactory.helperType().then(function (response) {
+        if (response.status == 200) {
+          vm.helperTypeList = response.data;
+        }
+        else if (response.status == 401) {
+          $state.go('auth.signout')
+        }
+      });
+
+      vm.endDateValidation = function () {
+        vm.endMinDate = vm.helpers.fromDate;
+      }
     }
+
+    function flatList(val){
+      return helperFactory.searchFlatno(val).then(function (response) {
+        if(response.status == 200) {
+          var params = {
+            query: val
+          };
+          return response.data.map(function (item) {
+            return item;
+          })
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
+    }
+
+    function onSelect($item, $model, $label) {
+      vm.helpers.residentName = $item.residentName;
+      vm.helpers.tower = $item.tower;
+      vm.helpers.flatNo = $item.flatNo;
+      vm.helpers.floor = $item.floor;
+      vm.helpers.fromDate = $item.fromDate;
+      vm.helpers.endDate = $item.endDate;
+    };
 
     vm.saveImage = function () {
       vm.imageProgress = true;
@@ -76,14 +107,20 @@
     };
 
     function addResident(){
-      vm.helper.push({ 'residentName' : vm.helper.residentName, 'tower' : vm.helper.tower, 'flatNo': vm.helper.flatNo, 'floor': vm.helper.floor, 'fromDate': vm.helper.fromDate, 'endDate' : vm.helper.endDate});
-      vm.helper.residentName = '';
-      vm.helper.tower = '';
-      vm.helper.flatNo = '';
-      vm.helper.floor = '';
-      vm.helper.fromDate = '';
-      vm.helper.endDate = '';
-      console.log(vm.helper)
+      vm.helper.workingAt.push({
+        'residentName': vm.helpers.residentName,
+        'tower': vm.helpers.tower,
+        'flatNo': vm.helpers.flatNo,
+        'floor': vm.helpers.floor,
+        'fromDate': vm.helpers.fromDate,
+        'endDate' : vm.helpers.endDate
+      });
+      vm.helpers.residentName = '';
+      vm.helpers.tower = '';
+      vm.helpers.flatNo = '';
+      vm.helpers.floor = '';
+      vm.helpers.fromDate = '';
+      vm.helpers.endDate = '';
     }
 
     vm.removeRow = function (name) {
@@ -117,48 +154,39 @@
       var firstError = null;
       console.log(vm.helper)
 
-      // if (vm.Form.$invalid) {
-      //   validationHelperFactory.manageValidationFailed(vm.Form);
-      //   vm.errorMessage = 'Validation Error';
-      //   return;
-      //
-      // } else {
-      //
-      //   flatFactory.newFlat(vm.flat.society.id, vm.flat).then(function (response) {
-      //     console.log(vm.flat.society.id);
-      //     console.log(vm.flat)
-      //
-      //     if (response.status == 200) {
-      //       toaster.info('Flat Created');
-      //       vm.message = "Flat Created";
-      //       if(vm.SocietyFlatData) {
-      //         $state.go('app.flatsBySociety',({id: vm.flat.society.id , msg: vm.message}));
-      //       }
-      //       else if(vm.SocietyFlatData == false){
-      //         $state.go('app.flats', {msg: vm.message});
-      //       }
-      //       // $state.go('app.flats', {msg: vm.message});
-      //     }
-      //     else if (response.status == -1) {
-      //       vm.errorMessage = 'Network Error';
-      //       toaster.error('Network Error');
-      //       console.error(response);
-      //     }
-      //     else if (response.status == 400) {
-      //       vm.errorMessage = response.data[0].message;
-      //       toaster.error(response.data[0].message);
-      //       console.error( vm.errorMessage);
-      //     }
-      //     else if( response.status == 401){
-      //       $state.go('auth.signout')
-      //     }
-      //     else {
-      //       vm.errorMessage = 'Some problem';
-      //       toaster.error('Some problem');
-      //       console.error(response);
-      //     }
-      //   });
-      // }
+      if (vm.Form.$invalid) {
+        validationHelperFactory.manageValidationFailed(vm.Form);
+        vm.errorMessage = 'Validation Error';
+        return;
+
+      } else {
+
+        helperFactory.newHelper(vm.helper).then(function (response) {
+
+          if (response.status == 200) {
+            toaster.info('Helper Created');
+            $state.go('app.createHelper');
+          }
+          else if (response.status == -1) {
+            vm.errorMessage = 'Network Error';
+            toaster.error('Network Error');
+            console.error(response);
+          }
+          else if (response.status == 400) {
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
+            console.error( vm.errorMessage);
+          }
+          else if( response.status == 401){
+            $state.go('auth.signout')
+          }
+          else {
+            vm.errorMessage = 'Some problem';
+            toaster.error('Some problem');
+            console.error(response);
+          }
+        });
+      }
     };
   }
 })();
