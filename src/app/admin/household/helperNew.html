@@ -33,16 +33,16 @@
     <div class="col-md-12">
       <div class="panel panel-white">
         <div class="panel-body">
+          <ng-form name="vm.Form" role="Form" id="Form" novalidate>
 
           <fieldset>
             <legend>
               Profile Details
             </legend>
-            <ng-form name="vm.Form" role="Form" id="Form" novalidate>
 
                   <div class="row">
-
                     <div class="col-md-6">
+
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
                         <label class="control-label"> Name <span class="symbol required"></span> </label>
@@ -53,9 +53,7 @@
                         <span class="error text-small block"
                               ng-show="vm.Form.name.$invalid && vm.Form.name.$error.maxlength">Name be less than 30 characters</span>
                       </div>
-                    </div>
 
-                    <div class="col-md-6">
                       <div class="form-group">
                         <label class="control-label">
                           Type : <span class="symbol required"></span>
@@ -67,13 +65,7 @@
                                 ng-if="vm.Form.type.$dirty && vm.Form.type.$error.required">Helper type is required.</span>
                         </div>
                       </div>
-                    </div>
 
-                  </div>
-
-                  <div class="row">
-
-                    <div class="col-md-6">
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.permanentAddress.$dirty && vm.Form.permanentAddress.$invalid, 'has-success':vm.Form.permanentAddress.$valid}">
                         <label class="control-label"> Permanent Address <span class="symbol required"></span> </label>
@@ -83,9 +75,7 @@
                         <span class="error text-small block"
                               ng-show="vm.Form.permanentAddress.$invalid && vm.Form.permanentAddress.$error.maxlength">Address should be less than 100 characters</span>
                       </div>
-                    </div>
 
-                    <div class="col-md-6">
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.localAddress.$dirty && vm.Form.localAddress.$invalid, 'has-success':vm.Form.localAddress.$valid}">
                         <label class="control-label"> Local Address <span class="symbol required"></span> </label>
@@ -95,13 +85,7 @@
                         <span class="error text-small block"
                               ng-show="vm.Form.localAddress.$invalid && vm.Form.localAddress.$error.maxlength">Address should be less than 100 characters</span>
                       </div>
-                    </div>
 
-                  </div>
-
-                  <div class="row">
-
-                    <div class="col-md-6">
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.aadharId.$dirty && vm.Form.aadharId.$invalid, 'has-success':vm.Form.aadharId.$valid}">
                         <label class="control-label"> Aadhar Id <span class="symbol required"></span> </label>
@@ -115,9 +99,11 @@
                               ng-show="vm.Form.aadharId.$invalid && vm.Form.aadharId.$error.maxlength">Aadhar Id should be 12 digits only</span>
                       </div>
                       <br>
-                    </div>
 
-                    <div class="col-md-6">
+                </div>
+
+                <div class="col-md-6">
+
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.gender.$dirty && vm.Form.gender.$invalid, 'has-success':vm.Form.gender.$valid}">
                         <label class="control-label block"> Gender <span class="symbol required"></span> </label>
@@ -131,13 +117,7 @@
                         <span class="error text-small block"
                               ng-if="vm.Form.gender.$dirty && vm.Form.gender.$error.required">Gender is required.</span>
                       </div>
-                    </div>
 
-                  </div>
-
-                  <div class="row">
-
-                    <div class="col-md-6">
                       <div class="form-group">
                         <label>
                           Image Upload
@@ -145,14 +125,14 @@
 
                         <wave-spinner ng-show="vm.imageProgress" ></wave-spinner>
 
-                        <div flow-init="{singleFile:true}" flow-name="vm.obj.flow"
-                             flow-file-added="!!{jpg:1,jpeg:1}[$file.getExtension()]">
+                        <div flow-init="{singleFile:true}" flow-name="obj.flow"
+                             flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
                           <div ng-if="!vm.imageProgress" class="user-image">
                             <div class="thumbnail">
                               <img src="images/default-user.png" alt="" >
                               <img ng-src="{{IMAGE_BASE_URL.XL + vm.helper.profilePictureUrl}}" alt=""
-                                   ng-if="!vm.obj.flow.files.length && !vm.noImage">
-                              <img flow-img="vm.obj.flow.files[0]" ng-if="vm.obj.flow.files.length">
+                                   ng-if="!obj.flow.files.length && !noImage">
+                              <img flow-img="obj.flow.files[0]" ng-if="obj.flow.files.length">
                             </div>
                             <div ng-if="vm.obj.flow.files.length">
                           <span class="btn btn-primary btn-file">
@@ -198,11 +178,9 @@
 
                         </div>
                       </div>
+                </div>
+              </div>
 
-                    </div>
-                  </div>
-
-            </ng-form>
           </fieldset>
 
           <fieldset>
@@ -259,7 +237,7 @@
                          ng-class="{'has-error':vm.Form.residentName.$dirty && vm.Form.residentName.$invalid, 'has-success':vm.Form.residentName.$valid}">
                       <label class="control-label"> Resident Name <span class="symbol required"></span> </label>
                       <input type="text" placeholder="Enter Primary Resident Name" class="form-control" name="residentName"
-                             ng-model="vm.helpers.residentName" style="width:350px;" ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                             ng-model="vm.resident.residentName" style="width:350px;" ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
                       <span class="error text-small block" ng-if="vm.Form.residentName.$error.pattern">Invalid characters</span>
                       <span class="error text-small block" ng-if="vm.Form.residentName.$dirty && vm.Form.residentName.$error.required">Resident name is required</span>
                       <span class="error text-small block"
@@ -272,8 +250,10 @@
                   <div class="col-md-6">
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}">
-                      <label class="control-label"> Tower </label>
-                      <input type="text" style="width:350px;" ng-model="vm.helpers.tower" placeholder="Enter Tower" class="form-control">
+                      <label class="control-label"> Tower <span class="symbol required"></span> </label>
+                      <input type="text" style="width:350px;" name="tower" ng-model="vm.resident.tower" placeholder="Enter Tower" class="form-control" required/>
+                      <span class="error text-small block"
+                            ng-if="vm.Form.tower.$dirty && vm.Form.tower.$error.required">Tower is required.</span>
                     </div>
                   </div>
                 </div>
@@ -282,10 +262,10 @@
                   <div class="col-md-6">
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.flatNo.$dirty && vm.Form.flatNo.$invalid, 'has-success':vm.Form.flatNo.$valid}">
-                      <label class="control-label"> Flat Number </label>
-                      <input type="text" placeholder="Search Flat Number" style="width:350px;"
-                             ng-model="vm.helpers.flatNo"
-                             ng-value="vm.helpers.flatNo"
+                      <label class="control-label"> Flat Number <span class="symbol required"></span> </label>
+                      <input type="text" name="flatNo" placeholder="Search Flat Number" style="width:350px;"
+                             ng-model="vm.resident.flatNo"
+                             ng-value="vm.resident.flatNo"
                              uib-typeahead="item.flatNo for item in vm.flatList($viewValue)"
                              typeahead-loading="loadingLocations" typeahead-min-length="1" typeahead-no-results="noResults"
                              typeahead-on-select="vm.onSelect($item, $model, $label)"
@@ -295,6 +275,8 @@
                       <div ng-show="noResults" class="error">
                         <i class="glyphicon glyphicon-remove"></i> No Results Found
                       </div>
+                      <span class="error text-small block"
+                            ng-if="vm.Form.flatNo.$dirty && vm.Form.flatNo.$error.required">Flat number is required.</span>
                     </div>
                   </div>
                 </div>
@@ -303,8 +285,10 @@
                   <div class="col-md-6">
                     <div class="form-group"
                          ng-class="{'has-error':vm.Form.floor.$dirty && vm.Form.floor.$invalid, 'has-success':vm.Form.floor.$valid}">
-                      <label class="control-label"> Floor </label>
-                      <input type="text" placeholder="Enter Floor" style="width:350px;" ng-model="vm.helpers.floor" class="form-control">
+                      <label class="control-label"> Floor <span class="symbol required"></span> </label>
+                      <input type="text" name="floor" placeholder="Enter Floor" style="width:350px;" ng-model="vm.resident.floor" class="form-control">
+                      <span class="error text-small block"
+                            ng-if="vm.Form.floor.$dirty && vm.Form.floor.$error.required">Floor is required.</span>
                     </div>
                   </div>
                 </div>
@@ -317,14 +301,14 @@
                       </label>
                       <div class="input-group range-picker">
                         <div class="start-date" ng-class="{'has-error':vm.Form.fromDate.$dirty && vm.Form.fromDate.$invalid, 'has-success':vm.Form.fromDate.$valid}">
-                          <input type="text" name="fromDate" show-button-bar="false" style="width:155px;" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.helpers.fromDate" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true">
+                          <input type="text" name="fromDate" show-button-bar="false" style="width:155px;" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.resident.fromDate" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true">
                           <span class="error text-small block"
                                 ng-if="vm.Form.fromDate.$dirty && vm.Form.fromDate.$error.required">From Date is required.</span>
                         </div>
                         <span class="input-group-addon">to</span>
                         <div class="end-date"
                              ng-class="{'has-error':vm.Form.endDate.$dirty && vm.Form.endDate.$invalid, 'has-success':vm.Form.endDate.$valid}">
-                          <input type="text" name="endDate" show-button-bar="false" style="width:155px;" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.helpers.endDate" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true">
+                          <input type="text" name="endDate" show-button-bar="false" style="width:155px;" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.resident.endDate" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true">
                           <span class="error text-small block"
                                 ng-if="vm.Form.endDate.$dirty && vm.Form.endDate.$error.required">End Date is required.</span>
                         </div>
@@ -354,7 +338,7 @@
                   <td data-title="'Assigned Date'">{{row.fromDate | date: 'dd/MM/yyyy'}}</td>
                   <td data-title="'End Date'">{{row.endDate | date: 'dd/MM/yyyy'}}</td>
                   <td>
-                      <button type="button" class="btn btn-red btn-wide btn-scroll btn-scroll-top ti-trash" ng-click="vm.removeRow(row.name)">
+                      <button type="button" class="btn btn-red btn-wide btn-scroll btn-scroll-top ti-trash" ng-click="vm.removeRow(row.residentName)">
                       <span>Remove</span>
                       </button>
                   </td>
@@ -385,12 +369,12 @@
               </div>
             </div>
           </div>
-
+        </ng-form>
+        </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
 

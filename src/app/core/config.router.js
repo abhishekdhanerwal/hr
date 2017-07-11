@@ -565,6 +565,14 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         ncyBreadcrumb: {
             label: 'Pages'
         }
+    }).state('app.pages.user', {
+      url: '/user',
+      templateUrl: "views/pages_user_profile.html",
+      title: 'User Profile',
+      ncyBreadcrumb: {
+        label: 'User Profile'
+      },
+      resolve: loadSequence('flow', 'userCtrl')
     }).state('app.userProfile', {
         url: '/user-profile',
         templateUrl: "app/user-menu/user-profile.html",

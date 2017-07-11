@@ -17,6 +17,7 @@
     vm.reset = reset;
     vm.addResident = addResident;
     vm.helper = [];
+    vm.resident = [];
     vm.helper.workingAt = [];
    // vm.progress = true;
 
@@ -54,7 +55,7 @@
       });
 
       vm.endDateValidation = function () {
-        vm.endMinDate = vm.helpers.fromDate;
+        vm.endMinDate = vm.resident.fromDate;
       }
     }
 
@@ -107,27 +108,36 @@
     };
 
     function addResident(){
-      vm.helper.workingAt.push({
-        'residentName': vm.helpers.residentName,
-        'tower': vm.helpers.tower,
-        'flatNo': vm.helpers.flatNo,
-        'floor': vm.helpers.floor,
-        'fromDate': vm.helpers.fromDate,
-        'endDate' : vm.helpers.endDate
-      });
-      vm.helpers.residentName = '';
-      vm.helpers.tower = '';
-      vm.helpers.flatNo = '';
-      vm.helpers.floor = '';
-      vm.helpers.fromDate = '';
-      vm.helpers.endDate = '';
+      var firstError = null;
+      console.log(vm.Form.residentName)
+      if (vm.Form.residentName.$invalid || vm.Form.tower.$invalid || vm.Form.flatNo.$invalid || vm.Form.floor.$invalid || vm.Form.fromDate.$invalid || vm.Form.endDate.$invalid) {
+        validationHelperFactory.manageValidationFailed(vm.Form);
+        vm.errorMessage = 'Validation Error';
+        return;
+      }
+      else {
+        vm.helper.workingAt.push({
+          'residentName': vm.resident.residentName,
+          'tower': vm.resident.tower,
+          'flatNo': vm.resident.flatNo,
+          'floor': vm.resident.floor,
+          'fromDate': vm.resident.fromDate,
+          'endDate': vm.resident.endDate
+        });
+        vm.resident.residentName = '';
+        vm.resident.tower = '';
+        vm.resident.flatNo = '';
+        vm.resident.floor = '';
+        vm.resident.fromDate = '';
+        vm.resident.endDate = '';
+      }
     }
 
-    vm.removeRow = function (name) {
+    vm.removeRow = function (residentName) {
       var index = -1;
-      var comArr = eval(vm.helper);
+      var comArr = eval(vm.helper.workingAt);
       for (var i = 0; i < comArr.length; i++) {
-        if (comArr[i].name === name) {
+        if (comArr[i].residentName === residentName) {
           index = i;
           break;
         }
@@ -135,7 +145,7 @@
       if (index === -1) {
         alert("Something gone wrong");
       }
-      vm.helper.splice(index, 1);
+      vm.helper.workingAt.splice(index, 1);
     };
 
     function reset() {
