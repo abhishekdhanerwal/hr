@@ -5,14 +5,14 @@
     .module('app.reports')
     .controller('ComplaintReportController', ComplaintReportController);
 
-  ComplaintReportController.$inject = ['$q', '$http', 'validationHelperFactory', 'toaster', 'complaintReportFactory', 'NgTableParams', '$filter', '$scope', '$localStorage' , '$state'];
+  ComplaintReportController.$inject = ['$q', '$http', 'role', 'validationHelperFactory', 'toaster', 'complaintReportFactory', 'NgTableParams', '$filter', '$scope', '$localStorage' , '$state'];
   /* @ngInject */
-  function ComplaintReportController($q, $http, validationHelperFactory,  toaster,complaintReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state ) {
+  function ComplaintReportController($q, $http, role, validationHelperFactory,  toaster,complaintReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state ) {
 
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.progress = true;
-   // vm.complaint = {};
+     //vm.complaint = {};
 
     function breadcrumbRoute() {
       $state.go('app.notice')
@@ -27,10 +27,21 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+
       complaintReportFactory.societyList().then(function (response) {
         if(response.status == 200){
           vm.society = response.data;
           console.log(vm.society)
+          if(vm.isAdminRole){
+            vm.complaint ={};
+            vm.complaint.society={};
+            vm.complaint.society.id = $localStorage._identity.principal.societyId;
+          }
           // vm.complaint.society = vm.society[0];
         }
         else if( response.status == 401){

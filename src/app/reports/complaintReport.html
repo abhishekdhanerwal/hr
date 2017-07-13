@@ -37,7 +37,7 @@
           <!--<div class="panel-body">-->
           <ng-form name="vm.Form" role="Form" id="Form" class="form-inline" novalidate>
             <div class="row">
-              <div class="col-md-4 col-lg-4">
+              <div class="col-md-4 col-lg-4" ng-if="!vm.isAdminRole">
                 <div class="form-group">
                   <label class="control-label">
                     Society : <span class="symbol required"></span>

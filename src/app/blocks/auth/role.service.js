@@ -17,6 +17,7 @@
         isManagementRole: isManagementRole,
         isConsumerRole : isConsumerRole,
         isCreatorRole : isCreatorRole,
+        isMeterManagementRole : isMeterManagementRole,
         currentAccessLevel : currentAccessLevel,
         // getMainRole : getMainRole
       };
@@ -94,6 +95,20 @@
           return index >= 0;
         }
     }
+
+      function isMeterManagementRole() {
+        if($localStorage._identity) {
+          var roles = $localStorage._identity.principal.role;
+          var index = _.findIndex(roles, function(o) {
+            index = 0 ;
+            if (roles.match(/METER/g)){
+              index++;
+            }
+            return index
+          });
+          return index >= 0;
+        }
+      }
 
     function currentAccessLevel() {
       if (!String.prototype.includes) {

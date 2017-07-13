@@ -11,6 +11,7 @@
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.reset = reset;
+    vm.progress = true;
     vm.user = {};
 
     function breadcrumbRoute() {
@@ -37,6 +38,7 @@
       vm.isCreatorRole = role.isCreatorRole();
 
       userFactory.societyList().then(function (response) {
+        vm.progress = false;
         if(response.status == 200){
           vm.society = response.data;
           // for(var i=0; i<vm.society.length; i++) {
@@ -50,6 +52,7 @@
       });
 
       userFactory.findSociety($localStorage._identity.principal.societyId).then(function(response){
+        vm.progress = false;
         if(response.status == 200){
           vm.user.society = response.data;
           vm.user.societyId = vm.user.society.societyId;
@@ -60,6 +63,7 @@
       });
 
       userFactory.getRole().then(function (response) {
+        vm.progress = false;
         if(response.status == 200) {
           vm.roles = response.data;
           console.log(vm.roles)
@@ -118,6 +122,7 @@
     };
 
     vm.submit = function () {
+      vm.progress = false;
 
       var firstError = null;
       for(var index=0 ; index < vm.rolesList.length ; index++){

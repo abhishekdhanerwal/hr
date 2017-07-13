@@ -6,13 +6,15 @@
     .module('app.complaint')
     .controller('ComplaintEditCtrl', ComplaintEditCtrl);
 
-  ComplaintEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'complaintFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
+  ComplaintEditCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'complaintFactory', '$state', 'validationHelperFactory', '$stateParams', '$localStorage', 'toaster', 'role'];
   /* @ngInject */
-  function ComplaintEditCtrl( NgTableParams, $filter, $document, complaintFactory, $state, validationHelperFactory, $stateParams , toaster, role) {
+  function ComplaintEditCtrl( NgTableParams, $filter, $document, complaintFactory, $state, validationHelperFactory, $stateParams , $localStorage, toaster, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.submit = submit;
     vm.reset = reset;
+    vm.searchFlat = searchFlat;
+    vm.onSelect = onSelect;
     vm.populateAssignToList = populateAssignToList;
     vm.changeStatus = changeStatus;
 
@@ -33,16 +35,21 @@
       vm.isManagementRole = role.isManagementRole();
       vm.isConsumerRole = role.isConsumerRole();
 
-      complaintFactory.flatList().then(function (response) {
-        if(response.status == 200) {
-          vm.flat = response.data;
-          console.log(vm.flat)
-          getEditInfo();
-        }
-        else if( response.status == 401){
-          $state.go('auth.signout')
-        }
-      });
+      complaintFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
+        console.log(response.data);
+        vm.towerList = response.data
+      })
+
+      // complaintFactory.flatList().then(function (response) {
+      //   if(response.status == 200) {
+      //     vm.flat = response.data;
+      //     console.log(vm.flat)
+      //     getEditInfo();
+      //   }
+      //   else if( response.status == 401){
+      //     $state.go('auth.signout')
+      //   }
+      // });
 
       complaintFactory.loadTypeDetails().then(function (response) {
         if(response.status == 200) {
@@ -80,6 +87,27 @@
 
     };
 
+    function searchFlat(val){
+      return complaintFactory.searchFlat(val).then(function (response) {
+        if(response.status == 200) {
+          var params = {
+            query: val
+          };
+          return response.data.map(function (item) {
+            return item;
+          })
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
+    }
+
+    function onSelect($item, $model, $label) {
+      vm.complaint.address.tower = $item.tower;
+      vm.complaint.address.flat = $item.flat;
+    };
+
     function changeStatus(){
       if(!vm.isConsumerRole && vm.complaint.statusList == 'New'){
         vm.complaint.status = 'In Progress';
@@ -91,7 +119,7 @@
         if (response.status == 200) {
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
-          console.log(vm.complaint)
+          console.log(vm.complaint.registerFor.tower)
           for(var i=0; i<vm.status.length; i++){
             if(vm.status[i] == vm.complaint.status){
               vm.complaint.status = vm.statusList[i];
@@ -143,13 +171,13 @@
             }
           }
           populateAssignToList(vm.complaint.complaintType);
-          if(vm.flat != null){
-            for(var index = 0 ; index < vm.flat.length ; index++){
-              if(vm.complaint.registerFor.flatId == vm.flat[index].flatId){
-                vm.complaint.registerFor = vm.flat[index];
-              }
-            };
-          }
+          // if(vm.flat != null){
+          //   for(var index = 0 ; index < vm.flat.length ; index++){
+          //     if(vm.complaint.registerFor.flatId == vm.flat[index].flatId){
+          //       vm.complaint.registerFor = vm.flat[index];
+          //     }
+          //   };
+          // }
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');

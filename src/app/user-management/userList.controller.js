@@ -29,6 +29,7 @@
       self.isCreatorRole = role.isCreatorRole();
 
       userFactory.alluser().then(function (response) {
+        self.progress = false;
         if (response.status == 200) {
           self.userList = response.data;
           console.log(self.userList)
@@ -45,6 +46,9 @@
             }
             else if (self.userList[i].role == "ROLE_SOCIETY_CREATOR") {
               self.userList[i].role = "SOCIETY CREATOR"
+            }
+            else if (self.userList[i].role == "ROLE_METER_MANAGEMENT") {
+              self.userList[i].role = "METER MANAGEMENT"
             }
             else if (self.userList[i].role == "ROLE_PLUMBER") {
               self.userList[i].role = "PLUMBER"
@@ -137,6 +141,7 @@
     }
 
     self.toggleStatus = function (id) {
+      self.progress = false;
       userFactory.changeStatus(id).then(function (response) {
         if (response.status == 200) {
           toaster.info('Status Changed Successfully');
@@ -157,6 +162,7 @@
       });
     };
     self.toggleStatus = function (id) {
+      self.progress = false;
       console.log(id)
       SweetAlert.swal({
         title: "Are you sure?",
