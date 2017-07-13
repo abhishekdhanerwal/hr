@@ -18,7 +18,7 @@
     function breadcrumbRoute() {
       $state.go('app.notice')
     }
-    activate();
+
 
     function activate() {
       vm.isSuperAdminRole = role.isSuperAdminRole();
@@ -96,7 +96,8 @@
         console.log(response)
         if (response.status == 200) {
 
-          $state.reload();
+          activate();
+          // $state.reload();
         }
         else if (response.status == -1) {
           vm.errorMessage = 'Network Error';
@@ -188,6 +189,10 @@
             vm.noticeList.push(vm.masterNoticeList[index]);
           }
         }
+        if(vm.noticeList.length == 0)
+          vm.message = "Notice dashboard is empty";
+        else
+          vm.message = false;
       }
     }
 
@@ -223,10 +228,49 @@
     .module('app.notice')
     .controller('readNoticeCtrl', readNoticeCtrl);
 
-  readNoticeCtrl.$inject = ["$scope", "$uibModalInstance" , "noticeData"];
+  readNoticeCtrl.$inject = ["$scope", "$uibModalInstance" , "noticeData" , "$http"];
   /* @ngInject */
-  function readNoticeCtrl($scope, $uibModalInstance, noticeData) {
+  function readNoticeCtrl($scope, $uibModalInstance, noticeData, $http) {
+    // $scope.showImage = [];
     $scope.notice = noticeData;
+    for(var index=0 ;index< $scope.notice.attachmentUrl.length ; index++){
+      var temp = $scope.notice.attachmentUrl[index].split('.').pop();
+      if(temp == 'jpg' ||temp == 'jpeg' ||temp == 'png' ||temp == 'bmp' ||temp == 'gif' || temp == 'tiff'){
+        var tempUrl = $scope.notice.attachmentUrl[index];
+        $scope.notice.attachmentUrl[index] = {};
+        $scope.notice.attachmentUrl[index].url = tempUrl
+        $scope.notice.attachmentUrl[index].showImage = true;
+      }
+      else {
+        var downloadUrl = $scope.notice.attachmentUrl[index];
+        var tempUrl = $scope.notice.attachmentUrl[index].split("/");
+        $scope.notice.attachmentUrl[index] = {};
+        $scope.notice.attachmentUrl[index].download = downloadUrl;
+        $scope.notice.attachmentUrl[index].url = tempUrl[tempUrl.length-1];
+        $scope.notice.attachmentUrl[index].showImage = false;
+      }
+    }
+    console.log($scope.notice.attachmentUrl);
+
+
+
+    $scope.downloadAttachment = function(downloadUrl , name){
+      console.log('dsa')
+      $http({method: 'GET', url: downloadUrl}).
+      success(function(data, status, headers, config) {
+        var anchor = angular.element('<a/>');
+        anchor.css({display: 'none'}); // Make sure it's not visible
+        angular.element(document.body).append(anchor); // Attach to document
+        anchor.attr({
+          href: 'data:attachment/csv;charset=utf-8,' + encodeURIComponent(data),
+          target: '_blank',
+          download: name
+        })[0].click();
+
+        anchor.remove(); // Clean it up afterwards
+      })
+    };
+
     $scope.ok = function () {
       $uibModalInstance.close();
     };
