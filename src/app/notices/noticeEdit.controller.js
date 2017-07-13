@@ -6,9 +6,9 @@
     .module('app.notice')
     .controller('NoticeEditCtrl', NoticeEditCtrl);
 
-  NoticeEditCtrl.$inject = ['$state', 'validationHelperFactory', 'role', 'toaster' , '$uibModal' , 'noticeFactory' , '$stateParams' , 'NgTableParams' , '$filter' , 'FileUploader', '$scope'];
+  NoticeEditCtrl.$inject = ['$state', 'validationHelperFactory', 'role', 'toaster' , '$uibModal' , 'noticeFactory' , '$stateParams' , 'NgTableParams' , '$filter' , 'FileUploader', '$scope' , '$window'];
   /* @ngInject */
-  function NoticeEditCtrl($state, validationHelperFactory , role, toaster , $uibModal , noticeFactory ,$stateParams , NgTableParams, $filter , FileUploader , $scope) {
+  function NoticeEditCtrl($state, validationHelperFactory , role, toaster , $uibModal , noticeFactory ,$stateParams , NgTableParams, $filter , FileUploader , $scope , $window) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.notice = {};
@@ -247,6 +247,10 @@
       });
 
     };
+
+    vm.downloadAttachment = function (url) {
+      $window.open(url);
+    }
 
 
     function submit() {

@@ -19,6 +19,7 @@
       $state.go('app.notice')
     }
 
+    activate();
 
     function activate() {
       vm.isSuperAdminRole = role.isSuperAdminRole();
@@ -228,9 +229,9 @@
     .module('app.notice')
     .controller('readNoticeCtrl', readNoticeCtrl);
 
-  readNoticeCtrl.$inject = ["$scope", "$uibModalInstance" , "noticeData" , "$http"];
+  readNoticeCtrl.$inject = ["$scope", "$uibModalInstance" , "noticeData" , "$http", "$window"];
   /* @ngInject */
-  function readNoticeCtrl($scope, $uibModalInstance, noticeData, $http) {
+  function readNoticeCtrl($scope, $uibModalInstance, noticeData, $http, $window) {
     // $scope.showImage = [];
     $scope.notice = noticeData;
     for(var index=0 ;index< $scope.notice.attachmentUrl.length ; index++){
@@ -255,20 +256,20 @@
 
 
     $scope.downloadAttachment = function(downloadUrl , name){
-      console.log('dsa')
-      $http({method: 'GET', url: downloadUrl}).
-      success(function(data, status, headers, config) {
-        var anchor = angular.element('<a/>');
-        anchor.css({display: 'none'}); // Make sure it's not visible
-        angular.element(document.body).append(anchor); // Attach to document
-        anchor.attr({
-          href: 'data:attachment/csv;charset=utf-8,' + encodeURIComponent(data),
-          target: '_blank',
-          download: name
-        })[0].click();
-
-        anchor.remove(); // Clean it up afterwards
-      })
+      $window.open(downloadUrl);
+      // $http({method: 'GET', url: downloadUrl}).
+      // success(function(data, status, headers, config) {
+      //   var anchor = angular.element('<a/>');
+      //   anchor.css({display: 'none'}); // Make sure it's not visible
+      //   angular.element(document.body).append(anchor); // Attach to document
+      //   anchor.attr({
+      //     href: 'data:attachment/csv;charset=utf-8,' + encodeURIComponent(data),
+      //     target: '_blank',
+      //     download: name
+      //   })[0].click();
+      //
+      //   anchor.remove(); // Clean it up afterwards
+      // })
     };
 
     $scope.ok = function () {
