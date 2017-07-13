@@ -40,6 +40,8 @@
       vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+
 
       complaintFactory.societyList().then(function (response) {
         if(response.status == 200){
@@ -60,6 +62,7 @@
       vm.hideMsg = true;
       if(vm.flat.society == undefined){
         vm.progress = false;
+        vm.hideMsg = false;
         vm.message = "No data available";
       }
       else {

@@ -36,6 +36,9 @@
         else if(vm.roleName == "ROLE_SOCIETY_CREATOR"){
           vm.roleName = "CREATOR";
         }
+        else if(vm.roleName == "ROLE_METER_MANAGEMENT"){
+          vm.roleName = "METER MANAGER";
+        }
       }
     };
 

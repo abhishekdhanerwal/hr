@@ -47,7 +47,7 @@
           <!--<div class="panel-body">-->
           <div class="row margin-bottom-10">
             <div class="col-md-12">
-              <a ui-sref="app.addComplaint" ng-if="!vm.isSuperAdminRole"
+              <a ui-sref="app.addComplaint" ng-if="!vm.isSuperAdminRole && !vm.isMeterManagementRole"
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
                 Complaint</a>

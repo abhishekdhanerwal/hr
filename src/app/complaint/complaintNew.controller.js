@@ -6,13 +6,17 @@
     .module('app.complaint')
     .controller('ComplaintNewCtrl', ComplaintNewCtrl);
 
-  ComplaintNewCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'role', 'complaintFactory', '$state', 'validationHelperFactory', 'toaster'];
+  ComplaintNewCtrl.$inject = [ 'NgTableParams', '$filter', '$document', 'role', 'complaintFactory', '$state', 'validationHelperFactory', 'toaster', '$localStorage'];
   /* @ngInject */
-  function ComplaintNewCtrl( NgTableParams, $filter, $document, role, complaintFactory, $state, validationHelperFactory , toaster) {
+  function ComplaintNewCtrl( NgTableParams, $filter, $document, role, complaintFactory, $state, validationHelperFactory , toaster, $localStorage) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.searchFlat = searchFlat;
+    vm.onSelect = onSelect;
+    vm.clearFlat = clearFlat;
     vm.submit = submit;
     vm.reset = reset;
+    vm.disableFlat = true;
 
     function breadcrumbRoute() {
       $state.go('app.notice')
@@ -30,6 +34,14 @@
       vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+
+      console.log($localStorage)
+
+      complaintFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
+        console.log(response.data);
+        vm.towerList = response.data;
+      })
 
       complaintFactory.flatList().then(function (response) {
         if(response.status == 200) {
@@ -52,6 +64,10 @@
       })
     };
 
+    vm.disableFlatInput = function(){
+      vm.disableFlat = false;
+    }
+
     vm.populateAssignToList = function(){
       complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
         if(response.status == 200) {
@@ -62,6 +78,33 @@
           $state.go('auth.signout')
         }
       });
+    }
+
+    function searchFlat(val){
+      return complaintFactory.searchFlat(val, vm.tower).then(function (response) {
+        if(response.status == 200) {
+          console.log(response)
+          var params = {
+            query: val
+          };
+          return response.data.map(function (item) {
+            return item;
+          })
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
+    }
+
+    function onSelect($item, $model, $label) {
+      vm.complaint.address.tower = $item.tower;
+      vm.complaint.address.flat = $item.flat;
+    };
+
+    function clearFlat(){
+      console.log('hn')
+      vm.complaint.registerFor = '';
     }
 
     function reset() {
@@ -75,6 +118,7 @@
     };
 
     function submit() {
+
       var firstError = null;
 
       if (vm.Form.$invalid) {
@@ -104,7 +148,6 @@
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {
