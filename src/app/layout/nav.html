@@ -3,7 +3,7 @@
   <span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
 </div>
 <ul class="main-navigation-menu" ng-controller="NavController as vm">
-  <li ui-sref-active="active" ng-if="!vm.isCreatorRole && !vm.isMeterManagementRole">
+  <li ui-sref-active="active" ng-if="!vm.isCreatorRole && !vm.isMeterManagementRole && !vm.isSuperAdminRole">
     <a ui-sref="app.notice">
       <div class="item-content">
         <div class="item-media">

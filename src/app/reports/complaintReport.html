@@ -37,7 +37,7 @@
           <!--<div class="panel-body">-->
           <ng-form name="vm.Form" role="Form" id="Form" class="form-inline" novalidate>
             <div class="row">
-              <div class="col-md-4 col-lg-4" ng-if="!vm.isAdminRole">
+              <div class="col-md-4 col-lg-4" ng-if="!vm.isAdminRole || !vm.isManagementRole || !vm.isMeterManagementRole">
                 <div class="form-group">
                   <label class="control-label">
                     Society : <span class="symbol required"></span>
@@ -119,12 +119,12 @@
           <table ng-table="vm.tableParams" show-filter="true" class="table table-striped table-bordered">
             <tr ng-repeat="row in $data">
 
-              <td data-title="'Created Date'" sortable="'createdOn'" filter="{ 'createdOn' : 'text' }">
-                {{row.createdOn | date: 'dd/MM/yyyy hh:mm'}}</td>
-              <td data-title="'Complaint Type'">{{row.complaintType}}</td>
+              <td data-title="'Created Date'">{{row.createdOn | date: 'dd/MM/yyyy hh:mm'}}</td>
+              <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+              <td data-title="'Status'" ng-if="vm.complaint.status == 'All'">{{row.status}}</td>
               <td data-title="'Resident Name'">{{row.registerFor.user.name}}</td>
-              <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
-              <td data-title="'Description'">{{row.description}}</td>
+              <td data-title="'Assigned To'" sortable="'assignee'" filter="{ 'assignee' : 'text' }">{{row.assignee}}</td>
+              <td data-title="'Description'" style="word-break:break-all; width:250px;">{{row.description}}</td>
               <td data-title="'Address'">{{row.registerFor.tower}}{{','}}{{row.registerFor.flatNo}}</td>
               <td data-title="'Resolved Date'">{{row.resolvedOn | date: 'dd/MM/yyyy hh:mm'}}</td>
 

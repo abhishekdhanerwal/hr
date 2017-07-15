@@ -19,6 +19,7 @@
       $state.go('app.notice')
     }
 
+    activate();
 
     function activate() {
       vm.isSuperAdminRole = role.isSuperAdminRole();

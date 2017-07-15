@@ -36,8 +36,7 @@
       complaintReportFactory.societyList().then(function (response) {
         if(response.status == 200){
           vm.society = response.data;
-          console.log(vm.society)
-          if(vm.isAdminRole){
+          if(vm.isAdminRole || vm.isManagementRole || vm.isMeterManagementRole){
             vm.complaint ={};
             vm.complaint.society={};
             vm.complaint.society.id = $localStorage._identity.principal.societyId;
@@ -85,15 +84,11 @@
 
           if(response.status == 200){
             vm.master = response.data;
-            console.log(response.data)
-            // for ( var index =0 ; index < vm.master.length ; index ++){
-            //
-            //   var createdOn= vm.master[index].createdOn.split(" ");
-            //   var temp1 = createdOn[1].split(":");
-            //   var temp = createdOn[0].split("/");
-            //   vm.master[index].createdOn = new Date(temp[2], temp[1]-1 , temp[0], temp1[0] , temp1[1]);
-            //
-            // }
+            for(var i=0; i<vm.master.length; i++){
+              vm.master[i].assignee = "";
+              vm.master[i].assignee = vm.master[i].assignedTo.name;
+            }
+            console.log(vm.master)
             reportList();
           }
           else if (response.status == -1) {
@@ -126,7 +121,8 @@
             lastModified: 'asc' // initial sorting
           }, // count per page
           filter: {
-            createdOn: '' // initial filter
+            complaintType: '',
+            assignee: ''
           }
         }, {
           // total: data.length,

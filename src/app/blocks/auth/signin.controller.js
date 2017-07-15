@@ -16,11 +16,15 @@
       principal.signin(vm.user, vm.password).then(function (user) {
 
         vm.isCreatorRole = role.isCreatorRole();
+        vm.isSuperAdminRole = role.isSuperAdminRole();
 
         if(vm.isCreatorRole){
             $state.go('app.society');
           }
-          else if(!vm.isCreatorRole) {
+          else if(vm.isSuperAdminRole){
+          $state.go('app.complaint')
+        }
+          else if(!vm.isCreatorRole && !vm.isSuperAdminRole) {
             $state.go('app.notice');
           }
 

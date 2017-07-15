@@ -6,9 +6,9 @@
     .module('app.complaint')
     .controller('ComplaintListCtrl', ComplaintListCtrl);
 
-  ComplaintListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
+  ComplaintListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'SweetAlert', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
   /* @ngInject */
-  function ComplaintListCtrl( NgTableParams, $state, $localStorage, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function ComplaintListCtrl( NgTableParams, $state, $localStorage, $filter, SweetAlert, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.resolved = resolved;
     vm.active = active;
@@ -287,5 +287,13 @@
           }
         });
     }
+
+    // vm.toggleStatus = function () {
+    //   vm.progress = false;
+    //   SweetAlert.swal({
+    //     title: "fmk",
+    //     text: vm.master.description
+    //   })
+    // };
   }
 })();

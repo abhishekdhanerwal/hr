@@ -36,17 +36,13 @@
       vm.isConsumerRole = role.isConsumerRole();
       vm.isMeterManagementRole = role.isMeterManagementRole();
 
-      console.log($localStorage)
-
       complaintFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
-        console.log(response.data);
         vm.towerList = response.data;
       })
 
       complaintFactory.flatList().then(function (response) {
         if(response.status == 200) {
           vm.flat = response.data;
-          console.log(vm.flat)
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -56,7 +52,6 @@
       complaintFactory.loadTypeDetails().then(function (response) {
         if(response.status == 200) {
           vm.complaintType = response.data;
-          console.log(vm.complaintType)
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -72,7 +67,9 @@
       complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
         if(response.status == 200) {
           vm.assignTo = response.data;
-          console.log(vm.assignTo)
+          // if(vm.complaint.complaintType == 'Meter'){
+          //   vm.complaint.assignedTo = 'Deepak';
+          // }
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -103,7 +100,6 @@
     };
 
     function clearFlat(){
-      console.log('hn')
       vm.complaint.registerFor = '';
     }
 

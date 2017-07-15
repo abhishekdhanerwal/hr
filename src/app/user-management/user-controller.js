@@ -44,7 +44,6 @@
           // for(var i=0; i<vm.society.length; i++) {
           //   vm.user.SocietyId = vm.society.id;
           // }
-          console.log(vm.society)
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -66,7 +65,6 @@
         vm.progress = false;
         if(response.status == 200) {
           vm.roles = response.data;
-          console.log(vm.roles)
           vm.rolesList = [];
           for(var index=0 ; index<vm.roles.length ; index++){
             var temp = vm.roles[index].split("_");
@@ -80,8 +78,6 @@
             else
               vm.rolesList.push(vm.roles[index]);
           }
-          console.log(vm.rolesList)
-          console.log(vm.roles)
           vm.roles.splice(0,1);
           vm.rolesList.splice(0, 1);
           if (vm.isSuperAdminRole) {
@@ -126,8 +122,7 @@
 
       var firstError = null;
       for(var index=0 ; index < vm.rolesList.length ; index++){
-        console.log(vm.user.role)
-        if(vm.rolesList[index] == vm.user.role)
+        if(vm.rolesList[index] == vm.userRole)
           vm.user.role = vm.roles[index];
       }
       if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
@@ -135,7 +130,7 @@
         vm.errorMessage = 'Validation Error';
         return;
       }
-      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid)
+      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_METER_MANAGEMENT" && vm.Form.society.$invalid)
       {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -146,7 +141,6 @@
         vm.user.societyId = vm.user.society.id;
         }
         userFactory.save(vm.user).then(function (response) {
-          console.log(vm.user);
           if (response.status == 201) {
             console.log(response)
             toaster.info('User Saved');
@@ -187,6 +181,7 @@
       vm.user.role = null;
       vm.user.owner = null;
       vm.user.tenant = null;
+      vm.userRole = null;
 
 
       vm.Form.$setPristine();
