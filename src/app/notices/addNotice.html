@@ -216,7 +216,18 @@
                       <label class="text-bold">Attached Files</label><br>
                       <div class="row">
                         <div ng-repeat="url in vm.notice.attachmentUrl" class="col-md-3">
-                          <img ng-src="{{url}}" class="media-object" width="80%" height="200px" alt="image"/>
+
+                          <img ng-if="url.split('.').pop() == 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||
+                            url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff'"
+                               ng-src="{{url}}" class="media-object" width="80%" height="200px" alt="image"/>
+
+                          <a ng-click="vm.downloadAttachment(url)" ><img ng-if="url.split('.').pop() != 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||
+                            url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff' "
+                            src="../../images/defaultAttachment.jpg" class="media-object" width="80%" height="200px" alt="image"/></a>
+                          <figcaption ng-if="url.split('.').pop() != 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||
+                            url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff' ">
+                            {{url.split('/').pop()}}</figcaption>
+
                           <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-4">
