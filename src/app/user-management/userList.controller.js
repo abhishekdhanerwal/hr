@@ -66,6 +66,7 @@
               self.userList[i].role = "ELECTRICIAN"
             }
           }
+          userAddress();
           listView();
         }
         else if (response.status == -1) {
@@ -87,6 +88,18 @@
         }
       })
     };
+
+    function userAddress() {
+      console.log(self.userList.id)
+      userFactory.userAddress(self.userList.id).then(function(response){
+        if(response.status == 200){
+          self.userList.address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+        }
+        else if(response.status == 401){
+          $state.go('auth.signout')
+        }
+      })
+    }
 
     function listView(){
       self.tableParams = new NgTableParams(

@@ -86,7 +86,7 @@
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.address.$dirty && vm.Form.address.$invalid, 'has-success':vm.Form.address.$valid}">
                     <label class="control-label"> Address </label>
-                    <input type="text" placeholder="Enter your Address" class="form-control" name="address"
+                    <input ng-readonly="true" type="text" placeholder="Enter your Address" class="form-control" name="address"
                            ng-model="vm.user.address" ng-maxlength=500 required/>
                     <!--<span class="error text-small block"-->
                           <!--ng-if="vm.Form.address.$dirty && vm.Form.address.$error.required && vm.user.role == 'ROLE_CONSUMER'">Address is required</span>-->
