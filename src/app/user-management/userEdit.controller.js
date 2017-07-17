@@ -49,8 +49,7 @@
             else
               vm.rolesList.push(vm.roles[index]);
           }
-          console.log(vm.rolesList)
-          console.log(vm.roles)
+
           vm.roles.splice(0,1);
           vm.rolesList.splice(0, 1);
           if (vm.isSuperAdminRole) {
@@ -137,10 +136,8 @@
           for(var i=0; i<vm.society.length; i++) {
             if(vm.society[i].id == vm.user.societyId){
               vm.user.society = vm.society[i];
-              console.log(vm.user.society)
             };
           }
-          console.log(vm.society)
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -163,7 +160,6 @@
       var firstError = null;
 
       for(var index=0 ; index < vm.rolesList.length ; index++){
-        console.log(vm.user.role)
         if(vm.rolesList[index] == vm.user.role)
           vm.user.role = vm.roles[index];
       }
@@ -175,7 +171,7 @@
         return;
 
       }
-      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid)
+      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_METER_MANAGEMENT" && vm.Form.society.$invalid)
       {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';

@@ -79,7 +79,7 @@
 
                 <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
-                <td data-title="'Complaint Text'">{{row.description | limitTo:30}}</td>
+                <td data-title="'Complaint Text'" style="word-break:break-all; width:270px;">{{row.description}}</td>
 
                 <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 
@@ -109,6 +109,7 @@
                 </td>
               </tr>
             </table>
+
           </div>
           <!--</div>-->
           <!--</div>-->

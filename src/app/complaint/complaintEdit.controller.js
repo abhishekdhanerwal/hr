@@ -109,8 +109,8 @@
     };
 
     function changeStatus(){
-      if(!vm.isConsumerRole && vm.complaint.statusList == 'New'){
-        vm.complaint.status = 'In Progress';
+      if(!vm.isConsumerRole && vm.complaint.status == 'New'){
+        vm.complaint.status = 'In Progress ';
       }
     }
 
@@ -119,10 +119,17 @@
         if (response.status == 200) {
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
-          console.log(vm.complaint.registerFor.tower)
           for(var i=0; i<vm.status.length; i++){
             if(vm.status[i] == vm.complaint.status){
               vm.complaint.status = vm.statusList[i];
+            }
+          }
+          if(vm.isAdminRole || vm.isManagementRole){
+            for(i=0; i<vm.status.length; i++){
+              if(vm.status[i] == 'All'){
+                vm.statusList.splice(i,1);
+                vm.status.splice(i,1);
+              }
             }
           }
           if(vm.isConsumerRole && vm.complaint.status == 'New')
