@@ -196,11 +196,13 @@
     };
 
     function submit() {
+      vm.disableButton = true;
       console.log(vm.Form)
 
       if (vm.Form.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
+        vm.disableButton = false;
         return;
       }
       else {
@@ -228,7 +230,7 @@
         console.log(vm.notice)
 
         noticeFactory.newNotice(vm.notice).then(function (response) {
-
+          vm.disableButton = false;
           if (response.status == 200) {
 
                 toaster.info('Notice Created');
@@ -263,6 +265,7 @@
     };
 
     function reset() {
+      vm.disableButton = true;
       vm.notice = null;
       vm.sms = null;
       vm.email = null;
@@ -270,6 +273,7 @@
       vm.audience = null;
       vm.errorMessage = null;
       noticeFactory.getSocietyUser().then(function (response) {
+        vm.disableButton = false;
         if (response.status == 200) {
           vm.societyUserList = response.data;
           tableData();
@@ -295,6 +299,11 @@
       })
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
+    }
+
+    vm.callButtonFunc = function () {
+      console.log('Hiii')
+      vm.disableButton = true;
     }
 
       var uploader = $scope.uploader = new FileUploader({
@@ -335,6 +344,7 @@
         console.info('onSuccessItem', fileItem, response, status, headers);
       };
       uploader.onErrorItem = function (fileItem, response, status, headers) {
+        vm.disableButton = false;
         toaster.error('Attachment Not Saved');
         console.info('onErrorItem', fileItem, response, status, headers);
       };
@@ -342,10 +352,12 @@
         console.info('onCancelItem', fileItem, response, status, headers);
       };
       uploader.onCompleteItem = function (fileItem, response, status, headers) {
+        vm.disableButton = false;
         toaster.info('Attachment Saved');
         console.info('onCompleteItem', fileItem, response, status, headers);
       };
       uploader.onCompleteAll = function () {
+        vm.disableButton = false;
         console.info('onCompleteAll');
       };
 
