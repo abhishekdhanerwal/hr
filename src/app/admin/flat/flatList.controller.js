@@ -41,6 +41,7 @@
       vm.isCreatorRole = role.isCreatorRole();
 
       if($localStorage._identity !=null) {
+        vm.progress = false;
         $localStorage._identity.societyId = null;
       }
 

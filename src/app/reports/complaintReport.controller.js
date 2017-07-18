@@ -11,8 +11,7 @@
 
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
-    vm.progress = true;
-     //vm.complaint = {};
+    vm.complaint ={};
 
     function breadcrumbRoute() {
       $state.go('app.notice')
@@ -37,7 +36,6 @@
         if(response.status == 200){
           vm.society = response.data;
           if(vm.isAdminRole || vm.isManagementRole || vm.isMeterManagementRole){
-            vm.complaint ={};
             vm.complaint.society={};
             vm.complaint.society.id = $localStorage._identity.principal.societyId;
           }
@@ -51,6 +49,7 @@
       complaintReportFactory.loadStatusDetails().then(function (response) {
         if(response.status == 200){
           vm.status = response.data;
+          vm.complaint.status = vm.status[0];
         }
         else if(response.status == 401){
           $state.go('auth.signout');
@@ -84,9 +83,15 @@
 
           if(response.status == 200){
             vm.master = response.data;
+            console.log(vm.master)
             for(var i=0; i<vm.master.length; i++){
-              vm.master[i].assignee = "";
-              vm.master[i].assignee = vm.master[i].assignedTo.name;
+              if(vm.master[i].assignedTo != null){
+                vm.master[i].assignee = "";
+                vm.master[i].assignee = vm.master[i].assignedTo.name;
+              }
+              else{
+                vm.master[i].assignee = "";
+              }
             }
             console.log(vm.master)
             reportList();

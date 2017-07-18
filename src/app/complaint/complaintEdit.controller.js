@@ -11,6 +11,7 @@
   function ComplaintEditCtrl( NgTableParams, $filter, $document, complaintFactory, $state, validationHelperFactory, $stateParams , $localStorage, toaster, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.progress = true;
     vm.submit = submit;
     vm.reset = reset;
     vm.searchFlat = searchFlat;
@@ -36,6 +37,7 @@
       vm.isConsumerRole = role.isConsumerRole();
 
       complaintFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
+        vm.progress = false;
         console.log(response.data);
         vm.towerList = response.data
       })
@@ -53,16 +55,19 @@
 
       complaintFactory.loadTypeDetails().then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.complaintType = response.data;
           console.log(vm.complaintType)
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
       });
 
       complaintFactory.loadStatusDetails().then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.status = response.data;
           vm.statusList = [];
           for(var index=0 ; index<vm.status.length ; index++){
@@ -78,9 +83,18 @@
             else
               vm.statusList.push(vm.status[index]);
           }
+          if(vm.isAdminRole || vm.isManagementRole || vm.isConsumerRole){
+            for(var i=0; i<vm.status.length; i++){
+              if(vm.status[i] == 'All'){
+                vm.statusList.splice(i,1);
+                vm.status.splice(i,1);
+              }
+            }
+          }
           getEditInfo();
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
       });
@@ -90,6 +104,7 @@
     function searchFlat(val){
       return complaintFactory.searchFlat(val).then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           var params = {
             query: val
           };
@@ -98,23 +113,27 @@
           })
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
       });
     }
 
     function onSelect($item, $model, $label) {
+      vm.progress = false;
       vm.complaint.address.tower = $item.tower;
       vm.complaint.address.flat = $item.flat;
     };
 
     function changeStatus(){
+      vm.progress = false;
       if(!vm.isConsumerRole && vm.complaint.status == 'New'){
         vm.complaint.status = 'In Progress ';
       }
     }
 
     function getEditInfo(){
+      vm.progress = false;
       complaintFactory.findComplaint($stateParams.id).then(function (response) {
         if (response.status == 200) {
           vm.master = response.data;
@@ -124,14 +143,14 @@
               vm.complaint.status = vm.statusList[i];
             }
           }
-          if(vm.isAdminRole || vm.isManagementRole){
-            for(i=0; i<vm.status.length; i++){
-              if(vm.status[i] == 'All'){
-                vm.statusList.splice(i,1);
-                vm.status.splice(i,1);
-              }
-            }
-          }
+          // if(vm.isAdminRole || vm.isManagementRole || vm.isConsumerRole){
+          //   for(i=0; i<vm.status.length; i++){
+          //     if(vm.status[i] == 'All'){
+          //       vm.statusList.splice(i,1);
+          //       vm.status.splice(i,1);
+          //     }
+          //   }
+          // }
           if(vm.isConsumerRole && vm.complaint.status == 'New')
           {
             vm.statusList.splice(1,4);
@@ -143,9 +162,10 @@
             vm.status.splice(3,2);
             for(var i=0; i<vm.status.length; i++)
             {
-              if(vm.status[i]=='New')
+              if(vm.status[i]=='New') {
                 vm.statusList.splice(i,1);
                 vm.status.splice(i,1);
+              }
             }
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'Resolved')
@@ -209,6 +229,7 @@
     function populateAssignToList(complaintType){
       complaintFactory.userByComplaintType(complaintType).then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.assignTo = response.data;
           if (vm.complaint.assignedTo != null) {
             for (var index = 0; index < vm.assignTo.length; index++) {
@@ -223,6 +244,7 @@
           }
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
       });
@@ -239,6 +261,7 @@
     };
 
     function submit() {
+      vm.progress = true;
       var firstError = null;
 
       for(var index=0 ; index < vm.statusList.length ; index++){
@@ -247,6 +270,7 @@
       }
 
       if (vm.Form.$invalid) {
+        vm.progress = false;
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -258,24 +282,29 @@
           console.log(response.data);
 
           if (response.status == 200) {
+            vm.progress = false;
             toaster.info('Complaint updated');
             vm.message = "Complaint updated";
             $state.go('app.complaint',{msg:vm.message});
           }
           else if (response.status == -1) {
+            vm.progress = false;
             vm.errorMessage = 'Network Error';
             toaster.error('Network Error', 'error');
             console.error(response);
           }
           else if (response.status == 400) {
+            vm.progress = false;
             vm.errorMessage = response.data.message;
             toaster.error(response.data.message, 'error');
             console.error(response);
           }
           else if( response.status == 401){
+            vm.progress = false;
             $state.go('auth.signout')
           }
           else {
+            vm.progress = false;
             vm.errorMessage = 'Some problem';
             toaster.error('Some problem', 'error');
             console.error(response);

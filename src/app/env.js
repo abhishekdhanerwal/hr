@@ -8,7 +8,7 @@
       window.__env.dataServerUrl = 'http://ec2-54-167-53-75.compute-1.amazonaws.com:8000';
       window.__env.baseUrl = '/';
       window.__env.enableDebug = true;
-      window.__env.user = "9999999999";
+      window.__env.user = "";
       window.__env.password = "";
     }
     else  {

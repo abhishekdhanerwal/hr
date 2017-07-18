@@ -11,6 +11,7 @@
   function FlatNewCtrl( NgTableParams, $localStorage, role, $filter, $document, societyFactory, flatFactory, $state, validationHelperFactory , toaster, userFactory) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.progress = true;
     vm.userTenant = false;
     vm.submit = submit;
     vm.reset = reset;
@@ -36,10 +37,12 @@
     function activate() {
 
       if($localStorage._identity.societyId != null){
+        vm.progress = false;
         vm.SocietyFlatData = true;
         vm.flat.society.id = $localStorage._identity.societyId;
       }
       else{
+        vm.progress = false;
         vm.SocietyFlatData = false;
       }
 
@@ -51,10 +54,12 @@
 
       societyFactory.societyList().then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.society = response.data;
           console.log(vm.society)
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
       });
@@ -62,34 +67,41 @@
       flatFactory.findSociety($localStorage._identity.principal.societyId).then(function(response)
       {
         if (response.status == 200) {
+          vm.progress = false;
           vm.flat.society = response.data;
          // vm.flat.society.id = vm.societyById.admin.societyId;
         }
         else if (response.status == 401) {
+          vm.progress = false;
           $state.go('auth.signout')
         }
       });
 
         flatFactory.residentType().then(function (response) {
           if(response.status == 200) {
+            vm.progress = false;
             vm.residentType = response.data;
           }
           else if( response.status == 401){
+            vm.progress = false;
             $state.go('auth.signout')
           }
         });
 
       flatFactory.getRole().then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.roles = response.data;
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
       });
     };
 
     function validateDate(){
+      vm.progress = false;
       vm.minDate = new Date();
       console.log(m.minDate)
     }
@@ -107,6 +119,7 @@
     function userList(val){
       return flatFactory.searchUser(val).then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           var params = {
             query: val
           };
@@ -121,6 +134,7 @@
     }
 
     function onSelect($item, $model, $label) {
+      vm.progress = false;
       vm.flat.user.name = $item.name;
       vm.flat.user.email = $item.email;
       vm.flat.user.mobile = $item.mobile;
@@ -130,6 +144,7 @@
     };
 
     function clearUser(){
+      vm.progress = false;
       vm.flat.user= '';
     }
 
@@ -156,6 +171,7 @@
       }
 
       if (vm.Form.$invalid) {
+        vm.progress = false;
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -168,6 +184,7 @@
           console.log(vm.flat)
 
           if (response.status == 200) {
+            vm.progress = false;
             toaster.info('Flat Created');
             vm.message = "Flat Created";
             if(vm.SocietyFlatData) {
@@ -179,11 +196,13 @@
             // $state.go('app.flats', {msg: vm.message});
           }
           else if (response.status == -1) {
+            vm.progress = false;
             vm.errorMessage = 'Network Error';
             toaster.error('Network Error');
             console.error(response);
           }
           else if (response.status == 400) {
+            vm.progress = false;
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message);
             console.error( vm.errorMessage);

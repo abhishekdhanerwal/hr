@@ -11,6 +11,7 @@
   function UserEditCtrl( userFactory, $localStorage, $document, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.progress = true;
     vm.submit = submit;
     vm.reset = reset;
     vm.findSociety = findSociety;
@@ -35,6 +36,7 @@
 
       userFactory.getRole().then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.roles = response.data;
           vm.rolesList = [];
           for(var index=0 ; index<vm.roles.length ; index++){
@@ -86,6 +88,7 @@
 
       userFactory.finduser($stateParams.id).then(function (response) {
         if (response.status == 200) {
+          vm.progress = false;
           vm.user = response.data;
           for(var i=0; i<vm.roles.length; i++){
             if(vm.roles[i] == vm.user.role){
@@ -96,16 +99,19 @@
           findSociety();
         }
         else if (response.status == -1) {
+          vm.progress = false;
           toaster.error('Network Error');
           vm.errorMessage = "Network Error";
           console.error(response);
         }
         else if (response.status == 400) {
+          vm.progress = false;
           console.error(response);
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message);
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
         else {
@@ -132,6 +138,7 @@
     function findSociety(){
       userFactory.societyList().then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.society = response.data;
           for(var i=0; i<vm.society.length; i++) {
             if(vm.society[i].id == vm.user.societyId){

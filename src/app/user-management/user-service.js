@@ -62,7 +62,7 @@
     };
 
     service.userAddress = function (userID) {
-      var promise = $http.get(__env.dataServerUrl + '/flatByUser/'  + userID)
+      var promise = $http.get(__env.dataServerUrl + '/flatByUserId/'  + userID)
         .then(
           function (data) {
             console.log(data);

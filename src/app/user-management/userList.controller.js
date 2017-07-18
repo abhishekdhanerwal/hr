@@ -37,6 +37,8 @@
 
             if (self.userList[i].role == "ROLE_CONSUMER") {
               self.userList[i].role = "CONSUMER";
+              self.userId = self.userList[i].id;
+              console.log(self.userList[i])
             }
             else if (self.userList[i].role == "ROLE_ADMIN") {
               self.userList[i].role = "ADMIN"
@@ -90,10 +92,14 @@
     };
 
     function userAddress() {
-      console.log(self.userList.id)
-      userFactory.userAddress(self.userList.id).then(function(response){
+      console.log(self.userId)
+      userFactory.userAddress(self.userId).then(function(response){
         if(response.status == 200){
-          self.userList.address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+          for(var i=0; i<self.userList.length; i++){
+            if(self.userList[i].role == 'CONSUMER'){
+              self.userList[i].address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+            }
+          }
         }
         else if(response.status == 401){
           $state.go('auth.signout')
@@ -124,6 +130,7 @@
             }
 
             if (self.userList != null) {
+              console.log(self.userList)
 
               var filteredData = null;
               var orderedData = null;

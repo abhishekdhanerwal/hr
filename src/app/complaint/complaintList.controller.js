@@ -12,6 +12,8 @@
     var vm = this;
     vm.resolved = resolved;
     vm.active = active;
+    vm.activeMessage = false;
+    vm.resolvedMessage = false;
     vm.message = false;
     vm.progress = true;
     vm.flat = {};
@@ -59,10 +61,11 @@
     };
 
     function active() {
-      vm.hideMsg = true;
+      vm.resolvedMessage = false;
       if(vm.flat.society == undefined){
         vm.progress = false;
         vm.hideMsg = false;
+        vm.activeMessage = true;
         vm.message = "No data available";
       }
       else {
@@ -107,7 +110,8 @@
     };
 
      function resolved() {
-       vm.hideMsg = false;
+       vm.complaintMsg = "";
+       vm.activeMessage = false;
        complaintFactory.getResolvedComplaintByUser().then(function (response) {
 
          vm.progress = false;
@@ -124,7 +128,7 @@
              }
            }
            closedComplaint();
-           resolvedComplaintData();
+           // resolvedComplaintData();
          }
          else if (response.status == -1) {
            toaster.error('Network Error', 'error');
@@ -147,7 +151,6 @@
      };
 
       function closedComplaint(){
-        vm.hideMsg = false;
       complaintFactory.getClosedComplaintByUser().then(function (response) {
 
          vm.progress = false;
@@ -200,6 +203,8 @@
               vm.IsHidden=true;
             }
             else{
+              vm.activeMessage = true;
+              vm.complaintMsg = "";
               vm.message="No data available";
             }
 
@@ -234,7 +239,12 @@
 
     function resolvedComplaintData(){
       var complaintList = [];
-      complaintList = vm.masterResolved.concat(vm.masterClosed)
+      if(vm.masterResolved == ""){
+        complaintList = vm.masterClosed;
+      }
+      else{
+        complaintList = vm.masterResolved.concat(vm.masterClosed)
+      }
       vm.resolvedTableParams = new NgTableParams(
         {
           page: 1, // show first page
@@ -256,6 +266,7 @@
               vm.IsHidden=true;
             }
             else{
+              vm.resolvedMessage = true;
               vm.message="No data available";
             }
 

@@ -67,9 +67,9 @@
       complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
         if(response.status == 200) {
           vm.assignTo = response.data;
-          // if(vm.complaint.complaintType == 'Meter'){
-          //   vm.complaint.assignedTo = 'Deepak';
-          // }
+          if(vm.complaint.complaintType == 'Meter'){
+            vm.complaint.assignedTo = vm.assignTo[0];
+          }
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -104,6 +104,7 @@
     }
 
     function reset() {
+      vm.tower = '';
       vm.complaint = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
@@ -114,11 +115,12 @@
     };
 
     function submit() {
+      vm.progress = true;
 
       var firstError = null;
 
       if (vm.Form.$invalid) {
-
+        vm.progress = false;
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;
@@ -129,24 +131,29 @@
           console.log(response.data);
 
           if (response.status == 200) {
+            vm.progress = false;
             toaster.info('Complaint registered');
             vm.message = "Complaint registered";
             $state.go('app.complaint', {msg: vm.message});
           }
           else if (response.status == -1) {
+            vm.progress = false;
             vm.errorMessage = 'Network Error';
             toaster.error('Network Error', 'error');
             console.error(response);
           }
           else if (response.status == 400) {
+            vm.progress = false;
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message, 'error');
             console.error(response);
           }
           else if( response.status == 401){
+            vm.progress = false;
             $state.go('auth.signout')
           }
           else {
+            vm.progress = false;
             vm.errorMessage = 'Some problem';
             toaster.error('Some problem', 'error');
             console.error(response);

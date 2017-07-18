@@ -6,7 +6,9 @@
 </div>
 <!-- end: BREADCRUMB -->
 
-<div class="container-fluid container-fullw" style="min-height:550px;">
+<wave-spinner ng-show="vm.reportProgress" ></wave-spinner>
+
+<div ng-show="!vm.reportProgress" class="container-fluid container-fullw" style="min-height:550px;">
   <div class="row" ng-show="vm.errorMessage">
     <div class="col-md-12">
       <div class="alert alert-danger">
@@ -37,7 +39,7 @@
           <!--<div class="panel-body">-->
           <ng-form name="vm.Form" role="Form" id="Form" class="form-inline" novalidate>
             <div class="row">
-              <div class="col-md-4 col-lg-4" ng-if="!vm.isAdminRole || !vm.isManagementRole || !vm.isMeterManagementRole">
+              <div class="col-md-4 col-lg-4" ng-if="vm.isSuperAdminRole">
                 <div class="form-group">
                   <label class="control-label">
                     Society : <span class="symbol required"></span>
@@ -55,11 +57,10 @@
               <div class="col-md-4 col-lg-4">
                 <div class="form-group">
                   <label class="control-label">
-                    Status : <span class="symbol required"></span>
+                    Status :
                   </label><br>
                   <div ng-class="{'has-error':vm.Form.status.$dirty && vm.Form.status.$invalid, 'has-success':vm.Form.status.$valid}">
                     <select class="form-control" style="width:250px;" name="status" ng-model="vm.complaint.status" ng-options="complaint for complaint in vm.status" required>
-                      <option value="all">All</option>
                     </select>
                     <span class="error text-small block"
                           ng-if="vm.Form.status.$dirty && vm.Form.status.$error.required">Status is required.</span>
@@ -70,11 +71,11 @@
               <div class="col-md-4 col-lg-4">
                 <div class="form-group">
                   <label class="control-label">
-                    Date Range :<span class="symbol required"></span>
+                    Date Range :
                   </label>
                   <div class="input-group range-picker">
                     <div class="start-date" ng-class="{'has-error':vm.Form.start.$dirty && vm.Form.start.$invalid, 'has-success':vm.Form.start.$valid}">
-                      <input type="text" name="start" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.start" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true">
+                      <input type="text" name="start" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.start" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions">
 
                       <span class="error text-small block"
                             ng-if="vm.Form.start.$dirty && vm.Form.start.$error.required">Start Date is required.</span>
@@ -82,7 +83,7 @@
                     <span class="input-group-addon">to</span>
                     <div class="end-date"
                          ng-class="{'has-error':vm.Form.end.$dirty && vm.Form.end.$invalid, 'has-success':vm.Form.end.$valid}">
-                      <input type="text" name="end" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.end" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true">
+                      <input type="text" name="end" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.end" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions">
                       <span class="error text-small block"
                             ng-if="vm.Form.end.$dirty && vm.Form.end.$error.required">End Date is required.</span>
                     </div>
@@ -121,7 +122,7 @@
 
               <td data-title="'Created Date'">{{row.createdOn | date: 'dd/MM/yyyy hh:mm'}}</td>
               <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
-              <td data-title="'Status'" ng-if="vm.complaint.status == 'All'">{{row.status}}</td>
+              <td data-title="'Status'">{{row.status}}</td>
               <td data-title="'Resident Name'">{{row.registerFor.user.name}}</td>
               <td data-title="'Assigned To'" sortable="'assignee'" filter="{ 'assignee' : 'text' }">{{row.assignee}}</td>
               <td data-title="'Description'" style="word-break:break-all; width:250px;">{{row.description}}</td>
