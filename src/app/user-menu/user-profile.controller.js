@@ -79,7 +79,9 @@
 
         userProfileFactory.userAddress(id).then(function(response){
           if(response.status == 200){
-            vm.user.address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+            if(vm.user!=undefined){
+              vm.user.address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+            }
           }
           else if(response.status == 401){
             $state.go('auth.signout')

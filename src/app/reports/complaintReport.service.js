@@ -12,15 +12,28 @@
     var apiUser = __env.apiUser;
 
     service.getReports = function (status, start, end, id) {
-      var promise = $http.get(__env.dataServerUrl + '/complaint/reports?status=' + status + '&fromDate=' + start.toISOString() + '&toDate=' + end.toISOString() + '&societyId=' +id)
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
+      if(start != undefined){
+        var promise = $http.get(__env.dataServerUrl + '/complaint/reports?status=' + status + '&fromDate=' + start.toISOString() + '&toDate=' + end.toISOString() + '&societyId=' +id)
+          .then(
+            function (response) {
+              return response;
+            },
+            function (response) {
+              return response;
+            });
+        return promise;
+      }
+      else{
+        var promise = $http.get(__env.dataServerUrl + '/complaint/reports?status=' + status + '&societyId=' +id)
+          .then(
+            function (response) {
+              return response;
+            },
+            function (response) {
+              return response;
+            });
+        return promise;
+      }
     };
 
     service.loadStatusDetails = function () {

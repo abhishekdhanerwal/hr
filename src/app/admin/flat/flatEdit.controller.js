@@ -50,7 +50,6 @@
 
       flatFactory.societyList().then(function (response) {
         if(response.status == 200) {
-          vm.progress = false;
           vm.society = response.data;
           getEditInfo();
         }
@@ -61,7 +60,6 @@
 
       flatFactory.residentType().then(function (response) {
         if(response.status == 200) {
-          vm.progress = false;
           vm.residentType = response.data;
         }
         else if( response.status == 401){
@@ -98,16 +96,19 @@
           };
         }
         else if (response.status == -1) {
+          vm.progress = false;
           toaster.error('Network Error', 'error');
           vm.errorMessage = "Network Error";
           console.error(response);
         }
         else if (response.status == 400) {
+          vm.progress = false;
           console.error(response);
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message, 'error');
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
         else {
@@ -118,7 +119,7 @@
     };
 
     function reset() {
-      vm.progress = false;
+      vm.progress = true;
 
       // activate($stateParams.id)
       // activate(vm.flat)
@@ -131,7 +132,6 @@
     function userList(val){
       return flatFactory.searchUser(val).then(function (response) {
         if(response.status == 200) {
-          vm.progress = false;
           var params = {
             query: val
           };
@@ -146,7 +146,6 @@
     }
 
     function onSelect($item, $model, $label) {
-      vm.progress = false;
       vm.flat.user.name = $item.name;
       vm.flat.user.email = $item.email;
       vm.flat.user.mobile = $item.mobile;
@@ -157,7 +156,6 @@
 
 
       vm.clearUser = function() {
-        vm.progress = false;
         if(vm.disableResidentDetails == false) {
           vm.flat.user = '';
         }
