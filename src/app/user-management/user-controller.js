@@ -15,7 +15,15 @@
     vm.user = {};
 
     function breadcrumbRoute() {
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -32,10 +40,11 @@
     function activate() {
 
       vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
       userFactory.societyList().then(function (response) {
         vm.progress = false;

@@ -11,7 +11,15 @@
     self.progress = true;
 
     function breadcrumbRoute() {
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     activate();
@@ -27,6 +35,7 @@
       self.isManagementRole = role.isManagementRole();
       self.isConsumerRole = role.isConsumerRole();
       self.isCreatorRole = role.isCreatorRole();
+      self.isMeterManagementRole = role.isMeterManagementRole();
 
       userFactory.alluser().then(function (response) {
         self.progress = false;
@@ -38,7 +47,6 @@
             if (self.userList[i].role == "ROLE_CONSUMER") {
               self.userList[i].role = "CONSUMER";
               self.userId = self.userList[i].id;
-              console.log(self.userList[i])
             }
             else if (self.userList[i].role == "ROLE_ADMIN") {
               self.userList[i].role = "ADMIN"
@@ -93,13 +101,17 @@
 
     function userAddress() {
       console.log(self.userId)
-      userFactory.userAddress(self.userId).then(function(response){
+      for(var i=0; i<self.userList.length; i++){
+        if(self.userList[i].role == 'CONSUMER') {
+          addAddress(self.userList[i].id, i);
+        }
+      }
+    }
+
+    function addAddress(id, index) {
+      userFactory.userAddress(id).then(function(response){
         if(response.status == 200){
-          for(var i=0; i<self.userList.length; i++){
-            if(self.userList[i].role == 'CONSUMER'){
-              self.userList[i].address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
-            }
-          }
+          self.userList[index].address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
         }
         else if(response.status == 401){
           $state.go('auth.signout')

@@ -11,14 +11,22 @@
   function ChangePasswordController($q, changePasswordFactory, $state, toaster, validationHelperFactory, $location, $stateParams, $localStorage, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.isAdminRole = role.isAdminRole();
+    vm.isSuperAdminRole = role.isSuperAdminRole();
+    vm.isConsumerRole = role.isConsumerRole();
+    vm.isManagementRole = role.isManagementRole();
     vm.isCreatorRole = role.isCreatorRole();
+    vm.isMeterManagementRole = role.isMeterManagementRole();
 
     function breadcrumbRoute() {
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 

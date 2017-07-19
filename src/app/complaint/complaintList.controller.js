@@ -22,7 +22,15 @@
     vm.complaintMsg = $stateParams.msg;
 
     function breadcrumbRoute(){
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideComplaintBox = function () {
@@ -39,11 +47,11 @@
 
     function activate() {
       vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
       vm.isMeterManagementRole = role.isMeterManagementRole();
-
 
       complaintFactory.societyList().then(function (response) {
         if(response.status == 200){

@@ -16,11 +16,14 @@
     vm.flatMsg = $stateParams.msg;
 
     function breadcrumbRoute(){
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 
@@ -38,7 +41,12 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
       if($localStorage._identity != null) {
         $localStorage._identity.societyId = $stateParams.id;

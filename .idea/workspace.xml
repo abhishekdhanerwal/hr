@@ -5,10 +5,20 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/FlatData.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/society/FlatData.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/blocks/auth/forgot.controller.js" afterPath="$PROJECT_DIR$/src/app/blocks/auth/forgot.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/blocks/auth/login_forgot.html" afterPath="$PROJECT_DIR$/src/app/blocks/auth/login_forgot.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/complaintReport.service.js" afterPath="$PROJECT_DIR$/src/app/reports/complaintReport.service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/society.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/society/society.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/societyList.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/society/societyList.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js" afterPath="$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" afterPath="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-management/user-controller.js" afterPath="$PROJECT_DIR$/src/app/user-management/user-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-management/userEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/user-management/userEdit.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-management/userList.controller.js" afterPath="$PROJECT_DIR$/src/app/user-management/userList.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-menu/changePassword.controller.js" afterPath="$PROJECT_DIR$/src/app/user-menu/changePassword.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js" afterPath="$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -30,11 +40,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="user-profile.controller.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js">
+      <file leaf-file-name="userList.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/user-management/userList.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="82" column="100" lean-forward="false" selection-start-line="82" selection-start-column="100" selection-end-line="82" selection-end-column="100" />
+            <state relative-caret-position="254">
+              <caret line="108" column="5" lean-forward="true" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signin.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="complaintEdit.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="548">
+              <caret line="46" column="62" lean-forward="true" selection-start-line="41" selection-start-column="6" selection-end-line="46" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -111,11 +141,7 @@
         <option value="$PROJECT_DIR$/src/app/admin/society/societyEdit.html" />
         <option value="$PROJECT_DIR$/src/app/admin/society/societyNew.html" />
         <option value="$PROJECT_DIR$/src/app/notices/notice.html" />
-        <option value="$PROJECT_DIR$/src/app/notices/noticeEdit.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/notices/noticeNew.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-menu/user-profile.html" />
-        <option value="$PROJECT_DIR$/src/app/admin/society/societyList.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/user-menu/changePassword.controller.js" />
         <option value="$PROJECT_DIR$/src/app/layout/sidebar.controller.js" />
         <option value="$PROJECT_DIR$/src/app/blocks/auth/role.service.js" />
         <option value="$PROJECT_DIR$/src/app/admin/flat/flatEdit.html" />
@@ -123,35 +149,39 @@
         <option value="$PROJECT_DIR$/src/app/complaint/complaint.service.js" />
         <option value="$PROJECT_DIR$/src/app/admin/flat/flatNew.html" />
         <option value="$PROJECT_DIR$/src/app/user-management/list.html" />
-        <option value="$PROJECT_DIR$/src/app/notices/noticeList.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/user-management/user-controller.js" />
         <option value="$PROJECT_DIR$/src/app/blocks/auth/principal.service.js" />
-        <option value="$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js" />
         <option value="$PROJECT_DIR$/src/app/layout/nav.html" />
         <option value="$PROJECT_DIR$/src/app/user-management/user.edit.html" />
         <option value="$PROJECT_DIR$/src/app/user-management/create_user.html" />
         <option value="$PROJECT_DIR$/src/app/user-management/user-service.js" />
-        <option value="$PROJECT_DIR$/src/app/user-management/userList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/env.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/society/society.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/user-management/userEdit.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/reports/complaintReport.html" />
-        <option value="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/complaint/addComplaint.html" />
         <option value="$PROJECT_DIR$/src/app/complaint/editComplaint.html" />
-        <option value="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
         <option value="$PROJECT_DIR$/src/app/complaint/manageComplaint.html" />
-        <option value="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/society/FlatData.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/complaintReport.service.js" />
         <option value="$PROJECT_DIR$/src/app/blocks/auth/login_forgot.html" />
         <option value="$PROJECT_DIR$/src/app/blocks/auth/forgot.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/society/FlatData.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/society/society.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/admin/society/societyList.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/notices/noticeNew.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/notices/noticeList.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/notices/noticeEdit.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/user-management/user-controller.js" />
+        <option value="$PROJECT_DIR$/src/app/user-management/userEdit.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/user-menu/changePassword.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/user-management/userList.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/reports/complaintReport.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/reports/complaintReport.html" />
+        <option value="$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js" />
       </list>
     </option>
   </component>
@@ -325,7 +355,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user-menu" />
+              <option name="myItemId" value="complaint" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -369,7 +399,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
+              <option name="myItemId" value="blocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -387,7 +421,7 @@
     <property name="editor.config.accepted" value="true" />
     <property name="js.eslint.eslintPackage" value="C:\GitCOde\smsUi\node_modules\eslint" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="env&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;env.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;na&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;config&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;nav&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;role&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/role.service.js&#10;sidebar&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;side&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;top&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/top-navbar.html&#10;sig&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.hhtml&#9;null&#9;null&#10;configr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;princi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;navbar.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/bootstrap-rtl/examples/rtl/navbar.html&#10;notice&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/notices/noticeNew.controller.js&#10;princ&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;form&#9;FILE&#9;file://C:/GitCOde/smsUi/src/views/form_pickers.html&#10;env.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;auth&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/authorization.service.js&#10;user&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-menu/user-profile.html&#10;com&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/addComplaint.html&#10;conf&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;flat&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatEdit.html&#10;society&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyList.html&#10;confi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;fl&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatNew.controller.js&#10;societyN&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyNew.html&#10;socie&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/society.controller.js&#10;list.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/list.html&#10;sideb&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;complaint&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;compla&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/complaintList.controller.js&#10;ma&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;side\&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;principal&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;pri&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;pr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;sign&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;edit&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user.edit.html&#10;sideba&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;create&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/create_user.html&#10;autho&#9;null&#9;null&#10;footer&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/footer.html&#10;inde&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;manage&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;sid&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js" />
+    <property name="SearchEverywhereHistoryKey" value="role&#9;null&#9;null&#10;env&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;env.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;na&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;config&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;nav&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;sidebar&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;side&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;top&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/top-navbar.html&#10;sig&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.hhtml&#9;null&#9;null&#10;configr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;princi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;navbar.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/bootstrap-rtl/examples/rtl/navbar.html&#10;notice&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/notices/noticeNew.controller.js&#10;princ&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;form&#9;FILE&#9;file://C:/GitCOde/smsUi/src/views/form_pickers.html&#10;env.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;auth&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/authorization.service.js&#10;user&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-menu/user-profile.html&#10;com&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/addComplaint.html&#10;conf&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;flat&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatEdit.html&#10;society&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyList.html&#10;confi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;fl&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatNew.controller.js&#10;societyN&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyNew.html&#10;socie&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/society.controller.js&#10;list.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/list.html&#10;sideb&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;complaint&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;compla&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/complaintList.controller.js&#10;ma&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;side\&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;principal&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;pri&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;pr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;sign&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;edit&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user.edit.html&#10;sideba&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;create&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/create_user.html&#10;autho&#9;null&#9;null&#10;footer&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/footer.html&#10;inde&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;manage&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html&#10;sid&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="C:\GitCOde\smsUi\node_modules\gulp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -496,12 +530,12 @@
       <workItem from="1500099444853" duration="6498000" />
       <workItem from="1500269262820" duration="4514000" />
       <workItem from="1500275052714" duration="25824000" />
-      <workItem from="1500374431320" duration="6195000" />
+      <workItem from="1500374431320" duration="12300000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="993403000" />
+    <option name="totallyTimeSpent" value="999508000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,7 +558,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5237316" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -600,48 +634,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/layout/nav.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flat.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="105" column="13" lean-forward="true" selection-start-line="105" selection-start-column="13" selection-end-line="105" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="193" column="97" lean-forward="false" selection-start-line="193" selection-start-column="97" selection-end-line="193" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaint.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
-          <caret line="86" column="20" lean-forward="false" selection-start-line="86" selection-start-column="12" selection-end-line="86" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/notices/noticeList.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/user-management/user-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1216">
-          <caret line="188" column="6" lean-forward="true" selection-start-line="188" selection-start-column="6" selection-end-line="188" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/principal.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
@@ -674,6 +666,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="98" column="22" lean-forward="true" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -681,6 +674,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="100" column="33" lean-forward="true" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -716,13 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="196" column="100" lean-forward="false" selection-start-line="196" selection-start-column="91" selection-end-line="196" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/notices/noticeNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -748,49 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="140" column="21" lean-forward="false" selection-start-line="137" selection-start-column="4" selection-end-line="140" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/society.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="15" lean-forward="true" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="123" column="28" lean-forward="false" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyList.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="53" column="28" lean-forward="true" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/user-management/userEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="165" column="23" lean-forward="false" selection-start-line="165" selection-start-column="23" selection-end-line="165" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/complaint/complaint.module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -802,28 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-422">
           <caret line="152" column="60" lean-forward="true" selection-start-line="152" selection-start-column="60" selection-end-line="152" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="272" column="28" lean-forward="true" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="84" column="22" lean-forward="true" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintList.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="206" column="35" lean-forward="true" selection-start-line="206" selection-start-column="35" selection-end-line="206" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -843,14 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-998">
-          <caret line="78" column="32" lean-forward="false" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
@@ -859,42 +773,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="81" column="71" lean-forward="false" selection-start-line="81" selection-start-column="66" selection-end-line="81" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/FlatData.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="133" column="17" lean-forward="true" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatEdit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2913">
-          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/user-management/userList.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="101" column="11" lean-forward="true" selection-start-line="101" selection-start-column="11" selection-end-line="101" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -923,14 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="24" column="36" lean-forward="true" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/login_forgot.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -941,26 +815,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/complaint/addComplaint.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/forgot.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -973,10 +831,202 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="14" lean-forward="true" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/role.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="48" column="62" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="48" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="48" column="62" lean-forward="false" selection-start-line="48" selection-start-column="62" selection-end-line="48" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="49" column="14" lean-forward="false" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/society.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-709">
+          <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/signout.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/forgot.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyList.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="26" column="7" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="26" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="46" column="62" lean-forward="false" selection-start-line="46" selection-start-column="62" selection-end-line="46" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/FlatData.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="48" column="62" lean-forward="true" selection-start-line="43" selection-start-column="6" selection-end-line="48" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/notices/noticeList.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/notices/noticeEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/user-menu/changePassword.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="32" column="35" lean-forward="true" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/user-management/userEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="27" column="7" lean-forward="false" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="29" column="7" lean-forward="true" selection-start-line="21" selection-start-column="6" selection-end-line="29" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintList.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="53" column="62" lean-forward="false" selection-start-line="53" selection-start-column="62" selection-end-line="53" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/user-menu/user-profile.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="82" column="100" lean-forward="false" selection-start-line="82" selection-start-column="100" selection-end-line="82" selection-end-column="100" />
+        <state relative-caret-position="334">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/notices/noticeNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="23" column="46" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/user-management/user-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="29" column="30" lean-forward="true" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="117" column="41" lean-forward="true" selection-start-line="117" selection-start-column="41" selection-end-line="117" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/complaintReport.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="134" column="24" lean-forward="false" selection-start-line="134" selection-start-column="12" selection-end-line="134" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/user-management/userList.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="108" column="5" lean-forward="true" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="46" column="62" lean-forward="true" selection-start-line="41" selection-start-column="6" selection-end-line="46" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/blocks/auth/signin.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
           <folding />
         </state>
       </provider>

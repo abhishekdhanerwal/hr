@@ -24,7 +24,15 @@
     vm.flat.society = {};
 
     function breadcrumbRoute(){
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -36,6 +44,13 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+
       if($localStorage._identity.societyId != null){
         vm.progress = false;
         vm.SocietyFlatData = true;
@@ -45,12 +60,6 @@
         vm.progress = false;
         vm.SocietyFlatData = false;
       }
-
-      vm.isAdminRole = role.isAdminRole();
-      vm.isSuperAdminRole = role.isSuperAdminRole();
-      vm.isConsumerRole = role.isConsumerRole();
-      vm.isManagementRole = role.isManagementRole();
-      vm.isCreatorRole = role.isCreatorRole();
 
       societyFactory.societyList().then(function (response) {
         if(response.status == 200) {
