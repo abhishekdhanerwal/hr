@@ -132,7 +132,7 @@
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-            lastModified: 'desc' // initial sorting
+            createdOn: 'desc' // initial sorting
           }, // count per page
           filter: {
             complaintType: '',

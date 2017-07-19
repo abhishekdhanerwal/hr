@@ -120,7 +120,7 @@
           <table ng-table="vm.tableParams" show-filter="true" class="table table-striped table-bordered">
             <tr ng-repeat="row in $data">
 
-              <td data-title="'Created Date'">{{row.createdOn | date: 'dd/MM/yyyy hh:mm'}}</td>
+              <td data-title="'Created Date'" sortable="'createdOn'">{{row.createdOn | date: 'dd/MM/yyyy hh:mm'}}</td>
               <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
               <td data-title="'Status'">{{row.status}}</td>
               <td data-title="'Resident Name'">{{row.registerFor.user.name}}</td>
