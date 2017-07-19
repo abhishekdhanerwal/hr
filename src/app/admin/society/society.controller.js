@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('SocietyNewCtrl', SocietyNewCtrl);
 
-  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster'];
+  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster', 'role'];
   /* @ngInject */
-  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster) {
+  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.message = false;
