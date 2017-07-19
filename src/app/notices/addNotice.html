@@ -213,29 +213,38 @@
                   <div class="panel panel-white">
                     <div class="panel-body">
 
-                      <label class="text-bold">Attached Files</label><br>
+                      <label class="text-bold">Attached Files</label><br><br />
                       <div class="row">
-                        <div ng-repeat="url in vm.notice.attachmentUrl" class="col-md-3">
+                        <div ng-repeat="url in vm.notice.attachmentUrl" class="col-md-11">
 
-                          <img ng-if="url.split('.').pop() == 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||
-                            url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff'"
-                               ng-src="{{url}}" class="media-object" width="80%" height="200px" alt="image"/>
+                          <span class="margin-left-20">{{url.split('/').pop()}}</span>
+                          <button type="button" class="btn btn-success btn-xs pull-right" ng-click="vm.downloadAttachment(url)">
+                            <span class="glyphicon glyphicon-trash"></span> View
+                          </button>
+                          <button type="button" class="btn btn-danger btn-xs pull-right margin-right-15" ng-click="vm.deleteFromList($index)">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                          </button>
+                          <hr>
 
-                          <a ng-click="vm.downloadAttachment(url)" ><img ng-if="url.split('.').pop() != 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||
-                            url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff' "
-                            src="../../images/defaultAttachment.jpg" class="media-object" width="80%" height="200px" alt="image"/></a>
-                          <figcaption ng-if="url.split('.').pop() != 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||
-                            url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff' ">
-                            {{url.split('/').pop()}}</figcaption>
+                          <!--<imgif="url.split('.').pop() == 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||-->
+                            <!--url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff'"-->
+                               <!--ng-src="{{url}}" class="media-object" width="80%" height="200px" alt="image"/>-->
 
-                          <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-4">
-                              <button type="button" class="btn btn-danger btn-xs" ng-click="vm.deleteFromList($index)">
-                                <span class="glyphicon glyphicon-trash"></span> Remove
-                              </button>
-                            </div>
-                          </div>
+                          <!--<a ng-click="vm.downloadAttachment(url)" ><img ng-if="url.split('.').pop() != 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||-->
+                            <!--url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff' "-->
+                            <!--src="../../images/defaultAttachment.jpg" class="media-object" width="80%" height="200px" alt="image"/></a>-->
+                          <!--<figcaption ng-if="url.split('.').pop() != 'jpg' || url.split('.').pop() == 'jpeg' || url.split('.').pop() == 'png' ||-->
+                            <!--url.split('.').pop() == 'bmp' || url.split('.').pop() == 'gif' || url.split('.').pop() == 'tiff' ">-->
+                            <!--{{url.split('/').pop()}}</figcaption>-->
+
+                          <!--<div class="row">-->
+                            <!--<div class="col-md-3"></div>-->
+                            <!--<div class="col-md-4">-->
+                              <!--<button type="button" class="btn btn-danger btn-xs" ng-click="vm.deleteFromList($index)">-->
+                                <!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+                              <!--</button>-->
+                            <!--</div>-->
+                          <!--</div>-->
                         </div>
                       </div>
 

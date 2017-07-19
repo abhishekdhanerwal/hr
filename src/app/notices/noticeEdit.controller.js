@@ -20,6 +20,8 @@
     vm.editNotice = true;
     vm.breadcrumbRoute = breadcrumbRoute;
 
+    var attachmentCount = 0;
+
     function breadcrumbRoute() {
       vm.isCreatorRole = role.isCreatorRole();
 
@@ -125,6 +127,7 @@
             vm.notice = response.data;
 
             vm.notice.activationTime = $filter('date')(vm.notice.activationTime, 'EEE MMM dd yyyy  hh:mm a');
+            attachmentCount = vm.notice.attachmentUrl.length;
 
             var count = 0;
             for (var temp = 0 ;temp < vm.societyUserList.length ; temp ++){
@@ -252,7 +255,6 @@
       $window.open(url);
     }
 
-
     function submit() {
 
       if (vm.Form.$invalid) {
@@ -356,7 +358,7 @@
     }
 
       var uploader = $scope.uploader = new FileUploader({
-        url: 'http://localhost:8080/fileUpload/noticeUpload'
+        url: __env.dataServerUrl + '/fileUpload/noticeUpload'
       });
 
       // FILTERS
@@ -420,13 +422,19 @@
         for(var item = 0; item<uploader.queue.length ; item++){
           uploader.queue[item].remove();
         }
-        vm.notice.attachmentUrl = [];
+        if(vm.notice.attachmentUrl.length > attachmentCount) {
+          for(var index=attachmentCount ; index<vm.notice.attachmentUrl.length; index++){
+            vm.notice.attachmentUrl.splice(index, 1);
+          }
+        }
       };
 
       vm.deleteFromList = function (item) {
-        if(vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined){
-          if (item > -1) {
-            vm.notice.attachmentUrl.splice(item, 1);
+        if(vm.notice.attachmentUrl.length > attachmentCount) {
+          if (vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined) {
+            if (item > -1) {
+              vm.notice.attachmentUrl.splice(item, 1);
+            }
           }
         }
       };
