@@ -125,7 +125,7 @@
               <td data-title="'Status'">{{row.status}}</td>
               <td data-title="'Resident Name'">{{row.registerFor.user.name}}</td>
               <td data-title="'Assigned To'" sortable="'assignee'" filter="{ 'assignee' : 'text' }">{{row.assignee}}</td>
-              <td data-title="'Description'" style="word-break:break-all; width:250px;">{{row.description}}</td>
+              <td data-title="'Description'">{{row.description | limitTo:40}} <br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
               <td data-title="'Address'">{{row.registerFor.tower}}{{','}}{{row.registerFor.flatNo}}</td>
               <td data-title="'Resolved Date'">{{row.resolvedOn | date: 'dd/MM/yyyy hh:mm'}}</td>
 
