@@ -11,20 +11,15 @@
   function HelperNewCtrl( NgTableParams, helperFactory, $localStorage, role, $filter, $document, $state, validationHelperFactory , toaster) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
-    vm.flatList = flatList;
-    vm.onSelect = onSelect;
+    // vm.flatList = flatList;
+    // vm.onSelect = onSelect;
     vm.submit = submit;
     vm.reset = reset;
-    vm.addResident = addResident;
-    vm.helper = [];
-    vm.resident = [];
-    vm.helper.workingAt = [];
+    // vm.addResident = addResident;
+    // vm.helper = [];
+    // vm.resident = [];
+    // vm.helper.workingAt = [];
    // vm.progress = true;
-
-    vm.removeImage = function () {
-      vm.noImage = true;
-      vm.helper.profilePictureUrl = null;
-    };
 
     function breadcrumbRoute(){
       $state.go('app.notice')
@@ -47,42 +42,56 @@
 
       helperFactory.helperType().then(function (response) {
         if (response.status == 200) {
-          vm.helperTypeList = response.data;
+          vm.typeList = response.data;
+          vm.helperTypeList = [];
+          for(var i=0; i<vm.typeList.length; i++){
+            var temp = vm.typeList[i].split("_");
+            if(temp.length > 1){
+              var newTemp = "";
+              for(var j=0; j<temp.length; j++){
+                newTemp = newTemp + temp[j] + " ";
+              }
+              vm.helperTypeList.push(newTemp);
+            }
+            else{
+              vm.helperTypeList.push(vm.typeList[i]);
+            }
+          }
         }
         else if (response.status == 401) {
           $state.go('auth.signout')
         }
       });
 
-      vm.endDateValidation = function () {
-        vm.endMinDate = vm.resident.fromDate;
-      }
+      // vm.endDateValidation = function () {
+      //   vm.endMinDate = vm.resident.fromDate;
+      // }
     }
 
-    function flatList(val){
-      return helperFactory.searchFlatno(val).then(function (response) {
-        if(response.status == 200) {
-          var params = {
-            query: val
-          };
-          return response.data.map(function (item) {
-            return item;
-          })
-        }
-        else if( response.status == 401){
-          $state.go('auth.signout')
-        }
-      });
-    }
-
-    function onSelect($item, $model, $label) {
-      vm.helpers.residentName = $item.residentName;
-      vm.helpers.tower = $item.tower;
-      vm.helpers.flatNo = $item.flatNo;
-      vm.helpers.floor = $item.floor;
-      vm.helpers.fromDate = $item.fromDate;
-      vm.helpers.endDate = $item.endDate;
-    };
+    // function flatList(val){
+    //   return helperFactory.searchFlatno(val).then(function (response) {
+    //     if(response.status == 200) {
+    //       var params = {
+    //         query: val
+    //       };
+    //       return response.data.map(function (item) {
+    //         return item;
+    //       })
+    //     }
+    //     else if( response.status == 401){
+    //       $state.go('auth.signout')
+    //     }
+    //   });
+    // }
+    //
+    // function onSelect($item, $model, $label) {
+    //   vm.helpers.residentName = $item.residentName;
+    //   vm.helpers.tower = $item.tower;
+    //   vm.helpers.flatNo = $item.flatNo;
+    //   vm.helpers.floor = $item.floor;
+    //   vm.helpers.fromDate = $item.fromDate;
+    //   vm.helpers.endDate = $item.endDate;
+    // };
 
     vm.saveImage = function () {
       vm.imageProgress = true;
@@ -107,46 +116,54 @@
       });
     };
 
-    function addResident(){
-      var firstError = null;
-      console.log(vm.Form.residentName)
-      if (vm.Form.residentName.$invalid || vm.Form.tower.$invalid || vm.Form.flatNo.$invalid || vm.Form.floor.$invalid || vm.Form.fromDate.$invalid || vm.Form.endDate.$invalid) {
-        validationHelperFactory.manageValidationFailed(vm.Form);
-        vm.errorMessage = 'Validation Error';
-        return;
-      }
-      else {
-        vm.helper.workingAt.push({
-          'residentName': vm.resident.residentName,
-          'tower': vm.resident.tower,
-          'flatNo': vm.resident.flatNo,
-          'floor': vm.resident.floor,
-          'fromDate': vm.resident.fromDate,
-          'endDate': vm.resident.endDate
-        });
-        vm.resident.residentName = '';
-        vm.resident.tower = '';
-        vm.resident.flatNo = '';
-        vm.resident.floor = '';
-        vm.resident.fromDate = '';
-        vm.resident.endDate = '';
-      }
-    }
-
-    vm.removeRow = function (residentName) {
-      var index = -1;
-      var comArr = eval(vm.helper.workingAt);
-      for (var i = 0; i < comArr.length; i++) {
-        if (comArr[i].residentName === residentName) {
-          index = i;
-          break;
-        }
-      }
-      if (index === -1) {
-        alert("Something gone wrong");
-      }
-      vm.helper.workingAt.splice(index, 1);
+    vm.removeImage = function () {
+      vm.helper = {};
+      console.log(vm.helper.profilePictureUrl)
+      vm.noImage = true;
+      vm.helper.profilePictureUrl = null;
     };
+
+
+    // function addResident(){
+    //   var firstError = null;
+    //   console.log(vm.Form.residentName)
+    //   // if (vm.Form.residentName.$invalid || vm.Form.tower.$invalid || vm.Form.flatNo.$invalid || vm.Form.floor.$invalid || vm.Form.fromDate.$invalid || vm.Form.endDate.$invalid) {
+    //   //   validationHelperFactory.manageValidationFailed(vm.Form);
+    //   //   vm.errorMessage = 'Validation Error';
+    //   //   return;
+    //   // }
+    //   // else {
+    //     vm.helper.workingAt.push({
+    //       'residentName': vm.resident.residentName,
+    //       'tower': vm.resident.tower,
+    //       'flatNo': vm.resident.flatNo,
+    //       'floor': vm.resident.floor,
+    //       'fromDate': vm.resident.fromDate,
+    //       'endDate': vm.resident.endDate
+    //     });
+    //     vm.resident.residentName = '';
+    //     vm.resident.tower = '';
+    //     vm.resident.flatNo = '';
+    //     vm.resident.floor = '';
+    //     vm.resident.fromDate = '';
+    //     vm.resident.endDate = '';
+    //
+    // }
+
+    // vm.removeRow = function (residentName) {
+    //   var index = -1;
+    //   var comArr = eval(vm.helper.workingAt);
+    //   for (var i = 0; i < comArr.length; i++) {
+    //     if (comArr[i].residentName === residentName) {
+    //       index = i;
+    //       break;
+    //     }
+    //   }
+    //   if (index === -1) {
+    //     alert("Something gone wrong");
+    //   }
+    //   vm.helper.workingAt.splice(index, 1);
+    // };
 
     function reset() {
       vm.helper = '';
@@ -164,6 +181,12 @@
       var firstError = null;
       console.log(vm.helper)
 
+      for(var i=0; i<vm.helperTypeList.length; i++){
+        if(vm.helperTypeList[i] == vm.helper.type){
+          vm.helper.type = vm.typeList[i];
+        }
+      }
+
       if (vm.Form.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -175,7 +198,7 @@
 
           if (response.status == 200) {
             toaster.info('Helper Created');
-            $state.go('app.createHelper');
+            $state.go('app.helpers');
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

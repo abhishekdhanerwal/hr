@@ -42,6 +42,9 @@
       <li ui-sref-active="active">
         <a ui-sref="app.report"> <span class="title"> Complaint Report </span> </a>
       </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.helperReport"> <span class="title"> Helper Report </span> </a>
+      </li>
     </ul>
   </li>
   <li ng-class="{'active open':$state.includes('app.userManagement')}" ng-if="!vm.isConsumerRole && !vm.isCreatorRole">
@@ -84,7 +87,7 @@
         <!--<a ui-sref="app.flats"> <span class="title"> Flats </span> </a>-->
       <!--</li>-->
       <li ui-sref-active="active">
-        <a ui-sref="app.createHelper"> <span class="title"> Household help </span> </a>
+        <a ui-sref="app.helpers"> <span class="title"> Household help </span> </a>
       </li>
     </ul>
   </li>

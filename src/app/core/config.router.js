@@ -149,6 +149,26 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'New Helper'
       }
+    }).state('app.helpers', {
+      url: "/helpers",
+      templateUrl: "app/admin/household/helperList.html",
+      controller: 'HelperListCtrl',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Helpers',
+      ncyBreadcrumb: {
+        label: 'Helpers'
+      }
+    }).state('app.editHelper', {
+      url: "/editHelper/:id",
+      templateUrl: "app/admin/household/helperEdit.html",
+      controller: 'HelperEditCtrl',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Edit Helper',
+      ncyBreadcrumb: {
+        label: 'Edit Helper'
+      }
     }).state('app.notice', {
       url: "/notice",
       templateUrl: "app/notices/notice.html",
@@ -222,6 +242,16 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       controllerAs: 'vm',
       ncyBreadcrumb: {
         label: 'Report'
+      }
+    }).state('app.helperReport', {
+      url: "/helperReport",
+      templateUrl: "app/reports/helperReport.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Helper Report',
+      controller: 'HelperReportController',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Helper Report'
       }
     }).state('app.userManagement', {
       url: '/ui',

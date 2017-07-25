@@ -46,6 +46,42 @@
       return promise;
     };
 
+    service.helperList = function () {
+      var promise = $http.get(__env.dataServerUrl + '/helpers')
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.findHelper = function (id) {
+      var promise = $http.get(__env.dataServerUrl + '/helper/view/' + id)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.editHelper = function (id, data) {
+      var promise = $http.put(__env.dataServerUrl + '/updateHelper/' + id,data)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     return service;
   };
 }());
