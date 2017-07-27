@@ -100,9 +100,19 @@
         if (response.status == 200) {
           vm.progress = false;
           vm.user = response.data;
+          if(vm.user.role == 'ROLE_CONSUMER'){
+            userFactory.userAddress(vm.user.id).then(function(response){
+              if(response.status == 200){
+                vm.user.address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+              }
+              else if(response.status == 401){
+                $state.go('auth.signout')
+              }
+            })
+          }
           for(var i=0; i<vm.roles.length; i++){
             if(vm.roles[i] == vm.user.role){
-              vm.user.role = vm.rolesList[i];
+              vm.userRole = vm.rolesList[i];
             }
           }
           console.log(vm.user)
@@ -128,18 +138,6 @@
           toaster.error('Some problem', 'error');
           console.error(response);
         }
-
-        // userFactory.findSociety(vm.user.societyId).then(function(response){
-        //     if(response.status == 200){
-        //       vm.societyy = response.data;
-        //       vm.societyy.name = vm.societyy.name
-        //       console.log(vm.society)
-        //       //vm.user.name = vm.user.society.name;
-        //     }
-        //     else if(response.status == 401){
-        //       $state.go('auth.signout')
-        //     }
-        //   });
 
       });
 
@@ -174,14 +172,15 @@
     };
 
     function submit() {
+      console.log(vm.userRole)
       var firstError = null;
 
       for(var index=0 ; index < vm.rolesList.length ; index++){
-        if(vm.rolesList[index] == vm.user.role)
+        if(vm.rolesList[index] == vm.userRole)
           vm.user.role = vm.roles[index];
       }
 
-      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid) {
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';

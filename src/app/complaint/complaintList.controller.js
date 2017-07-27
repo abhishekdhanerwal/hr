@@ -79,6 +79,7 @@
       else {
         complaintFactory.getComplaintByUser(vm.flat.society.id).then(function (response) {
 
+          vm.message = "";
           vm.progress = false;
           vm.master = response.data;
           console.log(vm.master)

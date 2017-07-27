@@ -58,7 +58,6 @@
     };
 
     function submit() {
-      vm.progress = true;
       var firstError = null;
 
       if (vm.Form.$invalid) {

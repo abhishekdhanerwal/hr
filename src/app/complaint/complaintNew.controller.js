@@ -19,13 +19,13 @@
     vm.disableFlat = true;
 
     function breadcrumbRoute() {
-      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+      if (vm.isSuperAdminRole || vm.isMeterManagementRole) {
         $state.go('app.complaint')
       }
-      else if(vm.isCreatorRole){
+      else if (vm.isCreatorRole) {
         $state.go('app.society')
       }
-      else{
+      else {
         $state.go('app.notice')
       }
     }
@@ -50,46 +50,47 @@
       })
 
       complaintFactory.flatList().then(function (response) {
-        if(response.status == 200) {
+        if (response.status == 200) {
           vm.flat = response.data;
         }
-        else if( response.status == 401){
+        else if (response.status == 401) {
           $state.go('auth.signout')
         }
       })
 
       complaintFactory.loadTypeDetails().then(function (response) {
-        if(response.status == 200) {
+        if (response.status == 200) {
           vm.complaintType = response.data;
         }
-        else if( response.status == 401){
+        else if (response.status == 401) {
           $state.go('auth.signout')
         }
       })
     };
 
-    vm.disableFlatInput = function(){
+    vm.disableFlatInput = function () {
       vm.disableFlat = false;
     }
 
-    vm.populateAssignToList = function(){
+    vm.populateAssignToList = function () {
       complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
-        if(response.status == 200) {
+        if (response.status == 200) {
           vm.assignTo = response.data;
-          if(vm.complaint.complaintType == 'Meter'){
+          if (vm.complaint.complaintType == 'Meter') {
             vm.complaint.assignedTo = vm.assignTo[0];
           }
         }
-        else if( response.status == 401){
+        else if (response.status == 401) {
           $state.go('auth.signout')
         }
       });
     }
 
-    function searchFlat(val){
+    function searchFlat(val) {
       return complaintFactory.searchFlat(val, vm.tower).then(function (response) {
-        if(response.status == 200) {
-          console.log(response)
+        vm.searchFlatList = response.data;
+        if (response.status == 200) {
+          console.log(response.data)
           var params = {
             query: val
           };
@@ -97,7 +98,7 @@
             return item;
           })
         }
-        else if( response.status == 401){
+        else if (response.status == 401) {
           $state.go('auth.signout')
         }
       });
@@ -108,13 +109,14 @@
       vm.complaint.address.flat = $item.flat;
     };
 
-    function clearFlat(){
-      vm.complaint.registerFor = '';
+    function clearFlat() {
+      vm.flatsearch = '';
     }
 
     function reset() {
       vm.tower = '';
       vm.complaint = '';
+      vm.flatsearch = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
@@ -124,52 +126,76 @@
     };
 
     function submit() {
-      vm.progress = true;
-
-      var firstError = null;
-
-      if (vm.Form.$invalid) {
-        vm.progress = false;
-        validationHelperFactory.manageValidationFailed(vm.Form);
-        vm.errorMessage = 'Validation Error';
-        return;
-
-      } else {
-
-        complaintFactory.newComplaint(vm.complaint).then(function (response) {
-          console.log(response.data);
-
-          if (response.status == 200) {
-            vm.progress = false;
-            toaster.info('Complaint registered');
-            vm.message = "Complaint registered";
-            $state.go('app.complaint', {msg: vm.message});
+      if (!vm.isConsumerRole && vm.searchFlatList.length == 0) {
+        vm.flatNoByTower = null;
+      }
+      else {
+        if (!vm.isConsumerRole) {
+          for (var i = 0; i < vm.searchFlatList.length; i++) {
+            if (vm.searchFlatList[i].flatNo == vm.flatsearch || vm.searchFlatList[i].flatNo == vm.flatsearch.flatNo) {
+              vm.flatNoByTower = vm.searchFlatList[i];
+            }
+            else {
+              vm.flatNoByTower = null;
+            }
           }
-          else if (response.status == -1) {
-            vm.progress = false;
-            vm.errorMessage = 'Network Error';
-            toaster.error('Network Error', 'error');
-            console.error(response);
-          }
-          else if (response.status == 400) {
-            vm.progress = false;
-            vm.errorMessage = response.data[0].message;
-            toaster.error(response.data[0].message, 'error');
-            console.error(response);
-          }
-          else if( response.status == 401){
-            vm.progress = false;
-            $state.go('auth.signout')
-          }
-          else {
-            vm.progress = false;
-            vm.errorMessage = 'Some problem';
-            toaster.error('Some problem', 'error');
-            console.error(response);
-          }
-          vm.resetDisabled = false;
-          vm.submitDisabled = false;
-        });
+        }
+      }
+      if (!vm.isConsumerRole && vm.flatNoByTower == undefined) {
+        toaster.error('Flat not found');
+        vm.errorMessage = 'Flat not found';
+      }
+      else {
+        vm.progress = true;
+
+        var firstError = null;
+
+        if (vm.Form.$invalid) {
+          vm.progress = false;
+          validationHelperFactory.manageValidationFailed(vm.Form);
+          vm.errorMessage = 'Validation Error';
+          return;
+
+        } else {
+
+          vm.flatsearch = vm.complaint.registerFor;
+          vm.complaint.registerFor = vm.flatNoByTower;
+
+          complaintFactory.newComplaint(vm.complaint).then(function (response) {
+            console.log(response.data);
+
+            if (response.status == 200) {
+              vm.progress = false;
+              toaster.info('Complaint registered');
+              vm.message = "Complaint registered";
+              $state.go('app.complaint', {msg: vm.message});
+            }
+            else if (response.status == -1) {
+              vm.progress = false;
+              vm.errorMessage = 'Network Error';
+              toaster.error('Network Error', 'error');
+              console.error(response);
+            }
+            else if (response.status == 400) {
+              vm.progress = false;
+              vm.errorMessage = response.data[0].message;
+              toaster.error(response.data[0].message, 'error');
+              console.error(response);
+            }
+            else if (response.status == 401) {
+              vm.progress = false;
+              $state.go('auth.signout')
+            }
+            else {
+              vm.progress = false;
+              vm.errorMessage = 'Some problem';
+              toaster.error('Some problem', 'error');
+              console.error(response);
+            }
+            vm.resetDisabled = false;
+            vm.submitDisabled = false;
+          });
+        }
       }
     };
   }
