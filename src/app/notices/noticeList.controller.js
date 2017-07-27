@@ -233,6 +233,8 @@
   /* @ngInject */
   function readNoticeCtrl($scope, $uibModalInstance, noticeData, $http, $window) {
     // $scope.showImage = [];
+
+    $scope.tempCount = [];
     $scope.notice = noticeData;
     for(var index=0 ;index< $scope.notice.attachmentUrl.length ; index++){
       var temp = $scope.notice.attachmentUrl[index].split('.').pop();
@@ -245,6 +247,7 @@
       else {
         var downloadUrl = $scope.notice.attachmentUrl[index];
         var tempUrl = $scope.notice.attachmentUrl[index].split("/");
+        $scope.tempCount.push(index);
         $scope.notice.attachmentUrl[index] = {};
         $scope.notice.attachmentUrl[index].download = downloadUrl;
         $scope.notice.attachmentUrl[index].url = tempUrl[tempUrl.length-1];
