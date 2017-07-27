@@ -48,7 +48,7 @@
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}" ng-if="!vm.isConsumerRole">
                         <label class="control-label"> Tower <span class="symbol required"></span> </label>
-                        <select class="form-control" name="tower" ng-model="vm.complaint.registerFor.tower"
+                        <select ng-disabled="true" class="form-control" name="tower" ng-model="vm.complaint.registerFor.tower"
                                 ng-options="tower for tower in vm.towerList" required>
                         </select>
                         <span class="error text-small block"
