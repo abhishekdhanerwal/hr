@@ -158,7 +158,7 @@
 
         } else {
 
-          vm.flatsearch = vm.complaint.registerFor;
+          //vm.flatsearch = vm.complaint.registerFor;
           vm.complaint.registerFor = vm.flatNoByTower;
 
           complaintFactory.newComplaint(vm.complaint).then(function (response) {
@@ -179,7 +179,7 @@
             else if (response.status == 400) {
               vm.progress = false;
               vm.errorMessage = response.data[0].message;
-              toaster.error(response.data[0].message, 'error');
+              toaster.error(response.data[0].message);
               console.error(response);
             }
             else if (response.status == 401) {
