@@ -18,7 +18,7 @@
     function activate() {
       role.isAdminRole();
       if($localStorage._identity !=null){
-        vm.name = $localStorage._identity.userDetails.name;
+        vm.name = $localStorage._identity.principal.name;
         // vm.profilePictureUrl = $localStorage._identity.userDetails.profilePictureUrl;
         vm.roleName = $localStorage._identity.principal.role;
         if(vm.roleName == "ROLE_CONSUMER") {
