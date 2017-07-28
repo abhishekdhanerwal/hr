@@ -165,7 +165,6 @@
     }
 
     vm.fileErrorHandler = function( $file, $message, $flow ) {
-      console.log("hi");
     }
   }
 })();
