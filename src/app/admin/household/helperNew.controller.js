@@ -15,10 +15,7 @@
     // vm.onSelect = onSelect;
     vm.submit = submit;
     vm.reset = reset;
-    // vm.addResident = addResident;
-    // vm.helper = [];
-    // vm.resident = [];
-    // vm.helper.workingAt = [];
+
    // vm.progress = true;
 
     function breadcrumbRoute(){
