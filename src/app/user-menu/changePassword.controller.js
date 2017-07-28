@@ -11,14 +11,22 @@
   function ChangePasswordController($q, changePasswordFactory, $state, toaster, validationHelperFactory, $location, $stateParams, $localStorage, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.isAdminRole = role.isAdminRole();
+    vm.isSuperAdminRole = role.isSuperAdminRole();
+    vm.isConsumerRole = role.isConsumerRole();
+    vm.isManagementRole = role.isManagementRole();
     vm.isCreatorRole = role.isCreatorRole();
+    vm.isMeterManagementRole = role.isMeterManagementRole();
 
     function breadcrumbRoute() {
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 
@@ -28,6 +36,7 @@
     };
 
     vm.passData = {};
+    console.log($localStorage._identity)
     if($localStorage._identity){
       var userid = $localStorage._identity.principal.id;
     }
@@ -59,12 +68,11 @@
             console.error(response);
           }
           else if (response.status == 400) {
-            vm.errorMessage = response.data.message;
-            toaster.error(response.data.message, 'error');
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {

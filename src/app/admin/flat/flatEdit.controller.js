@@ -11,6 +11,7 @@
   function FlatEditCtrl( NgTableParams, $filter, $document, flatFactory, $state, validationHelperFactory, $stateParams , toaster, $localStorage, $rootScope, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.progress = true;
     vm.submit = submit;
     vm.userList = userList;
     vm.onSelect = onSelect;
@@ -20,11 +21,14 @@
     vm.hideOwnerCheckbox = false;
 
     function breadcrumbRoute() {
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 
@@ -37,7 +41,12 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
       if($localStorage._identity.societyId != null){
         vm.SocietyFlatData = true;
@@ -71,6 +80,7 @@
     function getEditInfo(){
       flatFactory.findFlat($stateParams.id).then(function (response) {
         if (response.status == 200) {
+          vm.progress = false;
           vm.flat = response.data;
           if(vm.flat.residentType == 'Owner'){
             vm.flat.user.name = '';
@@ -94,16 +104,19 @@
           };
         }
         else if (response.status == -1) {
+          vm.progress = false;
           toaster.error('Network Error', 'error');
           vm.errorMessage = "Network Error";
           console.error(response);
         }
         else if (response.status == 400) {
+          vm.progress = false;
           console.error(response);
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message, 'error');
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
         else {
@@ -114,6 +127,7 @@
     };
 
     function reset() {
+      vm.progress = true;
 
       // activate($stateParams.id)
       // activate(vm.flat)
@@ -185,6 +199,7 @@
     // };
 
     function submit() {
+      vm.progress = true;
       var firstError = null;
       if(!vm.flat.hasOwner){
         delete vm.flat.ownerName;
@@ -201,6 +216,7 @@
       }
 
       if (vm.Form.$invalid) {
+        vm.progress = false;
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -212,6 +228,7 @@
           console.log(response.data);
 
           if (response.status == 200) {
+            vm.progress = false;
             console.log(vm.flat.society.id)
             toaster.info('Flat updated');
             vm.message = "Flat updated";
@@ -223,19 +240,23 @@
             }
           }
           else if (response.status == -1) {
+            vm.progress = false;
             vm.errorMessage = 'Network Error';
             toaster.error('Network Error', 'error');
             console.error(response);
           }
           else if (response.status == 400) {
+            vm.progress = false;
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message);
             console.error(response);
           }
           else if( response.status == 401){
+            vm.progress = false;
             $state.go('auth.signout')
           }
           else {
+            vm.progress = false;
             vm.errorMessage = 'Some problem';
             toaster.error('Some problem', 'error');
             console.error(response);

@@ -35,7 +35,7 @@
       <div class="panel panel-white">
         <div class="panel-body">
           <div>
-            <span ng-if="vm.noticeList.length > 0">
+            <span ng-if="vm.masterNoticeList.length > 0">
             <label>
               Notice Type
             </label><br>
@@ -336,13 +336,18 @@
     </h5>
 
     <div class="row">
-      <div class="col-md-6" ng-repeat="url in notice.attachmentUrl">
-        <img ng-src="{{url}}" width="100%" height="300px">
+      <div class="col-md-6" ng-repeat="urlObj in notice.attachmentUrl">
+        <img ng-if="urlObj.showImage" ng-src="{{urlObj.url}}" width="100%" height="300px">
       </div>
     </div>
-
-
-
+    <br><br>
+    <div class="row">
+      <div class="col-md-10" ng-repeat="urlObj in notice.attachmentUrl" ng-if="!urlObj.showImage">
+        <h5 ng-if="urlObj.url == notice.attachmentUrl[tempCount[0]].url"><strong>Download Attachment</strong></h5>
+        <br />
+        <a ng-click="downloadAttachment(urlObj.download , urlObj.url)"><li>{{urlObj.url}}</li></a>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button class="btn btn-success" ng-click="ok()">OK</button>

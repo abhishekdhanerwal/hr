@@ -24,15 +24,14 @@
             $state.go('auth.signin');
           }
           else if (response.status == -1) {
-            toaster.set('Network Error', 'error');
+            toaster.info('Network Error', 'error');
             console.error(response);
           }
-          else if (response.status == 400) {
-            toaster.info(response.data[0].message);
+          else if (response.status == 404) {
+            toaster.error(response.data[0].message);
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {

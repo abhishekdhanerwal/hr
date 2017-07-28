@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('SocietyNewCtrl', SocietyNewCtrl);
 
-  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster'];
+  SocietyNewCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'societyFactory', '$state', 'validationHelperFactory', 'toaster', 'role'];
   /* @ngInject */
-  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster) {
+  function SocietyNewCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory , toaster, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.message = false;
@@ -19,7 +19,15 @@
     vm.reset = reset;
 
     function breadcrumbRoute() {
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -30,7 +38,12 @@
     activate();
 
     function activate() {
-
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
     };
 
     function reset() {
@@ -59,22 +72,25 @@
           console.log(response.data);
 
           if (response.status == 200) {
+            vm.progress = false;
             toaster.info('Society Created');
             vm.message = "Society Created";
             $state.go('app.society',{msg: vm.message});
           }
           else if (response.status == -1) {
+            vm.progress = false;
             vm.errorMessage = 'Network Error';
             toaster.error('Network Error');
             console.error(response);
           }
           else if (response.status == 400) {
+            vm.progress = false;
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message);
             console.error(response);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
+            vm.progress = false;
             $state.go('auth.signout')
           }
           else {

@@ -6,12 +6,14 @@
     .module('app.complaint')
     .controller('ComplaintListCtrl', ComplaintListCtrl);
 
-  ComplaintListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
+  ComplaintListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'SweetAlert', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
   /* @ngInject */
-  function ComplaintListCtrl( NgTableParams, $state, $localStorage, $filter, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function ComplaintListCtrl( NgTableParams, $state, $localStorage, $filter, SweetAlert, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.resolved = resolved;
     vm.active = active;
+    vm.activeMessage = false;
+    vm.resolvedMessage = false;
     vm.message = false;
     vm.progress = true;
     vm.flat = {};
@@ -20,7 +22,15 @@
     vm.complaintMsg = $stateParams.msg;
 
     function breadcrumbRoute(){
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideComplaintBox = function () {
@@ -37,9 +47,11 @@
 
     function activate() {
       vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
       complaintFactory.societyList().then(function (response) {
         if(response.status == 200){
@@ -57,14 +69,17 @@
     };
 
     function active() {
-      vm.hideMsg = true;
+      vm.resolvedMessage = false;
       if(vm.flat.society == undefined){
         vm.progress = false;
+        vm.hideMsg = false;
+        vm.activeMessage = true;
         vm.message = "No data available";
       }
       else {
         complaintFactory.getComplaintByUser(vm.flat.society.id).then(function (response) {
 
+          vm.message = "";
           vm.progress = false;
           vm.master = response.data;
           console.log(vm.master)
@@ -104,7 +119,8 @@
     };
 
      function resolved() {
-       vm.hideMsg = false;
+       vm.complaintMsg = "";
+       vm.activeMessage = false;
        complaintFactory.getResolvedComplaintByUser().then(function (response) {
 
          vm.progress = false;
@@ -121,7 +137,7 @@
              }
            }
            closedComplaint();
-           resolvedComplaintData();
+           // resolvedComplaintData();
          }
          else if (response.status == -1) {
            toaster.error('Network Error', 'error');
@@ -144,7 +160,6 @@
      };
 
       function closedComplaint(){
-        vm.hideMsg = false;
       complaintFactory.getClosedComplaintByUser().then(function (response) {
 
          vm.progress = false;
@@ -197,6 +212,8 @@
               vm.IsHidden=true;
             }
             else{
+              vm.activeMessage = true;
+              vm.complaintMsg = "";
               vm.message="No data available";
             }
 
@@ -231,7 +248,12 @@
 
     function resolvedComplaintData(){
       var complaintList = [];
-      complaintList = vm.masterResolved.concat(vm.masterClosed)
+      if(vm.masterResolved == ""){
+        complaintList = vm.masterClosed;
+      }
+      else{
+        complaintList = vm.masterResolved.concat(vm.masterClosed)
+      }
       vm.resolvedTableParams = new NgTableParams(
         {
           page: 1, // show first page
@@ -253,6 +275,7 @@
               vm.IsHidden=true;
             }
             else{
+              vm.resolvedMessage = true;
               vm.message="No data available";
             }
 
@@ -284,5 +307,13 @@
           }
         });
     }
+
+    // vm.toggleStatus = function () {
+    //   vm.progress = false;
+    //   SweetAlert.swal({
+    //     title: "fmk",
+    //     text: vm.master.description
+    //   })
+    // };
   }
 })();

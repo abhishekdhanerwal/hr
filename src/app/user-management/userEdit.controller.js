@@ -11,12 +11,21 @@
   function UserEditCtrl( userFactory, $localStorage, $document, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.progress = true;
     vm.submit = submit;
     vm.reset = reset;
     vm.findSociety = findSociety;
 
     function breadcrumbRoute() {
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -29,12 +38,15 @@
     function activate() {
 
       vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
       userFactory.getRole().then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.roles = response.data;
           vm.rolesList = [];
           for(var index=0 ; index<vm.roles.length ; index++){
@@ -49,8 +61,7 @@
             else
               vm.rolesList.push(vm.roles[index]);
           }
-          console.log(vm.rolesList)
-          console.log(vm.roles)
+
           vm.roles.splice(0,1);
           vm.rolesList.splice(0, 1);
           if (vm.isSuperAdminRole) {
@@ -87,44 +98,46 @@
 
       userFactory.finduser($stateParams.id).then(function (response) {
         if (response.status == 200) {
+          vm.progress = false;
           vm.user = response.data;
+          if(vm.user.role == 'ROLE_CONSUMER'){
+            userFactory.userAddress(vm.user.id).then(function(response){
+              if(response.status == 200){
+                vm.user.address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+              }
+              else if(response.status == 401){
+                $state.go('auth.signout')
+              }
+            })
+          }
           for(var i=0; i<vm.roles.length; i++){
             if(vm.roles[i] == vm.user.role){
-              vm.user.role = vm.rolesList[i];
+              vm.userRole = vm.rolesList[i];
             }
           }
           console.log(vm.user)
           findSociety();
         }
         else if (response.status == -1) {
+          vm.progress = false;
           toaster.error('Network Error');
           vm.errorMessage = "Network Error";
           console.error(response);
         }
         else if (response.status == 400) {
+          vm.progress = false;
           console.error(response);
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message);
         }
         else if( response.status == 401){
+          vm.progress = false;
           $state.go('auth.signout')
         }
         else {
           toaster.error('Some problem', 'error');
           console.error(response);
         }
-
-        // userFactory.findSociety(vm.user.societyId).then(function(response){
-        //     if(response.status == 200){
-        //       vm.societyy = response.data;
-        //       vm.societyy.name = vm.societyy.name
-        //       console.log(vm.society)
-        //       //vm.user.name = vm.user.society.name;
-        //     }
-        //     else if(response.status == 401){
-        //       $state.go('auth.signout')
-        //     }
-        //   });
 
       });
 
@@ -133,14 +146,13 @@
     function findSociety(){
       userFactory.societyList().then(function (response) {
         if(response.status == 200) {
+          vm.progress = false;
           vm.society = response.data;
           for(var i=0; i<vm.society.length; i++) {
             if(vm.society[i].id == vm.user.societyId){
               vm.user.society = vm.society[i];
-              console.log(vm.user.society)
             };
           }
-          console.log(vm.society)
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -160,22 +172,22 @@
     };
 
     function submit() {
+      console.log(vm.userRole)
       var firstError = null;
 
       for(var index=0 ; index < vm.rolesList.length ; index++){
-        console.log(vm.user.role)
-        if(vm.rolesList[index] == vm.user.role)
+        if(vm.rolesList[index] == vm.userRole)
           vm.user.role = vm.roles[index];
       }
 
-      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
+      if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid) {
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;
 
       }
-      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid)
+      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_METER_MANAGEMENT" && vm.Form.society.$invalid)
       {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';

@@ -16,11 +16,14 @@
     vm.flatMsg = $stateParams.msg;
 
     function breadcrumbRoute() {
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 
@@ -38,7 +41,12 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
       if($localStorage._identity !=null) {
         $localStorage._identity.societyId = null;
@@ -46,10 +54,10 @@
 
         flatFactory.flatList().then(function (response) {
 
-          vm.progress = false;
           vm.SocietyFlatData = false;
 
           if (response.status == 200) {
+            vm.progress = false;
             vm.master = response.data;
             console.log(vm.master)
             for(var i=0; i<vm.master.length; i++){
@@ -70,17 +78,18 @@
             FlatData();
           }
           else if (response.status == -1) {
+            vm.progress = false;
             toaster.error('Network Error', 'error');
             vm.errorMessage = "Network Error";
             console.error(response);
           }
           else if (response.status == 400) {
+            vm.progress = false;
             console.error(response);
             vm.errorMessage = vm.master[0].message;
             toaster.error(vm.master[0].message);
           }
           else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
             $state.go('auth.signout')
           }
           else {

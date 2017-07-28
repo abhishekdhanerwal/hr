@@ -15,15 +15,22 @@
 
       principal.signin(vm.user, vm.password).then(function (user) {
 
+        vm.isAdminRole = role.isAdminRole();
+        vm.isSuperAdminRole = role.isSuperAdminRole();
+        vm.isConsumerRole = role.isConsumerRole();
+        vm.isManagementRole = role.isManagementRole();
         vm.isCreatorRole = role.isCreatorRole();
+        vm.isMeterManagementRole = role.isMeterManagementRole();
 
-        if(vm.isCreatorRole){
-            $state.go('app.society');
-          }
-          else if(!vm.isCreatorRole) {
-            $state.go('app.notice');
-          }
-
+        if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+          $state.go('app.complaint')
+        }
+        else if(vm.isCreatorRole){
+          $state.go('app.society')
+        }
+        else{
+          $state.go('app.notice')
+        }
         }, function () {
           if(vm.user=="" && vm.password!="")
           {

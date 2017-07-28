@@ -11,10 +11,19 @@
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.reset = reset;
+    vm.progress = true;
     vm.user = {};
 
     function breadcrumbRoute() {
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -31,18 +40,19 @@
     function activate() {
 
       vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
       userFactory.societyList().then(function (response) {
+        vm.progress = false;
         if(response.status == 200){
           vm.society = response.data;
           // for(var i=0; i<vm.society.length; i++) {
           //   vm.user.SocietyId = vm.society.id;
           // }
-          console.log(vm.society)
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -50,6 +60,7 @@
       });
 
       userFactory.findSociety($localStorage._identity.principal.societyId).then(function(response){
+        vm.progress = false;
         if(response.status == 200){
           vm.user.society = response.data;
           vm.user.societyId = vm.user.society.societyId;
@@ -60,9 +71,9 @@
       });
 
       userFactory.getRole().then(function (response) {
+        vm.progress = false;
         if(response.status == 200) {
           vm.roles = response.data;
-          console.log(vm.roles)
           vm.rolesList = [];
           for(var index=0 ; index<vm.roles.length ; index++){
             var temp = vm.roles[index].split("_");
@@ -76,8 +87,6 @@
             else
               vm.rolesList.push(vm.roles[index]);
           }
-          console.log(vm.rolesList)
-          console.log(vm.roles)
           vm.roles.splice(0,1);
           vm.rolesList.splice(0, 1);
           if (vm.isSuperAdminRole) {
@@ -118,11 +127,11 @@
     };
 
     vm.submit = function () {
+      vm.progress = false;
 
       var firstError = null;
       for(var index=0 ; index < vm.rolesList.length ; index++){
-        console.log(vm.user.role)
-        if(vm.rolesList[index] == vm.user.role)
+        if(vm.rolesList[index] == vm.userRole)
           vm.user.role = vm.roles[index];
       }
       if (vm.Form.name.$invalid || vm.Form.email.$invalid || vm.Form.mobile.$invalid || vm.Form.roles.$invalid) {
@@ -130,7 +139,7 @@
         vm.errorMessage = 'Validation Error';
         return;
       }
-      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid)
+      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_METER_MANAGEMENT" && vm.Form.society.$invalid)
       {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -141,7 +150,6 @@
         vm.user.societyId = vm.user.society.id;
         }
         userFactory.save(vm.user).then(function (response) {
-          console.log(vm.user);
           if (response.status == 201) {
             console.log(response)
             toaster.info('User Saved');
@@ -182,6 +190,7 @@
       vm.user.role = null;
       vm.user.owner = null;
       vm.user.tenant = null;
+      vm.userRole = null;
 
 
       vm.Form.$setPristine();

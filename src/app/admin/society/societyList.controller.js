@@ -16,11 +16,14 @@
     vm.societyMsg = $stateParams.msg;
 
     function breadcrumbRoute() {
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 
@@ -42,10 +45,11 @@
       }
 
       vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
 
     if(vm.isSuperAdminRole || vm.isCreatorRole) {
@@ -101,7 +105,6 @@
           toaster.error(vm.master.message, 'error');
         }
         else if (response.status == 401) {
-          toaster.info("User is not logged in. Redirecting to Login Page");
           $state.go('auth.signout')
         }
         else {

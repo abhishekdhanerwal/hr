@@ -18,7 +18,7 @@
     function activate() {
       role.isAdminRole();
       if($localStorage._identity !=null){
-        vm.name = $localStorage._identity.principal.name;
+        vm.name = $localStorage._identity.userDetails.name;
         // vm.profilePictureUrl = $localStorage._identity.userDetails.profilePictureUrl;
         vm.roleName = $localStorage._identity.principal.role;
         if(vm.roleName == "ROLE_CONSUMER") {
@@ -35,6 +35,9 @@
         }
         else if(vm.roleName == "ROLE_SOCIETY_CREATOR"){
           vm.roleName = "CREATOR";
+        }
+        else if(vm.roleName == "ROLE_METER_MANAGEMENT"){
+          vm.roleName = "METER MANAGER";
         }
       }
     };

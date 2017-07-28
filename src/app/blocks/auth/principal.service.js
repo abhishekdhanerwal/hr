@@ -5,10 +5,10 @@
     .module('blocks.auth')
     .factory('principal', principal);
 
-  principal.$inject = ['$q', '$http', '$timeout', 'toaster', '$localStorage' , '$rootScope'];
+  principal.$inject = ['$q', '$http', '$timeout', 'toaster', '$localStorage' , '$rootScope', 'role'];
 
   /* @ngInject */
-  function principal($q, $http, $timeout, toaster, $localStorage , $rootScope) {
+  function principal($q, $http, $timeout, toaster, $localStorage , $rootScope, role) {
     var _identity = undefined;
     var _authenticated = false;
 
@@ -131,7 +131,7 @@
           _identity = null;
           _authenticated = false;
           deferred.reject(_identity);
-          toaster.error("Login Failed");
+            toaster.error("Login Failed");
         });
 
       return deferred.promise;

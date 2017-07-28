@@ -18,6 +18,19 @@
     vm.reset = reset;
     vm.disableActivationTime = false;
     vm.editNotice = false;
+    vm.breadcrumbRoute = breadcrumbRoute;
+
+    function breadcrumbRoute() {
+      vm.isCreatorRole = role.isCreatorRole();
+
+      if(vm.isCreatorRole){
+        $state.go('app.society');
+      }
+      else if(!vm.isCreatorRole) {
+        $state.go('app.notice');
+      }
+    }
+
 
     function breadcrumbRoute() {
       $state.go('app.notice')
@@ -183,11 +196,13 @@
     };
 
     function submit() {
+      vm.disableButton = true;
       console.log(vm.Form)
 
       if (vm.Form.$invalid) {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
+        vm.disableButton = false;
         return;
       }
       else {
@@ -215,7 +230,7 @@
         console.log(vm.notice)
 
         noticeFactory.newNotice(vm.notice).then(function (response) {
-
+          vm.disableButton = false;
           if (response.status == 200) {
 
                 toaster.info('Notice Created');
@@ -250,6 +265,7 @@
     };
 
     function reset() {
+      vm.disableButton = true;
       vm.notice = null;
       vm.sms = null;
       vm.email = null;
@@ -257,6 +273,7 @@
       vm.audience = null;
       vm.errorMessage = null;
       noticeFactory.getSocietyUser().then(function (response) {
+        vm.disableButton = false;
         if (response.status == 200) {
           vm.societyUserList = response.data;
           tableData();
@@ -282,6 +299,11 @@
       })
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
+    }
+
+    vm.callButtonFunc = function () {
+      console.log('Hiii')
+      vm.disableButton = true;
     }
 
       var uploader = $scope.uploader = new FileUploader({
@@ -322,17 +344,20 @@
         console.info('onSuccessItem', fileItem, response, status, headers);
       };
       uploader.onErrorItem = function (fileItem, response, status, headers) {
-        toaster.error('Image Not Saved');
+        vm.disableButton = false;
+        toaster.error('Attachment Not Saved');
         console.info('onErrorItem', fileItem, response, status, headers);
       };
       uploader.onCancelItem = function (fileItem, response, status, headers) {
         console.info('onCancelItem', fileItem, response, status, headers);
       };
       uploader.onCompleteItem = function (fileItem, response, status, headers) {
-        toaster.info('Image Saved');
+        vm.disableButton = false;
+        toaster.info('Attachment Saved');
         console.info('onCompleteItem', fileItem, response, status, headers);
       };
       uploader.onCompleteAll = function () {
+        vm.disableButton = false;
         console.info('onCompleteAll');
       };
 
@@ -344,13 +369,14 @@
       };
 
       uploader.clearQueue = function(){
-        for(var item = 0; item<uploader.queue.length ; item++){
-          uploader.queue[item].remove();
-        }
+        var tempLength = uploader.queue.length;
         vm.notice.attachmentUrl = [];
+        for(var item = 0; item<tempLength ; item++){
+          uploader.queue[0].remove();
+        }
       };
 
-      vm.deleteFromList = function (item) {
+      vm.deleteFromList = function (item , temp) {
         if(vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined){
           if (item > -1) {
             vm.notice.attachmentUrl.splice(item, 1);
@@ -386,7 +412,7 @@
     }
     else{
       $scope.today = function () {
-        $scope.date = new Date();
+        $scope.date = startDate;
       };
       $scope.today();
 

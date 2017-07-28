@@ -3,7 +3,7 @@
   <span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
 </div>
 <ul class="main-navigation-menu" ng-controller="NavController as vm">
-  <li ui-sref-active="active" ng-if="!vm.isCreatorRole">
+  <li ui-sref-active="active" ng-if="!vm.isCreatorRole && !vm.isMeterManagementRole && !vm.isSuperAdminRole">
     <a ui-sref="app.notice">
       <div class="item-content">
         <div class="item-media">
@@ -47,7 +47,7 @@
       </li>
     </ul>
   </li>
-  <li ng-class="{'active open':$state.includes('app.userManagement')}" ng-if="!vm.isConsumerRole && !vm.isCreatorRole">
+  <li ng-class="{'active open':$state.includes('app.userManagement')}" ng-if="!vm.isConsumerRole && !vm.isCreatorRole && !vm.isMeterManagementRole">
     <a href="javascript:void(0)">
       <div class="item-content">
         <div class="item-media">
@@ -68,7 +68,7 @@
     </ul>
   </li>
 
-  <li ng-class="{'active open':$state.includes('app.Admin')}" ng-if="!vm.isConsumerRole">
+  <li ng-class="{'active open':$state.includes('app.Admin')}" ng-if="!vm.isConsumerRole && !vm.isMeterManagementRole">
     <a href="javascript:void(0)">
       <div class="item-content">
         <div class="item-media">
@@ -516,5 +516,5 @@
 <!--</div>-->
 <!--</a>-->
 <!--</li>-->
-  <!--</ul>-->
+  </ul>
 <!--end: FEATURES-->

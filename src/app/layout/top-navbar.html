@@ -8,7 +8,7 @@
         <button href="javascript:void(0)" class="sidebar-mobile-toggler btn no-radius pull-left hidden-md hidden-lg" id="sidebar-toggler" ng-click="toggle('sidebar')" v-pressable>
             <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand"> {{app.name}} </a>
+        <div class="navbar-brand margin-top-20"> {{app.name}} </div>
         <!--<a class="navbar-brand navbar-brand-collapsed" ui-sref="app.dashboard"> <img ng-src="{{app.layout.logoCollapsed}}" alt="" /> </a>-->
         <button class="btn pull-right menu-toggler visible-xs-block" id="menu-toggler" ng-click="navbarCollapsed = !navbarCollapsed" v-pressable>
             <i ng-class="navbarCollapsed ? 'fa fa-folder' : 'fa fa-folder-open'"></i> <small><i class="fa fa-caret-down margin-left-5"></i></small>
@@ -105,7 +105,7 @@
             <!-- end: ACTIVITIES DROPDOWN -->
             <!-- start: LANGUAGE SWITCHER -->
             <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
-                <a href class="dropdown-toggle" uib-dropdown-toggle> <i class="flag-icon" ng-class="'flag-icon-in'"></i><span>&nbsp;{{language.selected}}</span> </a>
+                <a class="dropdown-toggle" style="cursor:auto" uib-dropdown-toggle> <i class="flag-icon" ng-class="'flag-icon-in'"></i><span>&nbsp;{{language.selected}}</span> </a>
                 <!--<ul role="menu" class="dropdown-menu dropdown-light animated fadeInUpShort ">-->
                     <!--<li ng-repeat="(localeId, langName) in language.available">-->
                         <!--<a ng-click="language.set(localeId, $event)" href="javascript:void(0)" class="menu-toggler"> {{langName}} </a>-->

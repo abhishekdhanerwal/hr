@@ -18,7 +18,8 @@
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
       vm.isCreatorRole = role.isCreatorRole();
-
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+      
       // vm.ACCESS_LEVEL = ACCESS_LEVEL;
 
     };

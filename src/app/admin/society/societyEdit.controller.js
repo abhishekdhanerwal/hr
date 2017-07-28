@@ -11,6 +11,7 @@
   function SocietyEditCtrl( NgTableParams, $document, $filter, societyFactory, $state, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.progress = true;
     vm.userList = userList;
     vm.onSelect = onSelect;
     vm.clearUser = clearUser;
@@ -18,11 +19,14 @@
     vm.reset = reset;
 
     function breadcrumbRoute() {
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 
@@ -36,28 +40,32 @@
     function activate() {
 
       vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
 
       societyFactory.findSociety($stateParams.id).then(function (response) {
         console.log($stateParams.id)
         if (response.status == 200) {
+          vm.progress = false;
           vm.society = response.data;
         }
         else if (response.status == -1) {
+          vm.progress = false;
           toaster.error('Network Error', 'error');
           vm.errorMessage = "Network Error";
           console.error(response);
         }
         else if (response.status == 400) {
+          vm.progress = false;
           console.error(response);
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message, 'error');
         }
         else if( response.status == 401){
-          toaster.info("User is not logged in. Redirecting to Login Page");
+          vm.progress = false;
           $state.go('auth.signout')
         }
         else {
@@ -75,6 +83,7 @@
     function userList(val){
         return societyFactory.searchUser(val).then(function (response) {
           if (response.status == 200) {
+            vm.progress = false;
             var params = {
               query: val
             };
@@ -83,13 +92,14 @@
             })
           }
           else if (response.status == 401) {
-            toaster.info("User is not logged in. Redirecting to Login Page");
+           vm.progress = false;
             $state.go('auth.signout')
           }
         });
     }
 
     function onSelect($item, $model, $label) {
+      vm.progress = false;
       vm.society.admin.name = $item.name;
       vm.society.admin.email = $item.email;
       vm.society.admin.mobile = $item.mobile;
@@ -100,6 +110,7 @@
     };
 
     function clearUser(){
+      vm.progress = false;
       vm.society.admin= '';
     }
 
@@ -113,6 +124,7 @@
       var firstError = null;
 
       if (vm.Form.$invalid) {
+        vm.progress = false;
 
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
@@ -124,22 +136,25 @@
           console.log(response.data);
 
           if (response.status == 200) {
+            vm.progress = false;
             toaster.info('Society updated');
             vm.message = "Society updated";
             $state.go('app.society',{msg: vm.message});
           }
           else if (response.status == -1) {
+            vm.progress = false;
             vm.errorMessage = 'Network Error';
             toaster.error('Network Error');
             console.error(response);
           }
           else if (response.status == 400) {
+            vm.progress = false;
             vm.errorMessage = response.data.message;
             toaster.error(response.data.message);
             console.error(response);
           }
           else if (response.status == 401) {
-            toaster.info("User is not logged in. Redirecting to Login Page");
+            vm.progress = false;
             $state.go('auth.signout')
           }
           else {

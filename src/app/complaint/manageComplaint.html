@@ -47,7 +47,7 @@
           <!--<div class="panel-body">-->
           <div class="row margin-bottom-10">
             <div class="col-md-12">
-              <a ui-sref="app.addComplaint" ng-if="!vm.isSuperAdminRole"
+              <a ui-sref="app.addComplaint" ng-if="!vm.isSuperAdminRole && !vm.isMeterManagementRole"
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
                 Complaint</a>
@@ -79,7 +79,7 @@
 
                 <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
-                <td data-title="'Complaint Text'">{{row.description | limitTo:30}}</td>
+                <td data-title="'Complaint Text'">{{row.description | limitTo:40}} <br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
 
                 <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 
@@ -109,6 +109,7 @@
                 </td>
               </tr>
             </table>
+
           </div>
           <!--</div>-->
           <!--</div>-->
@@ -139,7 +140,17 @@
       </div>
     </div>
   </div>
-  <div class="row" ng-if="vm.message && !vm.hideMsg">
+  <div class="row" ng-if="vm.message && vm.activeMessage">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-if="vm.message && vm.resolvedMessage">
     <div class="col-md-12">
       <div class="alert alert-success">
         <button class="close" ng-click="vm.hideAlertBox()">
@@ -172,7 +183,7 @@
 
                     <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
-                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}}</td>
+                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}}<br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
 
                     <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 
@@ -211,7 +222,7 @@
 
                     <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
-                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}}</td>
+                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}} <br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
 
                     <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 

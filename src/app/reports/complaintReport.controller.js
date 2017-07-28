@@ -5,17 +5,24 @@
     .module('app.reports')
     .controller('ComplaintReportController', ComplaintReportController);
 
-  ComplaintReportController.$inject = ['$q', '$http', 'validationHelperFactory', 'toaster', 'complaintReportFactory', 'NgTableParams', '$filter', '$scope', '$localStorage' , '$state'];
+  ComplaintReportController.$inject = ['$q', '$http', 'role', 'validationHelperFactory', 'toaster', 'complaintReportFactory', 'NgTableParams', '$filter', '$scope', '$localStorage' , '$state'];
   /* @ngInject */
-  function ComplaintReportController($q, $http, validationHelperFactory,  toaster,complaintReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state ) {
+  function ComplaintReportController($q, $http, role, validationHelperFactory,  toaster,complaintReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state ) {
 
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
-    vm.progress = true;
-   // vm.complaint = {};
+    vm.complaint ={};
 
     function breadcrumbRoute() {
-      $state.go('app.notice')
+      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole){
+        $state.go('app.society')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -27,10 +34,20 @@
 
     function activate() {
 
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+
       complaintReportFactory.societyList().then(function (response) {
         if(response.status == 200){
           vm.society = response.data;
-          console.log(vm.society)
+          if(vm.isAdminRole || vm.isManagementRole || vm.isMeterManagementRole){
+            vm.complaint.society={};
+            vm.complaint.society.id = $localStorage._identity.principal.societyId;
+          }
           // vm.complaint.society = vm.society[0];
         }
         else if( response.status == 401){
@@ -41,6 +58,7 @@
       complaintReportFactory.loadStatusDetails().then(function (response) {
         if(response.status == 200){
           vm.status = response.data;
+          vm.complaint.status = vm.status[0];
         }
         else if(response.status == 401){
           $state.go('auth.signout');
@@ -74,15 +92,17 @@
 
           if(response.status == 200){
             vm.master = response.data;
-            console.log(response.data)
-            // for ( var index =0 ; index < vm.master.length ; index ++){
-            //
-            //   var createdOn= vm.master[index].createdOn.split(" ");
-            //   var temp1 = createdOn[1].split(":");
-            //   var temp = createdOn[0].split("/");
-            //   vm.master[index].createdOn = new Date(temp[2], temp[1]-1 , temp[0], temp1[0] , temp1[1]);
-            //
-            // }
+            console.log(vm.master)
+            for(var i=0; i<vm.master.length; i++){
+              if(vm.master[i].assignedTo != null){
+                vm.master[i].assignee = "";
+                vm.master[i].assignee = vm.master[i].assignedTo.name;
+              }
+              else{
+                vm.master[i].assignee = "";
+              }
+            }
+            console.log(vm.master)
             reportList();
           }
           else if (response.status == -1) {
@@ -112,10 +132,11 @@
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-            lastModified: 'asc' // initial sorting
+            createdOn: 'desc' // initial sorting
           }, // count per page
           filter: {
-            createdOn: '' // initial filter
+            complaintType: '',
+            assignee: ''
           }
         }, {
           // total: data.length,

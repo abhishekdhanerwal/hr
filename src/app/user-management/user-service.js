@@ -61,6 +61,20 @@
       return promise;
     };
 
+    service.userAddress = function (userID) {
+      var promise = $http.get(__env.dataServerUrl + '/flatByUserId/'  + userID)
+        .then(
+          function (data) {
+            console.log(data);
+            return data;
+          },
+          function (errors) {
+            console.log(errors);
+            return errors;
+          });
+      return promise;
+    };
+
     service.update = function (id, user) {
       var promise = $http.put(__env.dataServerUrl + '/editUser/' + id, user)
         .then(

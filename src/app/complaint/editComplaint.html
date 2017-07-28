@@ -43,15 +43,62 @@
               <div class="row">
                 <div class="col-md-6">
 
-                  <div class="form-group" ng-if="!vm.isConsumerRole"
-                       ng-class="{'has-error':vm.Form.flat.$dirty && vm.Form.flat.$invalid, 'has-success':vm.Form.flat.$valid}" ng-if="!vm.isConsumerRole">
-                    <label class="control-label"> Flat <span class="symbol required"></span> </label>
-                    <select ng-disabled="true" class="form-control" name="flat" ng-model="vm.complaint.registerFor"
-                            ng-options="complaint as complaint.tower + ',' + complaint.flatNo for complaint in vm.flat" required>
-                    </select>
-                    <span class="error text-small block"
-                          ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required">Flat is required.</span>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group"
+                           ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}" ng-if="!vm.isConsumerRole">
+                        <label class="control-label"> Tower <span class="symbol required"></span> </label>
+                        <select ng-disabled="true" class="form-control" name="tower" ng-model="vm.complaint.registerFor.tower"
+                                ng-options="tower for tower in vm.towerList" required>
+                        </select>
+                        <span class="error text-small block"
+                              ng-if="vm.Form.tower.$dirty && vm.Form.tower.$error.required">Tower is required.</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group" ng-class="{'has-error':vm.Form.flat.$dirty && vm.Form.flat.$invalid, 'has-success':vm.Form.flat.$valid}" ng-if="!vm.isConsumerRole">
+                        <label class="control-label">
+                          Flat <span class="symbol required"></span>
+                        </label>
+                        <div class="row">
+                          <div class="col-md-7">
+                            <input ng-disabled="true" type="text" style="width:190px;" name="flat" ng-model="vm.complaint.registerFor.flatNo" placeholder="Search Flat No"
+                                   ng-value="vm.complaint.registerFor.flatNo"
+                                   uib-typeahead="item for item in vm.flatList($viewValue)"
+                                   typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"
+                                   typeahead-editable='true'
+                                   class="form-control" required>
+                          </div>
+                          <div class="col-md-5">
+                        <span class="btn btn-danger" style="margin-left: 45px;" ng-click="vm.clearFlat()" ><i
+                          class="fa fa-times"></i> </span>
+                          </div>
+                        </div>
+                        <div ng-show="noResults" class="error">
+                          <i class="glyphicon glyphicon-remove"></i> No Results Found
+                        </div>
+                        <span class="error text-small block"
+                              ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required">Flat is required.</span>
+                      </div>
+                    </div>
                   </div>
+
+                    <!--<div class="form-group"-->
+                         <!--ng-class="{'has-error':vm.Form.floor.$dirty && vm.Form.floor.$invalid, 'has-success':vm.Form.floor.$valid}" ng-if="!vm.isConsumerRole">-->
+                      <!--<label class="control-label"> Floor </label>-->
+                      <!--<input ng-disabled="true" type="text" placeholder="Enter Floor" class="form-control" name="floor" ng-model="vm.complaint.address.floor">-->
+                    <!--</div>-->
+
+
+                  <!--<div class="form-group" ng-if="!vm.isConsumerRole"-->
+                       <!--ng-class="{'has-error':vm.Form.flat.$dirty && vm.Form.flat.$invalid, 'has-success':vm.Form.flat.$valid}" ng-if="!vm.isConsumerRole">-->
+                    <!--<label class="control-label"> Flat <span class="symbol required"></span> </label>-->
+                    <!--<select ng-disabled="true" class="form-control" name="flat" ng-model="vm.complaint.registerFor"-->
+                            <!--ng-options="complaint as complaint.tower + ',' + complaint.flatNo for complaint in vm.flat" required>-->
+                    <!--</select>-->
+                    <!--<span class="error text-small block"-->
+                          <!--ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required">Flat is required.</span>-->
+                  <!--</div>-->
 
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.complaintType.$dirty && vm.Form.complaintType.$invalid, 'has-success':vm.Form.complaintType.$valid}">
