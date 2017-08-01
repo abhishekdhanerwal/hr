@@ -1,0 +1,93 @@
+<!-- start: BREADCRUMB -->
+<div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
+  <h4 class="mainTitle no-margin">Add Helper</h4>
+
+  <div ncy-breadcrumb class="pull-right"></div>
+</div>
+<!-- end: BREADCRUMB -->
+
+<wave-spinner ng-show="vm.progress" ></wave-spinner>
+
+<div ng-show="!vm.progress" class="container-fluid container-fullw">
+  <div class="row" ng-show="vm.errorMessage">
+    <div class="col-md-12">
+      <div class="alert alert-danger">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        <strong>Error!</strong> {{vm.errorMessage}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body">
+          <ng-form name="vm.Form" role="Form" id="Form" novalidate>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.helperNo.$dirty && vm.Form.helperNo.$invalid, 'has-success':vm.Form.helperNo.$valid}">
+                    <label class="control-label margin-top-20"> Helper Number <span class="symbol required"></span> </label>
+                    <input type="text" placeholder="Enter Helper Number" class="form-control" name="helperNo"
+                           ng-model="vm.helper.name"  ng-pattern="/^[1-9][0-9]*$/" ng-minlength="6" ng-maxlength="6" required/>
+                    <span class="error text-small block" ng-if="vm.Form.helperNo.$error.pattern">Invalid characters</span>
+                    <span class="error text-small block" ng-if="vm.Form.helperNo.$dirty && vm.Form.helperNo.$error.required">Helper number is required</span>
+                    <span class="error text-small block" ng-if="!vm.Form.helperNo.$error.pattern && vm.Form.helperNo.$error.minlength">Helper number is of 6 digits</span>
+                    <span class="error text-small block" ng-if="!vm.Form.helperNo.$error.pattern && vm.Form.helperNo.$error.maxlength">Helper number should be of 6 digits</span>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                <button type="button" style="margin-top:42px;" class="btn btn-primary btn-scroll btn-scroll-top ti-plus" ng-click="vm.addHelper()">
+                <span>Add Helper</span>
+                </button>
+                </div>
+              </div><br>
+
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="table-responsive">
+                    <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
+                      <tr ng-repeat="row in vm.householdHelper">
+
+                        <td data-title="'Name'">{{row.name}}</td>
+                        <td data-title="'Number'">{{row.mobile}}</td>
+                        <td data-title="'Type'">{{row.type}}</td>
+                        <td data-title="'Gender'">{{row.gender}}</td>
+                        <td data-title="'Police Verification'">{{row.policeVerification}}</td>
+                        <td>
+                        <button type="button" class="btn btn-red btn-wide btn-scroll btn-scroll-top ti-trash" ng-click="vm.removeRow(row.name)">
+                        <span>Remove</span>
+                        </button>
+                        </td>
+
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+        </div>
+
+          </ng-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

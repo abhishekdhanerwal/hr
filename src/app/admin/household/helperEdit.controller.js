@@ -123,9 +123,9 @@
           console.log(response.data);
 
           if (response.status == 200) {
-            toaster.info('Society updated');
-            vm.message = "Society updated";
-            $state.go('app.society',{msg: vm.message});
+            toaster.info('Helper updated');
+            vm.message = "Helper updated";
+            $state.go('app.helpers',{msg: vm.message});
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

@@ -11,11 +11,10 @@
   function HelperNewCtrl( NgTableParams, helperFactory, $localStorage, role, $filter, $document, $state, validationHelperFactory , toaster) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
-    // vm.flatList = flatList;
-    // vm.onSelect = onSelect;
     vm.submit = submit;
     vm.reset = reset;
-
+    vm.helper = {};
+    vm.helper.policeVerificationDone = false;
    // vm.progress = true;
 
     function breadcrumbRoute(){
@@ -121,37 +120,33 @@
     };
 
 
-    // function addResident(){
+    // function addHelper(){
     //   var firstError = null;
-    //   console.log(vm.Form.residentName)
     //   // if (vm.Form.residentName.$invalid || vm.Form.tower.$invalid || vm.Form.flatNo.$invalid || vm.Form.floor.$invalid || vm.Form.fromDate.$invalid || vm.Form.endDate.$invalid) {
     //   //   validationHelperFactory.manageValidationFailed(vm.Form);
     //   //   vm.errorMessage = 'Validation Error';
     //   //   return;
     //   // }
     //   // else {
-    //     vm.helper.workingAt.push({
-    //       'residentName': vm.resident.residentName,
-    //       'tower': vm.resident.tower,
-    //       'flatNo': vm.resident.flatNo,
-    //       'floor': vm.resident.floor,
-    //       'fromDate': vm.resident.fromDate,
-    //       'endDate': vm.resident.endDate
+    //     vm.householdHelper.push({
+    //       'name': vm.householdHelper.name,
+    //       'mobile': vm.householdHelper.mobile,
+    //       'type': vm.householdHelper.type,
+    //       'gender': vm.householdHelper.gender,
+    //       'policeVerification': vm.householdHelper.policeVerification
     //     });
-    //     vm.resident.residentName = '';
-    //     vm.resident.tower = '';
-    //     vm.resident.flatNo = '';
-    //     vm.resident.floor = '';
-    //     vm.resident.fromDate = '';
-    //     vm.resident.endDate = '';
-    //
+    //     vm.householdHelper.name = '';
+    //     vm.householdHelper.mobile = '';
+    //     vm.householdHelper.type = '';
+    //     vm.householdHelper.gender = '';
+    //     vm.householdHelper.policeVerification = '';
     // }
-
-    // vm.removeRow = function (residentName) {
+    //
+    // vm.removeRow = function (name) {
     //   var index = -1;
-    //   var comArr = eval(vm.helper.workingAt);
+    //   var comArr = eval(vm.householdHelper);
     //   for (var i = 0; i < comArr.length; i++) {
-    //     if (comArr[i].residentName === residentName) {
+    //     if (comArr[i].name === name) {
     //       index = i;
     //       break;
     //     }
@@ -159,7 +154,7 @@
     //   if (index === -1) {
     //     alert("Something gone wrong");
     //   }
-    //   vm.helper.workingAt.splice(index, 1);
+    //   vm.householdHelper.splice(index, 1);
     // };
 
     function reset() {

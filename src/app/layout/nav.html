@@ -27,6 +27,18 @@
       </div>
     </a>
   </li>
+  <li ui-sref-active="active" ng-if="vm.isConsumerRole">
+    <a ui-sref="app.helpers">
+      <div class="item-content">
+        <div class="item-media">
+          <i class="fa fa-home"></i>
+        </div>
+        <div class="item-inner">
+          <span class="title"> Household Helper </span>
+        </div>
+      </div>
+    </a>
+  </li>
   <li ui-sref-active="active">
     <a href="javascript:void(0)" ng-if="!vm.isConsumerRole && !vm.isCreatorRole">
       <div class="item-content">
@@ -86,7 +98,7 @@
       <!--<li ui-sref-active="active">-->
         <!--<a ui-sref="app.flats"> <span class="title"> Flats </span> </a>-->
       <!--</li>-->
-      <li ui-sref-active="active">
+      <li ui-sref-active="active" ng-if="vm.isAdminRole || vm.isManagementRole">
         <a ui-sref="app.helpers"> <span class="title"> Household help </span> </a>
       </li>
     </ul>

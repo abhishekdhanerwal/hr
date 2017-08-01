@@ -71,7 +71,7 @@
     };
 
     service.editHelper = function (id, data) {
-      var promise = $http.put(__env.dataServerUrl + '/updateHelper/' + id,data)
+      var promise = $http.put(__env.dataServerUrl + '/updateHelper?helperId=' + id,data)
         .then(
           function (response) {
             return response;

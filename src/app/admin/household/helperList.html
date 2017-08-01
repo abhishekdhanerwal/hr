@@ -34,9 +34,13 @@
         <div class="panel-body">
           <div class="row margin-bottom-10">
             <div class="col-md-12">
-              <a ui-sref="app.createHelper"
+              <a ui-sref="app.createHelper" ng-if="!vm.isConsumerRole"
                  class="btn btn-wide btn-primary pull-left"><i
                 class="ti-plus"></i> New
+                Helper</a>
+              <a ui-sref="app.assignHelper" ng-if="vm.isConsumerRole"
+                 class="btn btn-wide btn-primary pull-left"><i
+                class="ti-plus"></i> Add
                 Helper</a>
               <a ng-click="vm.tableParams.filter({})"
                  class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear
@@ -47,10 +51,12 @@
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in $data">
 
-                <td data-title="'Helper Number'" style="width:150px;" sortable="'helperNo'" filter="{ 'helperNo' : 'text' }">{{row.helperNo}}</td>
-                <td data-title="'Name'">{{row.name}}</td>
-                <td data-title="'Type'" style="width:150px;" sortable="'type'" filter="{ 'type' : 'text' }">{{row.type}}</td>
-                <td data-title="'Verification Done'">{{row.policeVerificationDone}}</td>
+                <td data-title="'Helper Number'" style="width:160px;" sortable="'helperNo'" filter="{ 'helperNo' : 'text' }">{{row.helperNo}}</td>
+                <td data-title="'Name'" style="width:160px;">{{row.name}}</td>
+                <td data-title="'Mobile number'" style="width:160px;">{{row.mobile}}</td>
+                <td data-title="'Type'" style="width:160px;" sortable="'type'" filter="{ 'type' : 'text' }">{{row.type}}</td>
+                <td data-title="'Verification Done'" style="width:160px;">{{row.policeVerificationDone}}</td>
+                <td data-title="'Verification Date'" style="width:160px;">{{row.policeVerificationDate | date:'dd-MM-yyyy'}}</td>
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
                     <a ui-sref="app.editHelper({id : row.id})" class="btn btn-transparent btn-xs"

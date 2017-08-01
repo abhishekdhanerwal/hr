@@ -64,8 +64,8 @@
                               ng-if="vm.Form.mobile.$dirty && vm.Form.mobile.$error.required">Mobile is required</span>
                         <span class="error text-small block"
                               ng-if="vm.Form.mobile.$error.maxlength == vm.Form.mobile.$error.minlength && vm.Form.mobile.$error.pattern">Invalid Characters</span>
-                        <span class="error text-small block" ng-if="vm.Form.mobile.$error.minlength">Mobile Number should be ten characters only</span>
-                        <span class="error text-small block" ng-if="vm.Form.mobile.$error.maxlength">Mobile Number should be ten characters only</span>
+                        <span class="error text-small block" ng-if="vm.Form.mobile.$error.minlength">Mobile Number should be ten digits only</span>
+                        <span class="error text-small block" ng-if="vm.Form.mobile.$error.maxlength">Mobile Number should be ten digits only</span>
                       </div>
 
                       <div class="form-group">
@@ -220,7 +220,8 @@
               <div class="col-md-6">
                 <div class="form-group" ng-class="{'has-error':vm.Form.policeVerificationDate.$dirty && vm.Form.policeVerificationDate.$invalid, 'has-success':vm.Form.policeVerificationDate.$valid}">
                   <label class="control-label">  Verification Date <span class="symbol required"></span></label>
-                  <input type="text" ng-readonly="true"  name="verificationDate" show-button-bar="false" class="form-control" placeholder="Verification Date" uib-datepicker-popup="{{format}}" ng-model="vm.helper.policeVerificationDate" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <input type="text" ng-readonly="true"  name="policeVerificationDate" show-button-bar="false" class="form-control" placeholder="Verification Date" uib-datepicker-popup="{{format}}" ng-model="vm.helper.policeVerificationDate" show-weeks="false" is-open="inputopened" ng-init="inputopened = false" ng-click="inputopened = !inputopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                  <span class="error text-small block" ng-if="vm.Form.policeVerificationDate.$dirty && vm.Form.policeVerificationDate.$error.required">Verification Date is required</span>
                 </div>
               </div>
 
