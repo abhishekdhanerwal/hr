@@ -48,7 +48,7 @@
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
                         <label class="control-label"> Name <span class="symbol required"></span> </label>
-                        <input type="text" placeholder="Enter your Name" class="form-control" name="name"
+                        <input type="text" placeholder="Enter Name" class="form-control" name="name"
                                ng-model="vm.user.name"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
                         <span class="error text-small block" ng-if="vm.Form.name.$error.pattern">Invalid characters</span>
                         <span class="error text-small block" ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required</span>
@@ -74,7 +74,7 @@
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.mobile.$dirty && vm.Form.mobile.$invalid, 'has-success':vm.Form.mobile.$valid}">
                         <label class="control-label"> Mobile Number <span class="symbol required"></span> </label>
-                        <input type="text" placeholder="Enter your Mobile Number" class="form-control" name="mobile"
+                        <input type="text" placeholder="Enter Mobile Number" class="form-control" name="mobile"
                                ng-model="vm.user.mobile" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
                                ng-maxlength=10 required/>
 
