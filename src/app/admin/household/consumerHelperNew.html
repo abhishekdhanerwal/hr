@@ -41,7 +41,7 @@
                        ng-class="{'has-error':vm.Form.helperNo.$dirty && vm.Form.helperNo.$invalid, 'has-success':vm.Form.helperNo.$valid}">
                     <label class="control-label margin-top-20"> Helper Number <span class="symbol required"></span> </label>
                     <input type="text" placeholder="Enter Helper Number" class="form-control" name="helperNo"
-                           ng-model="vm.helper.name"  ng-pattern="/^[1-9][0-9]*$/" ng-minlength="6" ng-maxlength="6" required/>
+                           ng-model="vm.helper.number"  ng-pattern="/^[1-9][0-9]*$/" ng-minlength="6" ng-maxlength="6" required/>
                     <span class="error text-small block" ng-if="vm.Form.helperNo.$error.pattern">Invalid characters</span>
                     <span class="error text-small block" ng-if="vm.Form.helperNo.$dirty && vm.Form.helperNo.$error.required">Helper number is required</span>
                     <span class="error text-small block" ng-if="!vm.Form.helperNo.$error.pattern && vm.Form.helperNo.$error.minlength">Helper number is of 6 digits</span>
@@ -50,23 +50,24 @@
                 </div>
 
                 <div class="col-md-6">
-                <button type="button" style="margin-top:42px;" class="btn btn-primary btn-scroll btn-scroll-top ti-plus" ng-click="vm.addHelper()">
+                <button type="button" style="margin-top:42px;" class="btn btn-primary btn-scroll btn-scroll-top ti-plus" ng-click="vm.submit()">
                 <span>Add Helper</span>
                 </button>
                 </div>
               </div><br>
 
-              <div class="row">
-                <div class="col-md-8">
+              <div class="row" ng-if="vm.showTable == true">
+                <div class="col-md-12">
                   <div class="table-responsive">
                     <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
-                      <tr ng-repeat="row in vm.householdHelper">
+                      <tr ng-repeat="row in vm.houseHelper">
 
                         <td data-title="'Name'">{{row.name}}</td>
                         <td data-title="'Number'">{{row.mobile}}</td>
                         <td data-title="'Type'">{{row.type}}</td>
                         <td data-title="'Gender'">{{row.gender}}</td>
-                        <td data-title="'Police Verification'">{{row.policeVerification}}</td>
+                        <td data-title="'Police Verification'">{{row.policeVerificationDone}}</td>
+                        <td data-title="'Expiry Date'">{{row.endDate | date:'dd-MM-yyyy'}}</td>
                         <td>
                         <button type="button" class="btn btn-red btn-wide btn-scroll btn-scroll-top ti-trash" ng-click="vm.removeRow(row.name)">
                         <span>Remove</span>
@@ -78,6 +79,13 @@
                   </div>
                 </div>
               </div>
+
+            <div class="row" ng-if="vm.showTable == true">
+              <div class="col-md-6">
+              <button type="button" class="btn btn-success btn-wide" ui-sref="app.helpers">Save</button>
+              </div>
+            </div>
+            <br>
 
 
         </div>

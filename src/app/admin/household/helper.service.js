@@ -82,6 +82,42 @@
       return promise;
     };
 
+    service.addHelperForConsumer = function (helperNo) {
+      var promise = $http.put(__env.dataServerUrl + '/updateHelper?helperNo=' + helperNo)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.removeHelper = function (helperNo) {
+      var promise = $http.put(__env.dataServerUrl + '/helper/remove/' + helperNo)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.helperListForConsumer = function () {
+      var promise = $http.get(__env.dataServerUrl + '/helper/consumer')
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     return service;
   };
 }());

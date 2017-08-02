@@ -42,16 +42,27 @@
       vm.isConsumerRole = role.isConsumerRole();
       vm.isCreatorRole = role.isCreatorRole();
 
-        helperFactory.helperList().then(function (response) {
+      vm.abc = new Date();
+
+      if(vm.isConsumerRole){
+        helperFactory.helperListForConsumer().then(function (response) {
 
           vm.progress = false;
 
           if (response.status == 200) {
             vm.master = response.data;
             for(var i=0; i<vm.master.length; i++){
-             if(vm.master[i].type == 'Car_Cleaner'){
-               vm.master[i].type = 'Car Cleaner';
-             }
+              if(vm.master[i].type == 'Car_Cleaner'){
+                vm.master[i].type = 'Car Cleaner';
+              }
+            }
+            for (var flag=0 ; flag<vm.master.length ; flag++){
+              for(var index=0 ; index<vm.master[flag].workingAt.length ; index++){
+                if(vm.master[flag].workingAt[index].user.id == $localStorage._identity.principal.id){
+                  vm.master[flag].startDate = angular.copy(vm.master[flag].workingAt[index].helperMap[vm.master[flag].helperNo][0]);
+                  vm.master[flag].endDate = angular.copy(vm.master[flag].workingAt[index].helperMap[vm.master[flag].helperNo][1]);
+                }
+              }
             }
             console.log(vm.master)
             helperData();
@@ -74,6 +85,41 @@
             console.error(response);
           }
         })
+      }
+      else{
+        helperFactory.helperList().then(function (response) {
+
+          vm.progress = false;
+
+          if (response.status == 200) {
+            vm.master = response.data;
+            for(var i=0; i<vm.master.length; i++){
+              if(vm.master[i].type == 'Car_Cleaner'){
+                vm.master[i].type = 'Car Cleaner';
+              }
+            }
+            console.log(vm.master)
+            helperData();
+          }
+          else if (response.status == -1) {
+            toaster.error('Network Error', 'error');
+            vm.errorMessage = "Network Error";
+            console.error(response);
+          }
+          else if (response.status == 400) {
+            console.error(response);
+            vm.errorMessage = vm.master.message;
+            toaster.error(vm.master.message, 'error');
+          }
+          else if (response.status == 401) {
+            $state.go('auth.signout')
+          }
+          else {
+            toaster.error('Some problem', 'error');
+            console.error(response);
+          }
+        })
+      }
     };
 
     function helperData() {
@@ -129,6 +175,48 @@
             }
           }
         });
+
+      vm.remove = function (name) {
+        helperFactory.removeHelper(vm.master.helperNo).then(function (response) {
+
+          if (response.status == 200) {
+            toaster.info('Helper Removed');
+          }
+          else if (response.status == -1) {
+            vm.errorMessage = 'Network Error';
+            toaster.error('Network Error');
+            console.error(response);
+          }
+          else if (response.status == 400) {
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
+            console.error( vm.errorMessage);
+          }
+          else if( response.status == 401){
+            $state.go('auth.signout')
+          }
+          else {
+            vm.errorMessage = 'Some problem';
+            toaster.error('Some problem');
+            console.error(response);
+          }
+        });
+        var index = -1;
+        var comArr = eval(vm.houseHelper);
+        for (var i = 0; i < comArr.length; i++) {
+          if (comArr[i].name === name) {
+            index = i;
+            break;
+          }
+        }
+        if(index == 0){
+          vm.showTable = false;
+        }
+        if (index === -1) {
+          alert("Something gone wrong");
+        }
+        vm.houseHelper.splice(index, 1);
+      };
     };
   }
 })();

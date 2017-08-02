@@ -56,12 +56,15 @@
                 <td data-title="'Mobile number'" style="width:160px;">{{row.mobile}}</td>
                 <td data-title="'Type'" style="width:160px;" sortable="'type'" filter="{ 'type' : 'text' }">{{row.type}}</td>
                 <td data-title="'Verification Done'" style="width:160px;">{{row.policeVerificationDone}}</td>
-                <td data-title="'Verification Date'" style="width:160px;">{{row.policeVerificationDate | date:'dd-MM-yyyy'}}</td>
+                <td data-title="'Verification Date'" style="width:160px;" ng-if="!vm.isConsumerRole">{{row.policeVerificationDate | date:'dd-MM-yyyy'}}</td>
+                <td data-title="'Expiry Date'" style="width:160px;" ng-if="vm.isConsumerRole">{{row.endDate | date:'dd-MM-yyyy'}}</td>
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a ui-sref="app.editHelper({id : row.id})" class="btn btn-transparent btn-xs"
+                    <a ui-sref="app.editHelper({id : row.id})" ng-if="!vm.isConsumerRole" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-transparent" ng-click="vm.remove()"><i class="ti-trash" style="color:red"></i></a>
+                    <a class="btn btn-xs" ng-if="vm.abc == vm.date">Extend Date</a>
                   </div>
                   <div class="visible-xs visible-sm hidden-md hidden-lg">
                     <div class="btn-group" uib-dropdown>
@@ -71,7 +74,7 @@
                       </button>
                       <ul class="dropdown-menu pull-right dropdown-light" role="menu">
                         <li>
-                          <a href="#" ui-sref="app.editHelper({id : row.id})"> Edit </a>
+                          <a href="#" ng-if="!vm.isConsumerRole" ui-sref="app.editHelper({id : row.id})"> Edit </a>
                         </li>
                       </ul>
                     </div>
