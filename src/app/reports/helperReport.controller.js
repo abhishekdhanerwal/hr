@@ -70,20 +70,20 @@
               reportList();
             }
             else if (response.status == -1) {
-              toaster.error('Network Error', 'error');
+              toaster.error('Network Error');
               vm.errorMessage = "Network Error";
               console.error(response);
             }
             else if (response.status == 400) {
               console.error(response);
               vm.errorMessage = response.data[0].message;
-              toaster.error(response.data[0].message, 'error');
+              toaster.error(response.data[0].message);
             }
             else if( response.status == 401){
               $state.go('auth.signout')
             }
             else {
-              toaster.error('Some problem', 'error');
+              toaster.error('Some problem');
               console.error(response);
             }
           })
@@ -109,20 +109,20 @@
               reportList();
             }
             else if (response.status == -1) {
-              toaster.error('Network Error', 'error');
+              toaster.error('Network Error');
               vm.errorMessage = "Network Error";
               console.error(response);
             }
             else if (response.status == 400) {
               console.error(response);
               vm.errorMessage = response.data[0].message;
-              toaster.error(response.data[0].message, 'error');
+              toaster.error(response.data[0].message);
             }
             else if( response.status == 401){
               $state.go('auth.signout')
             }
             else {
-              toaster.error('Some problem', 'error');
+              toaster.error('Some problem');
               console.error(response);
             }
           })
@@ -148,20 +148,21 @@
               reportList();
             }
             else if (response.status == -1) {
-              toaster.error('Network Error', 'error');
+              toaster.error('Network Error');
               vm.errorMessage = "Network Error";
               console.error(response);
             }
             else if (response.status == 400) {
+              vm.reportProgress = false;
               console.error(response);
               vm.errorMessage = response.data[0].message;
-              toaster.error(response.data[0].message, 'error');
+              toaster.error(response.data[0].message);
             }
             else if( response.status == 401){
               $state.go('auth.signout')
             }
             else {
-              toaster.error('Some problem', 'error');
+              toaster.error('Some problem');
               console.error(response);
             }
           })

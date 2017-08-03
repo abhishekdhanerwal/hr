@@ -45,7 +45,7 @@
                     Society : <span class="symbol required"></span>
                   </label><br>
                   <div ng-class="{'has-error':vm.Form.society.$dirty && vm.Form.society.$invalid, 'has-success':vm.Form.society.$valid}">
-                    <select class="form-control" style="width:250px;" name="society" ng-model="vm.complaint.society" ng-options="complaint as complaint.name for complaint in vm.society" required>
+                    <select class="form-control" style="width:250px;" name="society" ng-model="vm.complaint.society" ng-change="vm.hideTable()" ng-options="complaint as complaint.name for complaint in vm.society" required>
                       <option value="all">All</option>
                     </select>
                     <span class="error text-small block"
@@ -60,7 +60,7 @@
                     Status :
                   </label><br>
                   <div ng-class="{'has-error':vm.Form.status.$dirty && vm.Form.status.$invalid, 'has-success':vm.Form.status.$valid}">
-                    <select class="form-control" style="width:250px;" name="status" ng-model="vm.complaint.status" ng-options="complaint for complaint in vm.status" required>
+                    <select class="form-control" style="width:250px;" name="status" ng-model="vm.complaint.status" ng-change="vm.hideTable()" ng-options="complaint for complaint in vm.status" required>
                     </select>
                     <span class="error text-small block"
                           ng-if="vm.Form.status.$dirty && vm.Form.status.$error.required">Status is required.</span>

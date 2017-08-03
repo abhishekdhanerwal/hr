@@ -68,6 +68,10 @@
       vm.endDateValidation = function () {
         vm.endMinDate = vm.start;
       }
+
+      vm.hideTable = function () {
+        vm.IsHidden = false;
+      }
     };
 
     //function to generate the report
