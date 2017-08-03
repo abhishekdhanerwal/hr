@@ -37,11 +37,11 @@ function ($rootScope, $state, $stateParams) {
         layout: ''
     };
     $rootScope.app.layout = angular.copy($rootScope.app.defaultLayout);
-    $rootScope.user = {
-        name: 'Peter',
-        job: 'ng-Dev',
-        picture: 'app/img/user/02.jpg'
-    };
+    // $rootScope.user = {
+    //     name: 'Peter',
+    //     job: 'ng-Dev',
+    //     picture: 'app/img/user/02.jpg'
+    // };
 }]);
 // translate config
 app.config(['$translateProvider',
@@ -162,5 +162,5 @@ app.run(["$templateCache", function ($templateCache) {
 	    "    </tr>\n" +
 	    "  </tbody>\n" +
 	    "</table>\n" +
-	    "");    
+	    "");
 }]);

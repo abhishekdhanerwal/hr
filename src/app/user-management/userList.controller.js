@@ -128,7 +128,8 @@
             lastModified: 'desc' // initial sorting
           }, // count per page
           filter: {
-            name: '' // initial filter
+            name: '',
+            role: ''// initial filter
           }
         }, {
           getData: function (params) {

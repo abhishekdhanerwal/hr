@@ -134,6 +134,7 @@
           console.log(vm.user)
           if (response.status == 200) {
             $localStorage._identity.userDetails = response.data;
+            $rootScope.user = response.data;
             console.log(response.data);
             toaster.info('User Saved');
             $state.go('app.notice')
