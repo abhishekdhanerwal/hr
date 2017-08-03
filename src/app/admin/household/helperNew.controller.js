@@ -69,9 +69,9 @@
         if (response.status == 200) {
           vm.householdHelper = response.data;
           for(var i=0; i<vm.householdHelper.length; i++){
-            if(vm.householdHelper[i].type == 'Car_Cleaner'){
-              vm.householdHelper[i].type = 'Car Cleaner';
-            }
+            // if(vm.householdHelper[i].type == 'Car_Cleaner'){
+            //   vm.householdHelper[i].type = 'Car Cleaner';
+            // }
           }
           for (var flag=0 ; flag<vm.householdHelper.length ; flag++){
             for(var index=0 ; index<vm.householdHelper[flag].workingAt.length ; index++){
@@ -148,6 +148,7 @@
             if(vm.helper.number == vm.householdHelper[i].helperNo){
               vm.houseHelper.push({
                 'name': vm.householdHelper[i].name,
+                'aadharId': vm.householdHelper[i].aadharId,
                 'mobile': vm.householdHelper[i].mobile,
                 'type': vm.householdHelper[i].type,
                 'gender': vm.householdHelper[i].gender,
@@ -166,28 +167,34 @@
 
 
     vm.removeRow = function (name) {
+        vm.progress = true;
       helperFactory.removeHelper(vm.helper.number).then(function (response) {
 
         if (response.status == 200) {
           toaster.info('Helper Removed');
+          vm.progress = false;
         }
         else if (response.status == -1) {
           vm.errorMessage = 'Network Error';
           toaster.error('Network Error');
           console.error(response);
+          vm.progress = false;
         }
         else if (response.status == 400) {
           vm.errorMessage = response.data[0].message;
           toaster.error(response.data[0].message);
           console.error( vm.errorMessage);
+          vm.progress = false;
         }
         else if( response.status == 401){
           $state.go('auth.signout')
+          vm.progress = false;
         }
         else {
           vm.errorMessage = 'Some problem';
           toaster.error('Some problem');
           console.error(response);
+          vm.progress = false;
         }
       });
       var index = -1;
@@ -219,6 +226,7 @@
 
 
     function submit() {
+      vm.progress = true;
       var firstError = null;
       console.log(vm.helper)
 
@@ -242,24 +250,30 @@
               toaster.info('Helper Created');
               vm.showTable = true;
               vm.addHelper();
+              vm.progress = false;
             }
             else if (response.status == -1) {
               vm.errorMessage = 'Network Error';
               toaster.error('Network Error');
               console.error(response);
+              vm.progress = false;
+
             }
             else if (response.status == 400) {
               vm.errorMessage = response.data[0].message;
               toaster.error(response.data[0].message);
               console.error( vm.errorMessage);
+              vm.progress = false;
             }
             else if( response.status == 401){
               $state.go('auth.signout')
+              vm.progress = false;
             }
             else {
               vm.errorMessage = 'Some problem';
               toaster.error('Some problem');
               console.error(response);
+              vm.progress = false;
             }
           });
         }
@@ -269,24 +283,29 @@
             if (response.status == 200) {
               toaster.info('Helper Created');
               $state.go('app.helpers');
+              vm.progress = false;
             }
             else if (response.status == -1) {
               vm.errorMessage = 'Network Error';
               toaster.error('Network Error');
               console.error(response);
+              vm.progress = false;
             }
             else if (response.status == 400) {
               vm.errorMessage = response.data[0].message;
               toaster.error(response.data[0].message);
               console.error( vm.errorMessage);
+              vm.progress = false;
             }
             else if( response.status == 401){
               $state.go('auth.signout')
+              vm.progress = false;
             }
             else {
               vm.errorMessage = 'Some problem';
               toaster.error('Some problem');
               console.error(response);
+              vm.progress = false;
             }
           });
         }

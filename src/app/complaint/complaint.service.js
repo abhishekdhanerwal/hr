@@ -72,8 +72,20 @@
       return promise;
     };
 
-    service.searchFlat = function (val, tower) {
-      var promise = $http.get(__env.dataServerUrl + '/flat/' +tower+ '/search?query=' + val)
+    // service.searchFlat = function (val, tower) {
+    //   var promise = $http.get(__env.dataServerUrl + '/flat/' +tower+ '/search?query=' + val)
+    //     .then(
+    //       function (response) {
+    //         return response;
+    //       },
+    //       function (response) {
+    //         return response;
+    //       });
+    //   return promise;
+    // };
+
+    service.findAllFlats = function (tower) {
+      var promise = $http.get(__env.dataServerUrl + '/tower/' + tower + '/flat')
         .then(
           function (response) {
             return response;

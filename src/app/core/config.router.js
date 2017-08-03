@@ -263,6 +263,16 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'Helper Report'
       }
+    }).state('app.flatHelperReport', {
+      url: "/flatHelperReport",
+      templateUrl: "app/reports/flatHelperReport.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Flat Helper Report',
+      controller: 'FlatHelperReportController',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Flat Helper Report'
+      }
     }).state('app.userManagement', {
       url: '/ui',
       template: '<div ui-view class="fade-in-up"></div>',

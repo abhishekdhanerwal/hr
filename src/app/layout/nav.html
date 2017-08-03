@@ -57,6 +57,9 @@
       <li ui-sref-active="active">
         <a ui-sref="app.helperReport"> <span class="title"> Helper Report </span> </a>
       </li>
+      <li ui-sref-active="active">
+        <a ui-sref="app.flatHelperReport"> <span class="title"> Flat Helper Report </span> </a>
+      </li>
     </ul>
   </li>
   <li ng-class="{'active open':$state.includes('app.userManagement')}" ng-if="!vm.isConsumerRole && !vm.isCreatorRole && !vm.isMeterManagementRole">

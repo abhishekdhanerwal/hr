@@ -69,8 +69,18 @@
     };
 
     vm.disableFlatInput = function () {
-      vm.disableFlat = false;
+      complaintFactory.findAllFlats(vm.tower).then(function (response) {
+        if (response.status == 200) {
+          vm.allFlatList = response.data;
+          console.log(vm.allFlatList);
+          vm.disableFlat = false;
+        }
+        else if (response.status == 401) {
+          $state.go('auth.signout')
+        }
+      });
     }
+
 
     vm.populateAssignToList = function () {
       complaintFactory.userByComplaintType(vm.complaint.complaintType).then(function (response) {
@@ -86,22 +96,30 @@
       });
     }
 
-    function searchFlat(val) {
-      return complaintFactory.searchFlat(val, vm.tower).then(function (response) {
-        vm.searchFlatList = response.data;
-        if (response.status == 200) {
-          console.log(response.data)
-          var params = {
-            query: val
-          };
-          return response.data.map(function (item) {
-            return item;
-          })
+      function searchFlat(val) {
+        vm.flatList = [];
+        for(var index=0 ; index<vm.allFlatList.length;index++){
+          if(val == vm.allFlatList[index].flatNo.slice(0,val.length)){
+            vm.flatList.push(vm.allFlatList[index]);
+          }
         }
-        else if (response.status == 401) {
-          $state.go('auth.signout')
-        }
-      });
+        return vm.flatList;
+
+      // return complaintFactory.searchFlat(val, vm.tower).then(function (response) {
+      //   vm.searchFlatList = response.data;
+      //   if (response.status == 200) {
+      //     console.log(response.data)
+      //     var params = {
+      //       query: val
+      //     };
+      //     return response.data.map(function (item) {
+      //       return item;
+      //     })
+      //   }
+      //   else if (response.status == 401) {
+      //     $state.go('auth.signout')
+      //   }
+      // });
     }
 
     function onSelect($item, $model, $label) {
@@ -126,14 +144,14 @@
     };
 
     function submit() {
-      if (!vm.isConsumerRole && vm.searchFlatList.length == 0) {
+      if (!vm.isConsumerRole && vm.flatList.length == 0) {
         vm.flatNoByTower = null;
       }
       else {
         if (!vm.isConsumerRole) {
-          for (var i = 0; i < vm.searchFlatList.length; i++) {
-            if (vm.searchFlatList[i].flatNo == vm.flatsearch || vm.searchFlatList[i].flatNo == vm.flatsearch.flatNo) {
-              vm.flatNoByTower = vm.searchFlatList[i];
+          for (var i = 0; i < vm.flatList.length; i++) {
+            if (vm.flatList[i].flatNo == vm.flatsearch || vm.flatList[i].flatNo == vm.flatsearch.flatNo) {
+              vm.flatNoByTower = vm.flatList[i];
             }
             else {
               vm.flatNoByTower = null;

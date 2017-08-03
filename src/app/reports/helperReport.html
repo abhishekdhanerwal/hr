@@ -36,31 +36,37 @@
           <!--<div class="panel panel-white">-->
           <!--<div class="panel-body">-->
           <ng-form name="vm.Form" role="Form" id="Form" class="form-inline" novalidate>
-            <div class="row">
-              <div class="col-md-4 col-lg-4">
+              <div class="row">
+
+                <div class="col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label class="control-label">
+                      Type : <span class="symbol required"></span>
+                    </label><br>
+                    <div ng-class="{'has-error':vm.Form.type.$dirty && vm.Form.type.$invalid, 'has-success':vm.Form.type.$valid}">
+                      <select class="form-control" style="width:250px;" name="type" ng-model="vm.helper.helperType" ng-change="vm.hideTable()" required>
+                        <option>Helper</option>
+                        <option>Working helpers</option>
+                        <option>Non-working helpers</option>
+                      </select>
+                      <span class="error text-small block"
+                            ng-if="vm.Form.type.$dirty && vm.Form.type.$error.required">Type is required.</span>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="col-md-4 col-lg-4" ng-if="vm.helper.helperType == 'Helper'">
                 <div class="form-group">
                   <label class="control-label">
                      Number : <span class="symbol required"></span>
                   </label><br>
                   <div ng-class="{'has-error':vm.Form.helperNo.$dirty && vm.Form.helperNo.$invalid, 'has-success':vm.Form.helperNo.$valid}">
-                    <select class="form-control" style="width:250px;" name="helperNo" ng-model="vm.helper.helperNo" ng-options="helper as helper.helperNo for helper in vm.helper" required>
-                    </select>
-                    <span class="error text-small block"
-                          ng-if="vm.Form.helperNo.$dirty && vm.Form.helperNo.$error.required">Helper Number is required.</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4 col-lg-4">
-                <div class="form-group">
-                  <label class="control-label">
-                     Type : <span class="symbol required"></span>
-                  </label><br>
-                  <div ng-class="{'has-error':vm.Form.type.$dirty && vm.Form.type.$invalid, 'has-success':vm.Form.type.$valid}">
-                    <select class="form-control" style="width:250px;" name="type" ng-model="vm.helper.type" ng-options="type for type in vm.helperType" required>
-                    </select>
-                    <span class="error text-small block"
-                          ng-if="vm.Form.type.$dirty && vm.Form.type.$error.required">Type is required.</span>
+                    <input type="text" style="width:250px;" placeholder="Enter Helper Number" class="form-control" name="helperNo"
+                           ng-model="vm.helper.number"  ng-pattern="/^[1-9][0-9]*$/" ng-minlength="6" ng-maxlength="6" required/>
+                    <span class="error text-small block" ng-if="vm.Form.helperNo.$error.pattern">Invalid characters</span>
+                    <span class="error text-small block" ng-if="vm.Form.helperNo.$dirty && vm.Form.helperNo.$error.required">Helper number is required</span>
+                    <span class="error text-small block" ng-if="!vm.Form.helperNo.$error.pattern && vm.Form.helperNo.$error.minlength">Helper number is of 6 digits</span>
+                    <span class="error text-small block" ng-if="!vm.Form.helperNo.$error.pattern && vm.Form.helperNo.$error.maxlength">Helper number should be of 6 digits</span>
                   </div>
                 </div>
               </div>
@@ -94,14 +100,17 @@
           <table ng-table="vm.tableParams" show-filter="true" class="table table-striped table-bordered">
             <tr ng-repeat="row in $data">
 
-              <td data-title="'Created Date'" sortable="'createdOn'" filter="{ 'createdOn' : 'text' }">
-                {{row.createdOn | date: 'dd/MM/yyyy hh:mm'}}</td>
-              <td data-title="'Complaint Type'">{{row.complaintType}}</td>
-              <td data-title="'Resident Name'">{{row.registerFor.user.name}}</td>
-              <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
-              <td data-title="'Description'">{{row.description}}</td>
-              <td data-title="'Address'">{{row.registerFor.tower}}{{','}}{{row.registerFor.flatNo}}</td>
-              <td data-title="'Resolved Date'">{{row.resolvedOn | date: 'dd/MM/yyyy hh:mm'}}</td>
+              <td data-title="'Helper number'" ng-if="vm.helper.helperType =='Working helpers' || vm.helper.helperType == 'Non-working helpers'" style="width:150px;" sortable="'helperNo'" filter="{ 'helperNo' : 'text' }">{{row.helperNo}}</td>
+              <td data-title="'Name'">{{row.name}}</td>
+              <td data-title="'Mobile'">{{row.mobile}}</td>
+              <td data-title="'Aadhar Id'">{{row.aadharId}}</td>
+              <td data-title="'Type'" style="width:150px;" sortable="'type'" filter="{ 'type' : 'text' }">{{row.type}}</td>
+              <td data-title="'Gender'">{{row.gender}}</td>
+              <td data-title="'Verification Done'">{{row.policeVerificationDone}}</td>
+              <td data-title="'Working'" ng-if="vm.helper.helperType == 'Helper'">{{!row.isNotWorking}}</td>
+              <td data-title="'Resident Address'" ng-if="vm.helper.helperType == 'Working helpers' || vm.helper.helperType == 'Helper'">
+                <div ng-repeat="temp in row.workingAt">{{temp.tower}} {{temp.flatNo}}</div></td>
+              <!--<td data-title="'Resolved Date'">{{row.resolvedOn | date: 'dd/MM/yyyy hh:mm'}}</td>-->
 
             </tr>
           </table>

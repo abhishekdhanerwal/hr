@@ -63,7 +63,7 @@
                     <a ui-sref="app.editHelper({id : row.id})" ng-if="!vm.isConsumerRole" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                    <a class="btn btn-transparent" ng-click="vm.remove()"><i class="ti-trash" style="color:red"></i></a>
+                    <a class="btn btn-transparent" ng-if="vm.isConsumerRole" ng-click="vm.remove({id:row.id})"><i class="ti-trash" style="color:red"></i></a>
                     <a class="btn btn-xs" ng-if="vm.abc == vm.date">Extend Date</a>
                   </div>
                   <div class="visible-xs visible-sm hidden-md hidden-lg">
