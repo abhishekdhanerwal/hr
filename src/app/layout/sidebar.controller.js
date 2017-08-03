@@ -5,9 +5,9 @@
     .module('app.nav')
     .controller('SidebarController', SidebarController);
 
-  SidebarController.$inject = ['$localStorage', 'role' , '$scope' , '$timeout' , 'principal' , '$state' ];
+  SidebarController.$inject = ['$rootScope','$localStorage', 'role' , '$scope' , '$timeout' , 'principal' , '$state' ];
   /* @ngInject */
-  function SidebarController($localStorage, role  , $scope , $timeout , principal , $state) {
+  function SidebarController($rootScope  , $localStorage, role  , $scope , $timeout , principal , $state) {
     var vm = this;
 
     var random = (new Date()).toString();
@@ -19,7 +19,7 @@
     function activate() {
       role.isAdminRole();
       if($localStorage._identity !=null){
-        vm.name = $localStorage._identity.principal.name;
+        $rootScope.user = $localStorage._identity.principal;
         // vm.profilePictureUrl = $localStorage._identity.userDetails.profilePictureUrl;
         vm.roleName = $localStorage._identity.principal.role;
         if(vm.roleName == "ROLE_CONSUMER") {

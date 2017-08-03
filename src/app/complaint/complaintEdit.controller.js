@@ -143,9 +143,10 @@
     }
 
     function getEditInfo(){
-      vm.progress = false;
+      vm.progress = true;
       complaintFactory.findComplaint($stateParams.id).then(function (response) {
         if (response.status == 200) {
+          vm.progress = false;
           vm.master = response.data;
           vm.complaint = angular.copy(vm.master)
           for(var i=0; i<vm.status.length; i++){
@@ -178,12 +179,36 @@
               }
             }
           }
+          else if(vm.isAdminRole && vm.complaint.status == 'In Progress ')
+          {
+            vm.statusList.splice(3,2);
+            vm.status.splice(3,2);
+            for(var i=0; i<vm.status.length; i++)
+            {
+              if(vm.status[i]=='New') {
+                vm.statusList.splice(i,1);
+                vm.status.splice(i,1);
+              }
+            }
+          }
           else if(vm.isConsumerRole && vm.complaint.status == 'Resolved')
           {
             vm.statusList.splice(0,1);
             vm.status.splice(0,1);
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'Re Opened ')
+          {
+            vm.statusList.splice(0,1);
+            vm.status.splice(0,1);
+            for(var i=0; i<vm.status.length; i++)
+            {
+              if(vm.status[i]=='Closed') {
+                vm.statusList.splice(i, 1);
+                vm.status.splice(i, 1);
+              }
+            }
+          }
+          else if(vm.isAdminRole && vm.complaint.status == 'Re Opened ')
           {
             vm.statusList.splice(0,1);
             vm.status.splice(0,1);
@@ -220,18 +245,22 @@
           toaster.error('Network Error', 'error');
           vm.errorMessage = "Network Error";
           console.error(response);
+          vm.progress = false;
         }
         else if (response.status == 400) {
           console.error(response);
           vm.errorMessage = vm.master.message;
           toaster.error(vm.master.message, 'error');
+          vm.progress = false;
         }
         else if( response.status == 401){
           $state.go('auth.signout')
+          vm.progress = false;
         }
         else {
           toaster.error('Some problem', 'error');
           console.error(response);
+          vm.progress = false;
         }
       });
     }
