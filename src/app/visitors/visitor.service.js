@@ -11,9 +11,8 @@
     var service = {};
 
 
-    service.save = function (user) {
-      console.log(user);
-      var promise = $http.post(__env.dataServerUrl + '/createUser', user)
+    service.addVisitor = function (visitor) {
+      var promise = $http.post(__env.dataServerUrl + '/createVisitor', visitor)
         .then(
           function (response) {
             return response;
@@ -24,8 +23,8 @@
       return promise;
     };
 
-    service.getRole = function () {
-      var promise = $http.get(__env.dataServerUrl + '/user/roles')
+    service.getVisitorType = function () {
+      var promise = $http.get(__env.dataServerUrl + '/visitorType')
         .then(
           function (response) {
             console.log(response)
@@ -37,8 +36,8 @@
       return promise;
     };
 
-    service.alluser = function () {
-      var promise = $http.get(__env.dataServerUrl + '/usersByRole')
+    service.visitorList = function () {
+      var promise = $http.get(__env.dataServerUrl + '/visitors')
         .then(
           function (response) {
             return response;

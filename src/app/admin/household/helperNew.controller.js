@@ -39,6 +39,9 @@
       vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
 
+      vm.maxDate = new Date();
+      console.log(vm.maxDate)
+
       helperFactory.helperType().then(function (response) {
         if (response.status == 200) {
           vm.typeList = response.data;

@@ -112,7 +112,6 @@
     function validateDate(){
       vm.progress = false;
       vm.minDate = new Date();
-      console.log(m.minDate)
     }
 
     function reset() {

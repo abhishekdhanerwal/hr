@@ -6,9 +6,9 @@
     .module('app.visitors')
     .controller('VisitorListCtrl', VisitorListCtrl);
 
-  VisitorListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'helperFactory', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
+  VisitorListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'visitorFactory', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
   /* @ngInject */
-  function VisitorListCtrl( NgTableParams, $state, $localStorage, $filter, helperFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function VisitorListCtrl( NgTableParams, $state, $localStorage, $filter, visitorFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.message = false;
@@ -43,12 +43,17 @@
       vm.isConsumerRole = role.isConsumerRole();
       vm.isCreatorRole = role.isCreatorRole();
 
-        helperFactory.helperList().then(function (response) {
+      visitorFactory.visitorList().then(function (response) {
 
           vm.progress = false;
 
           if (response.status == 200) {
             vm.master = response.data;
+            for(var i=0; i<vm.master.length; i++) {
+              if (vm.master[i].type == 'Non_Permanent') {
+                vm.master[i].type = 'Non Permanent';
+              }
+            }
             console.log(vm.master)
             helperData();
           }
@@ -78,12 +83,10 @@
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-            type: 'asc',
-            helperNo: 'asc'// initial sorting
+            type: 'asc' // initial sorting
           }, // count per page
           filter: {
-            type: '',
-            helperNo: ''// initial filter
+            type: '' // initial filter
           }
         }, {
           // total: data.length,

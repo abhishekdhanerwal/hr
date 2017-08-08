@@ -81,11 +81,11 @@
                       </div>
 
                       <div class="form-group"
-                           ng-class="{'has-error':vm.Form.visitorAddress.$dirty && vm.Form.visitorAddress.$invalid, 'has-success':vm.Form.visitorAddress.$valid}">
-                        <label class="control-label"> Visitor Address <span class="symbol required"></span> </label>
-                        <input type="text" placeholder="Enter Visitor Address" class="form-control" name="visitorAddress"
-                               ng-model="vm.visitor.visitorAddress" required/>
-                        <span class="error text-small block" ng-if="vm.Form.visitorAddress.$dirty && vm.Form.visitorAddress.$error.required">Visitor Address is required</span>
+                           ng-class="{'has-error':vm.Form.comingFrom.$dirty && vm.Form.comingFrom.$invalid, 'has-success':vm.Form.comingFrom.$valid}">
+                        <label class="control-label"> Coming From <span class="symbol required"></span> </label>
+                        <input type="text" class="form-control" name="comingFrom"
+                               ng-model="vm.visitor.comingFrom" required/>
+                        <span class="error text-small block" ng-if="vm.Form.comingFrom.$dirty && vm.Form.comingFrom.$error.required">Visitor Address is required</span>
                       </div>
 
                       <div class="form-group"
@@ -98,7 +98,7 @@
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.visitorType.$dirty && vm.Form.visitorType.$invalid, 'has-success':vm.Form.visitorType.$valid}">
                         <label class="control-label"> Visitor Type <span class="symbol required"></span> </label>
-                        <select class="form-control" name="visitorType" ng-model="vm.visitor.visitorType"
+                        <select class="form-control" name="visitorType" ng-model="vm.visitor.type"
                                 ng-options="visitor for visitor in vm.visitorType" required>
                         </select>
                         <span class="error text-small block"
@@ -106,9 +106,11 @@
                       </div>
 
                       <div class="form-group"
-                           ng-class="{'has-error':vm.Form.visitPurposeText.$dirty && vm.Form.visitPurposeText.$invalid, 'has-success':vm.Form.visitPurposeText.$valid}">
-                        <label class="control-label">Purpose of Visit</label>
-                        <textarea class="form-control custom-control" rows="3" name="visitPurposeText" style="resize:none" ng-model="vm.visitor.description"></textarea>
+                           ng-class="{'has-error':vm.Form.purposeOfVisit.$dirty && vm.Form.purposeOfVisit.$invalid, 'has-success':vm.Form.purposeOfVisit.$valid}">
+                        <label class="control-label">Purpose of Visit<span class="symbol required"></span> </label>
+                        <textarea class="form-control custom-control" rows="3" name="purposeOfVisit" style="resize:none" ng-model="vm.visitor.purposeOfVisit" required></textarea>
+                        <span class="error text-small block"
+                              ng-if="vm.Form.visitorType.$dirty && vm.Form.visitorType.$error.required">Purpose type is required.</span>
                       </div>
 
                 </div>

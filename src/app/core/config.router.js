@@ -154,7 +154,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       templateUrl: "app/admin/household/consumerHelperNew.html",
       controller: 'HelperNewCtrl',
       controllerAs: 'vm',
-      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      resolve: loadSequence('angularFileUpload', 'uploadCtrl', 'flow'),
       title: 'New Helper',
       ncyBreadcrumb: {
         label: 'New Helper'

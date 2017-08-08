@@ -45,6 +45,37 @@
       vm.mstep = 15;
       vm.ismeridian = true;
 
+      visitorFactory.getVisitorType().then(function (response) {
+        if(response.status == 200){
+          vm.visitorType = response.data;
+            if (vm.visitorType == 'Non_Permanent') {
+              vm.visitorType = 'Non Permanent';
+            }
+        }
+        else if (response.status == -1) {
+          vm.progress = false;
+          vm.errorMessage = 'Network Error';
+          toaster.error('Network Error', 'error');
+          console.error(response);
+        }
+        else if (response.status == 400) {
+          vm.progress = false;
+          vm.errorMessage = response.data[0].message;
+          toaster.error(response.data[0].message);
+          console.error(response);
+        }
+        else if (response.status == 401) {
+          vm.progress = false;
+          $state.go('auth.signout')
+        }
+        else {
+          vm.progress = false;
+          vm.errorMessage = 'Some problem';
+          toaster.error('Some problem', 'error');
+          console.error(response);
+        }
+      })
+
     };
 
     function reset() {
@@ -70,7 +101,7 @@
 
         } else {
 
-          complaintFactory.newVisitor(vm.visitor).then(function (response) {
+          visitorFactory.addVisitor(vm.visitor).then(function (response) {
             console.log(response.data);
 
             if (response.status == 200) {

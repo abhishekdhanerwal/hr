@@ -61,19 +61,19 @@
             <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
               <tr ng-repeat="row in $data">
 
-                <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+                <td data-title="'Name'">{{row.name}}</td>
 
-                <td data-title="'Complaint Text'">{{row.description | limitTo:40}} <br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
+                <td data-title="'Vehicle No'">{{row.vehicleNo}}</td>
 
-                <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+                <td data-title="'Visitor Type'" sortable="'type'" filter="{ 'type' : 'text' }">{{row.type}}</td>
 
-                <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
+                <td data-title="'Expected Arrival Time'">{{row.expectedArrivalTime | date: 'hh:mm:ss'}}</td>
 
-                <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
+                <td data-title="'Coming From'">{{row.comingFrom}}</td>
 
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a ng-if="!vm.isSuperAdminRole" ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
+                    <a ng-if="vm.isVisitorAdminRole" ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
                        uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
                   </div>
