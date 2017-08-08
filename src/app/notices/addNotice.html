@@ -219,9 +219,9 @@
 
                           <span class="margin-left-20">{{url.split('/').pop()}}</span>
                           <button type="button" class="btn btn-success btn-xs pull-right" ng-click="vm.downloadAttachment(url)">
-                            <span class="glyphicon glyphicon-trash"></span> View
+                            <span class="glyphicon glyphicon-eye-open"></span> View
                           </button>
-                          <button type="button" class="btn btn-danger btn-xs pull-right margin-right-15" ng-click="vm.deleteFromList($index)">
+                          <button type="button" class="btn btn-danger btn-xs pull-right margin-right-15" ng-click="vm.deleteFromList($index , 'oldAttachment')">
                             <span class="glyphicon glyphicon-trash"></span> Remove
                           </button>
                           <hr>
@@ -326,7 +326,7 @@
                                           <!--<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">-->
                                           <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
                                           <!--</button>-->
-                                          <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove() ; vm.deleteFromList($index)">
+                                          <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove() ; vm.deleteFromList($index , 'newUpload')">
                                             <span class="glyphicon glyphicon-trash"></span> Remove
                                           </button>
                                         </td>

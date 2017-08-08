@@ -6,9 +6,9 @@
     .module('app.notice')
     .controller('NoticeEditCtrl', NoticeEditCtrl);
 
-  NoticeEditCtrl.$inject = ['$state', 'validationHelperFactory', 'role', 'toaster' , '$uibModal' , 'noticeFactory' , '$stateParams' , 'NgTableParams' , '$filter' , 'FileUploader', '$scope' , '$window'];
+  NoticeEditCtrl.$inject = ['$state', 'validationHelperFactory', 'role', 'toaster' , '$uibModal' , 'noticeFactory' , '$stateParams' , 'NgTableParams' , '$filter' , 'FileUploader', '$scope' , '$window', 'SweetAlert'];
   /* @ngInject */
-  function NoticeEditCtrl($state, validationHelperFactory , role, toaster , $uibModal , noticeFactory ,$stateParams , NgTableParams, $filter , FileUploader , $scope , $window) {
+  function NoticeEditCtrl($state, validationHelperFactory , role, toaster , $uibModal , noticeFactory ,$stateParams , NgTableParams, $filter , FileUploader , $scope , $window , SweetAlert) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.notice = {};
@@ -419,22 +419,49 @@
 
 
       uploader.clearQueue = function(){
-        for(var item = 0; item<uploader.queue.length ; item++){
-          uploader.queue[item].remove();
+        var tempLength = uploader.queue.length;
+        for(var item = 0; item<tempLength ; item++){
+          uploader.queue[0].remove();
         }
+        var tempAttachmentLength = vm.notice.attachmentUrl.length;
         if(vm.notice.attachmentUrl.length > attachmentCount) {
-          for(var index=attachmentCount ; index<vm.notice.attachmentUrl.length; index++){
-            vm.notice.attachmentUrl.splice(index, 1);
+          for(var index=attachmentCount ; index<tempAttachmentLength; index++){
+            vm.notice.attachmentUrl.splice(vm.notice.attachmentUrl.length-1, 1);
           }
         }
       };
 
-      vm.deleteFromList = function (item) {
-        if(vm.notice.attachmentUrl.length > attachmentCount) {
-          if (vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined) {
-            if (item > -1) {
-              vm.notice.attachmentUrl.splice(item, 1);
+      vm.deleteFromList = function (item , temp) {
+        if(temp == 'oldAttachment'){
+          SweetAlert.swal({
+            title: "Are you sure?",
+            text: "You want to delete this attachment!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#4CAF50",
+            confirmButtonText: "Yes",
+            cancelButton: "#008CBA",
+            cancelButtonText: "No",
+            closeOnConfirm: true,
+            closeOnCancel: true
+          }, function (isConfirm) {
+            if (isConfirm) {
+              if (vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined) {
+                if (item > -1) {
+                  vm.notice.attachmentUrl.splice(item, 1);
+                }
+              }
+            } else {
+
             }
+          });
+        }
+        else {
+          if(vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined && vm.notice.attachmentUrl.length > attachmentCount) {
+              if (item > -1) {
+                vm.notice.attachmentUrl.splice(attachmentCount + item, 1);
+              }
+
           }
         }
       };

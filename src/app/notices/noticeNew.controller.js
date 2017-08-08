@@ -369,13 +369,14 @@
       };
 
       uploader.clearQueue = function(){
-        for(var item = 0; item<uploader.queue.length ; item++){
-          uploader.queue[item].remove();
-        }
+        var tempLength = uploader.queue.length;
         vm.notice.attachmentUrl = [];
+        for(var item = 0; item<tempLength ; item++){
+          uploader.queue[0].remove();
+        }
       };
 
-      vm.deleteFromList = function (item) {
+      vm.deleteFromList = function (item , temp) {
         if(vm.notice.attachmentUrl != undefined && vm.notice.attachmentUrl[item] != undefined){
           if (item > -1) {
             vm.notice.attachmentUrl.splice(item, 1);
@@ -411,7 +412,7 @@
     }
     else{
       $scope.today = function () {
-        $scope.date = new Date();
+        $scope.date = startDate;
       };
       $scope.today();
 
