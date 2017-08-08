@@ -144,7 +144,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       templateUrl: "app/admin/household/helperNew.html",
       controller: 'HelperNewCtrl',
       controllerAs: 'vm',
-      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      resolve: loadSequence('angularFileUpload', 'uploadCtrl', 'flow'),
       title: 'New Helper',
       ncyBreadcrumb: {
         label: 'New Helper'
@@ -174,10 +174,30 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       templateUrl: "app/admin/household/helperEdit.html",
       controller: 'HelperEditCtrl',
       controllerAs: 'vm',
-      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      resolve: loadSequence('angularFileUpload', 'uploadCtrl', 'flow'),
       title: 'Edit Helper',
       ncyBreadcrumb: {
         label: 'Edit Helper'
+      }
+    }).state('app.visitor', {
+      url: "/visitor",
+      templateUrl: "app/visitors/visitorList.html",
+      controller: 'VisitorListCtrl',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Visitors',
+      ncyBreadcrumb: {
+        label: 'Visitors'
+      }
+    }).state('app.addVisitor', {
+      url: "/addVisitor",
+      templateUrl: "app/visitors/visitorNew.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Create Visitor',
+      controller: 'VisitorNewCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Create Visitor'
       }
     }).state('app.notice', {
       url: "/notice",

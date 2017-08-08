@@ -6,13 +6,14 @@
     .module('app.admin')
     .controller('HelperEditCtrl', HelperEditCtrl);
 
-  HelperEditCtrl.$inject = [ 'NgTableParams', '$document', '$filter', 'helperFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
+  HelperEditCtrl.$inject = [ 'NgTableParams', '$window', '$document', '$filter', 'helperFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role', '$scope', 'FileUploader'];
   /* @ngInject */
-  function HelperEditCtrl( NgTableParams, $document, $filter, helperFactory, $state, validationHelperFactory, $stateParams , toaster, role) {
+  function HelperEditCtrl( NgTableParams, $window, $document, $filter, helperFactory, $state, validationHelperFactory, $stateParams , toaster, role, $scope, FileUploader) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.submit = submit;
     vm.reset = reset;
+    vm.helper = {};
 
     function breadcrumbRoute() {
       if(!vm.isCreatorRole) {
@@ -90,10 +91,46 @@
         }
       });
 
+      vm.helper.uploadedDocumentsUrl = [];
+
     };
 
     vm.toTheTop = function () {
       $document.scrollTopAnimated(0, 400);
+    };
+
+    vm.saveImage = function () {
+      vm.imageProgress = true;
+      var formData = new FormData();
+      formData.append('file', vm.obj.flow.files[0].file);
+      $http.post(__env.dataServerUrl + "/fileUpload/helperImageUpload", formData, {
+        data: formData,
+        transformRequest: angular.identity,
+        headers: {
+          'Content-Type': undefined
+        },
+        transformResponse: [function (data, headers) {
+          return data;
+        }]
+      }).success(function (response) {
+        console.log(response)
+        vm.imageProgress = false;
+        vm.helper.profilePicUrl = response;
+        $rootScope.$broadcast('refreshImage' , vm.helper.profilePicUrl);
+        toaster.success("File uploaded successfully");
+
+      }).error(function (response) {
+        vm.errorMessage = "File upload error";
+        console.log(response)
+        toaster.error("File upload error");
+      });
+    };
+
+    vm.removeImage = function () {
+      //vm.helper = {};
+      console.log(vm.helper.profilePicUrl)
+      vm.noImage = true;
+      vm.helper.profilePicUrl = null;
     };
 
     function reset() {
@@ -150,6 +187,89 @@
         });
       }
     };
+
+    var uploader = $scope.uploader = new FileUploader({
+      url: __env.dataServerUrl + '/fileUpload/userImageUpload'
+    });
+
+    // FILTERS
+
+    uploader.filters.push({
+      name: 'customFilter',
+      fn: function (item/*{File|FileLikeObject}*/, options) {
+        return this.queue.length < 10;
+      }
+    });
+
+    // CALLBACKS
+
+    uploader.onWhenAddingFileFailed = function (item/*{File|FileLikeObject}*/, filter, options) {
+      console.info('onWhenAddingFileFailed', item, filter, options);
+    };
+    uploader.onAfterAddingFile = function (fileItem) {
+      console.info('onAfterAddingFile', fileItem);
+    };
+    uploader.onAfterAddingAll = function (addedFileItems) {
+      console.info('onAfterAddingAll', addedFileItems);
+    };
+    uploader.onBeforeUploadItem = function (item) {
+      console.info('onBeforeUploadItem', item);
+    };
+    uploader.onProgressItem = function (fileItem, progress) {
+      console.info('onProgressItem', fileItem, progress);
+    };
+    uploader.onProgressAll = function (progress) {
+      console.info('onProgressAll', progress);
+    };
+    uploader.onSuccessItem = function (fileItem, response, status, headers) {
+      vm.helper.uploadedDocumentsUrl.push(response);
+      console.info('onSuccessItem', fileItem, response, status, headers);
+    };
+    uploader.onErrorItem = function (fileItem, response, status, headers) {
+      vm.disableButton = false;
+      toaster.error('Attachment Not Saved');
+      console.info('onErrorItem', fileItem, response, status, headers);
+    };
+    uploader.onCancelItem = function (fileItem, response, status, headers) {
+      console.info('onCancelItem', fileItem, response, status, headers);
+    };
+    uploader.onCompleteItem = function (fileItem, response, status, headers) {
+      vm.disableButton = false;
+      toaster.info('Attachment Saved');
+      console.info('onCompleteItem', fileItem, response, status, headers);
+    };
+    uploader.onCompleteAll = function () {
+      vm.disableButton = false;
+      console.info('onCompleteAll');
+    };
+
+    uploader.cancelAll = function(){
+      for(var item = 0; item<uploader.queue.length ; item++){
+        uploader.queue[item].remove();
+      }
+      vm.helper.uploadedDocumentsUrl = [];
+    };
+
+    uploader.clearQueue = function(){
+      var tempLength = uploader.queue.length;
+      vm.helper.uploadedDocumentsUrl = [];
+      for(var item = 0; item<tempLength ; item++){
+        uploader.queue[0].remove();
+      }
+    };
+
+    vm.deleteFromList = function (item , temp) {
+      if(vm.helper.uploadedDocumentsUrl != undefined && vm.helper.uploadedDocumentsUrl[item] != undefined){
+        if (item > -1) {
+          vm.helper.uploadedDocumentsUrl.splice(item, 1);
+        }
+      }
+    };
+
+    vm.downloadAttachment = function (url) {
+      $window.open(url);
+    }
+
   }
 })();
 

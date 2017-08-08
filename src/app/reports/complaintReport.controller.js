@@ -71,6 +71,7 @@
 
       vm.hideTable = function () {
         vm.IsHidden = false;
+        vm.message = "";
       }
     };
 

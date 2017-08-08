@@ -9,6 +9,7 @@
         'app.reports',
         'blocks.auth',
         'app.userMenu',
-        'app.user'
+        'app.user',
+        'app.visitors'
     ]);
 })();

@@ -1,0 +1,105 @@
+
+<div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
+  <h4 class="mainTitle no-margin">Visitors</h4>
+
+  <div ncy-breadcrumb class="pull-right"></div>
+</div>
+
+<wave-spinner ng-show="vm.progress" ></wave-spinner>
+
+<div ng-show="!vm.progress" class="container-fluid container-fullw" style="min-height:600px;">
+  <div class="row" ng-show="vm.errorMessage">
+    <div class="col-md-12">
+      <div class="alert alert-danger">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        <strong>Error!</strong> {{vm.errorMessage}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.visitorMsg">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideComplaintBox()">
+          &times;
+        </button>
+        {{vm.visitorMsg}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body">
+          <!--<div class="col-lg-12 col-md-12">-->
+          <!--<div class="panel panel-white">-->
+          <!--<div class="panel-body">-->
+          <div class="row margin-bottom-10">
+            <div class="col-md-12">
+              <a ui-sref="app.addVisitor"
+                 class="btn btn-wide btn-primary pull-left"><i
+                class="ti-plus"></i> Create
+                Visitor</a>
+              <a ng-click="vm.tableParams.filter({})"
+                 class="btn btn-wide btn-warning pull-right" href="#"><i class="ti-filter"></i> Clear
+                Filters</a>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
+              <tr ng-repeat="row in $data">
+
+                <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+
+                <td data-title="'Complaint Text'">{{row.description | limitTo:40}} <br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
+
+                <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+
+                <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
+
+                <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
+
+                <td class="center">
+                  <div class="visible-md visible-lg hidden-sm hidden-xs">
+                    <a ng-if="!vm.isSuperAdminRole" ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
+                       tooltip-placement="top"
+                       uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                  </div>
+                  <div class="visible-xs visible-sm hidden-md hidden-lg">
+                    <div class="btn-group" uib-dropdown>
+                      <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
+                              uib-dropdown-toggle>
+                        <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                        <li>
+                          <a href="#" ui-sref="app.editComplaint({id : row.complaintId})"> Edit </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

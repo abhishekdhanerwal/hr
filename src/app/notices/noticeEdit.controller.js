@@ -251,10 +251,6 @@
 
     };
 
-    vm.downloadAttachment = function (url) {
-      $window.open(url);
-    }
-
     function submit() {
 
       if (vm.Form.$invalid) {

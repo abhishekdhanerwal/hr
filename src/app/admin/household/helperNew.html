@@ -139,14 +139,14 @@
 
                         <wave-spinner ng-show="vm.imageProgress" ></wave-spinner>
 
-                        <div flow-init="{singleFile:true}" flow-name="obj.flow"
+                        <div flow-init="{singleFile:true}" flow-name="vm.obj.flow"
                              flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
                           <div ng-if="!vm.imageProgress" class="user-image">
                             <div class="thumbnail">
-                              <img src="images/default-user.png" alt="" >
-                              <img ng-src="{{IMAGE_BASE_URL.XL + vm.helper.profilePictureUrl}}" alt=""
-                                   ng-if="!obj.flow.files.length && !noImage">
-                              <img flow-img="obj.flow.files[0]" ng-if="obj.flow.files.length">
+                              <img src="images/default-user.png" alt="" ng-if="!vm.obj.flow.files.length">
+                              <img ng-src="{{IMAGE_BASE_URL.XL + vm.helper.profilePicUrl}}" alt=""
+                                   ng-if="!vm.obj.flow.files.length && !vm.noImage">
+                              <img flow-img="vm.obj.flow.files[0]" ng-if="vm.obj.flow.files.length">
                             </div>
                             <div ng-if="vm.obj.flow.files.length">
                           <span class="btn btn-primary btn-file">
@@ -209,7 +209,7 @@
                   <div class="checkbox clip-check check-primary">
                     <input type="checkbox" id="policeVerificationDone" value="policeVerificationDone" ng-model="vm.helper.policeVerificationDone">
                     <label for="policeVerificationDone">
-                      Police Verification
+                       Verification
                     </label>
                   </div>
                 </div>
@@ -240,132 +240,112 @@
             </div>
           </fieldset>
 
-          <!--<fieldset>-->
-            <!--<legend>-->
-              <!--Work Details-->
-            <!--</legend>-->
+            <div class="container-fluid container-fullw">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="panel panel-white">
+                    <div class="panel-body">
+                      <h5 class="over-title margin-bottom-15">Attach <span class="text-bold">document</span></h5>
 
-            <!--<div class="row">-->
-              <!--<div class="col-md-5">-->
-                <!--<div class="row">-->
-                  <!--<div class="col-md-6">-->
-                    <!--<div class="form-group"-->
-                         <!--ng-class="{'has-error':vm.Form.residentName.$dirty && vm.Form.residentName.$invalid, 'has-success':vm.Form.residentName.$valid}">-->
-                      <!--<label class="control-label"> Resident Name </label>-->
-                      <!--<input type="text" placeholder="Enter Primary Resident Name" class="form-control" name="residentName"-->
-                             <!--ng-model="vm.resident.residentName" style="width:350px;" ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" >-->
-                      <!--<span class="error text-small block" ng-if="vm.Form.residentName.$error.pattern">Invalid characters</span>-->
-                      <!--&lt;!&ndash;<span class="error text-small block" ng-if="vm.Form.residentName.$dirty && vm.Form.residentName.$error.required">Resident name is required</span>&ndash;&gt;-->
-                      <!--<span class="error text-small block"-->
-                            <!--ng-show="vm.Form.residentName.$invalid && vm.Form.residentName.$error.maxlength">Name be less than 30 characters</span>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
+                      <!-- /// controller:  'UploadCtrl2' -  localtion: assets/js/controllers/uploadCtrl.js /// -->
+                      <div nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <h5>Select files</h5>
+                            <div class="panel panel-white">
+                              <div class="panel-body">
+                                <!--<div ng-show="uploader.isHTML5">-->
+                                <!--&lt;!&ndash; 3. nv-file-over uploader="link" over-class="className" &ndash;&gt;-->
+                                <!--<div class="well my-drop-zone" nv-file-over="" uploader="uploader">-->
+                                <!--Base drop zone-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" &ndash;&gt;-->
+                                <!--<div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">-->
+                                <!--<div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">-->
+                                <!--Another drop zone with its own settings-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+                                <!--<span class="btn btn-primary btn-o btn-file margin-bottom-15">-->
+                                <!--Select multiple files-->
+                                <!--<input type="file" nv-file-select="" uploader="uploader" multiple />-->
+                                <!--</span>-->
+                                <br />
+                                <span class="btn btn-info btn-file">
+                                            Select file
+                                            <input type="file" nv-file-select="" uploader="uploader" />
+                                        </span>
+                              </div>
+                            </div>
+                          </div>
 
-                <!--<div class="row">-->
-                  <!--<div class="col-md-6">-->
-                    <!--<div class="form-group"-->
-                         <!--ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}">-->
-                      <!--<label class="control-label"> Tower </label>-->
-                      <!--<input type="text" style="width:350px;" name="tower" ng-model="vm.resident.tower" placeholder="Enter Tower" class="form-control" >-->
-                      <!--&lt;!&ndash;<span class="error text-small block"&ndash;&gt;-->
-                            <!--&lt;!&ndash;ng-if="vm.Form.tower.$dirty && vm.Form.tower.$error.required">Tower is required.</span>&ndash;&gt;-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                  <!--<div class="col-md-6">-->
-                    <!--<div class="form-group"-->
-                         <!--ng-class="{'has-error':vm.Form.flatNo.$dirty && vm.Form.flatNo.$invalid, 'has-success':vm.Form.flatNo.$valid}">-->
-                      <!--<label class="control-label"> Flat Number </label>-->
-                      <!--<input type="text" name="flatNo" placeholder="Search Flat Number" style="width:350px;"-->
-                             <!--ng-model="vm.resident.flatNo"-->
-                             <!--ng-value="vm.resident.flatNo"-->
-                             <!--uib-typeahead="item.flatNo for item in vm.flatList($viewValue)"-->
-                             <!--typeahead-loading="loadingLocations" typeahead-min-length="1" typeahead-no-results="noResults"-->
-                             <!--typeahead-on-select="vm.onSelect($item, $model, $label)"-->
-                             <!--typeahead-editable='true'-->
-                             <!--class="form-control">-->
-                      <!--<i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>-->
-                      <!--<div ng-show="noResults" class="error">-->
-                        <!--<i class="glyphicon glyphicon-remove"></i> No Results Found-->
-                      <!--</div>-->
-                      <!--&lt;!&ndash;<span class="error text-small block"&ndash;&gt;-->
-                            <!--&lt;!&ndash;ng-if="vm.Form.flatNo.$dirty && vm.Form.flatNo.$error.required">Flat number is required.</span>&ndash;&gt;-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                  <!--<div class="col-md-6">-->
-                    <!--<div class="form-group"-->
-                         <!--ng-class="{'has-error':vm.Form.floor.$dirty && vm.Form.floor.$invalid, 'has-success':vm.Form.floor.$valid}">-->
-                      <!--<label class="control-label"> Floor </label>-->
-                      <!--<input type="text" name="floor" placeholder="Enter Floor" style="width:350px;" ng-model="vm.resident.floor" class="form-control">-->
-                      <!--&lt;!&ndash;<span class="error text-small block"&ndash;&gt;-->
-                            <!--&lt;!&ndash;ng-if="vm.Form.floor.$dirty && vm.Form.floor.$error.required">Floor is required.</span>&ndash;&gt;-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                  <!--<div class="col-md-6">-->
-                    <!--<div class="form-group">-->
-                      <!--<label class="control-label">-->
-                        <!--Date Range :-->
-                      <!--</label>-->
-                      <!--<div class="input-group range-picker">-->
-                        <!--<div class="start-date" ng-class="{'has-error':vm.Form.fromDate.$dirty && vm.Form.fromDate.$invalid, 'has-success':vm.Form.fromDate.$valid}">-->
-                          <!--<input type="text" name="fromDate" show-button-bar="false" style="width:155px;" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.resident.fromDate" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions">-->
-                          <!--&lt;!&ndash;<span class="error text-small block"&ndash;&gt;-->
-                                <!--&lt;!&ndash;ng-if="vm.Form.fromDate.$dirty && vm.Form.fromDate.$error.required">From Date is required.</span>&ndash;&gt;-->
-                        <!--</div>-->
-                        <!--<span class="input-group-addon">to</span>-->
-                        <!--<div class="end-date"-->
-                             <!--ng-class="{'has-error':vm.Form.endDate.$dirty && vm.Form.endDate.$invalid, 'has-success':vm.Form.endDate.$valid}">-->
-                          <!--<input type="text" name="endDate" show-button-bar="false" style="width:155px;" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.resident.endDate" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions">-->
-                          <!--&lt;!&ndash;<span class="error text-small block"&ndash;&gt;-->
-                                <!--&lt;!&ndash;ng-if="vm.Form.endDate.$dirty && vm.Form.endDate.$error.required">End Date is required.</span>&ndash;&gt;-->
-                        <!--</div>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="row">-->
-                  <!--<div class="col-md-3">-->
-                    <!--<button type="button" style="margin-top:22px;" class="btn btn-primary btn-scroll btn-scroll-top ti-plus" ng-click="vm.addResident()">-->
-                      <!--<span>Add Resident</span>-->
-                    <!--</button>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
-
-                <!--<div class="col-md-7">-->
-                <!--<div class="table-responsive">-->
-                <!--<table ng-table="vm.tableParams" show-filter="true" class="table table-striped">-->
-                <!--<tr ng-repeat="row in vm.helper.workingAt">-->
-
-                  <!--<td data-title="'Resident Name'">{{row.residentName}}</td>-->
-                  <!--<td data-title="'Tower'">{{row.tower}}</td>-->
-                  <!--<td data-title="'Flat No'">{{row.flatNo}}</td>-->
-                  <!--<td data-title="'Floor'">{{row.floor}}</td>-->
-                  <!--<td data-title="'Assigned Date'">{{row.fromDate | date: 'dd/MM/yyyy'}}</td>-->
-                  <!--<td data-title="'End Date'">{{row.endDate | date: 'dd/MM/yyyy'}}</td>-->
-                  <!--<td>-->
-                      <!--<button type="button" class="btn btn-red btn-wide btn-scroll btn-scroll-top ti-trash" ng-click="vm.removeRow(row.residentName)">-->
-                      <!--<span>Remove</span>-->
-                      <!--</button>-->
-                  <!--</td>-->
-
-                <!--</tr>-->
-                <!--</table>-->
-                <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-
-          <!--</fieldset>-->
+                          <div class="col-md-9" style="margin-bottom: 40px">
+                            <div class="panel panel-transparent">
+                              <div class="panel-body">
+                                <div class="table-responsive">
+                                  <table class="table">
+                                    <thead>
+                                    <tr>
+                                      <th width="50%">Name</th>
+                                      <th ng-show="uploader.isHTML5">Size</th>
+                                      <th ng-show="uploader.isHTML5">Progress</th>
+                                      <th>Status</th>
+                                      <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in uploader.queue">
+                                      <td><strong>{{ item.file.name }}</strong></td>
+                                      <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                      <td ng-show="uploader.isHTML5">
+                                        <div class="progress progress-xs margin-bottom-0">
+                                          <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                        </div>
+                                      </td>
+                                      <td class="text-center"><span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span><span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span><span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span></td>
+                                      <td nowrap>
+                                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload(); vm.callButtonFunc()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                          <span class="glyphicon glyphicon-upload"></span> Upload
+                                        </button>
+                                        <!--<button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">-->
+                                        <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
+                                        <!--</button>-->
+                                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove() ; vm.deleteFromList($index , 'newUpload')">
+                                          <span class="glyphicon glyphicon-trash"></span> Remove
+                                        </button>
+                                      </td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                                <div>
+                                  <div>
+                                    Queue progress:
+                                    <div class="progress progress-xs margin-top-5 margin-bottom-20">
+                                      <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                                    </div>
+                                  </div>
+                                  <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll(); vm.callButtonFunc()" ng-disabled="!uploader.getNotUploadedItems().length">
+                                    <span class="glyphicon glyphicon-upload"></span> Upload all
+                                  </button>
+                                  <!--<button type="button" class="btn btn-warning btn-o  btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">-->
+                                  <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel all-->
+                                  <!--</button>-->
+                                  <button type="button" class="btn btn-danger btn-o btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove all
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           <div class="row">
             <div class="col-md-12">

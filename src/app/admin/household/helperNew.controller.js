@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('HelperNewCtrl', HelperNewCtrl);
 
-  HelperNewCtrl.$inject = [ 'NgTableParams', 'helperFactory', '$localStorage', 'role', '$filter', '$document', '$state', 'validationHelperFactory', 'toaster'];
+  HelperNewCtrl.$inject = [ '$http', '$rootScope', 'NgTableParams', 'flowFactory', 'helperFactory', '$localStorage', 'role', '$filter', '$document', '$state', 'validationHelperFactory', 'toaster', '$scope', 'FileUploader','$cookies'];
   /* @ngInject */
-  function HelperNewCtrl( NgTableParams, helperFactory, $localStorage, role, $filter, $document, $state, validationHelperFactory , toaster) {
+  function HelperNewCtrl( $http, $rootScope, NgTableParams, flowFactory, helperFactory, $localStorage, role, $filter, $document, $state, validationHelperFactory , toaster, $scope, FileUploader, $cookies) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.showTable = false;
@@ -105,6 +105,8 @@
         }
       })
 
+      vm.helper.uploadedDocumentsUrl = [];
+
       // vm.endDateValidation = function () {
       //   vm.endMinDate = vm.resident.fromDate;
       // }
@@ -114,30 +116,34 @@
       vm.imageProgress = true;
       var formData = new FormData();
       formData.append('file', vm.obj.flow.files[0].file);
-      $http.post(__env.dataServerUrl + "/uploadImage", formData, {
+      $http.post(__env.dataServerUrl + "/fileUpload/helperImageUpload", formData, {
         data: formData,
         transformRequest: angular.identity,
         headers: {
           'Content-Type': undefined
-        }
+        },
+        transformResponse: [function (data, headers) {
+          return data;
+        }]
       }).success(function (response) {
+        console.log(response)
         vm.imageProgress = false;
-        vm.helper.profilePictureUrl = response[1];
-        $rootScope.$broadcast('refreshImage' , vm.helper.profilePictureUrl);
-        logger.success("File uploaded successfully", "Status");
+        vm.helper.profilePicUrl = response;
+        $rootScope.$broadcast('refreshImage' , vm.helper.profilePicUrl);
+        toaster.success("File uploaded successfully");
 
       }).error(function (response) {
         vm.errorMessage = "File upload error";
         console.log(response)
-        logger.error("File upload error", "Status");
+        toaster.error("File upload error");
       });
     };
 
     vm.removeImage = function () {
-      vm.helper = {};
-      console.log(vm.helper.profilePictureUrl)
+      //vm.helper = {};
+      console.log(vm.helper.profilePicUrl)
       vm.noImage = true;
-      vm.helper.profilePictureUrl = null;
+      vm.helper.profilePicUrl = null;
     };
 
 
@@ -224,7 +230,6 @@
       $document.scrollTopAnimated(0, 400);
     };
 
-
     function submit() {
       vm.progress = true;
       var firstError = null;
@@ -237,6 +242,7 @@
       }
 
       if (vm.Form.$invalid) {
+        vm.progress = false;
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';
         return;
@@ -312,6 +318,85 @@
 
       }
     };
+
+    var uploader = $scope.uploader = new FileUploader({
+      url: __env.dataServerUrl + '/fileUpload/userImageUpload'
+    });
+
+    // FILTERS
+
+    uploader.filters.push({
+      name: 'customFilter',
+      fn: function (item/*{File|FileLikeObject}*/, options) {
+        return this.queue.length < 10;
+      }
+    });
+
+    // CALLBACKS
+
+    uploader.onWhenAddingFileFailed = function (item/*{File|FileLikeObject}*/, filter, options) {
+      console.info('onWhenAddingFileFailed', item, filter, options);
+    };
+    uploader.onAfterAddingFile = function (fileItem) {
+      console.info('onAfterAddingFile', fileItem);
+    };
+    uploader.onAfterAddingAll = function (addedFileItems) {
+      console.info('onAfterAddingAll', addedFileItems);
+    };
+    uploader.onBeforeUploadItem = function (item) {
+      console.info('onBeforeUploadItem', item);
+    };
+    uploader.onProgressItem = function (fileItem, progress) {
+      console.info('onProgressItem', fileItem, progress);
+    };
+    uploader.onProgressAll = function (progress) {
+      console.info('onProgressAll', progress);
+    };
+    uploader.onSuccessItem = function (fileItem, response, status, headers) {
+      vm.helper.uploadedDocumentsUrl.push(response);
+      console.info('onSuccessItem', fileItem, response, status, headers);
+    };
+    uploader.onErrorItem = function (fileItem, response, status, headers) {
+      vm.disableButton = false;
+      toaster.error('Attachment Not Saved');
+      console.info('onErrorItem', fileItem, response, status, headers);
+    };
+    uploader.onCancelItem = function (fileItem, response, status, headers) {
+      console.info('onCancelItem', fileItem, response, status, headers);
+    };
+    uploader.onCompleteItem = function (fileItem, response, status, headers) {
+      vm.disableButton = false;
+      toaster.info('Attachment Saved');
+      console.info('onCompleteItem', fileItem, response, status, headers);
+    };
+    uploader.onCompleteAll = function () {
+      vm.disableButton = false;
+      console.info('onCompleteAll');
+    };
+
+    uploader.cancelAll = function(){
+      for(var item = 0; item<uploader.queue.length ; item++){
+        uploader.queue[item].remove();
+      }
+      vm.helper.uploadedDocumentsUrl = [];
+    };
+
+    uploader.clearQueue = function(){
+      var tempLength = uploader.queue.length;
+      vm.helper.uploadedDocumentsUrl = [];
+      for(var item = 0; item<tempLength ; item++){
+        uploader.queue[0].remove();
+      }
+    };
+
+    vm.deleteFromList = function (item , temp) {
+      if(vm.helper.uploadedDocumentsUrl != undefined && vm.helper.uploadedDocumentsUrl[item] != undefined){
+        if (item > -1) {
+          vm.helper.uploadedDocumentsUrl.splice(item, 1);
+        }
+      }
+    };
+
   }
 })();
 

@@ -31,6 +31,7 @@
 
     vm.hideTable = function(){
       vm.IsHidden = false;
+      vm.message = "";
     }
 
     //function to generate the report
