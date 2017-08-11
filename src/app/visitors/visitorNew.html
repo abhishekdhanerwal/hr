@@ -34,6 +34,27 @@
       <div class="panel panel-white">
         <div class="panel-body">
 
+          <div class="row" style="margin:0 auto;" ng-if="vm.isConsumerRole">
+            <div class="col-md-4">
+              <div class="form-group"
+                   ng-class="{'has-error':vm.Form.mobilesearch.$dirty && vm.Form.mobilesearch.$invalid, 'has-success':vm.Form.mobilesearch.$valid}">
+                <label class="control-label"> Search Mobile </label>
+                <input type="text" placeholder="Search Mobile No" class="form-control" name="mobilesearch"
+                       ng-model="vm.mobilesearch" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
+                       ng-maxlength=10>
+                <span class="error text-small block" ng-if="vm.Form.mobilesearch.$error.pattern">Invalid characters</span>
+                <span class="error text-small block" ng-if="vm.Form.mobilesearch.$error.minlength && !vm.Form.mobilesearch.$error.pattern">Mobile Number should be ten characters only</span>
+                <span class="error text-small block" ng-if="vm.Form.mobilesearch.$error.maxlength && !vm.Form.mobilesearch.$error.pattern">Mobile Number should be ten characters only</span>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+              <button type="button" class="btn btn-primary" style="margin-top:23px; width:130px" ng-click="vm.searchVisitor()">
+                Search Visitor
+              </button>
+            </div>
+          </div>
+
           <fieldset>
             <legend>
               New Visitor
@@ -46,15 +67,22 @@
                   <div class="row">
 
                     <div class="col-md-6">
-                      <div class="form-group"
-                           ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
-                        <label class="control-label"> Name <span class="symbol required"></span> </label>
-                        <input type="text" placeholder="Enter Visitor Name" class="form-control" name="name"
-                               ng-model="vm.visitor.name"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
-                        <span class="error text-small block" ng-if="vm.Form.name.$error.pattern">Invalid characters</span>
-                        <span class="error text-small block" ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required</span>
-                        <span class="error text-small block"
-                              ng-show="vm.Form.name.$invalid && vm.Form.name.$error.maxlength">Name be less than 30 characters</span>
+
+                      <div class="row">
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group"
+                               ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
+                            <label class="control-label"> Name <span class="symbol required"></span> </label>
+                            <input type="text" placeholder="Enter Visitor Name" class="form-control" name="name"
+                                   ng-model="vm.visitor.name"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                            <span class="error text-small block" ng-if="vm.Form.name.$error.pattern">Invalid characters</span>
+                            <span class="error text-small block" ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required</span>
+                            <span class="error text-small block"
+                                  ng-show="vm.Form.name.$invalid && vm.Form.name.$error.maxlength">Name be less than 30 characters</span>
+                          </div>
+                        </div>
                       </div>
 
                       <div class="form-group"
@@ -74,10 +102,12 @@
 
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.vehicleNo.$dirty && vm.Form.vehicleNo.$invalid, 'has-success':vm.Form.vehicleNo.$valid}">
-                        <label class="control-label"> Vehicle no <span class="symbol required"></span> </label>
-                        <input type="text" placeholder="Enter Vehicle No" class="form-control" name="vehicleNo"
+                        <label class="control-label"> Vehicle no <span ng-if="vm.isVisitorAdminRole" class="symbol required"></span> </label>
+                        <input ng-if="vm.isVisitorAdminRole" type="text" placeholder="Enter Vehicle No" class="form-control" name="vehicleNo"
                                ng-model="vm.visitor.vehicleNo" required/>
-                        <span class="error text-small block" ng-if="vm.Form.vehicleNo.$dirty && vm.Form.vehicleNo.$error.required">Vehicle No is required</span>
+                        <input ng-if="vm.isConsumerRole" type="text" placeholder="Enter Vehicle No" class="form-control" name="vehicleNo"
+                               ng-model="vm.visitor.vehicleNo">
+                        <span class="error text-small block" ng-if="vm.isVisitorAdminRole && vm.Form.vehicleNo.$dirty && vm.Form.vehicleNo.$error.required">Vehicle No is required</span>
                       </div>
 
                       <div class="form-group"
@@ -89,7 +119,7 @@
                       </div>
 
                       <div class="form-group"
-                           ng-class="{'has-error':vm.Form.expectedArrivalTime.$dirty && vm.Form.expectedArrivalTime.$invalid, 'has-success':vm.Form.expectedArrivalTime.$valid}">
+                           ng-class="{'has-error':vm.Form.expectedArrivalTime.$dirty && vm.Form.expectedArrivalTime.$invalid, 'has-success':vm.Form.expectedArrivalTime.$valid}" ng-if="vm.isConsumerRole">
                         <label class="control-label"> Expected Arrival Time <span class="symbol required"></span> </label>
                         <uib-timepicker ng-model="vm.visitor.expectedArrivalTime" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></uib-timepicker>
                         <span class="error text-small block" ng-if="vm.Form.expectedArrivalTime.$dirty && vm.Form.expectedArrivalTime.$error.required">Arrival time is required</span>
@@ -110,8 +140,56 @@
                         <label class="control-label">Purpose of Visit<span class="symbol required"></span> </label>
                         <textarea class="form-control custom-control" rows="3" name="purposeOfVisit" style="resize:none" ng-model="vm.visitor.purposeOfVisit" required></textarea>
                         <span class="error text-small block"
-                              ng-if="vm.Form.visitorType.$dirty && vm.Form.visitorType.$error.required">Purpose type is required.</span>
+                              ng-if="vm.Form.visitorType.$dirty && vm.Form.visitorType.$error.required">Purpose of visit is required.</span>
                       </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group"
+                                 ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}" ng-if="!vm.isConsumerRole">
+                              <label class="control-label"> Tower <span class="symbol required"></span> </label>
+                              <select class="form-control" name="tower" ng-model="vm.tower"
+                                      ng-options="tower for tower in vm.towerList" ng-change="vm.disableFlatInput()" required>
+                              </select>
+                              <span class="error text-small block"
+                                    ng-if="vm.Form.tower.$dirty && vm.Form.tower.$error.required">Tower is required.</span>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group" ng-class="{'has-error':vm.Form.flat.$dirty && vm.Form.flat.$invalid, 'has-success':vm.Form.flat.$valid}" ng-if="!vm.isConsumerRole">
+                              <label class="control-label">
+                                Flat <span class="symbol required"></span>
+                              </label>
+                              <div class="row">
+                                <div class="col-md-7">
+                                  <input type="text" ng-disabled="vm.disableFlat" style="width:190px;" name="flat" ng-model="vm.flatsearch" placeholder="Search Flat No"
+                                         uib-typeahead="item as item.flatNo for item in vm.searchFlat($viewValue)"
+                                         typeahead-loading="loadingLocations" typeahead-min-length="2" typeahead-no-results="noResults"
+                                         typeahead-editable='true'
+                                         class="form-control" required>
+                                </div>
+                                <div class="col-md-5">
+                        <span class="btn btn-danger" style="margin-left: 45px;" ng-click="vm.clearFlat()" ><i
+                          class="fa fa-times"></i> </span>
+                                </div>
+                              </div>
+                              <div ng-show="noResults" class="error">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
+                              </div>
+                              <span class="error text-small block"
+                                    ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required">Flat is required.</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!--<div class="form-group" ng-show="vm.showCheckbox && !vm.isConsumerRole">-->
+                          <!--<div class="checkbox clip-check check-primary">-->
+                            <!--<input type="checkbox" id="isArrived" value="isArrived" ng-model="vm.visitor.isArrived">-->
+                                <!--<label for="isArrived">-->
+                                  <!--Has Arrived-->
+                                <!--</label>-->
+                          <!--</div>-->
+                        <!--</div>-->
 
                 </div>
               </div>
@@ -135,7 +213,9 @@
                 </div>
               </div>
               </div>
-
+                </div>
+                </div>
+              </div>
 
             </ng-form>
           </fieldset>

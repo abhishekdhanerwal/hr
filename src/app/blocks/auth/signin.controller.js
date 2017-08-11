@@ -21,12 +21,16 @@
         vm.isManagementRole = role.isManagementRole();
         vm.isCreatorRole = role.isCreatorRole();
         vm.isMeterManagementRole = role.isMeterManagementRole();
+        vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
         if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
           $state.go('app.complaint')
         }
         else if(vm.isCreatorRole){
           $state.go('app.society')
+        }
+        else if(vm.isVisitorAdminRole){
+          $state.go('app.visitor')
         }
         else{
           $state.go('app.notice')

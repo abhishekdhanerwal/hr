@@ -113,6 +113,10 @@
                 vm.rolesList.splice(i,1);
                 vm.roles.splice(i,1);
               }
+              if(vm.rolesList[i]=='VISITOR ADMIN ' && vm.roles[i]=='ROLE_VISITOR_ADMIN'){
+                vm.rolesList.splice(i,1);
+                vm.roles.splice(i,1);
+              }
             }
           }
         }

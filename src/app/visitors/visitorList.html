@@ -42,9 +42,7 @@
     <div class="col-md-12">
       <div class="panel panel-white">
         <div class="panel-body">
-          <!--<div class="col-lg-12 col-md-12">-->
-          <!--<div class="panel panel-white">-->
-          <!--<div class="panel-body">-->
+
           <div class="row margin-bottom-10">
             <div class="col-md-12">
               <a ui-sref="app.addVisitor"
@@ -63,19 +61,29 @@
 
                 <td data-title="'Name'">{{row.name}}</td>
 
+                <td data-title="'Mobile No'" sortable="'mobile'" filter="{ 'mobile' : 'text' }">{{row.mobile}}</td>
+
                 <td data-title="'Vehicle No'">{{row.vehicleNo}}</td>
-
-                <td data-title="'Visitor Type'" sortable="'type'" filter="{ 'type' : 'text' }">{{row.type}}</td>
-
-                <td data-title="'Expected Arrival Time'">{{row.expectedArrivalTime | date: 'hh:mm:ss'}}</td>
 
                 <td data-title="'Coming From'">{{row.comingFrom}}</td>
 
+                <td data-title="'Visitor Type'">{{row.type}}</td>
+
+                <!--<td data-title="'Purpose of Visit'">{{row.purposeOfVisit}}</td>-->
+
+                <td data-title="'Expected Arrival Time'">{{row.expectedArrivalTime | date: 'hh:mm:ss'}}</td>
+
+                <td data-title="'Arrival Time'">{{row.arrivedAt | date: 'hh:mm:ss'}}</td>
+
+                <td data-title="'Tower'" ng-if="!vm.isConsumerRole">{{row.tower}}</td>
+
+                <td data-title="'Flat No'" ng-if="!vm.isConsumerRole" sortable="'flatNo'" filter="{ 'flatNo' : 'text' }">{{row.flatNo}}</td>
+
                 <td class="center">
                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a ng-if="vm.isVisitorAdminRole" ui-sref="app.editComplaint({id : row.complaintId})" class="btn btn-transparent btn-xs"
+                    <a ng-show="vm.isVisitorAdminRole" ui-sref="app.editVisitor({id : row.id})" class="btn btn-transparent btn-xs"
                        tooltip-placement="top"
-                       uib-tooltip="Edit"><i class="fa fa-pencil"></i></a>
+                       uib-tooltip="Mark Visitor Arrived" ><i class="fa fa-pencil"></i></a>
                   </div>
                   <div class="visible-xs visible-sm hidden-md hidden-lg">
                     <div class="btn-group" uib-dropdown>
@@ -85,12 +93,13 @@
                       </button>
                       <ul class="dropdown-menu pull-right dropdown-light" role="menu">
                         <li>
-                          <a href="#" ui-sref="app.editComplaint({id : row.complaintId})"> Edit </a>
+                          <a href="#" ui-sref="app.editVisitor({id : row.id})"> Edit </a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </td>
+
               </tr>
             </table>
 

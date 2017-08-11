@@ -36,6 +36,7 @@
       self.isConsumerRole = role.isConsumerRole();
       self.isCreatorRole = role.isCreatorRole();
       self.isMeterManagementRole = role.isMeterManagementRole();
+      self.isVisitorAdminRole = role.isVisitorAdminRole();
 
       userFactory.alluser().then(function (response) {
         self.progress = false;
@@ -59,6 +60,9 @@
             }
             else if (self.userList[i].role == "ROLE_METER_MANAGEMENT") {
               self.userList[i].role = "METER MANAGEMENT"
+            }
+            else if (self.userList[i].role == "ROLE_VISITOR_ADMIN") {
+              self.userList[i].role = "VISITOR ADMIN"
             }
             else if (self.userList[i].role == "ROLE_PLUMBER") {
               self.userList[i].role = "PLUMBER"

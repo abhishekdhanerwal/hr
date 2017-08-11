@@ -234,6 +234,7 @@
     };
 
     function submit() {
+      vm.errorMessage = '';
       vm.progress = true;
       var firstError = null;
       console.log(vm.helper)
@@ -256,7 +257,7 @@
           helperFactory.addHelperForConsumer(vm.helper.number).then(function (response) {
 
             if (response.status == 200) {
-              toaster.info('Helper Created');
+              toaster.info('Helper Added');
               vm.showTable = true;
               vm.addHelper();
               vm.progress = false;

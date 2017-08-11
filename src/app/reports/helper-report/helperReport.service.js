@@ -35,30 +35,6 @@
       return promise;
     };
 
-    service.loadStatusDetails = function () {
-      var promise = $http.get(__env.dataServerUrl + '/complaintStatus')
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
-
-    service.societyList = function () {
-      var promise = $http.get(__env.dataServerUrl + '/societies')
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
-
     service.getTowerList = function (societyId) {
       var promise = $http.get(__env.dataServerUrl + '/society/' + societyId + '/towers')
         .then(

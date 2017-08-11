@@ -198,7 +198,7 @@
           if (response.status == 200) {
             toaster.info('Helper Removed');
             vm.progress = false;
-            //activate();
+            activate();
           }
           else if (response.status == -1) {
             vm.errorMessage = 'Network Error';

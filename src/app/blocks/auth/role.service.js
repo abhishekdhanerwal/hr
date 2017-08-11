@@ -18,6 +18,7 @@
         isConsumerRole : isConsumerRole,
         isCreatorRole : isCreatorRole,
         isMeterManagementRole : isMeterManagementRole,
+        isVisitorAdminRole : isVisitorAdminRole,
         currentAccessLevel : currentAccessLevel,
         // getMainRole : getMainRole
       };
@@ -102,6 +103,20 @@
           var index = _.findIndex(roles, function(o) {
             index = 0 ;
             if (roles.match(/METER/g)){
+              index++;
+            }
+            return index
+          });
+          return index >= 0;
+        }
+      }
+
+      function isVisitorAdminRole() {
+        if($localStorage._identity) {
+          var roles = $localStorage._identity.principal.role;
+          var index = _.findIndex(roles, function(o) {
+            index = 0 ;
+            if (roles.match(/VISITOR/g)){
               index++;
             }
             return index

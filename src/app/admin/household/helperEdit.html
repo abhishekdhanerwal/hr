@@ -54,16 +54,14 @@
                           ng-show="vm.Form.name.$invalid && vm.Form.name.$error.maxlength">Name be less than 30 characters</span>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group" ng-class="{'has-error':vm.Form.type.$dirty && vm.Form.type.$invalid, 'has-success':vm.Form.type.$valid}">
                     <label class="control-label">
                       Type : <span class="symbol required"></span>
                     </label><br>
-                    <div ng-class="{'has-error':vm.Form.type.$dirty && vm.Form.type.$invalid, 'has-success':vm.Form.type.$valid}">
                       <select class="form-control" name="type" ng-model="vm.helper.type" ng-options="type for type in vm.helperTypeList" required>
                       </select>
                       <span class="error text-small block"
                             ng-if="vm.Form.type.$dirty && vm.Form.type.$error.required">Helper type is required.</span>
-                    </div>
                   </div>
 
                   <div class="form-group"

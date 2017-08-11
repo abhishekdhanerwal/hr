@@ -40,6 +40,9 @@
         else if(vm.roleName == "ROLE_METER_MANAGEMENT"){
           vm.roleName = "METER MANAGER";
         }
+        else if(vm.roleName == "ROLE_VISITOR_ADMIN"){
+          vm.roleName = "VISITOR ADMIN";
+        }
       }
     };
 

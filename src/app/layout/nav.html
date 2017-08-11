@@ -3,7 +3,7 @@
   <span translate="sidebar.heading.NAVIGATION">Main Navigation</span>
 </div>
 <ul class="main-navigation-menu" ng-controller="NavController as vm">
-  <li ui-sref-active="active" ng-if="!vm.isCreatorRole && !vm.isMeterManagementRole && !vm.isSuperAdminRole">
+  <li ui-sref-active="active" ng-if="!vm.isCreatorRole && !vm.isMeterManagementRole && !vm.isSuperAdminRole && !vm.isVisitorAdminRole">
     <a ui-sref="app.notice">
       <div class="item-content">
         <div class="item-media">
@@ -15,7 +15,7 @@
       </div>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="!vm.isCreatorRole">
+  <li ui-sref-active="active" ng-if="!vm.isCreatorRole && !vm.isVisitorAdminRole">
     <a ui-sref="app.complaint">
       <div class="item-content">
         <div class="item-media">
@@ -27,7 +27,7 @@
       </div>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="vm.isConsumerRole">
+  <li ui-sref-active="active" ng-if="vm.isConsumerRole && !vm.isVisitorAdminRole">
     <a ui-sref="app.helpers">
       <div class="item-content">
         <div class="item-media">
@@ -39,7 +39,7 @@
       </div>
     </a>
   </li>
-  <li ui-sref-active="active" ng-if="vm.isConsumerRole">
+  <li ui-sref-active="active" ng-if="vm.isConsumerRole || vm.isVisitorAdminRole">
     <a ui-sref="app.visitor">
       <div class="item-content">
         <div class="item-media">
@@ -63,18 +63,24 @@
       </div>
     </a>
     <ul class="sub-menu">
-      <li ui-sref-active="active">
+      <li ui-sref-active="active" ng-if="!vm.isVisitorAdminRole">
         <a ui-sref="app.report"> <span class="title"> Complaint Report </span> </a>
       </li>
-      <li ui-sref-active="active" ng-if="!vm.isSuperAdminRole">
+      <li ui-sref-active="active" ng-if="!vm.isSuperAdminRole && !vm.isVisitorAdminRole">
         <a ui-sref="app.helperReport"> <span class="title"> Helper Report </span> </a>
       </li>
-      <li ui-sref-active="active" ng-if="!vm.isSuperAdminRole">
+      <li ui-sref-active="active" ng-if="!vm.isSuperAdminRole && !vm.isVisitorAdminRole">
         <a ui-sref="app.flatHelperReport"> <span class="title"> Flat Helper Report </span> </a>
+      </li>
+      <li ui-sref-active="active" ng-if="vm.isVisitorAdminRole">
+        <a ui-sref="app.flatVisitorReport"> <span class="title"> Flat Report </span> </a>
+      </li>
+      <li ui-sref-active="active" ng-if="vm.isVisitorAdminRole">
+        <a ui-sref="app.visitorReport"> <span class="title"> Society Report </span> </a>
       </li>
     </ul>
   </li>
-  <li ng-class="{'active open':$state.includes('app.userManagement')}" ng-if="!vm.isConsumerRole && !vm.isCreatorRole && !vm.isMeterManagementRole">
+  <li ng-class="{'active open':$state.includes('app.userManagement')}" ng-if="!vm.isConsumerRole && !vm.isCreatorRole && !vm.isMeterManagementRole && !vm.isVisitorAdminRole">
     <a href="javascript:void(0)">
       <div class="item-content">
         <div class="item-media">
@@ -95,7 +101,7 @@
     </ul>
   </li>
 
-  <li ng-class="{'active open':$state.includes('app.Admin')}" ng-if="!vm.isConsumerRole && !vm.isMeterManagementRole">
+  <li ng-class="{'active open':$state.includes('app.Admin')}" ng-if="!vm.isConsumerRole && !vm.isMeterManagementRole && !vm.isVisitorAdminRole">
     <a href="javascript:void(0)">
       <div class="item-content">
         <div class="item-media">

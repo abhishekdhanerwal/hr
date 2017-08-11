@@ -36,6 +36,7 @@
           <ng-form name="vm.Form" role="Form" id="Form" novalidate>
 
               <div class="row">
+
                 <div class="col-md-6">
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.helperNo.$dirty && vm.Form.helperNo.$invalid, 'has-success':vm.Form.helperNo.$valid}">
@@ -49,12 +50,18 @@
                   </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-3">
                 <button type="button" style="margin-top:42px;" class="btn btn-primary btn-scroll btn-scroll-top ti-plus" ng-click="vm.submit()">
                 <span>Add Helper</span>
                 </button>
                 </div>
-              </div><br>
+
+                <div class="col-md-3">
+                  <button type="button" style="margin-top:42px; width:90px; margin-left: -170px;" class="btn btn-danger" ui-sref="app.helpers"> Cancel </button>
+                </div>
+                <br>
+              </div>
+
 
               <div class="row" ng-if="vm.showTable == true">
                 <div class="col-md-12">
@@ -62,13 +69,13 @@
                     <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
                       <tr ng-repeat="row in vm.houseHelper">
 
-                        <td data-title="'Name'">{{row.name}}</td>
-                        <td data-title="'Number'">{{row.mobile}}</td>
-                        <td data-title="'Aadhar Id'">{{row.aadharId}}</td>
-                        <td data-title="'Type'">{{row.type}}</td>
-                        <td data-title="'Gender'">{{row.gender}}</td>
-                        <td data-title="'Police Verification'">{{row.policeVerificationDone}}</td>
-                        <td data-title="'Expiry Date'">{{row.endDate | date:'dd-MM-yyyy'}}</td>
+                        <td data-title="'Name'" style="width:150px;">{{row.name}}</td>
+                        <td data-title="'Number'" style="width:150px;">{{row.mobile}}</td>
+                        <td data-title="'Aadhar Id'" style="width:150px;">{{row.aadharId}}</td>
+                        <td data-title="'Type'" style="width:150px;">{{row.type}}</td>
+                        <td data-title="'Gender'" style="width:150px;">{{row.gender}}</td>
+                        <td data-title="'Verification'" style="width:150px;">{{row.policeVerificationDone}}</td>
+                        <td data-title="'Expiry Date'" style="width:150px;">{{row.endDate | date:'dd-MM-yyyy'}}</td>
                         <td>
                         <button type="button" class="btn btn-red btn-wide btn-scroll btn-scroll-top ti-trash" ng-click="vm.removeRow(row.name)">
                         <span>Remove</span>

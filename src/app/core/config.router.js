@@ -199,6 +199,16 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'Create Visitor'
       }
+    }).state('app.editVisitor', {
+      url: "/editVisitor/:id",
+      templateUrl: "app/visitors/visitorEdit.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Edit Visitor',
+      controller: 'VisitorEditCtrl',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Edit Visitor'
+      }
     }).state('app.notice', {
       url: "/notice",
       templateUrl: "app/notices/notice.html",
@@ -265,7 +275,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       }
     }).state('app.report', {
       url: "/report",
-      templateUrl: "app/reports/complaintReport.html",
+      templateUrl: "app/reports/complaint-report/complaintReport.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Report',
       controller: 'ComplaintReportController',
@@ -275,7 +285,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       }
     }).state('app.helperReport', {
       url: "/helperReport",
-      templateUrl: "app/reports/helperReport.html",
+      templateUrl: "app/reports/helper-report/helperReport.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Helper Report',
       controller: 'HelperReportController',
@@ -285,13 +295,33 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       }
     }).state('app.flatHelperReport', {
       url: "/flatHelperReport",
-      templateUrl: "app/reports/flatHelperReport.html",
+      templateUrl: "app/reports/helper-report/flatHelperReport.html",
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
       title: 'Flat Helper Report',
       controller: 'FlatHelperReportController',
       controllerAs: 'vm',
       ncyBreadcrumb: {
         label: 'Flat Helper Report'
+      }
+    }).state('app.visitorReport', {
+      url: "/visitorReport",
+      templateUrl: "app/reports/visitor-report/societyVisitorReport.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Visitor Report',
+      controller: 'VisitorReportController',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Visitor Report'
+      }
+    }).state('app.flatVisitorReport', {
+      url: "/flatVisitorReport",
+      templateUrl: "app/reports/visitor-report/flatVisitorReport.html",
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Flat Visitor Report',
+      controller: 'FlatVisitorReportController',
+      controllerAs: 'vm',
+      ncyBreadcrumb: {
+        label: 'Flat Visitor Report'
       }
     }).state('app.userManagement', {
       url: '/ui',

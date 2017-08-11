@@ -36,7 +36,7 @@
       return promise;
     };
 
-    service.visitorList = function () {
+    service.visitorList = function (tower, flatNo) {
       var promise = $http.get(__env.dataServerUrl + '/visitors')
         .then(
           function (response) {
@@ -48,8 +48,8 @@
       return promise;
     };
 
-    service.finduser = function (id) {
-      var promise = $http.get(__env.dataServerUrl + '/users/' + id)
+    service.getTowerList = function (societyId) {
+      var promise = $http.get(__env.dataServerUrl + '/society/' + societyId + '/towers')
         .then(
           function (response) {
             return response;
@@ -60,8 +60,32 @@
       return promise;
     };
 
-    service.userAddress = function (userID) {
-      var promise = $http.get(__env.dataServerUrl + '/flatByUserId/'  + userID)
+    service.findAllFlats = function (tower) {
+      var promise = $http.get(__env.dataServerUrl + '/tower/' + tower + '/flat')
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.searchVisitor = function (mobile) {
+      var promise = $http.get(__env.dataServerUrl + '/visitorByMobile?mobile=' + mobile)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.viewvisitor = function (id) {
+      var promise = $http.get(__env.dataServerUrl + '/visitor/'  + id)
         .then(
           function (data) {
             console.log(data);
@@ -74,8 +98,8 @@
       return promise;
     };
 
-    service.update = function (id, user) {
-      var promise = $http.put(__env.dataServerUrl + '/editUser/' + id, user)
+    service.edit = function (data) {
+      var promise = $http.put(__env.dataServerUrl + '/editVisitor', data)
         .then(
           function (response) {
             return response;
@@ -86,41 +110,6 @@
       return promise;
     };
 
-    service.changeStatus = function (id) {
-      var promise = $http.put(__env.dataServerUrl + "/users/toggleStatus/" + id)
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
-
-    service.societyList = function () {
-      var promise = $http.get(__env.dataServerUrl + '/societies')
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
-
-    service.findSociety = function (id) {
-      var promise = $http.get(__env.dataServerUrl + '/society/' + id)
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
 
     return service;
   };
