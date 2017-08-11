@@ -18,6 +18,16 @@
       </div>
     </div>
   </div>
+  <div class="row" ng-show="vm.helperMsg">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideComplaintBox()">
+          &times;
+        </button>
+        {{vm.helperMsg}}
+      </div>
+    </div>
+  </div>
   <div class="row" ng-show="vm.message">
     <div class="col-md-12">
       <div class="alert alert-success">

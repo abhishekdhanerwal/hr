@@ -292,7 +292,8 @@
 
             if (response.status == 200) {
               toaster.info('Helper Created');
-              $state.go('app.helpers');
+              vm.message = "Helper Created";
+              $state.go('app.helpers', {msg: vm.message});
               vm.progress = false;
             }
             else if (response.status == -1) {

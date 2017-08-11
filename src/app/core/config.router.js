@@ -162,6 +162,9 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     }).state('app.helpers', {
       url: "/helpers",
       templateUrl: "app/admin/household/helperList.html",
+      params:{
+        msg:null
+      },
       controller: 'HelperListCtrl',
       controllerAs: 'vm',
       resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),

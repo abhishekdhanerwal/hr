@@ -14,6 +14,9 @@
     vm.message = false;
     vm.progress = true;
 
+    vm.helperMsg = $stateParams.msg;
+    console.log(vm.helperMsg)
+
     function breadcrumbRoute() {
       if(!vm.isCreatorRole) {
         $state.go('app.notice')
@@ -24,7 +27,7 @@
     }
 
     vm.helperAlertBox = function(){
-      vm.societyMsg = false;
+      vm.helperMsg = false;
     };
 
     vm.hideAlertBox = function () {
@@ -160,6 +163,7 @@
               vm.download = true;
             }
             else{
+              vm.helperMsg = "";
               vm.message="No data available";
             }
             if (vm.master != null) {

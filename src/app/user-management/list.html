@@ -75,6 +75,8 @@
 
                 <td data-title="'Address'">{{row.address}}</td>
 
+                <td data-title="'Society'" ng-if="vm.isSuperAdminRole">{{row.societyName}}</td>
+
                 <td data-title="'Role'" sortable="'role'" filter="{'role': 'text'}">{{row.role}}</td>
 
                 <td class="center">

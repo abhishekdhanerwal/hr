@@ -11,10 +11,10 @@
     self.progress = true;
 
     function breadcrumbRoute() {
-      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+      if(self.isSuperAdminRole || self.isMeterManagementRole) {
         $state.go('app.complaint')
       }
-      else if(vm.isCreatorRole){
+      else if(self.isCreatorRole){
         $state.go('app.society')
       }
       else{
@@ -44,6 +44,38 @@
           self.userList = response.data;
           console.log(self.userList)
           for (var i = 0; i < self.userList.length; i++) {
+
+           // self.societyId = self.userList[i].societyId;
+
+            // userFactory.findSociety(self.userList[i].societyId).then(function (response) {
+            //   if(response.status == 200){
+            //     for(var i=0; i<self.userList.length; i++){
+            //       self.userList[i].societyName = '';
+            //       if(self.userList[i].societyId == response.data.id){
+            //         self.userList[i].societyName = response.data.name;
+            //         console.log(self.userList[i].societyName)
+            //       }
+            //     }
+            //   }
+            // })
+
+            // self.findSociety = function(){
+            //   userFactory.societyList().then(function (response) {
+            //     if(response.status == 200) {
+            //       self.progress = false;
+            //       self.society = response.data;
+            //       for(var i=0; i<self.society.length; i++) {
+            //         if(self.society[i].id == self.user.societyId){
+            //           self.user.society = self.society[i];
+            //         };
+            //       }
+            //     }
+            //     else if( response.status == 401){
+            //       $state.go('auth.signout')
+            //     }
+            //   });
+            // }
+
 
             if (self.userList[i].role == "ROLE_CONSUMER") {
               self.userList[i].role = "CONSUMER";
@@ -80,6 +112,8 @@
               self.userList[i].role = "ELECTRICIAN"
             }
           }
+          console.log(self.userList)
+          findSociety();
           userAddress();
           listView();
         }
@@ -103,6 +137,26 @@
       })
 
     };
+
+    function findSociety(){
+      userFactory.societyList().then(function (response) {
+        if(response.status == 200) {
+          self.societyList = response.data;
+          for(var i=0; i<self.societyList.length; i++) {
+            for(var j=0; j<self.userList.length; j++){
+              if(self.societyList[i].id == self.userList[j].societyId){
+                self.userList[j].societyName = self.societyList[i].name;
+                console.log(self.userList[j].societyName)
+              };
+            }
+          }
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
+    }
+
 
     function userAddress() {
       console.log(self.userId)
@@ -144,7 +198,7 @@
               self.IsHidden=true;
             }
             else{
-              vm.message="No data available";
+              self.message="No data available";
             }
 
             if (self.userList != null) {

@@ -86,15 +86,15 @@
 
                   <div class="form-group"
                        ng-class="{'has-error':vm.Form.aadharId.$dirty && vm.Form.aadharId.$invalid, 'has-success':vm.Form.aadharId.$valid}">
-                    <label class="control-label"> Aadhar Id <span class="symbol required"></span> </label>
-                    <input type="text" placeholder="Enter Aadhar Id" class="form-control" name="aadharId"
+                    <label class="control-label"> Aadhaar Id <span class="symbol required"></span> </label>
+                    <input type="text" placeholder="Enter Aadhaar Id" class="form-control" name="aadharId"
                            ng-model="vm.helper.aadharId"  ng-pattern="/^[1-9][0-9]*$/" ng-minlength="12" ng-maxlength="12" required/>
                     <span class="error text-small block" ng-if="vm.Form.aadharId.$error.pattern">Invalid characters</span>
-                    <span class="error text-small block" ng-if="vm.Form.aadharId.$dirty && vm.Form.aadharId.$error.required">Aadhar Id is required</span>
+                    <span class="error text-small block" ng-if="vm.Form.aadharId.$dirty && vm.Form.aadharId.$error.required">Aadhaar Id is required</span>
                     <span class="error text-small block"
-                          ng-show="vm.Form.aadharId.$invalid && vm.Form.aadharId.$error.minlength">Aadhar Id should be 12 digits only</span>
+                          ng-show="vm.Form.aadharId.$invalid && vm.Form.aadharId.$error.minlength">Aadhaar Id should be 12 digits only</span>
                     <span class="error text-small block"
-                          ng-show="vm.Form.aadharId.$invalid && vm.Form.aadharId.$error.maxlength">Aadhar Id should be 12 digits only</span>
+                          ng-show="vm.Form.aadharId.$invalid && vm.Form.aadharId.$error.maxlength">Aadhaar Id should be 12 digits only</span>
                   </div>
                   <br>
 
@@ -193,7 +193,7 @@
                     <div class="checkbox clip-check check-primary">
                       <input type="checkbox" id="verification" value="verification" ng-model="vm.helper.policeVerificationDone">
                       <label for="verification">
-                        Police Verification
+                        Verification
                       </label>
                     </div>
                   </div>

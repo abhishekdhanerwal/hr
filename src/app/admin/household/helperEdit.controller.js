@@ -14,6 +14,7 @@
     vm.submit = submit;
     vm.reset = reset;
     vm.helper = {};
+    var attachmentCount = 0;
 
     function breadcrumbRoute() {
       if(!vm.isCreatorRole) {
@@ -66,6 +67,7 @@
         console.log($stateParams.id)
         if (response.status == 200) {
           vm.helper = response.data;
+          attachmentCount = vm.helper.uploadedDocumentsUrl.length;
           for(var i=0; i<vm.typeList.length; i++){
             if(vm.typeList[i] == vm.helper.type){
               vm.helper.type = vm.helperTypeList[i];
@@ -252,16 +254,48 @@
 
     uploader.clearQueue = function(){
       var tempLength = uploader.queue.length;
-      vm.helper.uploadedDocumentsUrl = [];
       for(var item = 0; item<tempLength ; item++){
         uploader.queue[0].remove();
+      }
+      var tempAttachmentLength = vm.helper.uploadedDocumentsUrl.length;
+      if(vm.helper.uploadedDocumentsUrl.length > attachmentCount) {
+        for(var index=attachmentCount ; index<tempAttachmentLength; index++){
+          vm.helper.uploadedDocumentsUrl.splice(vm.helper.uploadedDocumentsUrl.length-1, 1);
+        }
       }
     };
 
     vm.deleteFromList = function (item , temp) {
-      if(vm.helper.uploadedDocumentsUrl != undefined && vm.helper.uploadedDocumentsUrl[item] != undefined){
-        if (item > -1) {
-          vm.helper.uploadedDocumentsUrl.splice(item, 1);
+      if(temp == 'oldAttachment'){
+        SweetAlert.swal({
+          title: "Are you sure?",
+          text: "You want to delete this attachment!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#4CAF50",
+          confirmButtonText: "Yes",
+          cancelButton: "#008CBA",
+          cancelButtonText: "No",
+          closeOnConfirm: true,
+          closeOnCancel: true
+        }, function (isConfirm) {
+          if (isConfirm) {
+            if (vm.helper.uploadedDocumentsUrl != undefined && vm.helper.uploadedDocumentsUrl[item] != undefined) {
+              if (item > -1) {
+                vm.helper.uploadedDocumentsUrl.splice(item, 1);
+              }
+            }
+          } else {
+
+          }
+        });
+      }
+      else {
+        if(vm.helper.uploadedDocumentsUrl != undefined && vm.helper.uploadedDocumentsUrl[item] != undefined && vm.helper.uploadedDocumentsUrl.length > attachmentCount) {
+          if (item > -1) {
+            vm.helper.uploadedDocumentsUrl.splice(attachmentCount + item, 1);
+          }
+
         }
       }
     };
