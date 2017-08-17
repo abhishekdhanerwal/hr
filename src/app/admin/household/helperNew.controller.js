@@ -21,7 +21,18 @@
    // vm.progress = true;
 
     function breadcrumbRoute(){
-      $state.go('app.notice')
+      if(vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole || vm.isSuperAdminRole){
+        $state.go('app.society')
+      }
+      else if(vm.isVisitorAdminRole){
+        $state.go('app.visitor')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -38,6 +49,8 @@
       vm.isConsumerRole = role.isConsumerRole();
       vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+      vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
       vm.maxDate = new Date();
       console.log(vm.maxDate)

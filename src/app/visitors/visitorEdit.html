@@ -101,7 +101,7 @@
                              ng-class="{'has-error':vm.Form.visitorType.$dirty && vm.Form.visitorType.$invalid, 'has-success':vm.Form.visitorType.$valid}">
                           <label class="control-label"> Visitor Type <span class="symbol required"></span> </label>
                           <select class="form-control" name="visitorType" ng-model="vm.visitor.type"
-                                  ng-options="visitor for visitor in vm.visitorType" required>
+                                  ng-options="visitor for visitor in vm.visitorTypeList" required>
                           </select>
                           <span class="error text-small block"
                                 ng-if="vm.Form.visitorType.$dirty && vm.Form.visitorType.$error.required">Visitor Type is required.</span>
@@ -152,6 +152,15 @@
                                     ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required">Flat is required.</span>
                             </div>
                           </div>
+                        </div>
+
+                        <div class="form-group">
+                        <div class="checkbox clip-check check-primary">
+                        <input type="checkbox" id="isArrived" value="isArrived" ng-model="vm.visitor.isArrived">
+                        <label for="isArrived">
+                        Has Arrived
+                        </label>
+                        </div>
                         </div>
 
                       </div>

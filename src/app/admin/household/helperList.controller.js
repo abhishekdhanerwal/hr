@@ -18,11 +18,17 @@
     console.log(vm.helperMsg)
 
     function breadcrumbRoute() {
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole || vm.isSuperAdminRole){
+        $state.go('app.society')
+      }
+      else if(vm.isVisitorAdminRole){
+        $state.go('app.visitor')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 
@@ -40,10 +46,12 @@
     function activate() {
 
       vm.isAdminRole = role.isAdminRole();
-      vm.isManagementRole = role.isManagementRole();
       vm.isSuperAdminRole = role.isSuperAdminRole();
       vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+      vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
       vm.abc = new Date();
 

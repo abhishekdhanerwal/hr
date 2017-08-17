@@ -53,8 +53,19 @@
       visitorFactory.getVisitorType().then(function (response) {
         if(response.status == 200){
           vm.visitorType = response.data;
-          if (vm.visitorType == 'Non_Permanent') {
-            vm.visitorType = 'Non Permanent';
+          vm.visitorTypeList = [];
+          for(var index=0; index<vm.visitorType.length; index++){
+            var temp = vm.visitorType[index].split("_");
+            if(temp.length > 1){
+              console.log(temp)
+              var newTemp = "";
+              for(var j=0 ; j<temp.length ; j++){
+                newTemp = newTemp + temp[j] + " ";
+              }
+              vm.visitorTypeList.push(newTemp);
+            }
+            else
+              vm.visitorTypeList.push(vm.visitorType[index]);
           }
         }
         else if (response.status == -1) {
@@ -86,6 +97,11 @@
           vm.visitor = response.data;
           vm.tower = vm.visitor.tower;
           vm.flatsearch = vm.visitor.flatNo;
+          for(var i=0; i<vm.visitorType.length; i++){
+            if(vm.visitorType[i] == vm.visitor.type){
+              vm.visitor.type = vm.visitorTypeList[i];
+            }
+          }
         }
         else if (response.status == -1) {
           vm.progress = false;
@@ -160,8 +176,12 @@
 
     function submit() {
       vm.progress = true;
-
       var firstError = null;
+
+      for(var index=0 ; index < vm.visitorTypeList.length ; index++){
+        if(vm.visitorTypeList[index] == vm.visitor.type)
+          vm.visitor.type = vm.visitorType[index];
+      }
 
       if (vm.Form.$invalid) {
         vm.progress = false;

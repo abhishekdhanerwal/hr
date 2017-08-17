@@ -77,12 +77,14 @@
                        ng-class="{'has-error':vm.Form.pinCode.$dirty && vm.Form.pinCode.$invalid, 'has-success':vm.Form.pinCode.$valid}">
                     <label class="control-label"> Pin Code <span class="symbol required"></span> </label>
                     <input type="text" placeholder="Enter Pin Code" class="form-control" name="pinCode"
-                           ng-model="vm.society.address.pinCode" ng-pattern="/^[1-9][0-9]*$/" ng-maxlength="6" required>
+                           ng-model="vm.society.address.pinCode" ng-pattern="/^[1-9][0-9]*$/" ng-minlength="6" ng-maxlength="6" required>
                     <span class="error text-small block"
                           ng-if="vm.Form.pinCode.$dirty && vm.Form.pinCode.$error.required">Pin Code is required.</span>
                     <span class="error text-small block" ng-if="vm.Form.pinCode.$error.pattern">Invalid characters</span>
                     <span class="error text-small block"
                           ng-show="vm.Form.pinCode.$invalid && vm.Form.pinCode.$error.maxlength">Pin Code cannot be more than 6 digits</span>
+                    <span class="error text-small block"
+                          ng-show="vm.Form.pinCode.$invalid && vm.Form.pinCode.$error.minlength">Pin Code cannot be less than 6 digits</span>
                   </div>
 
                   <div class="form-group" ng-class="{'has-error':vm.Form.noOfTowers.$dirty && vm.Form.noOfTowers.$invalid, 'has-success':vm.Form.noOfTowers.$valid}">

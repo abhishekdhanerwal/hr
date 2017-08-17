@@ -23,8 +23,32 @@
       return promise;
     };
 
+    service.getHelperReportByName = function (name) {
+      var promise = $http.get(__env.dataServerUrl + '/helper/reports?name=' + name)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
     service.getWorkingHelperReport = function (isWorking) {
       var promise = $http.get(__env.dataServerUrl + '/helper/reports?isWorking=' + isWorking)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    };
+
+    service.getHelperName = function (name) {
+      var promise = $http.get(__env.dataServerUrl + '/helperName/search?query=' + name)
         .then(
           function (response) {
             return response;

@@ -5,16 +5,32 @@
     .module('app.reports')
     .controller('HelperReportController', HelperReportController);
 
-  HelperReportController.$inject = ['$q', '$http', 'validationHelperFactory', 'toaster', 'helperReportFactory', 'NgTableParams', '$filter', '$scope', '$localStorage' , '$state'];
+  HelperReportController.$inject = ['$q', '$http', 'validationHelperFactory', 'toaster', 'helperReportFactory', 'NgTableParams', '$filter', '$scope', '$localStorage' , '$state', 'role'];
   /* @ngInject */
-  function HelperReportController($q, $http, validationHelperFactory,  toaster, helperReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state ) {
+  function HelperReportController($q, $http, validationHelperFactory,  toaster, helperReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state, role ) {
 
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.progress = true;
+    vm.helperNameList = helperNameList;
+    vm.onSelect = onSelect;
+    vm.clearFlat = clearFlat;
+    vm.showNameText = true;
+    vm.showNumberQuery = true;
 
     function breadcrumbRoute() {
-      $state.go('app.notice')
+      if(vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole || vm.isSuperAdminRole){
+        $state.go('app.society')
+      }
+      else if(vm.isVisitorAdminRole){
+        $state.go('app.visitor')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -25,13 +41,63 @@
     activate();
 
     function activate() {
-
-
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+      vm.isVisitorAdminRole = role.isVisitorAdminRole();
     };
 
     vm.hideTable = function(){
+      vm.helper.name = '';
       vm.IsHidden = false;
       vm.message = "";
+    };
+
+    vm.disableFlatInput = function () {
+      vm.IsHidden = false;
+      vm.flatsearch = "";
+    }
+
+    vm.hideNumber = function () {
+      vm.helper.name = "";
+      vm.IsHidden = false;
+      vm.showNumberQuery = false;
+      vm.showNameText = true;
+    }
+
+    vm.hideName = function () {
+      vm.helper.name = "";
+      vm.IsHidden = false;
+      vm.showNameText = false;
+      vm.showNumberQuery = true;
+    }
+
+    function helperNameList(val){
+      return helperReportFactory.getHelperName(val).then(function (response) {
+        if(response.status == 200) {
+          vm.progress = false;
+          var params = {
+            query: val
+          };
+          return response.data.map(function (item) {
+            return item;
+          })
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
+    }
+
+    function onSelect($item, $model, $label) {
+      vm.helper.name = $item.name;
+    };
+
+    function clearFlat() {
+      vm.helper.name = '';
     }
 
     //function to generate the report
@@ -129,8 +195,48 @@
           })
         }
 
-        else if(vm.helper.helperType == 'Helper'){
+        else if(vm.helper.helperType == 'Helper' && vm.helper.number){
           helperReportFactory.getHelperReport(vm.helper.number).then(function (response) {
+
+            if(response.status == 200){
+              vm.master = response.data;
+              for(var i=0; i<vm.master.length; i++){
+                if(vm.master[i].type == 'Car_Cleaner'){
+                  vm.master[i].type = 'Car Cleaner';
+                }
+                if(vm.master[i].policeVerificationDone == false){
+                  vm.master[i].policeVerificationDone = 'No';
+                }
+                if(vm.master[i].policeVerificationDone == true){
+                  vm.master[i].policeVerificationDone = 'Yes';
+                }
+              }
+              console.log(vm.master)
+              reportList();
+            }
+            else if (response.status == -1) {
+              toaster.error('Network Error');
+              vm.errorMessage = "Network Error";
+              console.error(response);
+            }
+            else if (response.status == 400) {
+              vm.reportProgress = false;
+              console.error(response);
+              vm.errorMessage = response.data[0].message;
+              toaster.error(response.data[0].message);
+            }
+            else if( response.status == 401){
+              $state.go('auth.signout')
+            }
+            else {
+              toaster.error('Some problem');
+              console.error(response);
+            }
+          })
+        }
+
+        else if(vm.helper.helperType == 'Helper' && vm.helper.name){
+          helperReportFactory.getHelperReportByName(vm.helper.name).then(function (response) {
 
             if(response.status == 200){
               vm.master = response.data;

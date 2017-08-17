@@ -67,7 +67,12 @@
       });
     };
 
+    vm.hideTable = function () {
+      vm.IsHidden = false;
+    }
+
     vm.disableFlatInput = function () {
+      vm.IsHidden = false;
       vm.flatsearch = "";
       visitorReportFactory.findAllFlats(vm.tower).then(function (response) {
         if (response.status == 200) {

@@ -20,11 +20,14 @@
     vm.changeStatus = changeStatus;
 
     function breadcrumbRoute() {
-      if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
+      if(vm.isMeterManagementRole) {
         $state.go('app.complaint')
       }
-      else if(vm.isCreatorRole){
+      else if(vm.isCreatorRole || vm.isSuperAdminRole){
         $state.go('app.society')
+      }
+      else if(vm.isVisitorAdminRole){
+        $state.go('app.visitor')
       }
       else{
         $state.go('app.notice')
@@ -45,6 +48,7 @@
       vm.isManagementRole = role.isManagementRole();
       vm.isCreatorRole = role.isCreatorRole();
       vm.isMeterManagementRole = role.isMeterManagementRole();
+      vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
       complaintFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
         vm.progress = false;
@@ -193,8 +197,8 @@
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'Resolved')
           {
-            vm.statusList.splice(0,1);
-            vm.status.splice(0,1);
+            vm.statusList.splice(0,2);
+            vm.status.splice(0,2);
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'Re Opened ')
           {
@@ -221,8 +225,8 @@
             }
           }
           else if(vm.isConsumerRole && vm.complaint.status == 'Closed'){
-            vm.statusList.splice(0,1);
-            vm.status.splice(0,1);
+            vm.statusList.splice(0,4);
+            vm.status.splice(0,4);
             for(var i=0; i<vm.status.length; i++)
             {
               if(vm.status[i]=='Resolved') {

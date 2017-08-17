@@ -50,6 +50,10 @@
 
     };
 
+    vm.hideTable = function () {
+      vm.IsHidden = false;
+    }
+
     //function to generate the report
     vm.generate = function () {
       if (vm.Form.$invalid) {

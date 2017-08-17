@@ -57,7 +57,7 @@
                   </label>
                   <div class="row">
                     <div class="col-md-7">
-                      <input type="text" style="width:250px;" ng-disabled="vm.disableFlat" style="width:190px;" name="flat" ng-model="vm.flatsearch" placeholder="Search Flat No"
+                      <input type="text" style="width:250px;" ng-change="vm.hideTable()" ng-disabled="vm.disableFlat" style="width:190px;" name="flat" ng-model="vm.flatsearch" placeholder="Search Flat No"
                              uib-typeahead="item as item.flatNo for item in vm.searchFlat($viewValue)"
                              typeahead-loading="loadingLocations" typeahead-min-length="2" typeahead-no-results="noResults"
                              typeahead-editable='true'

@@ -47,7 +47,7 @@
                   </label>
                   <div class="input-group range-picker">
                     <div class="start-date" ng-class="{'has-error':vm.Form.start.$dirty && vm.Form.start.$invalid, 'has-success':vm.Form.start.$valid}">
-                      <input type="text" name="start" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.start" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" required/>
+                      <input type="text" name="start" ng-change="vm.hideTable()" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.start" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" required/>
 
                       <span class="error text-small block"
                             ng-if="vm.Form.start.$dirty && vm.Form.start.$error.required">Start Date is required.</span>
@@ -55,7 +55,7 @@
                     <span class="input-group-addon">to</span>
                     <div class="end-date"
                          ng-class="{'has-error':vm.Form.end.$dirty && vm.Form.end.$invalid, 'has-success':vm.Form.end.$valid}">
-                      <input type="text" name="end" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.end" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions" required/>
+                      <input type="text" name="end" show-button-bar="false" ng-change="vm.hideTable()" style="width:117px;" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.end" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions" required/>
                       <span class="error text-small block"
                             ng-if="vm.Form.end.$dirty && vm.Form.end.$error.required">End Date is required.</span>
                     </div>
@@ -82,7 +82,7 @@
                   </label>
                   <div class="row">
                     <div class="col-md-7">
-                      <input type="text" style="width:250px;" ng-disabled="vm.disableFlat" style="width:190px;" name="flat" ng-model="vm.flatsearch" placeholder="Search Flat No"
+                      <input type="text" style="width:250px;" ng-change="vm.hideTable()" ng-disabled="vm.disableFlat" style="width:190px;" name="flat" ng-model="vm.flatsearch" placeholder="Search Flat No"
                              uib-typeahead="item as item.flatNo for item in vm.searchFlat($viewValue)"
                              typeahead-loading="loadingLocations" typeahead-min-length="2" typeahead-no-results="noResults"
                              typeahead-editable='true'
@@ -136,7 +136,7 @@
               <td data-title="'Vehicle No'" sortable="'vehicleNo'" filter="{ 'vehicleNo' : 'text' }">{{row.vehicleNo}}</td>
               <td data-title="'Coming From'">{{row.comingFrom}}</td>
               <td data-title="'Purpose of Visit'">{{row.purposeOfVisit | limitTo:40}} <br> <a ng-if="row.purposeOfVisit && row.purposeOfVisit.length>40" uib-popover="{{row.purposeOfVisit}}"><b>Read More...</b></a></td>
-              <td data-title="'Arrival Time'" sortable="'arrivedAt'">{{row.arrivedAt | date: 'hh:mm'}}</td>
+              <td data-title="'Arrival Time'" sortable="'arrivedAt'">{{row.arrivedAt | date: 'hh:mm:ss'}}</td>
               <td data-title="'Visitor Type'">{{row.type}}</td>
 
             </tr>

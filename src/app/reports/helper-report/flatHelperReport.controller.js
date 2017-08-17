@@ -5,9 +5,9 @@
     .module('app.reports')
     .controller('FlatHelperReportController', FlatHelperReportController);
 
-  FlatHelperReportController.$inject = ['$q', '$http', 'validationHelperFactory', 'toaster', 'helperReportFactory', 'NgTableParams', '$filter', '$scope', '$localStorage' , '$state'];
+  FlatHelperReportController.$inject = ['$q', '$http', 'validationHelperFactory', 'toaster', 'helperReportFactory', 'NgTableParams', '$filter', '$scope', '$localStorage' , '$state', 'role'];
   /* @ngInject */
-  function FlatHelperReportController($q, $http, validationHelperFactory,  toaster, helperReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state ) {
+  function FlatHelperReportController($q, $http, validationHelperFactory,  toaster, helperReportFactory , NgTableParams, $filter, $scope ,$localStorage ,$state, role ) {
 
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
@@ -18,7 +18,18 @@
     vm.disableFlat = true;
 
     function breadcrumbRoute() {
-      $state.go('app.notice')
+      if(vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole || vm.isSuperAdminRole){
+        $state.go('app.society')
+      }
+      else if(vm.isVisitorAdminRole){
+        $state.go('app.visitor')
+      }
+      else{
+        $state.go('app.notice')
+      }
     }
 
     vm.hideAlertBox = function () {
@@ -29,6 +40,15 @@
     activate();
 
     function activate() {
+
+      vm.isAdminRole = role.isAdminRole();
+      vm.isSuperAdminRole = role.isSuperAdminRole();
+      vm.isConsumerRole = role.isConsumerRole();
+      vm.isManagementRole = role.isManagementRole();
+      vm.isCreatorRole = role.isCreatorRole();
+      vm.isMeterManagementRole = role.isMeterManagementRole();
+      vm.isVisitorAdminRole = role.isVisitorAdminRole();
+
       vm.helper = [];
       vm.helper.society = {};
 
@@ -40,7 +60,12 @@
 
     };
 
+    vm.hideTable = function () {
+      vm.IsHidden = false;
+    }
+
     vm.disableFlatInput = function () {
+      vm.IsHidden = false;
       vm.flatsearch = "";
       helperReportFactory.findAllFlats(vm.tower).then(function (response) {
         if (response.status == 200) {
