@@ -16,7 +16,7 @@
     vm.searchFlat = searchFlat;
     vm.onSelect = onSelect;
     vm.clearFlat = clearFlat;
-    vm.disableFlat = true;
+    vm.checkbox = false;
 
     function breadcrumbRoute() {
       if (vm.isSuperAdminRole || vm.isMeterManagementRole) {
@@ -90,18 +90,22 @@
           toaster.error('Some problem', 'error');
           console.error(response);
         }
-      })
+      });
 
       visitorFactory.viewvisitor($stateParams.id).then(function (response) {
         if(response.status == 200){
           vm.visitor = response.data;
           vm.tower = vm.visitor.tower;
           vm.flatsearch = vm.visitor.flatNo;
+          if(vm.visitor.isArrived == true){
+            vm.checkbox = true;
+          }
           for(var i=0; i<vm.visitorType.length; i++){
             if(vm.visitorType[i] == vm.visitor.type){
               vm.visitor.type = vm.visitorTypeList[i];
             }
           }
+          vm.disableFlatInput();
         }
         else if (response.status == -1) {
           vm.progress = false;
@@ -130,12 +134,12 @@
     };
 
     vm.disableFlatInput = function () {
+      console.log(vm.tower)
       vm.flatsearch = "";
       visitorFactory.findAllFlats(vm.tower).then(function (response) {
         if (response.status == 200) {
           vm.allFlatList = response.data;
           console.log(vm.allFlatList);
-          vm.disableFlat = false;
         }
         else if (response.status == 401) {
           $state.go('auth.signout')
@@ -209,6 +213,7 @@
           }
         }
         if (!vm.isConsumerRole && vm.flatList!=undefined && vm.flatNoByTower == undefined) {
+          vm.progress = false;
           toaster.error('Flat not found');
           vm.errorMessage = 'Flat not found';
         }

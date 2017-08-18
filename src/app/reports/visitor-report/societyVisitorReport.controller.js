@@ -44,6 +44,36 @@
       vm.isMeterManagementRole = role.isMeterManagementRole();
       vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
+      //function for end date
+      vm.endOpen = function ($event) {
+        vm.end = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS')
+        $event.preventDefault();
+        $event.stopPropagation();
+        vm.startOpened = false;
+        vm.endOpened = !vm.endOpened;
+      };
+      //function for start date
+      vm.startOpen = function ($event) {
+        vm.start = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS')
+        $event.preventDefault();
+        $event.stopPropagation();
+        vm.endOpened = false;
+        vm.startOpened = !vm.startOpened;
+      };
+
+      vm.startDateOption = {
+        showWeeks: false,
+        maxDate: vm.end,
+        minDate: new Date(1970, 12, 31),
+        startingDay: 1
+      };
+      vm.endDateOption = {
+        showWeeks: false,
+        maxDate: new Date(2020, 5, 22),
+        minDate: vm.start,
+        startingDay: 1
+      };
+
       vm.endDateValidation = function () {
         vm.endMinDate = vm.start;
       }

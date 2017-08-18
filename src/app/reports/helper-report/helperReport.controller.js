@@ -54,6 +54,7 @@
       vm.helper.name = '';
       vm.IsHidden = false;
       vm.message = "";
+      vm.errorMessage = "";
     };
 
     vm.disableFlatInput = function () {
@@ -66,6 +67,7 @@
       vm.IsHidden = false;
       vm.showNumberQuery = false;
       vm.showNameText = true;
+      vm.errorMessage = "";
     }
 
     vm.hideName = function () {
@@ -73,6 +75,7 @@
       vm.IsHidden = false;
       vm.showNameText = false;
       vm.showNumberQuery = true;
+      vm.errorMessage = "";
     }
 
     function helperNameList(val){
@@ -102,178 +105,183 @@
 
     //function to generate the report
     vm.generate = function () {
-      if (vm.Form.$invalid) {
+      if(vm.searchByName == undefined && vm.searchBynumber == undefined && vm.helper.helperType == 'Helper'){
         vm.reportProgress = false;
-        validationHelperFactory.manageValidationFailed(vm.Form);
-        vm.errorMessage = "Validation Error";
-        return;
+        vm.errorMessage = "Select one of the search type";
       }
-      else {
-        vm.reportProgress = true;
-        vm.errorMessage = false;
-        vm.message = false;
-        vm.IsHidden = false;
-        vm.formData = new FormData();
-
-        var firstError = null;
-
-        if(vm.helper.helperType == 'Working helpers'){
-          vm.isWorking = false;
-          helperReportFactory.getWorkingHelperReport(vm.isWorking).then(function (response) {
-
-            if(response.status == 200){
-              vm.master = response.data;
-              for(var i=0; i<vm.master.length; i++){
-                if(vm.master[i].type == 'Car_Cleaner'){
-                  vm.master[i].type = 'Car Cleaner';
-                }
-                if(vm.master[i].policeVerificationDone == false){
-                  vm.master[i].policeVerificationDone = 'No';
-                }
-                if(vm.master[i].policeVerificationDone == true){
-                  vm.master[i].policeVerificationDone = 'Yes';
-                }
-              }
-              reportList();
-            }
-            else if (response.status == -1) {
-              toaster.error('Network Error');
-              vm.errorMessage = "Network Error";
-              console.error(response);
-            }
-            else if (response.status == 400) {
-              console.error(response);
-              vm.errorMessage = response.data[0].message;
-              toaster.error(response.data[0].message);
-            }
-            else if( response.status == 401){
-              $state.go('auth.signout')
-            }
-            else {
-              toaster.error('Some problem');
-              console.error(response);
-            }
-          })
+      else{
+        if (vm.Form.$invalid) {
+          vm.reportProgress = false;
+          validationHelperFactory.manageValidationFailed(vm.Form);
+          vm.errorMessage = "Validation Error";
+          return;
         }
+        else {
+          vm.reportProgress = true;
+          vm.errorMessage = false;
+          vm.message = false;
+          vm.IsHidden = false;
+          vm.formData = new FormData();
 
-        else if(vm.helper.helperType == 'Non-working helpers'){
-          vm.isWorking = true;
-          helperReportFactory.getWorkingHelperReport(vm.isWorking).then(function (response) {
+          var firstError = null;
 
-            if(response.status == 200){
-              vm.master = response.data;
-              for(var i=0; i<vm.master.length; i++){
-                if(vm.master[i].type == 'Car_Cleaner'){
-                  vm.master[i].type = 'Car Cleaner';
+          if(vm.helper.helperType == 'Working helpers'){
+            vm.isWorking = false;
+            helperReportFactory.getWorkingHelperReport(vm.isWorking).then(function (response) {
+
+              if(response.status == 200){
+                vm.master = response.data;
+                for(var i=0; i<vm.master.length; i++){
+                  if(vm.master[i].type == 'Car_Cleaner'){
+                    vm.master[i].type = 'Car Cleaner';
+                  }
+                  if(vm.master[i].policeVerificationDone == false){
+                    vm.master[i].policeVerificationDone = 'No';
+                  }
+                  if(vm.master[i].policeVerificationDone == true){
+                    vm.master[i].policeVerificationDone = 'Yes';
+                  }
                 }
-                if(vm.master[i].policeVerificationDone == false){
-                  vm.master[i].policeVerificationDone = 'No';
-                }
-                if(vm.master[i].policeVerificationDone == true){
-                  vm.master[i].policeVerificationDone = 'Yes';
-                }
+                reportList();
               }
-              reportList();
-            }
-            else if (response.status == -1) {
-              toaster.error('Network Error');
-              vm.errorMessage = "Network Error";
-              console.error(response);
-            }
-            else if (response.status == 400) {
-              console.error(response);
-              vm.errorMessage = response.data[0].message;
-              toaster.error(response.data[0].message);
-            }
-            else if( response.status == 401){
-              $state.go('auth.signout')
-            }
-            else {
-              toaster.error('Some problem');
-              console.error(response);
-            }
-          })
-        }
-
-        else if(vm.helper.helperType == 'Helper' && vm.helper.number){
-          helperReportFactory.getHelperReport(vm.helper.number).then(function (response) {
-
-            if(response.status == 200){
-              vm.master = response.data;
-              for(var i=0; i<vm.master.length; i++){
-                if(vm.master[i].type == 'Car_Cleaner'){
-                  vm.master[i].type = 'Car Cleaner';
-                }
-                if(vm.master[i].policeVerificationDone == false){
-                  vm.master[i].policeVerificationDone = 'No';
-                }
-                if(vm.master[i].policeVerificationDone == true){
-                  vm.master[i].policeVerificationDone = 'Yes';
-                }
+              else if (response.status == -1) {
+                toaster.error('Network Error');
+                vm.errorMessage = "Network Error";
+                console.error(response);
               }
-              console.log(vm.master)
-              reportList();
-            }
-            else if (response.status == -1) {
-              toaster.error('Network Error');
-              vm.errorMessage = "Network Error";
-              console.error(response);
-            }
-            else if (response.status == 400) {
-              vm.reportProgress = false;
-              console.error(response);
-              vm.errorMessage = response.data[0].message;
-              toaster.error(response.data[0].message);
-            }
-            else if( response.status == 401){
-              $state.go('auth.signout')
-            }
-            else {
-              toaster.error('Some problem');
-              console.error(response);
-            }
-          })
-        }
-
-        else if(vm.helper.helperType == 'Helper' && vm.helper.name){
-          helperReportFactory.getHelperReportByName(vm.helper.name).then(function (response) {
-
-            if(response.status == 200){
-              vm.master = response.data;
-              for(var i=0; i<vm.master.length; i++){
-                if(vm.master[i].type == 'Car_Cleaner'){
-                  vm.master[i].type = 'Car Cleaner';
-                }
-                if(vm.master[i].policeVerificationDone == false){
-                  vm.master[i].policeVerificationDone = 'No';
-                }
-                if(vm.master[i].policeVerificationDone == true){
-                  vm.master[i].policeVerificationDone = 'Yes';
-                }
+              else if (response.status == 400) {
+                console.error(response);
+                vm.errorMessage = response.data[0].message;
+                toaster.error(response.data[0].message);
               }
-              console.log(vm.master)
-              reportList();
-            }
-            else if (response.status == -1) {
-              toaster.error('Network Error');
-              vm.errorMessage = "Network Error";
-              console.error(response);
-            }
-            else if (response.status == 400) {
-              vm.reportProgress = false;
-              console.error(response);
-              vm.errorMessage = response.data[0].message;
-              toaster.error(response.data[0].message);
-            }
-            else if( response.status == 401){
-              $state.go('auth.signout')
-            }
-            else {
-              toaster.error('Some problem');
-              console.error(response);
-            }
-          })
-        }
+              else if( response.status == 401){
+                $state.go('auth.signout')
+              }
+              else {
+                toaster.error('Some problem');
+                console.error(response);
+              }
+            })
+          }
+
+          else if(vm.helper.helperType == 'Non-working helpers'){
+            vm.isWorking = true;
+            helperReportFactory.getWorkingHelperReport(vm.isWorking).then(function (response) {
+
+              if(response.status == 200){
+                vm.master = response.data;
+                for(var i=0; i<vm.master.length; i++){
+                  if(vm.master[i].type == 'Car_Cleaner'){
+                    vm.master[i].type = 'Car Cleaner';
+                  }
+                  if(vm.master[i].policeVerificationDone == false){
+                    vm.master[i].policeVerificationDone = 'No';
+                  }
+                  if(vm.master[i].policeVerificationDone == true){
+                    vm.master[i].policeVerificationDone = 'Yes';
+                  }
+                }
+                reportList();
+              }
+              else if (response.status == -1) {
+                toaster.error('Network Error');
+                vm.errorMessage = "Network Error";
+                console.error(response);
+              }
+              else if (response.status == 400) {
+                console.error(response);
+                vm.errorMessage = response.data[0].message;
+                toaster.error(response.data[0].message);
+              }
+              else if( response.status == 401){
+                $state.go('auth.signout')
+              }
+              else {
+                toaster.error('Some problem');
+                console.error(response);
+              }
+            })
+          }
+          else if(vm.helper.helperType == 'Helper' && vm.helper.number){
+            helperReportFactory.getHelperReport(vm.helper.number).then(function (response) {
+
+              if(response.status == 200){
+                vm.master = response.data;
+                for(var i=0; i<vm.master.length; i++){
+                  if(vm.master[i].type == 'Car_Cleaner'){
+                    vm.master[i].type = 'Car Cleaner';
+                  }
+                  if(vm.master[i].policeVerificationDone == false){
+                    vm.master[i].policeVerificationDone = 'No';
+                  }
+                  if(vm.master[i].policeVerificationDone == true){
+                    vm.master[i].policeVerificationDone = 'Yes';
+                  }
+                }
+                console.log(vm.master)
+                reportList();
+              }
+              else if (response.status == -1) {
+                toaster.error('Network Error');
+                vm.errorMessage = "Network Error";
+                console.error(response);
+              }
+              else if (response.status == 400) {
+                vm.reportProgress = false;
+                console.error(response);
+                vm.errorMessage = response.data[0].message;
+                toaster.error(response.data[0].message);
+              }
+              else if( response.status == 401){
+                $state.go('auth.signout')
+              }
+              else {
+                toaster.error('Some problem');
+                console.error(response);
+              }
+            })
+          }
+
+          else if(vm.helper.helperType == 'Helper' && vm.helper.name){
+            helperReportFactory.getHelperReportByName(vm.helper.name).then(function (response) {
+
+              if(response.status == 200){
+                vm.master = response.data;
+                for(var i=0; i<vm.master.length; i++){
+                  if(vm.master[i].type == 'Car_Cleaner'){
+                    vm.master[i].type = 'Car Cleaner';
+                  }
+                  if(vm.master[i].policeVerificationDone == false){
+                    vm.master[i].policeVerificationDone = 'No';
+                  }
+                  if(vm.master[i].policeVerificationDone == true){
+                    vm.master[i].policeVerificationDone = 'Yes';
+                  }
+                }
+                console.log(vm.master)
+                reportList();
+              }
+              else if (response.status == -1) {
+                toaster.error('Network Error');
+                vm.errorMessage = "Network Error";
+                console.error(response);
+              }
+              else if (response.status == 400) {
+                vm.reportProgress = false;
+                console.error(response);
+                vm.errorMessage = response.data[0].message;
+                toaster.error(response.data[0].message);
+              }
+              else if( response.status == 401){
+                $state.go('auth.signout')
+              }
+              else {
+                toaster.error('Some problem');
+                console.error(response);
+              }
+            })
+          }
+      }
       }
     };
     function reportList(){

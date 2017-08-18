@@ -81,12 +81,9 @@
 
                         <div class="form-group"
                              ng-class="{'has-error':vm.Form.vehicleNo.$dirty && vm.Form.vehicleNo.$invalid, 'has-success':vm.Form.vehicleNo.$valid}">
-                          <label class="control-label"> Vehicle no <span ng-if="vm.isVisitorAdminRole" class="symbol required"></span> </label>
-                          <input ng-if="vm.isVisitorAdminRole" type="text" placeholder="Enter Vehicle No" class="form-control" name="vehicleNo"
-                                 ng-model="vm.visitor.vehicleNo" required/>
-                          <input ng-if="vm.isConsumerRole" type="text" placeholder="Enter Vehicle No" class="form-control" name="vehicleNo"
+                          <label class="control-label"> Vehicle no </label>
+                          <input type="text" placeholder="Enter Vehicle No" class="form-control" name="vehicleNo"
                                  ng-model="vm.visitor.vehicleNo">
-                          <span class="error text-small block" ng-if="vm.isVisitorAdminRole && vm.Form.vehicleNo.$dirty && vm.Form.vehicleNo.$error.required">Vehicle No is required</span>
                         </div>
 
                         <div class="form-group"
@@ -134,7 +131,7 @@
                               </label>
                               <div class="row">
                                 <div class="col-md-7">
-                                  <input type="text" ng-disabled="vm.disableFlat" style="width:190px;" name="flat" ng-model="vm.flatsearch" placeholder="Search Flat No"
+                                  <input type="text" style="width:190px;" name="flat" ng-model="vm.flatsearch" placeholder="Search Flat No"
                                          uib-typeahead="item as item.flatNo for item in vm.searchFlat($viewValue)"
                                          typeahead-loading="loadingLocations" typeahead-min-length="2" typeahead-no-results="noResults"
                                          typeahead-editable='true'
@@ -156,7 +153,7 @@
 
                         <div class="form-group">
                         <div class="checkbox clip-check check-primary">
-                        <input type="checkbox" id="isArrived" value="isArrived" ng-model="vm.visitor.isArrived">
+                        <input type="checkbox" id="isArrived" value="isArrived" ng-disabled="vm.checkbox" ng-model="vm.visitor.isArrived">
                         <label for="isArrived">
                         Has Arrived
                         </label>

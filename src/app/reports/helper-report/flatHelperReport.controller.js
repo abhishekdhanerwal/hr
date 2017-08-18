@@ -120,20 +120,23 @@
 
           var firstError = null;
 
-          if(vm.flatList.length == 0){
-            vm.flatNoByTower = null;
-          }
-          else{
-            for (var i = 0; i < vm.flatList.length; i++) {
-              if (vm.flatList[i].flatNo == vm.flatsearch || vm.flatList[i].flatNo == vm.flatsearch.flatNo) {
-                vm.flatNoByTower = vm.flatList[i];
-              }
-              else {
-                vm.flatNoByTower = null;
+          if(vm.flatList!=undefined){
+            if(vm.flatList.length == 0){
+              vm.flatNoByTower = null;
+            }
+            else{
+              for (var i = 0; i < vm.flatList.length; i++) {
+                if (vm.flatList[i].flatNo == vm.flatsearch || vm.flatList[i].flatNo == vm.flatsearch.flatNo) {
+                  vm.flatNoByTower = vm.flatList[i];
+                }
+                else {
+                  vm.flatNoByTower = null;
+                }
               }
             }
           }
-          if (vm.flatNoByTower == undefined) {
+          if (vm.flatNoByTower == undefined || vm.flatsearch.toString().length == 1) {
+            vm.reportProgress = false;
             toaster.error('Flat not found');
             vm.errorMessage = 'Flat not found';
           }

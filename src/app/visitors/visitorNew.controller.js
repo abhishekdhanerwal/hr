@@ -51,11 +51,6 @@
       vm.mstep = 15;
       vm.ismeridian = true;
 
-      // vm.visitor = [];
-      // vm.visitor.society = {};
-      //
-      // vm.visitor.society.id = $localStorage._identity.principal.societyId;
-
       visitorFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
         vm.towerList = response.data;
       });
@@ -129,9 +124,7 @@
     }
 
     function onSelect($item, $model, $label) {
-      console.log($item.tower)
       vm.visitor.tower = $item.tower;
-      console.log(vm.visitor.tower)
       vm.visitor.flat = $item.flat;
     };
 
@@ -152,11 +145,17 @@
     vm.searchVisitor = function () {
       visitorFactory.searchVisitor(vm.mobilesearch).then(function (response) {
         if (response.status == 200) {
+          vm.errorMessage = '';
           vm.showCheckbox = true;
           vm.visitor = response.data;
           vm.mobilesearch = vm.visitor.mobile;
           vm.tower = vm.visitor.tower;
           vm.flatsearch = vm.visitor.flatNo;
+          for(var i=0; i<vm.visitorType.length; i++){
+            if(vm.visitorType[i] == vm.visitor.type){
+              vm.visitor.type = vm.visitorTypeList[i];
+            }
+          }
           // vm.disableFlatInput();
           // vm.searchFlat(vm.flatsearch);
           console.log(vm.visitor);
@@ -210,6 +209,7 @@
                 for (var i = 0; i < vm.flatList.length; i++) {
                   if (vm.flatList[i].flatNo == vm.flatsearch || vm.flatList[i].flatNo == vm.flatsearch.flatNo) {
                     vm.flatNoByTower = vm.flatList[i];
+                    break;
                   }
                   else {
                     vm.flatNoByTower = null;
@@ -219,6 +219,7 @@
             }
           }
           if (!vm.isConsumerRole && vm.flatList!=undefined && vm.flatNoByTower == undefined) {
+            vm.progress = false;
             toaster.error('Flat not found');
             vm.errorMessage = 'Flat not found';
           }

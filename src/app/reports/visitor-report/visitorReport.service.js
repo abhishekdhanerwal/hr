@@ -12,6 +12,7 @@
     var apiUser = __env.apiUser;
 
     service.getReports = function (start, end, tower, flatNo) {
+      console.log(start)
         var promise = $http.get(__env.dataServerUrl + '/visitor/reports?fromDate=' + start.toISOString() + '&toDate=' + end.toISOString() + '&tower=' + tower + '&flatNo=' + flatNo)
           .then(
             function (response) {

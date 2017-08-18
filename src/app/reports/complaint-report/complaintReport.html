@@ -75,15 +75,20 @@
                   </label>
                   <div class="input-group range-picker">
                     <div class="start-date" ng-class="{'has-error':vm.Form.start.$dirty && vm.Form.start.$invalid, 'has-success':vm.Form.start.$valid}">
-                      <input type="text" name="start" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{formats}}" ng-model="vm.start" show-weeks="false" is-open="startopened" ng-init="startopened = false" ng-click="startopened = !startopened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions">
-
+                      <input type="text" name="start" show-button-bar="false" style="width:117px;" class="form-control"
+                             uib-datepicker-popup="{{formats}}" ng-model="vm.start" show-weeks="false" is-open="vm.startopened"
+                             ng-init="vm.startopened = false" ng-click="vm.startopened = !vm.startopened; vm.startOpen($event)"
+                             min-date="minDate" max-date="maxDate" datepicker-options="vm.startDateOption">
                       <span class="error text-small block"
                             ng-if="vm.Form.start.$dirty && vm.Form.start.$error.required">Start Date is required.</span>
                     </div>
                     <span class="input-group-addon">to</span>
                     <div class="end-date"
                          ng-class="{'has-error':vm.Form.end.$dirty && vm.Form.end.$invalid, 'has-success':vm.Form.end.$valid}">
-                      <input type="text" name="end" show-button-bar="false" style="width:117px;" class="form-control" uib-datepicker-popup="{{format}}" ng-model="vm.end" show-weeks="false" is-open="endopened" ng-init="endopened = false" ng-click="endopened = !endopened  ; vm.endDateValidation()" min-date="vm.endMinDate" max-date="maxDate" datepicker-options="dateOptions">
+                      <input type="text" name="end" show-button-bar="false" style="width:117px;" class="form-control"
+                             uib-datepicker-popup="{{format}}" ng-model="vm.end" show-weeks="false" is-open="vm.endopened"
+                             ng-init="vm.endopened = false" ng-click="vm.endopened = !vm.endopened  ; vm.endDateValidation(); vm.endOpen($event)"
+                             min-date="vm.endMinDate" max-date="maxDate" datepicker-options="vm.endDateOption">
                       <span class="error text-small block"
                             ng-if="vm.Form.end.$dirty && vm.Form.end.$error.required">End Date is required.</span>
                     </div>

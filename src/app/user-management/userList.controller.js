@@ -45,38 +45,6 @@
           console.log(self.userList)
           for (var i = 0; i < self.userList.length; i++) {
 
-           // self.societyId = self.userList[i].societyId;
-
-            // userFactory.findSociety(self.userList[i].societyId).then(function (response) {
-            //   if(response.status == 200){
-            //     for(var i=0; i<self.userList.length; i++){
-            //       self.userList[i].societyName = '';
-            //       if(self.userList[i].societyId == response.data.id){
-            //         self.userList[i].societyName = response.data.name;
-            //         console.log(self.userList[i].societyName)
-            //       }
-            //     }
-            //   }
-            // })
-
-            // self.findSociety = function(){
-            //   userFactory.societyList().then(function (response) {
-            //     if(response.status == 200) {
-            //       self.progress = false;
-            //       self.society = response.data;
-            //       for(var i=0; i<self.society.length; i++) {
-            //         if(self.society[i].id == self.user.societyId){
-            //           self.user.society = self.society[i];
-            //         };
-            //       }
-            //     }
-            //     else if( response.status == 401){
-            //       $state.go('auth.signout')
-            //     }
-            //   });
-            // }
-
-
             if (self.userList[i].role == "ROLE_CONSUMER") {
               self.userList[i].role = "CONSUMER";
               self.userId = self.userList[i].id;
@@ -114,7 +82,7 @@
           }
           console.log(self.userList)
           findSociety();
-          userAddress();
+          //userAddress();
           listView();
         }
         else if (response.status == -1) {
@@ -158,25 +126,25 @@
     }
 
 
-    function userAddress() {
-      console.log(self.userId)
-      for(var i=0; i<self.userList.length; i++){
-        if(self.userList[i].role == 'CONSUMER') {
-          addAddress(self.userList[i].id, i);
-        }
-      }
-    }
-
-    function addAddress(id, index) {
-      userFactory.userAddress(id).then(function(response){
-        if(response.status == 200){
-          self.userList[index].address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
-        }
-        else if(response.status == 401){
-          $state.go('auth.signout')
-        }
-      })
-    }
+    // function userAddress() {
+    //   console.log(self.userId)
+    //   for(var i=0; i<self.userList.length; i++){
+    //     if(self.userList[i].role == 'CONSUMER') {
+    //       addAddress(self.userList[i].id, i);
+    //     }
+    //   }
+    // }
+    //
+    // function addAddress(id, index) {
+    //   userFactory.userAddress(id).then(function(response){
+    //     if(response.status == 200){
+    //       self.userList[index].address = 'Tower:' + response.data.tower + ',Flat No:' + response.data.flatNo;
+    //     }
+    //     else if(response.status == 401){
+    //       $state.go('auth.signout')
+    //     }
+    //   })
+    // }
 
     function listView(){
       self.tableParams = new NgTableParams(

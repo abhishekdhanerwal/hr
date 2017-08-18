@@ -72,7 +72,7 @@
                     </label><br>
                     <div ng-class="{'has-error':vm.Form.helperNo.$dirty && vm.Form.helperNo.$invalid, 'has-success':vm.Form.helperNo.$valid}">
                       <input type="text" style="width:250px;" placeholder="Enter Helper Number" ng-change="vm.hideTable()" class="form-control" name="helperNo"
-                             ng-model="vm.helper.number"  ng-pattern="/^[1-9][0-9]*$/" ng-minlength="6" ng-maxlength="6" required/>
+                      ng-model="vm.helper.number"  ng-pattern="/^[1-9][0-9]*$/" ng-minlength="6" ng-maxlength="6" required/>
                       <span class="error text-small block" ng-if="vm.Form.helperNo.$error.pattern">Invalid characters</span>
                       <span class="error text-small block" ng-if="vm.Form.helperNo.$dirty && vm.Form.helperNo.$error.required">Helper number is required</span>
                       <span class="error text-small block" ng-if="!vm.Form.helperNo.$error.pattern && vm.Form.helperNo.$error.minlength">Helper number is of 6 digits</span>
@@ -88,13 +88,13 @@
                     </label>
                     <div class="row">
                       <div class="col-md-7">
-                        <input type="text" ng-model="vm.helper.name" placeholder="Search Helper"
+                        <input type="text" ng-model="vm.helper.name" placeholder="Search Helper" name="name"
                                ng-value="vm.helper.name" style="width:250px;"
                                uib-typeahead="item.name for item in vm.helperNameList($viewValue)"
                                typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"
                                typeahead-on-select="vm.onSelect($item, $model, $label)"
                                typeahead-editable='true'
-                               class="form-control">
+                               class="form-control" required/>
                       </div>
                       <div class="col-md-5">
                         <span class="btn btn-danger" style="margin-left: 45px;" ng-click="vm.clearFlat()" ><i

@@ -48,6 +48,36 @@
       vm.isMeterManagementRole = role.isMeterManagementRole();
       vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
+      //function for end date
+      vm.endOpen = function ($event) {
+        vm.end = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS')
+        $event.preventDefault();
+        $event.stopPropagation();
+        vm.startOpened = false;
+        vm.endOpened = !vm.endOpened;
+      };
+      //function for start date
+      vm.startOpen = function ($event) {
+        vm.start = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS')
+        $event.preventDefault();
+        $event.stopPropagation();
+        vm.endOpened = false;
+        vm.startOpened = !vm.startOpened;
+      };
+
+      vm.startDateOption = {
+        showWeeks: false,
+        maxDate: vm.end,
+        minDate: new Date(1970, 12, 31),
+        startingDay: 1
+      };
+      vm.endDateOption = {
+        showWeeks: false,
+        maxDate: new Date(2020, 5, 22),
+        minDate: vm.start,
+        startingDay: 1
+      };
+
       vm.endDateValidation = function () {
         vm.endMinDate = vm.start;
       }
@@ -131,6 +161,7 @@
           for (var i = 0; i < vm.flatList.length; i++) {
             if (vm.flatList[i].flatNo == vm.flatsearch || vm.flatList[i].flatNo == vm.flatsearch.flatNo) {
               vm.flatNoByTower = vm.flatList[i];
+              break;
             }
             else {
               vm.flatNoByTower = null;
@@ -138,12 +169,14 @@
           }
         }
         if (vm.flatNoByTower == undefined) {
+          vm.reportProgress = false;
           toaster.error('Flat not found');
           vm.errorMessage = 'Flat not found';
         }
         else {
 
           visitorReportFactory.getReports(vm.start, vm.end, vm.tower, vm.flatNoByTower.flatNo).then(function (response) {
+            console.log(vm.start)
 
             if (response.status == 200) {
               vm.master = response.data;
@@ -166,7 +199,6 @@
               toaster.error(response.data[0].message, 'error');
             }
             else if (response.status == 401) {
-              toaster.info("User is not logged in. Redirecting to Login Page");
               $state.go('auth.signout')
             }
             else {
@@ -183,10 +215,10 @@
           page: 1, // show first page
           count: 10, // count per page
           sorting: {
-           vehicleNo: '' // initial sorting
+           name: '' // initial sorting
           }, // count per page
           filter: {
-            vehicleNo: ''
+            name: ''
           }
         }, {
           // total: data.length,
