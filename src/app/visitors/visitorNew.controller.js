@@ -48,8 +48,8 @@
       vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
       vm.hstep = 1;
-      vm.mstep = 15;
-      vm.ismeridian = true;
+      vm.mstep = 1;
+      vm.ismeridian = false;
 
       visitorFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
         vm.towerList = response.data;

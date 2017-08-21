@@ -15,7 +15,6 @@
     vm.progress = true;
 
     vm.helperMsg = $stateParams.msg;
-    console.log(vm.helperMsg)
 
     function breadcrumbRoute() {
       if(vm.isMeterManagementRole) {

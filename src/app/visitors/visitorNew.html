@@ -118,7 +118,7 @@
                       <div class="form-group"
                            ng-class="{'has-error':vm.Form.expectedArrivalTime.$dirty && vm.Form.expectedArrivalTime.$invalid, 'has-success':vm.Form.expectedArrivalTime.$valid}" ng-if="vm.isConsumerRole">
                         <label class="control-label"> Expected Arrival Time <span class="symbol required"></span> </label>
-                        <uib-timepicker ng-model="vm.visitor.expectedArrivalTime" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></uib-timepicker>
+                        <uib-timepicker ng-model="vm.visitor.expectedArrivalTime" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian" mousewheel="false"></uib-timepicker>
                         <span class="error text-small block" ng-if="vm.Form.expectedArrivalTime.$dirty && vm.Form.expectedArrivalTime.$error.required">Arrival time is required</span>
                       </div>
 

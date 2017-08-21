@@ -21,7 +21,8 @@
           <input type="text" ng-pattern="/^[1-9][0-9]*$/" ng-maxlength="10" ng-minlength="10" class="form-control" name="username" placeholder="Username" ng-model="vm.user">
           <span class="error text-small block"
                 ng-if="vm.Form.username.$error.pattern">Invalid Characters</span>
-          <span class="error text-small block" ng-if="vm.Form.username.$error.maxlength && !vm.Form.username.$error.pattern">Mobile Number should be ten characters only</span>
+          <span class="error text-small block" ng-if="vm.Form.username.$error.maxlength && !vm.Form.username.$error.pattern">Mobile Number should be of ten characters only</span>
+          <span class="error text-small block" ng-if="vm.Form.username.$error.minlength && !vm.Form.username.$error.pattern">Mobile Number should be of ten characters</span>
         </div>
         <div class="form-group form-actions">
 
