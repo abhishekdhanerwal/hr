@@ -65,19 +65,6 @@
         vm.startOpened = !vm.startOpened;
       };
 
-      vm.startDateOption = {
-        showWeeks: false,
-        maxDate: vm.end,
-        minDate: new Date(1970, 12, 31),
-        startingDay: 1
-      };
-      vm.endDateOption = {
-        showWeeks: false,
-        maxDate: new Date(2020, 5, 22),
-        minDate: vm.start,
-        startingDay: 1
-      };
-
       vm.endDateValidation = function () {
         vm.endMinDate = vm.start;
       }
