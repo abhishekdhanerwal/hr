@@ -97,6 +97,7 @@
           vm.visitor = response.data;
           vm.tower = vm.visitor.tower;
           vm.flatsearch = vm.visitor.flatNo;
+          console.log(vm.flatsearch)
           if(vm.visitor.isArrived == true){
             vm.checkbox = true;
           }
@@ -134,8 +135,7 @@
     };
 
     vm.disableFlatInput = function () {
-      console.log(vm.tower)
-      vm.flatsearch = "";
+      // vm.flatsearch = "";
       visitorFactory.findAllFlats(vm.tower).then(function (response) {
         if (response.status == 200) {
           vm.allFlatList = response.data;

@@ -148,11 +148,20 @@
     };
 
     function submit() {
-      if (!vm.isConsumerRole && vm.flatList.length == 0) {
+      if (vm.Form.$invalid) {
+        vm.progress = false;
+        validationHelperFactory.manageValidationFailed(vm.Form);
+        vm.errorMessage = 'Validation Error';
+        return;
+      }
+
+      else{
+
+      if (!vm.isConsumerRole && vm.flatList!=undefined && vm.flatList.length == 0) {
         vm.flatNoByTower = null;
       }
       else {
-        if (!vm.isConsumerRole) {
+        if (!vm.isConsumerRole && vm.flatList!=undefined) {
           for (var i = 0; i < vm.flatList.length; i++) {
             if (vm.flatList[i].flatNo == vm.flatsearch || vm.flatList[i].flatNo == vm.flatsearch.flatNo) {
               vm.flatNoByTower = vm.flatList[i];
@@ -171,14 +180,6 @@
         vm.progress = true;
 
         var firstError = null;
-
-        if (vm.Form.$invalid) {
-          vm.progress = false;
-          validationHelperFactory.manageValidationFailed(vm.Form);
-          vm.errorMessage = 'Validation Error';
-          return;
-
-        } else {
 
           //vm.flatsearch = vm.complaint.registerFor;
           vm.complaint.registerFor = vm.flatNoByTower;

@@ -105,17 +105,18 @@
 
     //function to generate the report
     vm.generate = function () {
+      if (vm.Form.$invalid) {
+        vm.reportProgress = false;
+        validationHelperFactory.manageValidationFailed(vm.Form);
+        vm.errorMessage = "Validation Error";
+        return;
+      }
+      else{
+
       if(vm.searchByName == undefined && vm.searchBynumber == undefined && vm.helper.helperType == 'Helper'){
         vm.reportProgress = false;
         vm.errorMessage = "Select one of the search type";
       }
-      else{
-        if (vm.Form.$invalid) {
-          vm.reportProgress = false;
-          validationHelperFactory.manageValidationFailed(vm.Form);
-          vm.errorMessage = "Validation Error";
-          return;
-        }
         else {
           vm.reportProgress = true;
           vm.errorMessage = false;

@@ -183,15 +183,16 @@
 
 
     function submit() {
+
       vm.progress = true;
       var firstError = null;
 
-      for(var index=0 ; index < vm.visitorTypeList.length ; index++){
-        if(vm.visitorTypeList[index] == vm.visitor.type)
-          vm.visitor.type = vm.visitorType[index];
+      if(vm.visitor != undefined){
+        for(var index=0 ; index < vm.visitorTypeList.length ; index++){
+          if(vm.visitorTypeList[index] == vm.visitor.type)
+            vm.visitor.type = vm.visitorType[index];
+        }
       }
-
-
       if (vm.Form.$invalid) {
           vm.progress = false;
           validationHelperFactory.manageValidationFailed(vm.Form);
@@ -238,7 +239,9 @@
               vm.sendData.mobile = vm.visitor.mobile;
               vm.sendData.vehicleNo = vm.visitor.vehicleNo;
               vm.sendData.comingFrom = vm.visitor.comingFrom;
-              vm.sendData.expectedArrivalTime = vm.visitor.expectedArrivalTime;
+              var currentTime = new Date();
+              var expectedArrivalTime = new Date(vm.visitor.expectedArrivalTime);
+              vm.sendData.expectedArrivalTime = new Date(currentTime.getFullYear(),currentTime.getMonth(), currentTime.getDate() , expectedArrivalTime.getHours(), expectedArrivalTime.getMinutes());
               vm.sendData.type = vm.visitor.type;
               vm.sendData.purposeOfVisit = vm.visitor.purposeOfVisit;
               vm.sendData.tower = vm.visitor.tower;

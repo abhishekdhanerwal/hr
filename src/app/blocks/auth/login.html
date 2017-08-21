@@ -16,7 +16,7 @@
     </p>
     <!-- start: LOGIN BOX -->
     <div class="box-login">
-      <ng-form  name="vm.Form" role="Form" id="Form"  ng-submit="">
+      <form  name="vm.Form" role="Form" id="Form"  ng-submit="">
         <div class="form-group"  ng-class="{'has-error':vm.Form.username.$dirty && vm.Form.username.$invalid, 'has-success':vm.Form.username.$valid}">
           <input type="text" ng-pattern="/^[1-9][0-9]*$/" ng-maxlength="10" ng-minlength="10" class="form-control" name="username" placeholder="Username" ng-model="vm.user">
           <span class="error text-small block"
@@ -43,7 +43,7 @@
             <!--<label for="remember"> Keep me signed in </label>-->
           <!--</div>-->
         </div>
-      </ng-form>
+      </form>
       <!-- start: COPYRIGHT -->
       <div class="copyright">
         {{app.year}} &copy; {{ app.name }} by {{ app.author }}.

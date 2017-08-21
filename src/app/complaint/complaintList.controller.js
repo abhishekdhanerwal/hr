@@ -198,7 +198,7 @@
       vm.tableParams = new NgTableParams(
         {
           page: 1, // show first page
-          count: 10, // count per page
+          count: 100, // count per page
           sorting: {
             lastModified: 'desc'   // initial sorting
           }, // count per page

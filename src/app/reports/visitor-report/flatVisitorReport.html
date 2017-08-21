@@ -142,7 +142,7 @@
               <td data-title="'Vehicle No'">{{row.vehicleNo}}</td>
               <td data-title="'Coming From'">{{row.comingFrom}}</td>
               <td data-title="'Purpose of Visit'">{{row.purposeOfVisit | limitTo:40}} <br> <a ng-if="row.purposeOfVisit && row.purposeOfVisit.length>40" uib-popover="{{row.purposeOfVisit}}"><b>Read More...</b></a></td>
-              <td data-title="'Arrival Time'" sortable="'arrivedAt'">{{row.arrivedAt | date: 'hh:mm:ss'}}</td>
+              <td data-title="'Arrival Time'" sortable="'arrivedAt'">{{row.arrivedAt | date: 'hh:mm a'}}</td>
               <td data-title="'Visitor Type'">{{row.type}}</td>
 
             </tr>

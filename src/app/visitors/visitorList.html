@@ -71,9 +71,9 @@
 
                 <!--<td data-title="'Purpose of Visit'">{{row.purposeOfVisit}}</td>-->
 
-                <td data-title="'Expected Arrival Time'">{{row.expectedArrivalTime | date: 'hh:mm:ss'}}</td>
+                <td data-title="'Expected Arrival Time'">{{row.expectedArrivalTime | date: 'hh:mm a'}}</td>
 
-                <td data-title="'Arrival Time'">{{row.arrivedAt | date: 'hh:mm:ss'}}</td>
+                <td data-title="'Arrival Time'">{{row.arrivedAt | date: 'hh:mm a'}}</td>
 
                 <td data-title="'Tower'" ng-if="!vm.isConsumerRole">{{row.tower}}</td>
 
