@@ -133,8 +133,6 @@
           page: 1, // show first page
           count: 100, // count per page
           sorting: {
-            tower: '',
-            name: '',
             arrivedAt: ''// initial sorting
           }, // count per page
           filter: {
