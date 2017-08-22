@@ -169,7 +169,7 @@
     }
 
     function reset() {
-      vm.visitor = '';
+      activate($stateParams.id)
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }

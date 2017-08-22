@@ -200,12 +200,14 @@
       vm.tableParams = new NgTableParams(
         {
           page: 1, // show first page
-          count: 10, // count per page
+          count: 100, // count per page
           sorting: {
-           name: '' // initial sorting
+           name: '',
+            arrivedAt: ''// initial sorting
           }, // count per page
           filter: {
-            name: ''
+            name: '',
+            arrivedAt: ''
           }
         }, {
           // total: data.length,

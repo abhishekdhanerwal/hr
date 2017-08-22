@@ -238,6 +238,8 @@
 
     function reset() {
       vm.helper = '';
+      vm.aadhaarId = '';
+      vm.mobile = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
@@ -247,6 +249,8 @@
     };
 
     function submit() {
+      vm.helper.aadhaarId = vm.aadhaarId;
+      vm.helper.mobile = vm.mobile;
       vm.errorMessage = '';
       vm.progress = true;
       var firstError = null;

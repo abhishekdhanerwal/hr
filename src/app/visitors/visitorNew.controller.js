@@ -134,6 +134,10 @@
 
     function reset() {
       vm.visitor = '';
+      vm.mobilesearch = '';
+      vm.tower = '';
+      vm.flatsearch = '';
+      vm.mobile = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
@@ -184,6 +188,7 @@
 
     function submit() {
 
+      vm.visitor.mobile = vm.mobile;
       vm.progress = true;
       var firstError = null;
 

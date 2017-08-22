@@ -105,51 +105,58 @@
         return;
       }
       else {
-        vm.reportProgress = true;
-        vm.download = false;
-        vm.errorMessage = false;
-        vm.message = false;
-        vm.IsHidden = false;
-        vm.formData = new FormData();
+        if (vm.start != undefined && vm.end == undefined) {
+          vm.errorMessage = 'Please select end date also';
+        }
+          else if (vm.end !=undefined && vm.start == undefined){
+            vm.errorMessage = 'Please select start date also';
+          }
+        else {
+          vm.reportProgress = true;
+          vm.download = false;
+          vm.errorMessage = false;
+          vm.message = false;
+          vm.IsHidden = false;
+          vm.formData = new FormData();
 
-        var firstError = null;
+          var firstError = null;
 
-        complaintReportFactory.getReports(vm.complaint.status, vm.start , vm.end, vm.complaint.society.id).then(function (response) {
+          complaintReportFactory.getReports(vm.complaint.status, vm.start, vm.end, vm.complaint.society.id).then(function (response) {
 
-          if(response.status == 200){
-            vm.master = response.data;
-            console.log(vm.master)
-            for(var i=0; i<vm.master.length; i++){
-              if(vm.master[i].assignedTo != null){
-                vm.master[i].assignee = "";
-                vm.master[i].assignee = vm.master[i].assignedTo.name;
+            if (response.status == 200) {
+              vm.master = response.data;
+              console.log(vm.master)
+              for (var i = 0; i < vm.master.length; i++) {
+                if (vm.master[i].assignedTo != null) {
+                  vm.master[i].assignee = "";
+                  vm.master[i].assignee = vm.master[i].assignedTo.name;
+                }
+                else {
+                  vm.master[i].assignee = "";
+                }
               }
-              else{
-                vm.master[i].assignee = "";
-              }
+              console.log(vm.master)
+              reportList();
             }
-            console.log(vm.master)
-            reportList();
-          }
-          else if (response.status == -1) {
-            toaster.error('Network Error', 'error');
-            vm.errorMessage = "Network Error";
-            console.error(response);
-          }
-          else if (response.status == 400) {
-            console.error(response);
-            vm.errorMessage = response.data[0].message;
-            toaster.error(response.data[0].message, 'error');
-          }
-          else if( response.status == 401){
-            toaster.info("User is not logged in. Redirecting to Login Page");
-            $state.go('auth.signout')
-          }
-          else {
-            toaster.error('Some problem', 'error');
-            console.error(response);
-          }
-        })
+            else if (response.status == -1) {
+              toaster.error('Network Error', 'error');
+              vm.errorMessage = "Network Error";
+              console.error(response);
+            }
+            else if (response.status == 400) {
+              console.error(response);
+              vm.errorMessage = response.data[0].message;
+              toaster.error(response.data[0].message, 'error');
+            }
+            else if (response.status == 401) {
+              $state.go('auth.signout')
+            }
+            else {
+              toaster.error('Some problem', 'error');
+              console.error(response);
+            }
+          })
+        }
       }
     };
     function reportList(){

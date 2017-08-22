@@ -52,7 +52,11 @@
 
     function reset() {
       vm.society = '';
-      vm.society.admin = '';
+      vm.noOfTowers = '';
+      vm.noOfFlats = '';
+      vm.email = '';
+      vm.mobile = '';
+      vm.pinCode = '';
       vm.Form.$setPristine();
       vm.Form.$setUntouched();
     }
@@ -62,6 +66,11 @@
     };
 
     function submit() {
+      vm.society.noOfTowers = vm.noOfTowers;
+      vm.society.noOfFlats = vm.noOfFlats;
+      vm.society.admin.email = vm.email;
+      vm.society.admin.mobile = vm.mobile;
+      vm.society.address.pinCode = vm.pinCode;
       var firstError = null;
 
       if (vm.Form.$invalid) {

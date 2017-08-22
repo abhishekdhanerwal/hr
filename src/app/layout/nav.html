@@ -66,10 +66,10 @@
       <li ui-sref-active="active" ng-if="!vm.isVisitorAdminRole">
         <a ui-sref="app.report"> <span class="title"> Complaint Report </span> </a>
       </li>
-      <li ui-sref-active="active" ng-if="!vm.isSuperAdminRole && !vm.isVisitorAdminRole">
+      <li ui-sref-active="active" ng-if="!vm.isSuperAdminRole && !vm.isVisitorAdminRole && !vm.isMeterManagementRole">
         <a ui-sref="app.helperReport"> <span class="title"> Helper Report </span> </a>
       </li>
-      <li ui-sref-active="active" ng-if="!vm.isSuperAdminRole && !vm.isVisitorAdminRole">
+      <li ui-sref-active="active" ng-if="!vm.isSuperAdminRole && !vm.isVisitorAdminRole && !vm.isMeterManagementRole">
         <a ui-sref="app.flatHelperReport"> <span class="title"> Flat Helper Report </span> </a>
       </li>
       <li ui-sref-active="active" ng-if="vm.isVisitorAdminRole">
