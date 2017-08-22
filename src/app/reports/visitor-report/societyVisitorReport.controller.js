@@ -89,7 +89,12 @@
 
         var firstError = null;
 
-        visitorReportFactory.getReports(vm.start , vm.end).then(function (response) {
+        if(vm.tower == undefined && vm.flatNo == undefined){
+          vm.tower = "";
+          vm.flatNo = "";
+        }
+
+        visitorReportFactory.getReports(vm.start , vm.end, vm.tower, vm.flatNo).then(function (response) {
 
           if(response.status == 200){
             vm.master = response.data;

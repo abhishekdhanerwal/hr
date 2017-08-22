@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="16d9d364-3880-4526-b193-f5912f7b8799" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/household/helperList.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/household/helperList.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/society/societyList.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/society/societyList.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/blocks/auth/login.html" afterPath="$PROJECT_DIR$/src/app/blocks/auth/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintList.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" afterPath="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/helper-report/helperReport.controller.js" afterPath="$PROJECT_DIR$/src/app/reports/helper-report/helperReport.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.html" afterPath="$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.html" afterPath="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/visitors/visitorEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/visitors/visitorEdit.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/visitors/visitorList.controller.js" afterPath="$PROJECT_DIR$/src/app/visitors/visitorList.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/visitors/visitorList.html" afterPath="$PROJECT_DIR$/src/app/visitors/visitorList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/visitors/visitorNew.controller.js" afterPath="$PROJECT_DIR$/src/app/visitors/visitorNew.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/visitors/visitorNew.html" afterPath="$PROJECT_DIR$/src/app/visitors/visitorNew.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/layout/nav.html" afterPath="$PROJECT_DIR$/src/app/layout/nav.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js" afterPath="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,31 +25,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="visitorList.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorList.controller.js">
+      <file leaf-file-name="societyVisitorReport.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="86" column="20" lean-forward="false" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
+            <state relative-caret-position="368">
+              <caret line="91" column="58" lean-forward="false" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="visitorNew.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.html">
+      <file leaf-file-name="nav.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/layout/nav.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1202">
-              <caret line="120" column="65" lean-forward="false" selection-start-line="120" selection-start-column="65" selection-end-line="120" selection-end-column="65" />
+            <state relative-caret-position="494">
+              <caret line="83" column="33" lean-forward="true" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="visitorNew.controller.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.controller.js">
+      <file leaf-file-name="visitorReport.service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/visitorReport.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="523">
-              <caret line="253" column="36" lean-forward="true" selection-start-line="253" selection-start-column="36" selection-end-line="253" selection-end-column="36" />
+            <state relative-caret-position="395">
+              <caret line="24" column="6" lean-forward="true" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flatVisitorReport.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="141" column="48" lean-forward="false" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -161,14 +160,12 @@
         <option value="$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/list.html" />
         <option value="$PROJECT_DIR$/src/app/reports/visitor-report/visitorReport.service.js" />
-        <option value="$PROJECT_DIR$/src/app/layout/nav.html" />
         <option value="$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.html" />
         <option value="$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/helper-report/helperReport.html" />
         <option value="$PROJECT_DIR$/src/app/admin/flat/flatList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/userList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/admin/society/FlatData.controller.js" />
-        <option value="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js" />
@@ -185,6 +182,8 @@
         <option value="$PROJECT_DIR$/src/app/admin/society/societyList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/admin/household/helperList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/visitors/visitorNew.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/layout/nav.html" />
       </list>
     </option>
   </component>
@@ -296,8 +295,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -382,7 +379,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="user-management" />
+              <option name="myItemId" value="reports" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -407,9 +404,15 @@
               <option name="myItemId" value="reports" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="visitor-report" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -420,7 +423,7 @@
     <property name="editor.config.accepted" value="true" />
     <property name="js.eslint.eslintPackage" value="C:\GitCOde\smsUi\node_modules\eslint" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="login.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/login.html&#10;sign&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;config.router&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;confi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;config&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;index&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;index.h&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;nav&#9;null&#9;null&#10;sidebar.controll&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;sidebar&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;user&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user-controller.js&#10;login&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/login.html&#10;SIGN&#9;null&#9;null&#10;role&#9;null&#9;null&#10;index.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/angular-bootstrap-calendar/index.html&#10;side&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;inde&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;top&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/top-navbar.html&#10;conf&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;in&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;ng-&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/ng-flow/dist/ng-flow.js&#10;flow.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/flow.js/dist/flow.js&#10;flowFa&#9;null&#9;null&#10;flowFactory&#9;null&#9;null&#10;con&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;na&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;sig&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.hhtml&#9;null&#9;null&#10;configr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;princi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;navbar.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/bootstrap-rtl/examples/rtl/navbar.html&#10;notice&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/notices/noticeNew.controller.js&#10;princ&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;form&#9;FILE&#9;file://C:/GitCOde/smsUi/src/views/form_pickers.html&#10;env.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;auth&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/authorization.service.js&#10;com&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/addComplaint.html&#10;flat&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatEdit.html&#10;society&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyList.html&#10;fl&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatNew.controller.js&#10;societyN&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyNew.html&#10;socie&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/society.controller.js&#10;list.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/list.html&#10;sideb&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;complaint&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html" />
+    <property name="SearchEverywhereHistoryKey" value="nav.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;login.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/login.html&#10;sign&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;config.router&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;confi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;config&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;index&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;index.h&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;nav&#9;null&#9;null&#10;sidebar.controll&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;sidebar&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;user&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user-controller.js&#10;login&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/login.html&#10;SIGN&#9;null&#9;null&#10;role&#9;null&#9;null&#10;index.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/angular-bootstrap-calendar/index.html&#10;side&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;inde&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;top&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/top-navbar.html&#10;conf&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;in&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;ng-&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/ng-flow/dist/ng-flow.js&#10;flow.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/flow.js/dist/flow.js&#10;flowFa&#9;null&#9;null&#10;flowFactory&#9;null&#9;null&#10;con&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;na&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;sig&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;nav.hhtml&#9;null&#9;null&#10;configr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;princi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;navbar.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/bootstrap-rtl/examples/rtl/navbar.html&#10;notice&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/notices/noticeNew.controller.js&#10;princ&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/principal.service.js&#10;form&#9;FILE&#9;file://C:/GitCOde/smsUi/src/views/form_pickers.html&#10;env.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/env.js&#10;auth&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/authorization.service.js&#10;com&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/addComplaint.html&#10;flat&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatEdit.html&#10;society&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyList.html&#10;fl&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flatNew.controller.js&#10;societyN&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyNew.html&#10;socie&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/society.controller.js&#10;list.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/list.html&#10;sideb&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;complaint&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/manageComplaint.html" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="C:\GitCOde\smsUi\node_modules\gulp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -532,12 +535,13 @@
       <workItem from="1501760571293" duration="28868000" />
       <workItem from="1502164456489" duration="29166000" />
       <workItem from="1502260873655" duration="101599000" />
-      <workItem from="1503290877581" duration="18101000" />
+      <workItem from="1503290877581" duration="19338000" />
+      <workItem from="1503375545444" duration="1895000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1198725000" />
+    <option name="totallyTimeSpent" value="1201857000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -727,20 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="200" column="76" lean-forward="true" selection-start-line="200" selection-start-column="76" selection-end-line="200" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="144" column="9" lean-forward="true" selection-start-line="131" selection-start-column="6" selection-end-line="144" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -811,20 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/visitorReport.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="28" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/layout/nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/helperReport.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
@@ -836,7 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="481">
           <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -844,7 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="118" column="20" lean-forward="false" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -852,7 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="79" column="46" lean-forward="false" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -860,7 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -868,7 +840,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="88" column="112" lean-forward="false" selection-start-line="88" selection-start-column="112" selection-end-line="88" selection-end-column="112" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,7 +847,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="72" column="9" lean-forward="true" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,7 +854,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-723">
           <caret line="156" column="6" lean-forward="false" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,7 +861,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="524">
           <caret line="119" column="8" lean-forward="true" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,7 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="137" column="9" lean-forward="false" selection-start-line="137" selection-start-column="9" selection-end-line="137" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,15 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="104" column="101" lean-forward="false" selection-start-line="104" selection-start-column="101" selection-end-line="104" selection-end-column="101" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="144" column="101" lean-forward="false" selection-start-line="144" selection-start-column="101" selection-end-line="144" selection-end-column="101" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -924,7 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -932,7 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,15 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="152" column="19" lean-forward="false" selection-start-line="152" selection-start-column="19" selection-end-line="152" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-867">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,7 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="167" column="17" lean-forward="true" selection-start-line="167" selection-start-column="17" selection-end-line="167" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -964,7 +910,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="153" column="19" lean-forward="false" selection-start-line="153" selection-start-column="19" selection-end-line="153" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -972,7 +917,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="124" column="20" lean-forward="false" selection-start-line="124" selection-start-column="20" selection-end-line="124" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -980,7 +924,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="203" column="11" lean-forward="true" selection-start-line="203" selection-start-column="11" selection-end-line="203" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -988,7 +931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="574">
           <caret line="130" column="38" lean-forward="true" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -996,7 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
           <caret line="86" column="20" lean-forward="false" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1004,14 +945,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1202">
           <caret line="120" column="65" lean-forward="false" selection-start-line="120" selection-start-column="65" selection-end-line="120" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="253" column="36" lean-forward="true" selection-start-line="253" selection-start-column="36" selection-end-line="253" selection-end-column="36" />
+        <state relative-caret-position="234">
+          <caret line="253" column="36" lean-forward="false" selection-start-line="253" selection-start-column="36" selection-end-line="253" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="200" column="76" lean-forward="true" selection-start-line="200" selection-start-column="76" selection-end-line="200" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="130" column="27" lean-forward="true" selection-start-line="130" selection-start-column="27" selection-end-line="130" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="141" column="48" lean-forward="false" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/visitorReport.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="24" column="6" lean-forward="true" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="91" column="58" lean-forward="false" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/layout/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="83" column="33" lean-forward="true" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
           <folding />
         </state>
       </provider>
