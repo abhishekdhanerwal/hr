@@ -19,17 +19,19 @@
     vm.checkbox = false;
 
     function breadcrumbRoute() {
-      if (vm.isSuperAdminRole || vm.isMeterManagementRole) {
+      if(vm.isMeterManagementRole) {
         $state.go('app.complaint')
       }
-      else if (vm.isCreatorRole) {
+      else if(vm.isCreatorRole || vm.isSuperAdminRole){
         $state.go('app.society')
       }
-      else {
+      else if(vm.isVisitorAdminRole){
+        $state.go('app.visitor')
+      }
+      else{
         $state.go('app.notice')
       }
     }
-
     vm.hideAlertBox = function () {
       vm.errorMessage = false;
       vm.message = false;

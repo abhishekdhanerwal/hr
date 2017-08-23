@@ -12,6 +12,7 @@
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.reset = reset;
+    vm.imageProgress = true;
     vm.isAdminRole = role.isAdminRole();
     vm.isSuperAdminRole = role.isSuperAdminRole();
     vm.isConsumerRole = role.isConsumerRole();
@@ -48,6 +49,40 @@
 
     activate(vm.userID);
 
+    vm.saveImage = function () {
+      vm.imageProgress = true;
+      var formData = new FormData();
+      formData.append('file', vm.obj.flow.files[0].file);
+      $http.post(__env.dataServerUrl + "/fileUpload/helperImageUpload", formData, {
+        data: formData,
+        transformRequest: angular.identity,
+        headers: {
+          'Content-Type': undefined
+        },
+        transformResponse: [function (data, headers) {
+          return data;
+        }]
+      }).success(function (response) {
+        console.log(response)
+        vm.imageProgress = false;
+        vm.user.profilePicUrl = response;
+        $rootScope.$broadcast('refreshImage' , vm.user.profilePicUrl);
+        toaster.success("File uploaded successfully");
+
+      }).error(function (response) {
+        vm.errorMessage = "File upload error";
+        console.log(response)
+        toaster.error("File upload error");
+      });
+    };
+
+    vm.removeImage = function () {
+      //vm.user = {};
+      console.log(vm.user.profilePicUrl)
+      vm.noImage = true;
+      vm.user.profilePicUrl = null;
+    };
+
     function reset() {
       activate(vm.userID);
       vm.errorMessage = false;
@@ -58,11 +93,19 @@
 
         userProfileFactory.viewuser(id).then(function (response) {
           if (response.status == 200) {
-            console.log(response.data)
             if (response.data != null) {
+              vm.imageProgress = false;
               vm.master = response.data;
               vm.user = angular.copy(vm.master);
               console.log(vm.user)
+
+              if(vm.user.profilePicUrl) {
+                var random = (new Date()).toString();
+                vm.user.profilePicUrl = vm.user.profilePicUrl + "?cb=" + random;
+              }
+              else {
+                vm.noImage = true;
+              }
             }
 
           }
@@ -97,30 +140,6 @@
           }
         })
     }
-    //vm.user.profilePictureUrl = vm.user.profilePictureUrl + new Date().getTime();
-
-    // vm.saveImage = function () {
-    //   vm.imageProgress = true;
-    //   var formData = new FormData();
-    //   formData.append('file', vm.obj.flow.files[0].file);
-    //   $http.post(__env.userServerUrl + "/uploadImage", formData, {
-    //     data: formData,
-    //     transformRequest: angular.identity,
-    //     headers: {
-    //       'Content-Type': undefined
-    //     }
-    //   }).success(function (response) {
-    //     vm.imageProgress = false;
-    //     vm.user.profilePictureUrl = response[1];
-    //     $rootScope.$broadcast('refreshImage' , vm.user.profilePictureUrl);
-    //     toaster.success("File uploaded successfully", "Status");
-    //
-    //   }).error(function (response) {
-    //     vm.errorMessage = "File upload error";
-    //     console.log(response)
-    //     toaster.error("File upload error", "Status");
-    //   });
-    // };
 
     vm.submit = function () {
       var firstError = null;

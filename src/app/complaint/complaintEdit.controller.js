@@ -51,7 +51,6 @@
       vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
       complaintFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
-        vm.progress = false;
         console.log(response.data);
         vm.towerList = response.data
       })
@@ -69,19 +68,16 @@
 
       complaintFactory.loadTypeDetails().then(function (response) {
         if(response.status == 200) {
-          vm.progress = false;
           vm.complaintType = response.data;
           console.log(vm.complaintType)
         }
         else if( response.status == 401){
-          vm.progress = false;
           $state.go('auth.signout')
         }
       });
 
       complaintFactory.loadStatusDetails().then(function (response) {
         if(response.status == 200) {
-          vm.progress = false;
           vm.status = response.data;
           vm.statusList = [];
           for(var index=0 ; index<vm.status.length ; index++){
@@ -108,7 +104,6 @@
           getEditInfo();
         }
         else if( response.status == 401){
-          vm.progress = false;
           $state.go('auth.signout')
         }
       });
@@ -118,7 +113,6 @@
     function searchFlat(val){
       return complaintFactory.searchFlat(val).then(function (response) {
         if(response.status == 200) {
-          vm.progress = false;
           var params = {
             query: val
           };
@@ -127,20 +121,17 @@
           })
         }
         else if( response.status == 401){
-          vm.progress = false;
           $state.go('auth.signout')
         }
       });
     }
 
     function onSelect($item, $model, $label) {
-      vm.progress = false;
       vm.complaint.address.tower = $item.tower;
       vm.complaint.address.flat = $item.flat;
     };
 
     function changeStatus(){
-      vm.progress = false;
       if(!vm.isConsumerRole && vm.complaint.status == 'New'){
         vm.complaint.status = 'In Progress ';
       }

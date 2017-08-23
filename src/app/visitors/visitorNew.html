@@ -89,7 +89,7 @@
                            ng-class="{'has-error':vm.Form.mobile.$dirty && vm.Form.mobile.$invalid, 'has-success':vm.Form.mobile.$valid}">
                         <label class="control-label"> Mobile Number <span class="symbol required"></span> </label>
                         <input type="text" placeholder="Enter Visitor Mobile Number" class="form-control" name="mobile"
-                               ng-model="vm.mobile" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
+                               ng-model="vm.visitor.mobile" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
                                ng-maxlength=10 required/>
 
                         <span class="error text-small block"

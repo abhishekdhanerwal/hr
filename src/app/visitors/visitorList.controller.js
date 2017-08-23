@@ -16,11 +16,17 @@
     vm.disableFlat = true;
 
     function breadcrumbRoute() {
-      if(!vm.isCreatorRole) {
-        $state.go('app.notice')
+      if(vm.isMeterManagementRole) {
+        $state.go('app.complaint')
+      }
+      else if(vm.isCreatorRole || vm.isSuperAdminRole){
+        $state.go('app.society')
+      }
+      else if(vm.isVisitorAdminRole){
+        $state.go('app.visitor')
       }
       else{
-        $state.go('app.society')
+        $state.go('app.notice')
       }
     }
 
