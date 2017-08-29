@@ -51,18 +51,18 @@
       </div>
     </a>
   </li>
-  <!--<li ui-sref-active="active" ng-if="vm.isConsumerRole">-->
-    <!--<a ui-sref="app.viewNeighbour">-->
-      <!--<div class="item-content">-->
-        <!--<div class="item-media">-->
-          <!--<i class="fa fa-home"></i>-->
-        <!--</div>-->
-        <!--<div class="item-inner">-->
-          <!--<span class="title"> Neighbours </span>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</a>-->
-  <!--</li>-->
+  <li ui-sref-active="active" ng-if="vm.isConsumerRole">
+    <a ui-sref="app.viewNeighbour">
+      <div class="item-content">
+        <div class="item-media">
+          <i class="fa fa-home"></i>
+        </div>
+        <div class="item-inner">
+          <span class="title"> Neighbours </span>
+        </div>
+      </div>
+    </a>
+  </li>
   <li ui-sref-active="active">
     <a href="javascript:void(0)" ng-if="!vm.isConsumerRole && !vm.isCreatorRole">
       <div class="item-content">

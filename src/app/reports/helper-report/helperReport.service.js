@@ -24,7 +24,7 @@
     };
 
     service.getHelperReportByName = function (name) {
-      var promise = $http.get(__env.dataServerUrl + '/helper/reports?name=' + name)
+      var promise = $http.get(__env.dataServerUrl + '/helperName/search?query=' + name)
         .then(
           function (response) {
             return response;

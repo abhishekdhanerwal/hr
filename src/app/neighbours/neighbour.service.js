@@ -37,7 +37,7 @@
     };
 
     service.searchNeighboursByName = function (val) {
-      var promise = $http.get(__env.dataServerUrl + '/users/search?query=' + val)
+      var promise = $http.get(__env.dataServerUrl + '/users/searchConsumer?query=' + val)
         .then(
           function (response) {
             return response;

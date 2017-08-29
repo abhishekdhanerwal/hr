@@ -170,7 +170,7 @@
             if(vm.helper.number == vm.householdHelper[i].helperNo){
               vm.houseHelper.push({
                 'name': vm.householdHelper[i].name,
-                'aadharId': vm.householdHelper[i].aadharId,
+                'aadhaarId': vm.householdHelper[i].aadhaarId,
                 'mobile': vm.householdHelper[i].mobile,
                 'type': vm.householdHelper[i].type,
                 'gender': vm.householdHelper[i].gender,
@@ -275,6 +275,7 @@
 
             if (response.status == 200) {
               toaster.info('Helper Added');
+              vm.message = 'Helper Added';
               vm.showTable = true;
               vm.addHelper();
               vm.progress = false;
@@ -287,6 +288,12 @@
 
             }
             else if (response.status == 404) {
+              vm.errorMessage = response.data[0].message;
+              toaster.error(response.data[0].message);
+              console.error( vm.errorMessage);
+              vm.progress = false;
+            }
+            else if (response.status == 400) {
               vm.errorMessage = response.data[0].message;
               toaster.error(response.data[0].message);
               console.error( vm.errorMessage);

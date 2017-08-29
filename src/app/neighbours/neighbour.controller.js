@@ -20,8 +20,10 @@
     //vm.progress = true;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.disableFlat = true;
+    vm.nameData = false;
+    vm.flatData = false;
 
-    vm.complaintMsg = $stateParams.msg;
+    vm.neighbourMsg = $stateParams.msg;
 
     function breadcrumbRoute(){
       if(vm.isMeterManagementRole) {
@@ -39,7 +41,7 @@
     }
 
     vm.hideComplaintBox = function () {
-      vm.complaintMsg = false;
+      vm.neighbourMsg = false;
     }
 
     vm.hideAlertBox = function () {
@@ -73,7 +75,18 @@
       })
     };
 
+    vm.clearData = function () {
+      vm.flatData = false;
+    }
+
+    vm.clearNameData = function () {
+      vm.neighbourName = '';
+      vm.nameData = '';
+      vm.message = '';
+    }
+
     vm.disableFlatInput = function () {
+      vm.flatData = false;
       complaintFactory.findAllFlats(vm.tower).then(function (response) {
         if (response.status == 200) {
           vm.allFlatList = response.data;
@@ -84,12 +97,15 @@
           $state.go('auth.signout')
         }
       });
-    }
+    };
 
     function onSelect($item, $model, $label) {
       neighbourFactory.neighbourListByName(vm.neighbourName.name).then(function (response) {
         if(response.status == 200) {
-          vm.neighbour = response.data;
+          vm.master = response.data;
+          vm.nameData = true;
+          vm.flatData = false;
+          neighbourData();
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -125,6 +141,12 @@
         neighbourFactory.neighbourListByFlat(vm.tower, vm.flatNoByTower.flatNo).then(function (response) {
           if(response.status == 200) {
             vm.neighbour = response.data;
+            vm.flatData = true;
+            vm.nameData = false;
+            vm.master = [];
+            vm.master.push(vm.neighbour)
+            console.log(vm.master)
+            neighbourData();
           }
           else if( response.status == 401){
             $state.go('auth.signout')
@@ -135,9 +157,14 @@
 
     function clearFlat() {
       vm.flatsearch = '';
+      vm.flatData = false;
     }
 
     function searchByName(val) {
+      vm.tower = '';
+      vm.flatsearch = '';
+      vm.flatData = '';
+      vm.message = '';
       return neighbourFactory.searchNeighboursByName(val).then(function (response) {
         if(response.status == 200) {
           var params = {
@@ -163,7 +190,7 @@
         return vm.flatList;
       };
 
-    function complaintData() {
+    function neighbourData() {
       vm.tableParams = new NgTableParams(
         {
           page: 1, // show first page
@@ -172,8 +199,8 @@
             lastModified: 'desc'   // initial sorting
           }, // count per page
           filter: {
-            complaintType: '',
-            status: ''// initial filter
+            // complaintType: '',
+            // status: ''// initial filter
           }
         }, {
           // total: data.length,
@@ -186,8 +213,10 @@
             }
             else{
               vm.activeMessage = true;
-              vm.complaintMsg = "";
+              vm.neighbourMsg = "";
               vm.message="No data available";
+              vm.flatData = '';
+              vm.nameData = '';
             }
 
             if (vm.master != null) {

@@ -56,19 +56,21 @@
                    <span class="error text-small block"
                          ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required.</span>
                  </div>
-                 <div class="table-responsive">
+                 <div class="table-responsive" ng-show="vm.nameData">
                    <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
                      <tr ng-repeat="row in $data">
 
-                       <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+                       <td data-title="'Resident Type'">{{row.residentType}}</td>
 
-                       <td data-title="'Complaint Text'">{{row.description | limitTo:30}}<br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
+                       <td data-title="'Name'">{{row.user.name}}</td>
 
-                       <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+                       <td data-title="'Email'">{{row.user.email}}</td>
 
-                       <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
+                       <td data-title="'Mobile'">{{row.user.mobile}}</td>
 
-                       <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
+                       <td data-title="'Tower'">{{row.tower}}</td>
+
+                       <td data-title="'Flat No'">{{row.flatNo}}</td>
 
                      </tr>
                    </table>
@@ -76,7 +78,7 @@
                </div>
              </div>
             </uib-tab>
-            <uib-tab heading="Search by Flat" active="tab.active">
+            <uib-tab heading="Search by Flat" active="tab.active" ng-click="vm.clearNameData();">
               <div class="row">
                 <div class="col-md-3">
                   <div class="form-group"
@@ -100,7 +102,7 @@
                                uib-typeahead="item as item.flatNo for item in vm.searchFlat($viewValue)"
                                typeahead-loading="loadingLocations" typeahead-min-length="2" typeahead-no-results="noResults"
                                typeahead-on-select="vm.onSelectFlat($item, $model, $label)" typeahead-editable='true'
-                               class="form-control" required>
+                               class="form-control" ng-change="vm.clearData();" required>
                       </div>
                       <div class="col-md-2">
                         <span class="btn btn-danger" style="margin-left: 45px;" ng-click="vm.clearFlat()" ><i
@@ -115,19 +117,15 @@
                   </div>
                 </div>
               </div>
-              <div class="table-responsive">
-                <table ng-table="vm.resolvedTableParams" show-filter="true" class="table table-striped">
+              <div class="table-responsive" ng-show="vm.flatData">
+                <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
                   <tr ng-repeat="row in $data">
 
-                    <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+                    <td data-title="'Name'" style="width:550px;">{{row.name}}</td>
 
-                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}} <br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
+                    <td data-title="'Email'" style="width:550px;">{{row.email}}</td>
 
-                    <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
-
-                    <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
-
-                    <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
+                    <td data-title="'Mobile'" style="width:550px;">{{row.mobile}}</td>
 
                   </tr>
                 </table>
