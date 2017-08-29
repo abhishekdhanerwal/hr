@@ -182,6 +182,16 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
       ncyBreadcrumb: {
         label: 'Edit Helper'
       }
+    }).state('app.viewNeighbour', {
+      url: "/viewNeighbour",
+      templateUrl: "app/neighbours/neighbourView.html",
+      controller: 'NeighbourViewCtrl',
+      controllerAs: 'vm',
+      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      title: 'Neighbours',
+      ncyBreadcrumb: {
+        label: 'Neighbours'
+      }
     }).state('app.visitor', {
       url: "/visitor",
       templateUrl: "app/visitors/visitorList.html",

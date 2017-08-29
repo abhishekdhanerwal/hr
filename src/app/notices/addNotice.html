@@ -127,8 +127,8 @@
 
                       <table id="myTable">
                         <tr ng-repeat="row in vm.societyUserList">
-                          <td style="width:95%;">{{row.name}}</td>
-                          <td style="width:5%;">
+                          <td style="width:95%;" ng-if="row.status==true">{{row.name}}</td>
+                          <td style="width:5%;" ng-if="row.status==true">
                             <div class="checkbox clip-check check-primary checkbox-inline pull-right">
                               <input type="checkbox" id="{{row.name}}" value="hasResident" ng-model="row.checked" >
                               <label for="{{row.name}}">

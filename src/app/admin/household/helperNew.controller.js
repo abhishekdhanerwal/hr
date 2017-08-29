@@ -286,7 +286,7 @@
               vm.progress = false;
 
             }
-            else if (response.status == 400) {
+            else if (response.status == 404) {
               vm.errorMessage = response.data[0].message;
               toaster.error(response.data[0].message);
               console.error( vm.errorMessage);

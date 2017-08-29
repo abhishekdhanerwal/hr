@@ -3,21 +3,23 @@
   'use strict';
 
   angular
-    .module('app.complaint')
-    .controller('ComplaintListCtrl', ComplaintListCtrl);
+    .module('app.neighbours')
+    .controller('NeighbourViewCtrl', NeighbourViewCtrl);
 
-  ComplaintListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'SweetAlert', 'complaintFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
+  NeighbourViewCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'complaintFactory', 'SweetAlert', 'neighbourFactory', 'validationHelperFactory', '$stateParams' , 'toaster', 'role'];
   /* @ngInject */
-  function ComplaintListCtrl( NgTableParams, $state, $localStorage, $filter, SweetAlert, complaintFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function NeighbourViewCtrl( NgTableParams, $state, $localStorage, $filter, complaintFactory, SweetAlert, neighbourFactory, validationHelperFactory, $stateParams , toaster, role) {
     var vm = this;
-    vm.resolved = resolved;
-    vm.active = active;
-    vm.activeMessage = false;
-    vm.resolvedMessage = false;
+    //vm.searchByFlat = searchByFlat;
+    vm.onSelect = onSelect;
+    vm.searchFlat = searchFlat;
+    vm.onSelectFlat = onSelectFlat;
+    vm.clearFlat = clearFlat;
+    vm.searchByName = searchByName;
     vm.message = false;
-    vm.progress = true;
-    vm.flat = {};
+    //vm.progress = true;
     vm.breadcrumbRoute = breadcrumbRoute;
+    vm.disableFlat = true;
 
     vm.complaintMsg = $stateParams.msg;
 
@@ -57,142 +59,109 @@
       vm.isMeterManagementRole = role.isMeterManagementRole();
       vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
-      complaintFactory.societyList().then(function (response) {
-        if(response.status == 200){
-          vm.society = response.data;
-          console.log(vm.society)
-          vm.flat.society = vm.society[0];
-          console.log(vm.flat.society)
-          active();
+      complaintFactory.getTowerList($localStorage._identity.principal.societyId).then(function (response) {
+        vm.towerList = response.data;
+      })
+
+      complaintFactory.flatList().then(function (response) {
+        if (response.status == 200) {
+          vm.flat = response.data;
+        }
+        else if (response.status == 401) {
+          $state.go('auth.signout')
+        }
+      })
+    };
+
+    vm.disableFlatInput = function () {
+      complaintFactory.findAllFlats(vm.tower).then(function (response) {
+        if (response.status == 200) {
+          vm.allFlatList = response.data;
+          console.log(vm.allFlatList);
+          vm.disableFlat = false;
+        }
+        else if (response.status == 401) {
+          $state.go('auth.signout')
+        }
+      });
+    }
+
+    function onSelect($item, $model, $label) {
+      neighbourFactory.neighbourListByName(vm.neighbourName.name).then(function (response) {
+        if(response.status == 200) {
+          vm.neighbour = response.data;
         }
         else if( response.status == 401){
           $state.go('auth.signout')
         }
       });
-
     };
 
-    function active() {
-      vm.resolvedMessage = false;
-      if(vm.flat.society == undefined){
-        vm.progress = false;
-        vm.hideMsg = false;
-        vm.activeMessage = true;
-        vm.message = "No data available";
+    vm.clearName = function() {
+        vm.neighbourName = '';
+    }
+
+    function onSelectFlat($item, $model, $label) {
+      if (vm.flatList!=undefined && vm.flatList.length == 0) {
+        vm.flatNoByTower = null;
       }
       else {
-        complaintFactory.getComplaintByUser(vm.flat.society.id).then(function (response) {
-
-          vm.message = "";
-          vm.progress = false;
-          vm.master = response.data;
-          console.log(vm.master)
-
-          if (response.status == 200) {
-            vm.master = response.data;
-            console.log(response.data)
-            for(var i=0; i<vm.master.length; i++){
-              if(vm.master[i].status == 'In_Progress'){
-                vm.master[i].status = 'In Progress';
-              }
-              if(vm.master[i].status == 'Re_Opened'){
-                vm.master[i].status = 'Re Opened';
-              }
+        if (vm.flatList!=undefined) {
+          for (var i = 0; i < vm.flatList.length; i++) {
+            if (vm.flatList[i].flatNo == vm.flatsearch || vm.flatList[i].flatNo == vm.flatsearch.flatNo) {
+              vm.flatNoByTower = vm.flatList[i];
             }
-            complaintData();
+            else {
+              vm.flatNoByTower = null;
+            }
           }
-          else if (response.status == -1) {
-            toaster.error('Network Error', 'error');
-            vm.errorMessage = "Network Error";
-            console.error(response);
-          }
-          else if (response.status == 400) {
-            console.error(response);
-            vm.errorMessage = vm.master.message;
-            toaster.error(vm.master.message);
+        }
+      }
+      if (vm.flatNoByTower == undefined) {
+        toaster.error('Flat not found');
+        vm.errorMessage = 'Flat not found';
+      }
+      else{
+        neighbourFactory.neighbourListByFlat(vm.tower, vm.flatNoByTower.flatNo).then(function (response) {
+          if(response.status == 200) {
+            vm.neighbour = response.data;
           }
           else if( response.status == 401){
             $state.go('auth.signout')
           }
-          else {
-            toaster.error('Some problem', 'error');
-            console.error(response);
-          }
-        })
+        });
       }
     };
 
-     function resolved() {
-       vm.complaintMsg = "";
-       vm.activeMessage = false;
-       complaintFactory.getResolvedComplaintByUser().then(function (response) {
+    function clearFlat() {
+      vm.flatsearch = '';
+    }
 
-         vm.progress = false;
-
-         if (response.status == 200) {
-           vm.masterResolved = response.data;
-           console.log(response.data)
-           for(var i=0; i<vm.masterResolved.length; i++){
-             if(vm.masterResolved[i].status == 'In_Progress'){
-               vm.masterResolved[i].status = 'In Progress';
-             }
-             if(vm.masterResolved[i].status == 'Re_Opened'){
-               vm.masterResolved[i].status = 'Re Opened';
-             }
-           }
-           closedComplaint();
-           // resolvedComplaintData();
-         }
-         else if (response.status == -1) {
-           toaster.error('Network Error', 'error');
-           vm.errorMessage = "Network Error";
-           console.error(response);
-         }
-         else if (response.status == 400) {
-           console.error(response);
-           vm.errorMessage = vm.masterResolved.message;
-           toaster.error(vm.masterResolved.message);
-         }
-         else if (response.status == 401) {
-           $state.go('auth.signout')
-         }
-         else {
-           toaster.error('Some problem', 'error');
-           console.error(response);
-         }
-       });
-     };
-
-      function closedComplaint(){
-      complaintFactory.getClosedComplaintByUser().then(function (response) {
-
-         vm.progress = false;
-
-         if (response.status == 200) {
-           vm.masterClosed = response.data;
-           console.log(response.data)
-           resolvedComplaintData();
-         }
-         else if (response.status == -1) {
-           toaster.error('Network Error', 'error');
-           vm.errorMessage = "Network Error";
-           console.error(response);
-         }
-         else if (response.status == 400) {
-           console.error(response);
-           vm.errorMessage = vm.masterClosed.message;
-           toaster.error(vm.masterClosed.message);
-         }
-         else if( response.status == 401){
-           $state.go('auth.signout')
-         }
-         else {
-           toaster.error('Some problem', 'error');
-           console.error(response);
-         }
-       })
+    function searchByName(val) {
+      return neighbourFactory.searchNeighboursByName(val).then(function (response) {
+        if(response.status == 200) {
+          var params = {
+            query: val
+          };
+          return response.data.map(function (item) {
+            return item;
+          })
+        }
+        else if( response.status == 401){
+          $state.go('auth.signout')
+        }
+      });
     };
 
+    function searchFlat(val) {
+        vm.flatList = [];
+        for(var index=0 ; index<vm.allFlatList.length;index++){
+          if(val == vm.allFlatList[index].flatNo.slice(0,val.length)){
+            vm.flatList.push(vm.allFlatList[index]);
+          }
+        }
+        return vm.flatList;
+      };
 
     function complaintData() {
       vm.tableParams = new NgTableParams(

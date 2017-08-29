@@ -10,6 +10,7 @@
         'blocks.auth',
         'app.userMenu',
         'app.user',
-        'app.visitors'
+        'app.visitors',
+        'app.neighbours'
     ]);
 })();

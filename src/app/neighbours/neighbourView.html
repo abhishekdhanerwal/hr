@@ -1,0 +1,141 @@
+<div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
+  <h4 class="mainTitle no-margin">Neighbours</h4>
+
+  <div ncy-breadcrumb class="pull-right"></div>
+</div>
+
+<wave-spinner ng-show="vm.progress" ></wave-spinner>
+
+<div ng-show="!vm.progress" class="container-fluid container-fullw">
+  <div class="row" ng-show="vm.errorMessage">
+    <div class="col-md-12">
+      <div class="alert alert-danger">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        <strong>Error!</strong> {{vm.errorMessage}}
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-if="vm.message">
+    <div class="col-md-12">
+      <div class="alert alert-success">
+        <button class="close" ng-click="vm.hideAlertBox()">
+          &times;
+        </button>
+        {{vm.message}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-white">
+        <div class="panel-body">
+          <uib-tabset class="tabbable">
+            <uib-tab heading="Search by Name" ng-click="vm.searchByName();">
+              <br>
+             <div class="row">
+               <div class="col-md-12">
+                 <div class="form-group" ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
+                   <div class="row">
+                     <div class="col-md-3">
+                       <input type="text" style="width:250px;" ng-change="vm.hideTable()" name="name" ng-model="vm.neighbourName" placeholder="Search Name"
+                              uib-typeahead="item as item.name for item in vm.searchByName($viewValue)"
+                              typeahead-loading="loadingLocations" typeahead-min-length="2" typeahead-no-results="noResults"
+                              typeahead-on-select="vm.onSelect($item, $model, $label)" typeahead-editable='true'
+                              class="form-control" required>
+                     </div>
+                     <div class="col-md-2">
+                        <span class="btn btn-danger" style="margin-right:-50px;" ng-click="vm.clearName()" ><i
+                          class="fa fa-times"></i> </span>
+                     </div>
+                   </div>
+                   <div ng-show="noResults" class="error">
+                     <i class="glyphicon glyphicon-remove"></i> No Results Found
+                   </div>
+                   <span class="error text-small block"
+                         ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required.</span>
+                 </div>
+                 <div class="table-responsive">
+                   <table ng-table="vm.tableParams" show-filter="true" class="table table-striped">
+                     <tr ng-repeat="row in $data">
+
+                       <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+
+                       <td data-title="'Complaint Text'">{{row.description | limitTo:30}}<br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
+
+                       <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+
+                       <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
+
+                       <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
+
+                     </tr>
+                   </table>
+                 </div>
+               </div>
+             </div>
+            </uib-tab>
+            <uib-tab heading="Search by Flat" active="tab.active">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group"
+                       ng-class="{'has-error':vm.Form.tower.$dirty && vm.Form.tower.$invalid, 'has-success':vm.Form.tower.$valid}">
+                    <label class="control-label"> Tower <span class="symbol required"></span> </label>
+                    <select class="form-control" name="tower" ng-model="vm.tower"
+                            ng-options="tower for tower in vm.towerList" ng-change="vm.disableFlatInput()" required>
+                    </select>
+                    <span class="error text-small block"
+                          ng-if="vm.Form.tower.$dirty && vm.Form.tower.$error.required">Tower is required.</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" ng-class="{'has-error':vm.Form.flat.$dirty && vm.Form.flat.$invalid, 'has-success':vm.Form.flat.$valid}">
+                    <label class="control-label">
+                      Flat <span class="symbol required"></span>
+                    </label>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <input type="text" ng-disabled="vm.disableFlat" style="width:190px;" name="flat" ng-model="vm.flatsearch" placeholder="Search Flat No"
+                               uib-typeahead="item as item.flatNo for item in vm.searchFlat($viewValue)"
+                               typeahead-loading="loadingLocations" typeahead-min-length="2" typeahead-no-results="noResults"
+                               typeahead-on-select="vm.onSelectFlat($item, $model, $label)" typeahead-editable='true'
+                               class="form-control" required>
+                      </div>
+                      <div class="col-md-2">
+                        <span class="btn btn-danger" style="margin-left: 45px;" ng-click="vm.clearFlat()" ><i
+                          class="fa fa-times"></i> </span>
+                      </div>
+                    </div>
+                    <div ng-show="noResults" class="error">
+                      <i class="glyphicon glyphicon-remove"></i> No Results Found
+                    </div>
+                    <span class="error text-small block"
+                          ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required">Flat is required.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table ng-table="vm.resolvedTableParams" show-filter="true" class="table table-striped">
+                  <tr ng-repeat="row in $data">
+
+                    <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
+
+                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}} <br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
+
+                    <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
+
+                    <td data-title="'Assigned To'">{{row.assignedTo.name}}</td>
+
+                    <td data-title="'Status'" sortable="'status'" filter="{ 'status' : 'text' }">{{row.status}}</td>
+
+                  </tr>
+                </table>
+              </div>
+            </uib-tab>
+          </uib-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

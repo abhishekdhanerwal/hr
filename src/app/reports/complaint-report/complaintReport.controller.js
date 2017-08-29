@@ -47,19 +47,17 @@
 
       //function for end date
       vm.endOpen = function ($event) {
-        vm.end = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS')
+        vm.end = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS');
         $event.preventDefault();
         $event.stopPropagation();
-        vm.startOpened = false;
-        vm.endOpened = !vm.endOpened;
+        vm.startopened = false;
       };
       //function for start date
       vm.startOpen = function ($event) {
-        vm.start = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS')
+        vm.start = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS');
         $event.preventDefault();
         $event.stopPropagation();
-        vm.endOpened = false;
-        vm.startOpened = !vm.startOpened;
+        vm.endopened = false;
       };
 
       complaintReportFactory.societyList().then(function (response) {
@@ -98,7 +96,7 @@
 
     //function to generate the report
     vm.generate = function () {
-      if (vm.Form.$invalid) {
+      if (vm.Form.$invalid && vm.start!=undefined && vm.end!=undefined) {
         vm.reportProgress = false;
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = "Validation Error";

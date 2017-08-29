@@ -157,7 +157,9 @@
                         ng-click="vm.reset()">
                   Reset
                 </button>
-                <a ng-click="vm.cancel()" class="btn btn-wide btn-danger"> Cancel </a>
+                <a ng-if="!vm.isVisitorAdminRole && !vm.isCreatorRole" ui-sref="app.complaint" class="btn btn-wide btn-danger"> Cancel </a>
+                <a ng-if="vm.isVisitorAdminRole" ui-sref="app.visitor" class="btn btn-wide btn-danger">Cancel</a>
+                <a ng-if="vm.isCreatorRole" ui-sref="app.society" class="btn btn-wide btn-danger">Cancel</a>
               </div>
 
             </ng-form>
