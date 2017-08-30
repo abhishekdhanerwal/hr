@@ -79,6 +79,7 @@
     }
 
     function helperNameList(val){
+    vm.helper.number = '';
       return helperReportFactory.getHelperName(val).then(function (response) {
         if(response.status == 200) {
           vm.progress = false;
@@ -97,6 +98,7 @@
 
     function onSelect($item, $model, $label) {
       vm.helper.name = $item.name;
+      vm.helperId = $item.id;
     };
 
     function clearFlat() {
@@ -255,11 +257,12 @@
           }
 
           else if(vm.helper.helperType == 'Helper' && vm.helper.name) {
-              helperReportFactory.getHelperReportByName(vm.helper.name).then(function (response) {
+              helperReportFactory.getHelperReportByName(vm.helperId).then(function (response) {
 
                 if (response.status == 200) {
                   vm.reportProgress = false;
-                  vm.master = response.data;
+                  vm.master = [];
+                  vm.master.push(response.data);
                   for (var i = 0; i < vm.master.length; i++) {
                     if (vm.master[i].type == 'Car_Cleaner') {
                       vm.master[i].type = 'Car Cleaner';

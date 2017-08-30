@@ -89,7 +89,7 @@
                     <div class="row">
                       <div class="col-md-7">
                         <input type="text" ng-model="vm.helper.name" placeholder="Search Helper" name="name"
-                               ng-value="vm.helper.name" style="width:250px;"
+                               ng-value="vm.helper.name" style="width:250px;" ng-pattern="/^[a-zA-Z\s]*$/"
                                uib-typeahead="item.name for item in vm.helperNameList($viewValue)"
                                typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"
                                typeahead-on-select="vm.onSelect($item, $model, $label)"
@@ -106,6 +106,8 @@
                     </div>
                     <span class="error text-small block"
                           ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required">Name is required.</span>
+                    <span class="error text-small block"
+                          ng-if="vm.Form.name.$error.pattern">Invalid Characters</span>
                   </div>
                 </div>
 

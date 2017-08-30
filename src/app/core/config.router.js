@@ -32,18 +32,11 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
         url: "/app",
         templateUrl: "app/app.html",
         resolve: loadSequence('chartjs', 'chart.js', 'chatCtrl'),
-      // resolve: {
-      //   authorize: ['principal',
-      //     function(principal) {
-      //       return principal.signin();
-      //     }
-      //   ]
-      // },
         abstract: true
     }).state('app.society', {
       url: "/society",
       templateUrl: "app/admin/society/societyList.html",
-      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      resolve: loadSequence('d3', 'ui.knob', 'countTo'),
       title: 'Society',
       params: {
         msg: null
@@ -56,7 +49,7 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
     }).state('app.addSociety', {
       url: "/addSociety",
       templateUrl: "app/admin/society/societyNew.html",
-      resolve: loadSequence('d3', 'ui.knob', 'countTo', 'dashboardCtrl'),
+      resolve: loadSequence('d3', 'ui.knob', 'countTo'),
       title: 'Society',
       controller: 'SocietyNewCtrl',
       controllerAs: 'vm',

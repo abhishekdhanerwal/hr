@@ -23,17 +23,30 @@
       return promise;
     };
 
-    service.getHelperReportByName = function (name) {
-      var promise = $http.get(__env.dataServerUrl + '/helperName/search?query=' + name)
-        .then(
-          function (response) {
-            return response;
-          },
-          function (response) {
-            return response;
-          });
-      return promise;
-    };
+//    service.getHelperReportByName = function (name) {
+//      var promise = $http.get(__env.dataServerUrl + '/helperName/search?query=' + name)
+//        .then(
+//          function (response) {
+//            return response;
+//          },
+//          function (response) {
+//            return response;
+//          });
+//      return promise;
+//    };
+//
+    service.getHelperReportByName = function (id) {
+              var promise = $http.get(__env.dataServerUrl + '/helper/view/' + id)
+                .then(
+                  function (response) {
+                    return response;
+                  },
+                  function (response) {
+                    return response;
+                  });
+              return promise;
+            };
+
 
     service.getWorkingHelperReport = function (isWorking) {
       var promise = $http.get(__env.dataServerUrl + '/helper/reports?isWorking=' + isWorking)
