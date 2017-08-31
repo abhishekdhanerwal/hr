@@ -42,7 +42,6 @@
         self.progress = false;
         if (response.status == 200) {
           self.userList = response.data;
-          console.log(self.userList)
           for (var i = 0; i < self.userList.length; i++) {
 
             if (self.userList[i].role == "ROLE_CONSUMER") {
@@ -78,6 +77,14 @@
             }
             else if (self.userList[i].role == "ROLE_ELECTRICIAN") {
               self.userList[i].role = "ELECTRICIAN"
+            }
+          }
+          for(var i=0; i<self.userList.length; i++){
+            if(self.userList[i].tower == null){
+                 self.userList[i].tower = '';
+            }
+            else if(self.userList[i].flatNo == null){
+                 self.userList[i].flatNo = '';
             }
           }
           console.log(self.userList)

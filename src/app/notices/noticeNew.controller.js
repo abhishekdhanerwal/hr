@@ -265,6 +265,7 @@
     };
 
     function reset() {
+    uploader.clearQueue();
       vm.disableButton = true;
       vm.notice = null;
       vm.sms = null;
