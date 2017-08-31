@@ -187,7 +187,11 @@
         return;
 
       }
-      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid || vm.isSuperAdminRole && vm.user.role=="ROLE_METER_MANAGEMENT" && vm.Form.society.$invalid)
+      else if(vm.isSuperAdminRole && vm.user.role=="ROLE_ADMIN" && vm.Form.society.$invalid ||
+              vm.isSuperAdminRole && vm.user.role=="ROLE_MANAGEMENT" && vm.Form.society.$invalid ||
+              vm.isSuperAdminRole && vm.user.role=="ROLE_METER_MANAGEMENT" && vm.Form.society.$invalid ||
+              vm.isSuperAdminRole && vm.user.role=="ROLE_VISITOR_ADMIN" && vm.Form.society.$invalid ||
+              vm.isSuperAdminRole && vm.user.role=="ROLE_SOCIETY_CREATOR" && vm.Form.society.$invalid)
       {
         validationHelperFactory.manageValidationFailed(vm.Form);
         vm.errorMessage = 'Validation Error';

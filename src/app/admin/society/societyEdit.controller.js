@@ -136,7 +136,7 @@
 
       } else {
 
-        societyFactory.editSociety($stateParams.id, vm.society).then(function (response) {
+        societyFactory.editSociety(vm.society).then(function (response) {
           console.log(response.data);
 
           if (response.status == 200) {

@@ -87,6 +87,9 @@
             query: val
           };
           return response.data.map(function (item) {
+          if(val == item.name){
+          vm.helperId = item.id;
+          }
             return item;
           })
         }
@@ -257,45 +260,52 @@
           }
 
           else if(vm.helper.helperType == 'Helper' && vm.helper.name) {
-              helperReportFactory.getHelperReportByName(vm.helperId).then(function (response) {
 
-                if (response.status == 200) {
-                  vm.reportProgress = false;
-                  vm.master = [];
-                  vm.master.push(response.data);
-                  for (var i = 0; i < vm.master.length; i++) {
-                    if (vm.master[i].type == 'Car_Cleaner') {
-                      vm.master[i].type = 'Car Cleaner';
-                    }
-                    if (vm.master[i].policeVerificationDone == false) {
-                      vm.master[i].policeVerificationDone = 'No';
-                    }
-                    if (vm.master[i].policeVerificationDone == true) {
-                      vm.master[i].policeVerificationDone = 'Yes';
-                    }
-                  }
-                  console.log(vm.master)
-                  reportList();
-                }
-                else if (response.status == -1) {
-                  toaster.error('Network Error');
-                  vm.errorMessage = "Network Error";
-                  console.error(response);
-                }
-                else if (response.status == 400) {
-                  vm.reportProgress = false;
-                  console.error(response);
-                  vm.errorMessage = response.data[0].message;
-                  toaster.error(response.data[0].message);
-                }
-                else if (response.status == 401) {
-                  $state.go('auth.signout')
-                }
-                else {
-                  toaster.error('Some problem');
-                  console.error(response);
-                }
-              })
+          if(vm.helperId == undefined){
+             vm.errorMessage = 'Helper does not exist';
+             vm.reportProgress = false;
+          }
+          else{
+          helperReportFactory.getHelperReportByName(vm.helperId).then(function (response) {
+
+                          if (response.status == 200) {
+                            vm.reportProgress = false;
+                            vm.master = [];
+                            vm.master.push(response.data);
+                            for (var i = 0; i < vm.master.length; i++) {
+                              if (vm.master[i].type == 'Car_Cleaner') {
+                                vm.master[i].type = 'Car Cleaner';
+                              }
+                              if (vm.master[i].policeVerificationDone == false) {
+                                vm.master[i].policeVerificationDone = 'No';
+                              }
+                              if (vm.master[i].policeVerificationDone == true) {
+                                vm.master[i].policeVerificationDone = 'Yes';
+                              }
+                            }
+                            console.log(vm.master)
+                            reportList();
+                          }
+                          else if (response.status == -1) {
+                            toaster.error('Network Error');
+                            vm.errorMessage = "Network Error";
+                            console.error(response);
+                          }
+                          else if (response.status == 400) {
+                            vm.reportProgress = false;
+                            console.error(response);
+                            vm.errorMessage = response.data[0].message;
+                            toaster.error(response.data[0].message);
+                          }
+                          else if (response.status == 401) {
+                            $state.go('auth.signout')
+                          }
+                          else {
+                            toaster.error('Some problem');
+                            console.error(response);
+                          }
+                        })
+          }
           }
       }
       }
