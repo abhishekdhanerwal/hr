@@ -80,6 +80,7 @@
 
     function helperNameList(val){
     vm.helper.number = '';
+    vm.helperId = undefined;
       return helperReportFactory.getHelperName(val).then(function (response) {
         if(response.status == 200) {
           vm.progress = false;
@@ -106,6 +107,10 @@
 
     function clearFlat() {
       vm.helper.name = '';
+    }
+
+    vm.hideTableData = function(){
+      vm.IsHidden = false;
     }
 
     //function to generate the report
