@@ -193,19 +193,18 @@
       vm.progress = true;
       var firstError = null;
 
-      if(vm.visitor != undefined){
-        for(var index=0 ; index < vm.visitorTypeList.length ; index++){
-          if(vm.visitorTypeList[index] == vm.visitor.type)
-            vm.visitor.type = vm.visitorType[index];
-        }
-      }
       if (vm.Form.$invalid) {
           vm.progress = false;
           validationHelperFactory.manageValidationFailed(vm.Form);
           vm.errorMessage = 'Validation Error';
           return;
-
         } else {
+
+      if(vm.isConsumerRole){
+      vm.now = new Date();
+      vm.nowTime = vm.now.getHours()*60+vm.now.getMinutes();
+      vm.selectedTime = vm.visitor.expectedArrivalTime.getHours()*60+vm.visitor.expectedArrivalTime.getMinutes();
+      }
 
           if(vm.flatList != undefined){
             if (!vm.isConsumerRole && vm.flatList.length == 0) {
@@ -230,9 +229,19 @@
             toaster.error('Flat not found');
             vm.errorMessage = 'Flat not found';
           }
+          if(vm.selectedTime < vm.nowTime){
+            vm.progress = false;
+            vm.errorMessage="Selected time cannot be less than current time";
+          }
           else {
-
-            if(vm.flatNoByTower != undefined){
+            if(vm.visitor != undefined){
+                  for(var index=0 ; index < vm.visitorTypeList.length ; index++){
+                    if(vm.visitorTypeList[index] == vm.visitor.type)
+                      vm.visitor.type = vm.visitorType[index];
+                      console.log(vm.visitor.type)
+                  }
+                }
+           if(vm.flatNoByTower != undefined){
               vm.visitor.tower = vm.flatNoByTower.tower;
               vm.visitor.flatNo = vm.flatNoByTower.flatNo;
             }

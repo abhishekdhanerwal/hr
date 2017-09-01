@@ -43,7 +43,7 @@
                 <label class="control-label"> Search Mobile </label>
                 <input type="text" placeholder="Search Mobile No" class="form-control" name="mobilesearch"
                        ng-model="vm.mobilesearch" ng-pattern="/^[1-9][0-9]*$/" ng-minlength=10
-                       ng-maxlength=10 required/>
+                       ng-maxlength=10>
                 <span class="error text-small block" ng-if="vm.Form.mobilesearch.$error.pattern">Invalid characters</span>
                 <span class="error text-small block" ng-if="vm.Form.mobilesearch.$error.minlength && !vm.Form.mobilesearch.$error.pattern">Mobile Number should be ten characters only</span>
                 <span class="error text-small block" ng-if="vm.Form.mobilesearch.$error.maxlength && !vm.Form.mobilesearch.$error.pattern">Mobile Number should be ten characters only</span>

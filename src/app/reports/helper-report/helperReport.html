@@ -93,7 +93,7 @@
                                uib-typeahead="item.name for item in vm.helperNameList($viewValue)"
                                typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults"
                                typeahead-on-select="vm.onSelect($item, $model, $label)"
-                               typeahead-editable='true'
+                               typeahead-editable='true' ng-change="vm.hideTableData()"
                                class="form-control" required/>
                       </div>
                       <div class="col-md-5">
