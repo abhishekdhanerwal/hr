@@ -180,16 +180,18 @@
         console.log(activationTime)
         var date = activationTime[0].split("-");
         var time = activationTime[1].split(":");
-        if(time[2] == 'PM'){
+        if(time[2] == 'PM' && time[0] != 12){
           time[0] = parseInt(time[0]) + 12;
         }
         if(time[2] == 'AM' &&  parseInt(time[0])>11)
           time[0] = parseInt(time[0]) - 12;
-        console.log(date);
-        console.log(time)
+
+        // console.log(date);
+        // console.log(time)
+
 
         vm.notice.activationTime =new Date(date[0],date[1]-1,date[2], time[0], time[1]);
-        console.log(vm.notice.activationTime)
+        // console.log(vm.notice.activationTime)
 
       });
 
@@ -371,6 +373,9 @@
 
       uploader.clearQueue = function(){
         var tempLength = uploader.queue.length;
+        if(vm.notice == null){
+          vm.notice = {};
+        }
         vm.notice.attachmentUrl = [];
         for(var item = 0; item<tempLength ; item++){
           uploader.queue[0].remove();
@@ -444,6 +449,8 @@
 
 
     $scope.ok = function () {
+      console.log($scope.date)
+      console.log($scope.time)
       $scope.schedule.push($filter('date')(new Date($scope.date),'yyyy-MM-dd'));
       $scope.schedule.push($filter('date')(new Date($scope.time),'hh:mm:a'));
       $uibModalInstance.close($scope.schedule);
