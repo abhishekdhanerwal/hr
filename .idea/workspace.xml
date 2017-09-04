@@ -25,7 +25,7 @@
   <component name="ChangeListManager">
     <list default="true" id="16d9d364-3880-4526-b193-f5912f7b8799" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/visitors/visitorNew.html" afterPath="$PROJECT_DIR$/src/app/visitors/visitorNew.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js" afterPath="$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/main.js" afterPath="$PROJECT_DIR$/src/js/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -47,51 +47,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="visitorNew.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.html">
+      <file leaf-file-name="neighbour.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+            <state relative-caret-position="469">
+              <caret line="159" column="32" lean-forward="true" selection-start-line="159" selection-start-column="32" selection-end-line="159" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="societyList.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyList.html">
+      <file leaf-file-name="societyEdit.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="visitorNew.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="173" column="42" lean-forward="true" selection-start-line="173" selection-start-column="42" selection-end-line="173" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="92" column="8" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user-service.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/user-management/user-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="65" lean-forward="false" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="65" />
+            <state relative-caret-position="550">
+              <caret line="167" column="11" lean-forward="true" selection-start-line="147" selection-start-column="10" selection-end-line="167" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -110,9 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>disableFlatInput</find>
-      <find>report</find>
-      <find>reset</find>
       <find>mobile</find>
       <find>progress</find>
       <find>populateAssignToList</find>
@@ -140,6 +107,9 @@
       <find>app.dashboard</find>
       <find>home</find>
       <find>dashb</find>
+      <find>neigh</find>
+      <find>main.js</find>
+      <find>findUserByFlatNoAndTower</find>
     </findStrings>
     <replaceStrings>
       <replace>$scope</replace>
@@ -204,7 +174,6 @@
         <option value="$PROJECT_DIR$/src/app/neighbours/neighbourView.html" />
         <option value="$PROJECT_DIR$/src/app/neighbours/neighbour.service.js" />
         <option value="$PROJECT_DIR$/src/app/user-menu/user-profile.html" />
-        <option value="$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/helper-report/helperReport.service.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/create_user.html" />
         <option value="$PROJECT_DIR$/src/app/user-management/user.edit.html" />
@@ -222,6 +191,7 @@
         <option value="$PROJECT_DIR$/src/app/visitors/visitorNew.html" />
         <option value="$PROJECT_DIR$/src/app/admin/society/societyList.html" />
         <option value="$PROJECT_DIR$/src/js/main.js" />
+        <option value="$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js" />
       </list>
     </option>
   </component>
@@ -404,6 +374,50 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="neighbours" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smsUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smsUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smsUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="smsUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -447,7 +461,7 @@
     <property name="editor.config.accepted" value="true" />
     <property name="js.eslint.eslintPackage" value="C:\GitCOde\smsUi\node_modules\eslint" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="society&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyList.controller.js&#10;config&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;main&#9;FILE&#9;file://C:/GitCOde/smsUi/src/js/main.js&#10;top&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/top-navbar.html&#10;main.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/oclazyload/examples/complexExample/partials/main.html&#10;main.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/main-content.html&#10;mainCtr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/js/controllers/mainCtrl.js&#10;user&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user-service.js&#10;helper&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/helperReport.html&#10;users&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user-service.js&#10;neighbour&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/neighbours/neighbour.service.js&#10;list&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/list.html&#10;flat&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flat.service.js&#10;soci&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/society.service.js&#10;complaint&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/complaintNew.controller.js&#10;main.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/js/main.js&#10;helperREport&#9;null&#9;null&#10;neigh&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/neighbours/neighbourView.html&#10;nav&#9;null&#9;null&#10;flatHelper&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/flatHelperReport.html&#10;flatHelp&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/flatHelperReport.controller.js&#10;helperRe&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/helperReport.html&#10;nav.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;addN&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/notices/addNotice.html&#10;helperReport&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/helperReport.html&#10;index&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;config.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;profile&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-menu/user-profile.html&#10;visitor&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/visitors/visitorEdit.controller.js&#10;visitorNew&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/visitors/visitorNew.controller.js&#10;complaintEdit&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/complaintEdit.controller.js&#10;princ&#9;null&#9;null&#10;login&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/login.html&#10;notice&#9;null&#9;null&#10;login.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/login.html&#10;sign&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;config.router&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;confi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index.h&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;sidebar.controll&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;sidebar&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;SIGN&#9;null&#9;null&#10;role&#9;null&#9;null&#10;index.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/angular-bootstrap-calendar/index.html&#10;side&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;inde&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;conf&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;in&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html" />
+    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;ma&#9;FILE&#9;file://C:/GitCOde/smsUi/src/js/main.js&#10;society&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/societyList.controller.js&#10;config&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;main&#9;FILE&#9;file://C:/GitCOde/smsUi/src/js/main.js&#10;top&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/top-navbar.html&#10;main.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/oclazyload/examples/complexExample/partials/main.html&#10;main.ht&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/main-content.html&#10;mainCtr&#9;FILE&#9;file://C:/GitCOde/smsUi/src/js/controllers/mainCtrl.js&#10;user&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user-service.js&#10;helper&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/helperReport.html&#10;users&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/user-service.js&#10;neighbour&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/neighbours/neighbour.service.js&#10;list&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-management/list.html&#10;flat&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/flat/flat.service.js&#10;soci&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/admin/society/society.service.js&#10;complaint&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/complaintNew.controller.js&#10;main.js&#9;FILE&#9;file://C:/GitCOde/smsUi/src/js/main.js&#10;helperREport&#9;null&#9;null&#10;neigh&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/neighbours/neighbourView.html&#10;nav&#9;null&#9;null&#10;flatHelper&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/flatHelperReport.html&#10;flatHelp&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/flatHelperReport.controller.js&#10;helperRe&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/helperReport.html&#10;nav.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;addN&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/notices/addNotice.html&#10;helperReport&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/reports/helper-report/helperReport.html&#10;config.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;profile&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/user-menu/user-profile.html&#10;visitor&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/visitors/visitorEdit.controller.js&#10;visitorNew&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/visitors/visitorNew.controller.js&#10;complaintEdit&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/complaint/complaintEdit.controller.js&#10;princ&#9;null&#9;null&#10;login&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/login.html&#10;notice&#9;null&#9;null&#10;login.html&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/login.html&#10;sign&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/blocks/auth/signin.controller.js&#10;nav.htm&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/nav.html&#10;config.router&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;confi&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js&#10;index.h&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;sidebar.controll&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.controller.js&#10;sidebar&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;SIGN&#9;null&#9;null&#10;role&#9;null&#9;null&#10;index.&#9;FILE&#9;file://C:/GitCOde/smsUi/src/bower_components/angular-bootstrap-calendar/index.html&#10;side&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/layout/sidebar.html&#10;inde&#9;FILE&#9;file://C:/GitCOde/smsUi/src/index.html&#10;conf&#9;FILE&#9;file://C:/GitCOde/smsUi/src/app/core/config.router.js" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="C:\GitCOde\smsUi\node_modules\gulp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -555,12 +569,12 @@
       <workItem from="1502260873655" duration="101599000" />
       <workItem from="1503290877581" duration="19338000" />
       <workItem from="1503375545444" duration="64887000" />
-      <workItem from="1504500073482" duration="2946000" />
+      <workItem from="1504500073482" duration="10341000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1267795000" />
+    <option name="totallyTimeSpent" value="1275190000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -580,7 +594,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32810047" sideWeight="0.50595236" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38147566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.93521595" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.93406594" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21279761" sideWeight="0.5065574" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -664,20 +678,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="144" column="84" lean-forward="false" selection-start-line="144" selection-start-column="61" selection-end-line="144" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="109" column="36" lean-forward="false" selection-start-line="109" selection-start-column="36" selection-end-line="109" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintList.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -717,13 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1527">
           <caret line="100" column="20" lean-forward="false" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="93" column="33" lean-forward="false" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -787,13 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="131" column="30" lean-forward="false" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="153" column="44" lean-forward="false" selection-start-line="153" selection-start-column="44" selection-end-line="153" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -896,14 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="210" column="30" lean-forward="false" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/app.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -992,22 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="173" column="42" lean-forward="true" selection-start-line="173" selection-start-column="42" selection-end-line="173" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/core/config.router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="190" column="26" lean-forward="false" selection-start-line="190" selection-start-column="26" selection-end-line="190" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyList.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -1016,10 +978,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.html">
+    <entry file="file://$PROJECT_DIR$/src/app/admin/admin.module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/core/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="26" lean-forward="true" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/core/config.router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="177" column="27" lean-forward="false" selection-start-line="177" selection-start-column="22" selection-end-line="177" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="166" column="58" lean-forward="true" selection-start-line="166" selection-start-column="58" selection-end-line="166" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="87" column="8" lean-forward="true" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="167" column="9" lean-forward="true" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1032,10 +1034,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/main.js">
+    <entry file="file://$PROJECT_DIR$/src/app/visitors/visitorNew.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="92" column="8" lean-forward="true" selection-start-line="92" selection-start-column="8" selection-end-line="92" selection-end-column="8" />
+        <state relative-caret-position="255">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="167" column="11" lean-forward="true" selection-start-line="147" selection-start-column="10" selection-end-line="167" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="159" column="32" lean-forward="true" selection-start-line="159" selection-start-column="32" selection-end-line="159" selection-end-column="32" />
           <folding />
         </state>
       </provider>

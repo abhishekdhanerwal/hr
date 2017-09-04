@@ -148,8 +148,32 @@
             console.log(vm.master)
             neighbourData();
           }
-          else if( response.status == 401){
+          else if (response.status == -1) {
+            vm.progress = false;
+            vm.errorMessage = 'Network Error';
+            toaster.error('Network Error');
+            console.error(response);
+          }
+          else if (response.status == 400) {
+            vm.progress = false;
+            vm.errorMessage = response.data.message;
+            toaster.error(response.data.message);
+            console.error(response);
+          }
+          else if (response.status == 404) {
+            vm.progress = false;
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
+            console.error(response);
+          }
+          else if (response.status == 401) {
+            vm.progress = false;
             $state.go('auth.signout')
+          }
+          else {
+            vm.errorMessage = 'Some problem';
+            toaster.error('Some problem');
+            console.error(response);
           }
         });
       }
@@ -208,8 +232,8 @@
           getData: function (params) {
             vm.progress = false;
 
-            if(vm.master != null && vm.master[0] != undefined){
-              vm.IsHidden=true;
+            if(vm.master != null && vm.master[0] != undefined) {
+              vm.IsHidden = true;
             }
             else{
               vm.activeMessage = true;
