@@ -15,6 +15,7 @@
     vm.submit = submit;
     vm.reset = reset;
     vm.findSociety = findSociety;
+    vm.userData = userData;
 
     function breadcrumbRoute() {
       if(vm.isSuperAdminRole || vm.isMeterManagementRole) {
@@ -90,12 +91,15 @@
               }
             }
           }
+          userData();
         }
         else if( response.status == 401){
           $state.go('auth.signout')
         }
       });
+    };
 
+    function userData(){
       userFactory.finduser($stateParams.id).then(function (response) {
         if (response.status == 200) {
           vm.progress = false;
@@ -141,7 +145,7 @@
 
       });
 
-    };
+    }
 
     function findSociety(){
       userFactory.societyList().then(function (response) {

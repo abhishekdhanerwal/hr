@@ -154,8 +154,8 @@
           }
           else if (response.status == 400) {
             vm.progress = false;
-            vm.errorMessage = response.data.message;
-            toaster.error(response.data.message);
+            vm.errorMessage = response.data[0].message;
+            toaster.error(response.data[0].message);
             console.error(response);
           }
           else if (response.status == 401) {

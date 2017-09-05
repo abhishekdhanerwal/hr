@@ -74,6 +74,7 @@
         toaster.success("File uploaded successfully");
 
       }).error(function (response) {
+        vm.imageProgress = false;
         vm.errorMessage = "File upload error";
         console.log(response)
         toaster.error("File upload error");

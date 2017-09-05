@@ -83,6 +83,7 @@
       vm.neighbourName = '';
       vm.nameData = '';
       vm.message = '';
+      vm.errorMessage = '';
     }
 
     vm.disableFlatInput = function () {
@@ -115,9 +116,12 @@
 
     vm.clearName = function() {
         vm.neighbourName = '';
+        vm.message = '';
+        vm.errorMessage = '';
     }
 
     function onSelectFlat($item, $model, $label) {
+      vm.errorMessage = '';
       if (vm.flatList!=undefined && vm.flatList.length == 0) {
         vm.flatNoByTower = null;
       }
@@ -182,6 +186,8 @@
     function clearFlat() {
       vm.flatsearch = '';
       vm.flatData = false;
+      vm.message = '';
+      vm.errorMessage = '';
     }
 
     function searchByName(val) {
@@ -189,6 +195,7 @@
       vm.flatsearch = '';
       vm.flatData = '';
       vm.message = '';
+      vm.errorMessage = '';
       return neighbourFactory.searchNeighboursByName(val).then(function (response) {
         if(response.status == 200) {
           var params = {
@@ -205,6 +212,7 @@
     };
 
     function searchFlat(val) {
+        vm.errorMessage = '';
         vm.flatList = [];
         for(var index=0 ; index<vm.allFlatList.length;index++){
           if(val == vm.allFlatList[index].flatNo.slice(0,val.length)){
@@ -271,67 +279,5 @@
           }
         });
     };
-
-    function resolvedComplaintData(){
-      var complaintList = [];
-      if(vm.masterResolved == ""){
-        complaintList = vm.masterClosed;
-      }
-      else{
-        complaintList = vm.masterResolved.concat(vm.masterClosed)
-      }
-      vm.resolvedTableParams = new NgTableParams(
-        {
-          page: 1, // show first page
-          count: 10, // count per page
-          sorting: {
-            lastModified: 'desc'   // initial sorting
-          }, // count per page
-          filter: {
-            complaintType: '',
-            status: ''// initial filter
-          }
-        }, {
-          // total: data.length,
-
-          getData: function (params) {
-            vm.progress = false;
-
-            if(complaintList != null && complaintList[0] != undefined){
-              vm.IsHidden=true;
-            }
-            else{
-              vm.resolvedMessage = true;
-              vm.message="No data available";
-            }
-
-            if (complaintList  != null) {
-              var filteredData = null;
-              var orderedData = null;
-              if (params != null) {
-                if (params.filter()) {
-                  filteredData = $filter('filter')(complaintList , params.filter())
-                }
-                else {
-                  filteredData = complaintList ;
-                }
-                if (params.sorting()) {
-                  orderedData = $filter('orderBy')(filteredData, params.orderBy());
-                }
-                else {
-                  orderedData = filteredData;
-                }
-                params.total(orderedData.length);
-                var returnData = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count())
-                return returnData;
-              }
-              else {
-                return complaintList;
-              }
-
-            }
-          }
-        });
-    }
   }
 })();

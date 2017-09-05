@@ -1,7 +1,7 @@
-<div class="breadcrumb-wrapper" ng-click="vm.breadcrumbRoute()">
+<div class="breadcrumb-wrapper">
   <h4 class="mainTitle no-margin">User Management</h4>
 
-  <div ncy-breadcrumb class="pull-right"></div>
+  <div ng-click="vm.breadcrumbRoute()" ncy-breadcrumb class="pull-right"></div>
 </div>
 
 <wave-spinner ng-show="vm.progress" ></wave-spinner>
@@ -75,7 +75,7 @@
 
                 <td data-title="'Address'"><span ng-if="row.role == 'CONSUMER' && row.tower!=''">{{row.tower + ','}}{{row.flatNo}}</span></td>
 
-                <td data-title="'Society'" ng-if="vm.isSuperAdminRole">{{row.societyName}}</td>
+                <td data-title="'Society'" ng-if="vm.isSuperAdminRole" sortable="'societyName'" filter="{'societyName': 'text'}">{{row.societyName}}</td>
 
                 <td data-title="'Role'" sortable="'role'" filter="{'role': 'text'}">{{row.role}}</td>
 

@@ -90,7 +90,6 @@
           console.log(self.userList)
           findSociety();
           //userAddress();
-          listView();
         }
         else if (response.status == -1) {
           toaster.error('Network Error', 'error');
@@ -121,10 +120,13 @@
             for(var j=0; j<self.userList.length; j++){
               if(self.societyList[i].id == self.userList[j].societyId){
                 self.userList[j].societyName = self.societyList[i].name;
-                console.log(self.userList[j].societyName)
-              };
+              }
+              else if(self.userList[j].societyId == null){
+               self.userList[j].societyName = '';
+              }
             }
           }
+          listView();
         }
         else if( response.status == 401){
           $state.go('auth.signout')
@@ -163,6 +165,7 @@
           }, // count per page
           filter: {
             name: '',
+            societyName: '',
             role: ''// initial filter
           }
         }, {
