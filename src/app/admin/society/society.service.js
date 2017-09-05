@@ -47,7 +47,7 @@
     };
 
     service.editSociety = function (society) {
-      var promise = $http.put(__env.dataServerUrl + '/updateSociety' + society)
+      var promise = $http.put(__env.dataServerUrl + '/updateSociety' , society)
         .then(
           function (response) {
             return response;

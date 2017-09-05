@@ -135,6 +135,7 @@
         return;
 
       } else {
+        console.log(vm.society)
 
         societyFactory.editSociety(vm.society).then(function (response) {
           console.log(response.data);
