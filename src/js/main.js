@@ -77,7 +77,7 @@ function (cfpLoadingBarProvider) {
 // configuration
 app.config(function ($breadcrumbProvider) {
     $breadcrumbProvider.setOptions({
-        template: '<ul class="breadcrumb"><li><a><i class="fa fa-home margin-right-5 text-large text-dark"></i>home</a></li><li ng-repeat="step in steps">{{step.ncyBreadcrumbLabel}}</li></ul>'
+        template: '<ul class="breadcrumb"><li><a><i class="fa fa-home margin-right-5 text-large text-dark"></i>Home</a></li><li ng-repeat="step in steps">{{step.ncyBreadcrumbLabel}}</li></ul>'
     });
 });
 // ng-storage

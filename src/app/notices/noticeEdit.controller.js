@@ -37,6 +37,10 @@
       $state.go('app.notice')
     }
 
+    vm.downloadAttachment = function (url) {
+      $window.open(url);
+    }
+
     activate();
 
     function activate() {
