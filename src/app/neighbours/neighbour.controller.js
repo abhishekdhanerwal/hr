@@ -88,6 +88,9 @@
 
     vm.disableFlatInput = function () {
       vm.flatData = false;
+      vm.flatsearch = '';
+      vm.message = '';
+      vm.errorMessage = '';
       complaintFactory.findAllFlats(vm.tower).then(function (response) {
         if (response.status == 200) {
           vm.allFlatList = response.data;
