@@ -50,14 +50,12 @@
 
       //function for end date
       vm.endOpen = function ($event) {
-        vm.end = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS')
         $event.preventDefault();
         $event.stopPropagation();
         vm.startopened = false;
       };
       //function for start date
       vm.startOpen = function ($event) {
-        vm.start = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS')
         $event.preventDefault();
         $event.stopPropagation();
         vm.endopened = false;
