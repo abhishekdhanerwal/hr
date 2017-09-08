@@ -16,6 +16,7 @@
     vm.onSelect = onSelect;
     vm.clearFlat = clearFlat;
     vm.disableFlat = true;
+    vm.showError = false;
 
     function breadcrumbRoute() {
       if(vm.isMeterManagementRole) {
@@ -65,6 +66,7 @@
     }
 
     vm.disableFlatInput = function () {
+      vm.showError = false;
       vm.IsHidden = false;
       vm.flatsearch = "";
       helperReportFactory.findAllFlats(vm.tower).then(function (response) {
@@ -105,6 +107,7 @@
 
     //function to generate the report
     vm.generate = function () {
+      vm.showError = true;
         if (vm.Form.$invalid) {
           vm.reportProgress = false;
           validationHelperFactory.manageValidationFailed(vm.Form);

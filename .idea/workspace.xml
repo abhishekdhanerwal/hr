@@ -25,10 +25,8 @@
   <component name="ChangeListManager">
     <list default="true" id="16d9d364-3880-4526-b193-f5912f7b8799" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/admin/household/helperEdit.controller.js" afterPath="$PROJECT_DIR$/src/app/admin/household/helperEdit.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.controller.js" afterPath="$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.controller.js" afterPath="$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js" afterPath="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.controller.js" afterPath="$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html" afterPath="$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,51 +47,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="complaintReport.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.controller.js">
+      <file leaf-file-name="flatHelperReport.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="35" column="15" lean-forward="true" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
+            <state relative-caret-position="417">
+              <caret line="73" column="54" lean-forward="true" selection-start-line="73" selection-start-column="54" selection-end-line="73" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="helperReport.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/helperReport.controller.js">
+      <file leaf-file-name="flatHelperReport.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
+            <state relative-caret-position="504">
+              <caret line="86" column="61" lean-forward="true" selection-start-line="86" selection-start-column="61" selection-end-line="86" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flatVisitorReport.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.controller.js">
+      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/user-management/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="170" column="15" lean-forward="true" selection-start-line="170" selection-start-column="15" selection-end-line="170" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="helperEdit.controller.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperEdit.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="216" lean-forward="false" selection-start-line="8" selection-start-column="216" selection-end-line="8" selection-end-column="216" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="complaintReport.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="89" column="24" lean-forward="true" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+            <state relative-caret-position="292">
+              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -112,8 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>aad</find>
-      <find>select</find>
       <find>searchFlat</find>
       <find>searchFl</find>
       <find>add</find>
@@ -142,6 +118,8 @@
       <find>downloadAttachment</find>
       <find>date</find>
       <find>rootscope</find>
+      <find>noResults</find>
+      <find>noRe</find>
     </findStrings>
     <replaceStrings>
       <replace>$scope</replace>
@@ -173,7 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/app/layout/nav.html" />
         <option value="$PROJECT_DIR$/src/app/neighbours/neighbour.service.js" />
         <option value="$PROJECT_DIR$/src/app/reports/helper-report/helperReport.service.js" />
         <option value="$PROJECT_DIR$/src/app/notices/noticeNew.controller.js" />
@@ -198,7 +175,6 @@
         <option value="$PROJECT_DIR$/src/app/complaint/editComplaint.html" />
         <option value="$PROJECT_DIR$/src/app/complaint/manageComplaint.html" />
         <option value="$PROJECT_DIR$/src/app/neighbours/neighbourView.html" />
-        <option value="$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html" />
         <option value="$PROJECT_DIR$/src/app/reports/helper-report/helperReport.html" />
         <option value="$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.html" />
         <option value="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.html" />
@@ -209,7 +185,6 @@
         <option value="$PROJECT_DIR$/src/app/visitors/visitorEdit.html" />
         <option value="$PROJECT_DIR$/src/app/visitors/visitorList.html" />
         <option value="$PROJECT_DIR$/src/app/visitors/visitorNew.html" />
-        <option value="$PROJECT_DIR$/src/app/user-management/list.html" />
         <option value="$PROJECT_DIR$/src/app/user-management/userList.controller.js" />
         <option value="$PROJECT_DIR$/src/app/user-management/userEdit.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.html" />
@@ -221,9 +196,12 @@
         <option value="$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.service.js" />
-        <option value="$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/reports/visitor-report/societyVisitorReport.controller.js" />
         <option value="$PROJECT_DIR$/src/app/admin/household/helperEdit.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.controller.js" />
+        <option value="$PROJECT_DIR$/src/app/user-management/list.html" />
+        <option value="$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html" />
+        <option value="$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.controller.js" />
       </list>
     </option>
   </component>
@@ -428,33 +406,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smsUi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="smsUi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="household" />
+              <option name="myItemId" value="neighbours" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -586,12 +538,12 @@
       <workItem from="1503290877581" duration="19338000" />
       <workItem from="1503375545444" duration="64887000" />
       <workItem from="1504500073482" duration="40439000" />
-      <workItem from="1504757687773" duration="5788000" />
+      <workItem from="1504757687773" duration="13433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1311076000" />
+    <option name="totallyTimeSpent" value="1318721000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -703,20 +655,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/admin/society/societyEdit.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1514">
-          <caret line="168" column="11" lean-forward="true" selection-start-line="168" selection-start-column="11" selection-end-line="168" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatEdit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/admin/flat/flatList.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -794,27 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/complaint/manageComplaint.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/helperReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -878,13 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/user-management/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="77" column="93" lean-forward="false" selection-start-line="77" selection-start-column="93" selection-end-line="77" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/user-management/userEdit.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -917,14 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="79" column="112" lean-forward="false" selection-start-line="79" selection-start-column="112" selection-end-line="79" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="396" column="8" lean-forward="false" selection-start-line="396" selection-start-column="6" selection-end-line="396" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -977,14 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/neighbours/neighbourView.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1500">
-          <caret line="21" column="39" lean-forward="true" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/neighbours/neighbour.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1017,34 +911,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="89" column="24" lean-forward="true" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="60" column="6" lean-forward="true" selection-start-line="60" selection-start-column="6" selection-end-line="60" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="35" column="15" lean-forward="true" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/helperReport.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="53" column="26" lean-forward="true" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1057,18 +927,108 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.controller.js">
+    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperEdit.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="170" column="15" lean-forward="true" selection-start-line="170" selection-start-column="15" selection-end-line="170" selection-end-column="15" />
+        <state relative-caret-position="476">
+          <caret line="28" column="11" lean-forward="true" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperEdit.controller.js">
+    <entry file="file://$PROJECT_DIR$/src/app/admin/household/helperNew.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="216" lean-forward="false" selection-start-line="8" selection-start-column="216" selection-end-line="8" selection-end-column="216" />
+        <state relative-caret-position="435">
+          <caret line="409" column="42" lean-forward="true" selection-start-line="409" selection-start-column="42" selection-end-line="409" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintEdit.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="38" column="25" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/complaintNew.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="224" column="5" lean-forward="true" selection-start-line="224" selection-start-column="5" selection-end-line="224" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/visitor-report/flatVisitorReport.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="228" column="17" lean-forward="true" selection-start-line="228" selection-start-column="17" selection-end-line="228" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/helperReport.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/complaint-report/complaintReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-381">
+          <caret line="89" column="24" lean-forward="true" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/complaint/manageComplaint.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1097">
+          <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/helperReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2126">
+          <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/neighbours/neighbourView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="123" column="51" lean-forward="true" selection-start-line="123" selection-start-column="51" selection-end-line="123" selection-end-column="51" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#uib-tab#1;n#uib-tabset#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/user-management/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="73" column="54" lean-forward="true" selection-start-line="73" selection-start-column="54" selection-end-line="73" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/reports/helper-report/flatHelperReport.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="86" column="61" lean-forward="true" selection-start-line="86" selection-start-column="61" selection-end-line="86" selection-end-column="61" />
           <folding />
         </state>
       </provider>
