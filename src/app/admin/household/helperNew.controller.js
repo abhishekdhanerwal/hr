@@ -149,6 +149,7 @@
         toaster.success("File uploaded successfully");
 
       }).error(function (response) {
+        vm.imageProgress = false;
         vm.errorMessage = "File upload error";
         console.log(response)
         toaster.error("File upload error");
@@ -194,6 +195,7 @@
 
         if (response.status == 200) {
           toaster.info('Helper Removed');
+          vm.message = 'Helper Removed';
           vm.progress = false;
         }
         else if (response.status == -1) {

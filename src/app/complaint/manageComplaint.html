@@ -222,7 +222,7 @@
 
                     <td data-title="'Complaint Type'" sortable="'complaintType'" filter="{ 'complaintType' : 'text' }">{{row.complaintType}}</td>
 
-                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}} <br> <a ng-if="row.description && row.description.length>40" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
+                    <td data-title="'Complaint Text'">{{row.description | limitTo:30}} <br> <a ng-if="row.description && row.description.length>30" uib-popover="{{row.description}}"><b>Read More...</b></a></td>
 
                     <td data-title="'Complaint Date'">{{row.createdOn | date:'dd-MM-yyyy'}}</td>
 

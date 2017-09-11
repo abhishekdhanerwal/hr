@@ -48,6 +48,9 @@
       vm.isCreatorRole = role.isCreatorRole();
       vm.isMeterManagementRole = role.isMeterManagementRole();
       vm.isVisitorAdminRole = role.isVisitorAdminRole();
+
+      vm.currentDate = new Date();
+      console.log(vm.currentDate)
     };
 
     vm.hideTable = function(){
@@ -185,6 +188,13 @@
               if(response.status == 200){
                 vm.reportProgress = false;
                 vm.master = response.data;
+                for (var i=0 ; i<vm.master.length ; i++){
+                  for(var j=0 ; j<vm.master[i].workingAt.length ; j++){
+                    vm.master[i].workingAt[j].startDate = angular.copy(vm.master[i].workingAt[j].helperMap[vm.master[i].helperNo][0]);
+                    vm.master[i].workingAt[j].endDate = angular.copy(vm.master[i].workingAt[j].helperMap[vm.master[i].helperNo][1]);
+                    vm.master[i].workingAt[j].endDate = new Date(vm.master[i].workingAt[j].endDate);
+                  }
+                }
                 for(var i=0; i<vm.master.length; i++){
                   if(vm.master[i].type == 'Car_Cleaner'){
                     vm.master[i].type = 'Car Cleaner';
@@ -226,6 +236,13 @@
                 vm.reportProgress = false;
                 vm.master = response.data;
                 console.log(vm.master)
+                for (var i=0 ; i<vm.master.length ; i++){
+                  for(var j=0 ; j<vm.master[i].workingAt.length ; j++){
+                    vm.master[i].workingAt[j].startDate = angular.copy(vm.master[i].workingAt[j].helperMap[vm.master[i].helperNo][0]);
+                    vm.master[i].workingAt[j].endDate = angular.copy(vm.master[i].workingAt[j].helperMap[vm.master[i].helperNo][1]);
+                    vm.master[i].workingAt[j].endDate = new Date(vm.master[i].workingAt[j].endDate);
+                  }
+                }
                 if(vm.master != null) {
                   for (var i = 0; i < vm.master.length; i++) {
                     if (vm.master[i].type == 'Car_Cleaner') {
@@ -277,6 +294,13 @@
                             vm.reportProgress = false;
                             vm.master = [];
                             vm.master.push(response.data);
+                            for (var i=0 ; i<vm.master.length ; i++){
+                              for(var j=0 ; j<vm.master[i].workingAt.length ; j++){
+                                vm.master[i].workingAt[j].startDate = angular.copy(vm.master[i].workingAt[j].helperMap[vm.master[i].helperNo][0]);
+                                vm.master[i].workingAt[j].endDate = angular.copy(vm.master[i].workingAt[j].helperMap[vm.master[i].helperNo][1]);
+                                vm.master[i].workingAt[j].endDate = new Date(vm.master[i].workingAt[j].endDate);
+                              }
+                            }
                             for (var i = 0; i < vm.master.length; i++) {
                               if (vm.master[i].type == 'Car_Cleaner') {
                                 vm.master[i].type = 'Car Cleaner';

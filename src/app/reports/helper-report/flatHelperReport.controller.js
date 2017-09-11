@@ -149,6 +149,14 @@
 
             if (response.status == 200) {
               vm.master = response.data;
+              for (var i=0 ; i<vm.master.length ; i++){
+                for(var j=0 ; j<vm.master[i].workingAt.length ; j++){
+                  vm.master[i].workingAt[j].startDate = angular.copy(vm.master[i].workingAt[j].helperMap[vm.master[i].helperNo][0]);
+                  vm.master[i].workingAt[j].endDate = angular.copy(vm.master[i].workingAt[j].helperMap[vm.master[i].helperNo][1]);
+                  vm.master[i].workingAt[j].startDate = new Date(vm.master[i].workingAt[j].startDate);
+                  vm.master[i].workingAt[j].endDate = new Date(vm.master[i].workingAt[j].endDate);
+                }
+              }
               for(var i=0; i<vm.master.length; i++){
                 if(vm.master[i].type == 'Car_Cleaner'){
                   vm.master[i].type = 'Car Cleaner';
