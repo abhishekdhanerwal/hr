@@ -14,7 +14,11 @@
 <div class="nav-user-wrapper">
     <div class="media"  ng-controller="SidebarController as vm">
         <div class="media-left">
-            <a class="profile-card-photo" href="#"><img alt="" src="images/default-user.png"></a>
+            <!--<a class="profile-card-photo" href="#"><img alt="" src="images/default-user.png"></a>-->
+          <a class="profile-card-photo" href="#">
+            <img src="images/default-user.png" alt="" ng-if="!vm.profilePicUrl">
+            <img ng-src="{{ IMAGE_BASE_URL.XSM + vm.profilePicUrl}}" alt="" ng-if="vm.profilePicUrl">
+          </a>
         </div>
         <div class="media-body">
             <span class="media-heading text-white">{{$root.user.name}}</span>

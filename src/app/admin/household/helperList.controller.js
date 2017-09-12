@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('HelperListCtrl', HelperListCtrl);
 
-  HelperListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'helperFactory', 'validationHelperFactory', '$stateParams', 'toaster', 'role'];
+  HelperListCtrl.$inject = [ 'NgTableParams', '$state', '$localStorage', '$filter', 'helperFactory', 'validationHelperFactory', '$stateParams', 'toaster', 'role', 'SweetAlert'];
   /* @ngInject */
-  function HelperListCtrl( NgTableParams, $state, $localStorage, $filter, helperFactory, validationHelperFactory, $stateParams , toaster, role) {
+  function HelperListCtrl( NgTableParams, $state, $localStorage, $filter, helperFactory, validationHelperFactory, $stateParams , toaster, role, SweetAlert) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.message = false;
@@ -202,12 +202,12 @@
           }
         });
 
-      vm.remove = function () {
+      vm.remove = function (id) {
         vm.progress = true;
         helperFactory.removeHelper(vm.helperNo).then(function (response) {
 
           if (response.status == 200) {
-            toaster.info('Helper Removed');
+            toaster.info('Helper Removed Successfully');
             vm.progress = false;
             activate();
           }
@@ -220,10 +220,10 @@
           else if (response.status == 400) {
             vm.errorMessage = response.data[0].message;
             toaster.error(response.data[0].message);
-            console.error( vm.errorMessage);
+            console.error(vm.errorMessage);
             vm.progress = false;
           }
-          else if( response.status == 401){
+          else if (response.status == 401) {
             $state.go('auth.signout')
             vm.progress = false;
           }
@@ -233,7 +233,50 @@
             vm.progress = false;
             console.error(response);
           }
+          $state.reload();
         });
+      };
+        vm.remove = function (id) {
+          vm.progress = false;
+          SweetAlert.swal({
+            title: "Are you sure?",
+            text: "You want to remove the helper!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#4CAF50",
+            confirmButtonText: "Yes",
+            cancelButton: "#008CBA",
+            cancelButtonText: "No",
+            closeOnConfirm: true,
+            closeOnCancel: true
+          }, function (isConfirm) {
+            if (isConfirm) {
+              vm.progress = true;
+              helperFactory.removeHelper(vm.helperNo).then(function (response) {
+                if (response.status == 200) {
+                  vm.progress = false;
+                  $state.reload();
+                  toaster.info('Helper Removed Successfully');
+                }
+                else if (response.status == -1) {
+                  vm.progress = false;
+                  toaster.error('Network Error');
+                }
+                else if( response.status == 401){
+                  $state.go('auth.signout')
+                }
+                else {
+                  vm.progress = false;
+                  toaster.error(response.data[0].message);
+                  vm.errorMessage = response.data[0].message;
+                }
+
+              });
+            } else {
+            }
+          });
+
+        };
         // var index = -1;
         // var comArr = eval(vm.helperRow);
         // for (var i = 0; i < comArr.length; i++) {
@@ -246,7 +289,6 @@
         //   alert("Something gone wrong");
         // }
         // vm.helperRow.splice(index, 1);
-      };
     };
   }
 })();

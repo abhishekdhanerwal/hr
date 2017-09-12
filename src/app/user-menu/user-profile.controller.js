@@ -57,7 +57,7 @@
       vm.imageProgress = true;
       var formData = new FormData();
       formData.append('file', vm.obj.flow.files[0].file);
-      $http.post(__env.dataServerUrl + "/fileUpload/helperImageUpload", formData, {
+      $http.post(__env.dataServerUrl + "/fileUpload/userImageUpload", formData, {
         data: formData,
         transformRequest: angular.identity,
         headers: {
