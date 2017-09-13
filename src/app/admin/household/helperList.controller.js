@@ -202,41 +202,41 @@
           }
         });
 
-      vm.remove = function (id) {
-        vm.progress = true;
-        helperFactory.removeHelper(vm.helperNo).then(function (response) {
-
-          if (response.status == 200) {
-            toaster.info('Helper Removed Successfully');
-            vm.progress = false;
-            activate();
-          }
-          else if (response.status == -1) {
-            vm.errorMessage = 'Network Error';
-            toaster.error('Network Error');
-            console.error(response);
-            vm.progress = false;
-          }
-          else if (response.status == 400) {
-            vm.errorMessage = response.data[0].message;
-            toaster.error(response.data[0].message);
-            console.error(vm.errorMessage);
-            vm.progress = false;
-          }
-          else if (response.status == 401) {
-            $state.go('auth.signout')
-            vm.progress = false;
-          }
-          else {
-            vm.errorMessage = 'Some problem';
-            toaster.error('Some problem');
-            vm.progress = false;
-            console.error(response);
-          }
-          $state.reload();
-        });
-      };
-        vm.remove = function (id) {
+      // vm.remove = function (id) {
+      //   vm.progress = true;
+      //   helperFactory.removeHelper(vm.helperNo).then(function (response) {
+      //
+      //     if (response.status == 200) {
+      //       toaster.info('Helper Removed Successfully');
+      //       vm.progress = false;
+      //       activate();
+      //     }
+      //     else if (response.status == -1) {
+      //       vm.errorMessage = 'Network Error';
+      //       toaster.error('Network Error');
+      //       console.error(response);
+      //       vm.progress = false;
+      //     }
+      //     else if (response.status == 400) {
+      //       vm.errorMessage = response.data[0].message;
+      //       toaster.error(response.data[0].message);
+      //       console.error(vm.errorMessage);
+      //       vm.progress = false;
+      //     }
+      //     else if (response.status == 401) {
+      //       $state.go('auth.signout')
+      //       vm.progress = false;
+      //     }
+      //     else {
+      //       vm.errorMessage = 'Some problem';
+      //       toaster.error('Some problem');
+      //       vm.progress = false;
+      //       console.error(response);
+      //     }
+      //     $state.reload();
+      //   });
+      // };
+        vm.remove = function (helperNo) {
           vm.progress = false;
           SweetAlert.swal({
             title: "Are you sure?",
@@ -252,7 +252,7 @@
           }, function (isConfirm) {
             if (isConfirm) {
               vm.progress = true;
-              helperFactory.removeHelper(vm.helperNo).then(function (response) {
+              helperFactory.removeHelper(helperNo).then(function (response) {
                 if (response.status == 200) {
                   vm.progress = false;
                   $state.reload();
