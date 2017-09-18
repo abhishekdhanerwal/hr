@@ -2,10 +2,10 @@
 (function (window) {
   window.__env = window.__env || {};
 
-  var environment = "dev"; //can be dev, test or prod.qa
+  var environment = "qa"; //can be dev, test or prod.qa
 
     if(environment === "qa"){
-      window.__env.dataServerUrl = 'http://ec2-52-90-135-36.compute-1.amazonaws.com:8080';
+      window.__env.dataServerUrl = 'http://ec2-52-201-226-155.compute-1.amazonaws.com:8080';
       window.__env.baseUrl = '/';
       window.__env.enableDebug = true;
       window.__env.user = "";

@@ -30,7 +30,7 @@ function ($rootScope, $state, $stateParams) {
             isSidebarClosed: false, // true if you want to initialize the template with closed sidebar
             isFooterFixed: false, // true if you want to initialize the template with fixed footer
             isBoxedPage: false, // true if you want to initialize the template with boxed layout
-            theme: 'lyt6-theme-1', // indicate the theme chosen for your project
+            theme: 'lyt1-theme-1', // indicate the theme chosen for your project
             logo: 'images/logo.png', // relative path of the project logo
             logoCollapsed: 'images/logo-collapsed.png' // relative path of the collapsed logo
         },
