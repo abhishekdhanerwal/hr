@@ -127,7 +127,7 @@
                          flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
                       <div ng-if="!vm.imageProgress" class="user-image">
                         <div class="thumbnail">
-                          <img src="images/default-user.png" alt="" ng-if="!vm.obj.flow.files.length && vm.noImage">
+                          <img src="images/default-user.png" alt="" ng-if="!vm.obj.flow.files.length && vm.helper.profilePicUrl==null">
                           <img ng-src="{{IMAGE_BASE_URL.XL + vm.helper.profilePicUrl}}" alt=""
                                ng-if="!vm.obj.flow.files.length && !vm.noImage">
                           <img flow-img="vm.obj.flow.files[0]" ng-if="vm.obj.flow.files.length">
@@ -137,7 +137,7 @@
                                 <i class="fa fa-pencil"></i>
                                 <input type="file" flow-btn />
                           </span>
-                          <span class="btn btn-danger" ng-click="vm.obj.flow.cancel()">
+                          <span class="btn btn-danger" ng-click="vm.obj.flow.cancel();vm.removeImage()">
                             <i class="fa fa-times"></i>
                           </span>
                           <span class="btn btn-success" ng-click="vm.saveImage()">
@@ -157,7 +157,7 @@
                               <i class="fa fa-pencil"></i>
                               <input type="file" flow-btn/>
                           </span>
-                          <span class="btn btn-danger" ng-click="vm.obj.flow.cancel()">
+                          <span class="btn btn-danger" ng-click="vm.obj.flow.cancel();vm.removeImage()">
                             <i class="fa fa-times"></i>
                           </span>
                           <span class="btn btn-success" ng-click="vm.saveImage()">

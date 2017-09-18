@@ -112,11 +112,12 @@
               <td data-title="'Type'" style="width:100px;" sortable="'type'" filter="{ 'type' : 'text' }">{{row.type}}</td>
               <td data-title="'Gender'">{{row.gender}}</td>
               <td data-title="'Verification Done'" style="width:100px;">{{row.policeVerificationDone}}</td>
-              <td data-title="'Working'">{{!row.isNotWorking}}</td>
-              <td data-title="'Resident Address'">
-                <div ng-repeat="temp in row.workingAt">{{temp.tower}} {{temp.flatNo}}</div>
-              </td>
-              <!--<td data-title="'Resolved Date'">{{row.resolvedOn | date: 'dd/MM/yyyy hh:mm'}}</td>-->
+              <!--<td data-title="'Work Start Date'" style="width:100px;">-->
+                <!--<div ng-repeat="temp in row.workingAt">{{temp.startDate | date:'dd-MM-yyyy'}}</div>-->
+              <!--</td>-->
+              <!--<td data-title="'Work End Date'" style="width:100px;">-->
+                <!--<div ng-repeat="temp in row.workingAt">{{temp.endDate | date:'dd-MM-yyyy'}}</div>-->
+              <!--</td>-->
 
             </tr>
           </table>

@@ -130,6 +130,9 @@
                 else {
                   vm.master[i].assignee = "";
                 }
+                if(vm.master[i].status == 'In_Progress'){
+                  vm.master[i].status = 'In Progress';
+                }
               }
               console.log(vm.master)
               reportList();

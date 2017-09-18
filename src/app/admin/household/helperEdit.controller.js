@@ -6,9 +6,9 @@
     .module('app.admin')
     .controller('HelperEditCtrl', HelperEditCtrl);
 
-  HelperEditCtrl.$inject = [ 'NgTableParams', '$window', '$document', '$filter', 'helperFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role', '$scope', 'FileUploader', '$http', '$rootScope'];
+  HelperEditCtrl.$inject = [ 'NgTableParams', '$localStorage', '$window', '$document', '$filter', 'helperFactory', '$state', 'validationHelperFactory', '$stateParams', 'toaster', 'role', '$scope', 'FileUploader', '$http', '$rootScope', 'SweetAlert'];
   /* @ngInject */
-  function HelperEditCtrl( NgTableParams, $window, $document, $filter, helperFactory, $state, validationHelperFactory, $stateParams , toaster, role, $scope, FileUploader, $http, $rootScope) {
+  function HelperEditCtrl( NgTableParams, $localStorage, $window, $document, $filter, helperFactory, $state, validationHelperFactory, $stateParams , toaster, role, $scope, FileUploader, $http, $rootScope, SweetAlert) {
     var vm = this;
     vm.breadcrumbRoute = breadcrumbRoute;
     vm.submit = submit;

@@ -154,7 +154,7 @@
                             </div>
                           </div>
                           <div class="col-md-6">
-                            <div class="form-group" ng-class="{'has-error':vm.Form.flat.$dirty && vm.Form.flat.$invalid, 'has-success':vm.Form.flat.$valid}" ng-if="!vm.isConsumerRole">
+                            <div class="form-group" ng-class="{'has-error':vm.Form.flat.$dirty && vm.Form.flat.$invalid  && vm.showError, 'has-success':vm.Form.flat.$valid}" ng-if="!vm.isConsumerRole">
                               <label class="control-label">
                                 Flat <span class="symbol required"></span>
                               </label>
@@ -175,7 +175,7 @@
                                 <i class="glyphicon glyphicon-remove"></i> No Results Found
                               </div>
                               <span class="error text-small block"
-                                    ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required">Flat is required.</span>
+                                    ng-if="vm.Form.flat.$dirty && vm.Form.flat.$error.required && vm.showError">Flat is required.</span>
                             </div>
                           </div>
                         </div>

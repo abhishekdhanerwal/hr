@@ -53,7 +53,6 @@
       vm.isVisitorAdminRole = role.isVisitorAdminRole();
 
       vm.maxDate = new Date();
-      console.log(vm.maxDate)
 
       helperFactory.helperType().then(function (response) {
         if (response.status == 200) {
@@ -78,54 +77,8 @@
         }
       });
 
-      helperFactory.helperList().then(function (response) {
-
-        vm.progress = false;
-
-        if (response.status == 200) {
-          vm.householdHelper = response.data;
-          for(var i=0; i<vm.householdHelper.length; i++){
-            // if(vm.householdHelper[i].type == 'Car_Cleaner'){
-            //   vm.householdHelper[i].type = 'Car Cleaner';
-            // }
-          }
-          for (var flag=0 ; flag<vm.householdHelper.length ; flag++){
-            for(var index=0 ; index<vm.householdHelper[flag].workingAt.length ; index++){
-              if($localStorage._identity != undefined){
-                if(vm.householdHelper[flag].workingAt[index].user.id == $localStorage._identity.principal.id){
-                  vm.householdHelper[flag].startDate = angular.copy(vm.householdHelper[flag].workingAt[index].helperMap[vm.householdHelper[flag].helperNo][0]);
-                  vm.householdHelper[flag].endDate = angular.copy(vm.householdHelper[flag].workingAt[index].helperMap[vm.householdHelper[flag].helperNo][1]);
-                  console.log(vm.householdHelper[flag].endDate)
-                }
-              }
-            }
-          }
-          console.log(vm.householdHelper)
-        }
-        else if (response.status == -1) {
-          toaster.error('Network Error', 'error');
-          vm.errorMessage = "Network Error";
-          console.error(response);
-        }
-        else if (response.status == 400) {
-          console.error(response);
-          vm.errorMessage = vm.master.message;
-          toaster.error(vm.master.message, 'error');
-        }
-        else if (response.status == 401) {
-          $state.go('auth.signout')
-        }
-        else {
-          toaster.error('Some problem', 'error');
-          console.error(response);
-        }
-      })
-
       vm.helper.uploadedDocumentsUrl = [];
 
-      // vm.endDateValidation = function () {
-      //   vm.endMinDate = vm.resident.fromDate;
-      // }
     }
 
     vm.saveImage = function () {
@@ -149,6 +102,7 @@
         toaster.success("File uploaded successfully");
 
       }).error(function (response) {
+        vm.imageProgress = false;
         vm.errorMessage = "File upload error";
         console.log(response)
         toaster.error("File upload error");
@@ -164,10 +118,21 @@
 
 
       function addHelper() {
+        for (var flag=0 ; flag<vm.householdHelper.length ; flag++){
+          for(var index=0 ; index<vm.householdHelper[flag].workingAt.length ; index++){
+            if($localStorage._identity != undefined){
+              if(vm.householdHelper[flag].workingAt[index].user.id == $localStorage._identity.principal.id){
+                vm.householdHelper[flag].startDate = angular.copy(vm.householdHelper[flag].workingAt[index].helperMap[vm.householdHelper[flag].helperNo][0]);
+                vm.householdHelper[flag].endDate = angular.copy(vm.householdHelper[flag].workingAt[index].helperMap[vm.householdHelper[flag].helperNo][1]);
+                console.log(vm.householdHelper[flag].endDate)
+              }
+            }
+          }
+        }
         if(vm.householdHelper != undefined){
-          for(var i=0; i<vm.householdHelper.length; i++){
-            console.log(vm.householdHelper[i].endDate)
-            if(vm.helper.number == vm.householdHelper[i].helperNo){
+            for(var i=0; i<vm.householdHelper.length; i++){
+              console.log(vm.householdHelper[i].endDate)
+            if(vm.helper.number == vm.householdHelper[i].helperNo) {
               vm.houseHelper.push({
                 'name': vm.householdHelper[i].name,
                 'aadhaarId': vm.householdHelper[i].aadhaarId,
@@ -178,12 +143,7 @@
                 'endDate': vm.householdHelper[i].endDate
               });
             }
-            // vm.householdHelper.name = '';
-            // vm.householdHelper.mobile = '';
-            // vm.householdHelper.type = '';
-            // vm.householdHelper.gender = '';
-            // vm.householdHelper.policeVerification = '';
-          }
+            }
         }
     }
 
@@ -194,6 +154,7 @@
 
         if (response.status == 200) {
           toaster.info('Helper Removed');
+          vm.message = 'Helper Removed';
           vm.progress = false;
         }
         else if (response.status == -1) {
@@ -274,6 +235,8 @@
           helperFactory.addHelperForConsumer(vm.helper.number).then(function (response) {
 
             if (response.status == 200) {
+              vm.householdHelper = [];
+              vm.householdHelper.push(response.data);
               toaster.info('Helper Added');
               vm.message = 'Helper Added';
               vm.showTable = true;

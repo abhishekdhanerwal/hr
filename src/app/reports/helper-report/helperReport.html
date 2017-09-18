@@ -151,8 +151,17 @@
               <td data-title="'Gender'">{{row.gender}}</td>
               <td data-title="'Verification Done'">{{row.policeVerificationDone}}</td>
               <td data-title="'Working'" ng-if="vm.helper.helperType == 'Helper'">{{!row.isNotWorking}}</td>
-              <td data-title="'Resident Address'" ng-if="vm.helper.helperType == 'Working helpers' || vm.helper.helperType == 'Helper'">
+              <td data-title="'Working At'" ng-if="vm.helper.helperType == 'Helper'">
+                <div ng-repeat="temp in row.workingAt" ng-if="temp.endDate>vm.currentDate">{{temp.tower}} {{temp.flatNo}}</div>
+              </td>
+              <td data-title="'Worked At'" ng-if="vm.helper.helperType == 'Helper'">
+                <div ng-repeat="temp in row.workingAt" ng-if="vm.currentDate>temp.endDate">{{temp.tower}} {{temp.flatNo}}</div>
+              </td>
+              <td data-title="'Resident Address'" ng-if="vm.helper.helperType == 'Working helpers'">
                 <div ng-repeat="temp in row.workingAt">{{temp.tower}} {{temp.flatNo}}</div>
+              </td>
+              <td data-title="'Worked At'" ng-if="vm.helper.helperType == 'Non-working helpers'">
+                <div ng-repeat="temp in row.workingAt" ng-if="vm.currentDate>temp.endDate">{{temp.tower}} {{temp.flatNo}}</div>
               </td>
 
             </tr>

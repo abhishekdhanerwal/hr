@@ -92,7 +92,7 @@
                     <wave-spinner ng-show="vm.imageProgress" ></wave-spinner>
 
                     <div flow-init="{singleFile:true}" flow-name="vm.obj.flow"
-                         flow-file-added="!!{jpg:1,jpeg:1}[$file.getExtension()]">
+                         flow-file-added="!!{jpg:1,jpeg:1,png:1}[$file.getExtension()]">
                       <div ng-if="!vm.imageProgress" class="user-image">
                         <div class="thumbnail">
                           <img src="images/default-user.png" alt="" ng-if="!vm.obj.flow.files.length && vm.noImage">
@@ -105,7 +105,7 @@
                                 <i class="fa fa-pencil"></i>
                                 <input type="file" flow-btn/>
                             </span>
-                          <span class="btn btn-danger" ng-click="vm.obj.flow.cancel()">
+                          <span class="btn btn-danger" ng-click="vm.obj.flow.cancel();vm.removeImage()">
                             <i class="fa fa-times"></i>
                           </span>
                           <span class="btn btn-success" ng-click="vm.saveImage()">
@@ -125,7 +125,7 @@
                               <i class="fa fa-pencil"></i>
                               <input type="file" flow-btn/>
                           </span>
-                          <span class="btn btn-danger" ng-click="vm.obj.flow.cancel()">
+                          <span class="btn btn-danger" ng-click="vm.obj.flow.cancel();vm.removeImage()">
                             <i class="fa fa-times"></i>
                           </span>
                           <span class="btn btn-success" ng-click="vm.saveImage()">

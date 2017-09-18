@@ -18,6 +18,7 @@
     vm.clearFlat = clearFlat;
     vm.disableFlat = true;
     vm.showCheckbox = false;
+    vm.showError = false;
 
     function breadcrumbRoute() {
       if(vm.isMeterManagementRole) {
@@ -103,6 +104,7 @@
     };
 
     vm.disableFlatInput = function () {
+      vm.showError = false;
       vm.flatsearch = "";
       visitorFactory.findAllFlats(vm.tower).then(function (response) {
         if (response.status == 200) {
@@ -194,6 +196,7 @@
       var firstError = null;
 
       if (vm.Form.$invalid) {
+          vm.showError = true;
           vm.progress = false;
           validationHelperFactory.manageValidationFailed(vm.Form);
           vm.errorMessage = 'Validation Error';

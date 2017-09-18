@@ -206,6 +206,7 @@
               for (var i = 0; i < vm.flatList.length; i++) {
                 if (vm.flatList[i].flatNo == vm.flatsearch || vm.flatList[i].flatNo == vm.flatsearch.flatNo) {
                   vm.flatNoByTower = vm.flatList[i];
+                  break;
                 }
                 else {
                   vm.flatNoByTower = null;

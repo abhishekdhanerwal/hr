@@ -11,8 +11,6 @@
     var vm = this;
 
     var random = (new Date()).toString();
-    // $localStorage._identity.userDetails.profilePictureUrl = $localStorage._identity.userDetails.profilePictureUrl + "?cb=" + random;
-
 
     activate();
 
@@ -20,8 +18,9 @@
       role.isAdminRole();
       if($localStorage._identity !=null){
         $rootScope.user = $localStorage._identity.principal;
-        // vm.profilePictureUrl = $localStorage._identity.userDetails.profilePictureUrl;
+        vm.profilePicUrl = $localStorage._identity.principal.profilePicUrl;
         vm.roleName = $localStorage._identity.principal.role;
+        console.log($localStorage._identity.principal)
         if(vm.roleName == "ROLE_CONSUMER") {
           vm.roleName = "CONSUMER";
         }
@@ -46,12 +45,12 @@
       }
     };
 
-    // $scope.$on('refreshImage' , function (event , data) {
-    //   $timeout( function(){
-    //     var random = (new Date()).toString();
-    //     vm.profilePictureUrl = data + "?cb=" + random;
-    //   }, 9000);
-    // })
+    $scope.$on('refreshImage' , function (event , data) {
+      $timeout( function(){
+        var random = (new Date()).toString();
+        vm.profilePicUrl = data + "?cb=" + random;
+      }, 9000);
+    })
 
     vm.signout = function() {
       principal.signout();
