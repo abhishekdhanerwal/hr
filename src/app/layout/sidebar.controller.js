@@ -54,7 +54,7 @@
 
     vm.signout = function() {
       principal.signout();
-      $state.go('auth.signin');
+      $state.go('auth.view');
     }
   }
 })();

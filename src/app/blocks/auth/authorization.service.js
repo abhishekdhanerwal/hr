@@ -5,10 +5,10 @@
     .module('blocks.auth')
     .factory('authorization', authorization);
 
-  authorization.$inject = ['$rootScope', '$state', 'principal', 'toaster'];
+  authorization.$inject = ['$rootScope', '$state', 'principal', 'toaster', '$localStorage'];
 
   /* @ngInject */
-  function authorization($rootScope, $state, principal, toaster) {
+  function authorization($rootScope, $state, principal, toaster , $localStorage) {
     var service = {
       authorize: authorize
     };
@@ -17,8 +17,16 @@
     ////////////////
 
     function authorize() {
-      return principal.identity()
-        .then(identityResolved, identityResolvedFailure);
+      console.log('authorize');
+      console.log($localStorage._identity.principal.role)
+      if(_.includes($state.current.data.roles, $localStorage._identity.principal.role)){
+           return true;
+      }
+      else{
+        $state.go('app.notice')
+      }
+      // return principal.identity()
+      //   .then(identityResolved, identityResolvedFailure);
     }
 
     function identityResolved() {
@@ -58,7 +66,7 @@
     function routeToSignin() {
       $rootScope.returnToState = $rootScope.toState;
       $rootScope.returnToStateParams = $rootScope.toStateParams;
-      $state.go('auth.signin');
+      $state.go('auth.view');
     }
   }
 

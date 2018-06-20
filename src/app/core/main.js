@@ -12,9 +12,9 @@ function ($rootScope, $state, $stateParams) {
     // GLOBAL APP SCOPE
     // set below basic information
     $rootScope.app = {
-        name: 'Complaint & Notice', // name of your project
-        author: 'Datiot', // author's name or company name
-        description: 'Complaint & Notice', // brief description
+        name: 'HR', // name of your project
+        author: 'abhishek', // author's name or company name
+        description: 'hr', // brief description
         version: '1.0', // current version
         year: ((new Date()).getFullYear()), // automatic current year (for copyright information)
         isMobile: (function () {// true if the browser is a mobile device
@@ -38,9 +38,9 @@ function ($rootScope, $state, $stateParams) {
     };
     $rootScope.app.layout = angular.copy($rootScope.app.defaultLayout);
     $rootScope.user = {
-        name: 'Peter',
-        job: 'ng-Dev',
-        picture: 'app/img/user/02.jpg'
+        name: 'test',
+        job: 'tset',
+        picture: ''
     };
 }]);
 // translate config

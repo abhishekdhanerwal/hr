@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="HandheldFriendly" content="true" />
     <meta name="apple-touch-fullscreen" content="yes" />
-    <title data-ng-bind="pageTitle()">My Society</title>
+    <title data-ng-bind="pageTitle()">HR</title>
     <!-- Google fonts -->
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <!-- Bootstrap -->
@@ -53,6 +53,8 @@
 
 
     <link rel="stylesheet" href="bower_components/angular-spinkit/build/angular-spinkit.min.css">
+    <link rel="stylesheet" href="bower_components\ng-notify\dist\ng-notify.min.css">
+
 
 
 
@@ -61,7 +63,7 @@
     <link rel="stylesheet" href="css/plugins.css">
 
 
-    <link rel="stylesheet" href="css/smsUi.css">
+    <link rel="stylesheet" href="css/hr.css">
 
     <!-- Packet Theme -->
     <link rel="stylesheet" data-ng-href="css/themes/{{ app.layout.theme }}.css" />
@@ -152,27 +154,22 @@
     <script src="bower_components/ng-table/dist/ng-table.js"></script>
     <script src="bower_components/angular-spinkit/build/angular-spinkit.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components\ng-notify\dist\ng-notify.min.js"></script>
 
     <!-- Packet Scripts -->
     <script src="app/core/app.js"></script>
     <script src="app/core/main.js"></script>
+    <script src="app/core/mainCtrl.js"></script>
     <script src="app/core/config.constant.js"></script>
     <script src="app/core/config.router.js"></script>
 
     <script src="app/app.module.js"></script>
-    <script src="app/complaint/complaint.module.js"></script>
-    <script src="app/notices/notice.module.js"></script>
-    <script src="app/reports/report.module.js"></script>
-    <script src="app/visitors/visitor.module.js"></script>
-    <script src="app/neighbours/neighbour.module.js"></script>
     <script src="app/blocks/auth/auth.module.js"></script>
-    <script src="app/user-menu/user-menu.module.js"></script>
-    <script src="app/user-management/user-module.js"></script>
     <script src="app/layout/layout.module.js"></script>
     <script src="app/admin/admin.module.js"></script>
 
     <!-- Packet Directives -->
-    <script src="js/directives/toggle.js"></script>
+    <!-- <script src="js/directives/toggle.js"></script>
     <script src="js/directives/perfect-scrollbar.js"></script>
     <script src="js/directives/empty-links.js"></script>
     <script src="js/directives/sidebars.js"></script>
@@ -188,17 +185,17 @@
     <script src="js/directives/touchspin.js"></script>
     <script src="js/directives/file-upload.js"></script>
     <script src="js/directives/letter-icon.js"></script>
-    <script src="js/directives/landing-header.js"></script>
+    <script src="js/directives/landing-header.js"></script> -->
     <!-- Packet Controllers -->
-    <script src="js/controllers/mainCtrl.js"></script>
-    <script src="js/controllers/inboxCtrl.js"></script>
-    <script src="js/controllers/bootstrapCtrl.js"></script>
+    
+    <!-- <script src="js/controllers/inboxCtrl.js"></script>
+    <script src="js/controllers/bootstrapCtrl.js"></script> -->
+
+    <script src="app/blocks/auth/auth.controller.js"></script>
+    <script src="app/blocks/auth/signup.controller.js"></script>
 
 
 
-    <script src="app/complaint/complaintList.controller.js"></script>
-    <script src="app/complaint/complaintNew.controller.js"></script>
-    <script src="app/complaint/complaintEdit.controller.js"></script>
     <script src="app/admin/society/society.controller.js"></script>
     <script src="app/admin/society/societyList.controller.js"></script>
     <script src="app/admin/society/societyEdit.controller.js"></script>
@@ -209,42 +206,18 @@
     <script src="app/admin/household/helperNew.controller.js"></script>
     <script src="app/admin/household/helperList.controller.js"></script>
     <script src="app/admin/household/helperEdit.controller.js"></script>
-    <script src="app/neighbours/neighbour.controller.js"></script>
-    <script src="app/notices/noticeList.controller.js"></script>
-    <script src="app/notices/noticeNew.controller.js"></script>
-    <script src="app/notices/noticeEdit.controller.js"></script>
-    <script src="app/notices/notice.service.js"></script>
-    <script src="app/reports/complaint-report/complaintReport.controller.js"></script>
+
     <script src="app/blocks/auth/signin.controller.js"></script>
     <script src="app/blocks/auth/signout.controller.js"></script>
     <script src="app/blocks/auth/forgot.controller.js"></script>
+    <script src="app\blocks\company\companyLayout.controller.js"></script>
+    <script src="app\blocks\company\companyDetails.controller.js"></script>
     <script src="app/layout/sidebar.controller.js"></script>
     <script src="app/layout/nav.controller.js"></script>
-    <script src="app/user-menu/user-profile.controller.js"></script>
-    <script src="app/user-management/user-controller.js"></script>
-    <script src="app/user-management/userList.controller.js"></script>
-    <script src="app/user-management/userEdit.controller.js"></script>
-    <script src="app/user-menu/changePassword.controller.js"></script>
-    <script src="app/reports/complaint-report/complaintReport.controller.js"></script>
-    <script src="app/reports/helper-report/helperReport.controller.js"></script>
-    <script src="app/reports/helper-report/flatHelperReport.controller.js"></script>
-    <script src="app/reports/visitor-report/societyVisitorReport.controller.js"></script>
-    <script src="app/reports/visitor-report/flatVisitorReport.controller.js"></script>
-    <script src="app/visitors/visitorNew.controller.js"></script>
-    <script src="app/visitors/visitorList.controller.js"></script>
-    <script src="app/visitors/visitorEdit.controller.js"></script>
-    <script src="app/complaint/complaint.service.js"></script>
-    <script src="app/reports/complaint-report/complaintReport.service.js"></script>
-    <script src="app/reports/helper-report/helperReport.service.js"></script>
-    <script src="app/reports/visitor-report/visitorReport.service.js"></script>
+    
     <script src="app/admin/society/society.service.js"></script>
     <script src="app/admin/flat/flat.service.js"></script>
     <script src="app/admin/household/helper.service.js"></script>
-    <script src="app/neighbours/neighbour.service.js"></script>
-    <script src="app/user-menu/user-profile.service.js"></script>
-    <script src="app/user-management/user-service.js"></script>
-    <script src="app/visitors/visitor.service.js"></script>
-    <script src="app/user-menu/changePassword.service.js"></script>
     <script src="app/blocks/auth/principal.service.js"></script>
     <script src="app/blocks/auth/authorization.service.js"></script>
     <script src="app/blocks/auth/role.service.js"></script>

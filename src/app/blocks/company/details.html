@@ -1,0 +1,63 @@
+<div class="container">
+
+        <div class="col-lg-6 margin-top-15">
+            <div class="row margin-top-15">
+    
+        <div class="row jumbotron margin-top-15">
+            <div class="row">
+                <h2><strong>Lets create an onboarding process to be proud of</strong></h1>
+                <!-- <h7>Lets get started</h4> -->
+            </div><br>
+            <div class="row margin-top-25">
+                <h4>Add some  basic company info to help new starters settle in</h4>
+            </div>
+            <div class="row margin-top-25 pull-left">
+                    <ng-form name="vm.Form" role="Form" id="Form" novalidate>
+                            <div class="row">
+                                
+                                <div class="col-md-12">
+                                
+                                   <div class="form-group"
+                                        ng-class="{'has-error':vm.Form.companyName.$dirty && vm.Form.companyName.$invalid, 'has-success':vm.Form.companyName.$valid}">
+                                     <label class="control-label"><span translate="auth.signUp.COMPANYNAME.NAME"> Company Name </span> <span class="symbol required"></span> </label>
+                                     <input type="text" placeholder="Enter company name" class="form-control" name="companyName"
+                                            ng-model="vm.user.companyName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                                     <span class="error text-small block" ng-if="vm.Form.companyName.$error.pattern">Invalid characters</span>
+                                     <span class="error text-small block" ng-if="vm.Form.companyName.$dirty && vm.Form.companyName.$error.required">Company name is required</span>
+                                     <span class="error text-small block"
+                                           ng-show="vm.Form.companyName.$invalid && vm.Form.companyName.$error.maxlength">Company name should be less than 30 characters</span>
+                                   </div>
+
+                                   <div class="form-group"
+                                        ng-class="{'has-error':vm.Form.companyName.$dirty && vm.Form.companyName.$invalid, 'has-success':vm.Form.companyName.$valid}">
+                                     <label class="control-label"><span translate="auth.signUp.COMPANYNAME.NAME"> Company Name </span> <span class="symbol required"></span> </label>
+                                     <input type="text" placeholder="Enter company name" class="form-control" name="companyName"
+                                            ng-model="vm.user.companyName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                                     <span class="error text-small block" ng-if="vm.Form.companyName.$error.pattern">Invalid characters</span>
+                                     <span class="error text-small block" ng-if="vm.Form.companyName.$dirty && vm.Form.companyName.$error.required">Company name is required</span>
+                                     <span class="error text-small block"
+                                           ng-show="vm.Form.companyName.$invalid && vm.Form.companyName.$error.maxlength">Company name should be less than 30 characters</span>
+                                   </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                        <div class="form-actions">
+                                                <button type="submit" class="btn btn-red btn-block" ng-click="vm.detailsSubmit()"  ui-sref="company.teams">
+                                                    Next
+                                                </button>                    
+                                        </div>
+                                </div>
+                            </div>
+                            
+                        </ng-form>
+            </div>
+            
+        </div>
+    
+    </div>
+    
+    </div>
+    
+    </div>

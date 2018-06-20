@@ -1,5 +1,91 @@
 {
-    "flagstyle": "flag-icon-us",
+    "flagstyle": "flag-icon-gb",
+    "language":{
+        "ENGLISH":"ENGLISH",
+        "ARABIC":"ARABIC"
+    },
+    "auth":{
+        "navBar":{
+            "PRODUCT":"Product",
+            "FEATURES":"Features",
+            "PRICING":"Pricing",
+            "GDPR":"GDPR",
+            "LOGIN":"Log In",
+            "SIGNUP":"Sign Up"
+        },
+        "signUp":{
+            "HEADING":"Create Your Account",
+            "FIRSTNAME":{
+                "NAME":"First Name",
+                "PLACEHOLDER":"Enter first name",
+                "REQUIRED":"First name is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"First name should be less than 30 characters"
+            },
+            "LASTNAME":{
+                "NAME":"Last Name",
+                "PLACEHOLDER":"Enter last name",
+                "REQUIRED":"Last name is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"Last name should be less than 30 characters"
+            },
+            "EMAIL":{
+                "NAME":"Email",
+                "PLACEHOLDER":"Enter a valid e-mail",
+                "REQUIRED":"Email is required",
+                "INVALID":"Please Enter a valid email address"
+            },
+            "PASSWORD":{
+                "NAME":"Password",
+                "PLACEHOLDER":"Enter password",
+                "REQUIRED":"Password is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"Password should be less than 30 characters"
+            },
+            "COMPANYNAME":{
+                "NAME":"Company Name",
+                "PLACEHOLDER":"Enter company name",
+                "REQUIRED":"Company name is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"Company name should be less than 30 characters"
+            },
+            "SIGNUP":"Sign Up"
+        },
+        "signIn":{
+            "HEADING":"Enter Your Domain",
+            "COMPANYNAME":{
+                "NAME":"Company Name",
+                "PLACEHOLDER":"Enter company name",
+                "REQUIRED":"Company name is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"Company name should be less than 30 characters"
+            },
+            "EMAIL":{
+                "NAME":"Email",
+                "PLACEHOLDER":"Enter a valid e-mail",
+                "REQUIRED":"Email is required",
+                "INVALID":"Please Enter a valid email address"
+            },
+            "PASSWORD":{
+                "NAME":"Password",
+                "PLACEHOLDER":"Enter password",
+                "REQUIRED":"Password is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"Password should be less than 30 characters"
+            },            
+            "SIGNIN":"Continue",
+            "COMPLETE":"Sign In"
+        }
+    },
+    "company":{
+        "goals":{
+            "HEADING":"Welcome to HR",
+            "SUBHEADING":"What's your goal ?",
+            "FIRSTGOAL":"Automate Holiday Booking",
+            "SECONDGOAL":"Streamline New Hire Onboarding",
+            "THIRDGOAL":"Organise my team's Information"
+        }
+    },
     "dashboard": {
         "WELCOME": "Welcome to {{appName}}"
     },

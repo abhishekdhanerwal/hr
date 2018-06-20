@@ -1,56 +1,54 @@
-<toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
-
-
 <!-- start: LOGIN -->
 <div class="row">
-  <div
-    class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5">
-    <!--<div class="logo text-center">-->
-      <!--<img src="/images/logo-big.png" alt="{{app.name}}" class="img-responsive"/>-->
-    <!--</div>-->
-    <!--<p class="text-center text-dark text-bold text-extra-large margin-top-15">-->
-      <!--Welcome to Datiot-->
-    <!--</p>-->
-    <br><p class="text-center">
-      Please enter your Username and password to log in.
-    </p>
-    <!-- start: LOGIN BOX -->
-    <div class="box-login">
-      <form  name="vm.Form" role="Form" id="Form"  ng-submit="">
-        <div class="form-group"  ng-class="{'has-error':vm.Form.username.$dirty && vm.Form.username.$invalid, 'has-success':vm.Form.username.$valid}">
-          <input type="text" ng-pattern="/^[1-9][0-9]*$/" ng-maxlength="10" ng-minlength="10" class="form-control" name="username" placeholder="Username" ng-model="vm.user">
-          <span class="error text-small block"
-                ng-if="vm.Form.username.$error.pattern">Invalid Characters</span>
-          <span class="error text-small block" ng-if="vm.Form.username.$error.maxlength && !vm.Form.username.$error.pattern">Mobile Number should be of ten characters only</span>
-          <span class="error text-small block" ng-if="vm.Form.username.$error.minlength && !vm.Form.username.$error.pattern">Mobile Number should be of ten characters</span>
+        <div class="margin-top-15 main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+            
+            <div class="panel margin-top-15 panel-white">
+                <div class="panel-heading panel-primary text-center">
+                    <h4 class="panel-title" translate="auth.signIn.HEADING">Enter Your Domain</h4>
+                </div>
+                <div class="panel-body" style="background-color: lightgray">
+                    <div class="col-md-12">
+                        <div class="box-login">
+                            <ng-form name="vm.FormDomain" role="Form" id="Form" novalidate>
+                                <div class="row">
+                                    
+                                    <div class="col-md-12">
+                                    
+                                       <div class="form-group"
+                                            ng-class="{'has-error':vm.FormDomain.companyName.$dirty && vm.FormDomain.companyName.$invalid, 'has-success':vm.FormDomain.companyName.$valid}">
+                                         <label class="control-label" translate="auth.signIn.COMPANYNAME.NAME">Company Name </label> <span class="symbol required"></span>
+                                         <input type="text" placeholder="{{'auth.signIn.COMPANYNAME.PLACEHOLDER' | translate }}" class="form-control" name="companyName"
+                                                ng-model="vm.user.companyName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                                         <span class="error text-small block" ng-if="vm.FormDomain.companyName.$error.pattern" translate="auth.signIn.COMPANYNAME.INVALID">Invalid characters</span>
+                                         <span class="error text-small block" ng-if="vm.FormDomain.companyName.$dirty && vm.FormDomain.companyName.$error.required" translate="auth.signIn.COMPANYNAME.REQUIRED">Company name is required</span>
+                                         <span class="error text-small block"
+                                               ng-show="vm.FormDomain.companyName.$invalid && vm.FormDomain.companyName.$error.maxlength" translate="auth.signIn.COMPANYNAME.LENGTH">Company name should be less than 30 characters</span>
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-md-offset-4">
+                                            <div class="form-actions">
+                                                    <button type="submit" class="btn btn-red btn-block" translate="auth.signIn.SIGNIN" ng-click="vm.continue()">
+                                                        Continue
+                                                    </button>                    
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                            </ng-form>
+                            <!-- start: COPYRIGHT -->
+                            <!-- <div class="copyright">
+                                {{app.year}} &copy; {{ app.name }} by {{ app.author }}.
+                            </div> -->
+                            <!-- end: COPYRIGHT -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
         </div>
-        <div class="form-group form-actions">
-
-          <input type="password" class="form-control password" name="password" placeholder="Password"
-                 ng-model="vm.password">
-
-        </div>
-        <div class="text-center">
-          <a ui-sref="auth.forgot"> Forgot Password </a>
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="btn btn-success btn-block" ng-click="vm.signin()">
-            Login
-          </button>
-
-          <!--<div class="checkbox clip-check check-primary">-->
-            <!--<input type="checkbox" id="remember" value="1" ng-model="vm.rememberMe">-->
-            <!--<label for="remember"> Keep me signed in </label>-->
-          <!--</div>-->
-        </div>
-      </form>
-      <!-- start: COPYRIGHT -->
-      <div class="copyright">
-        {{app.year}} &copy; {{ app.name }} by {{ app.author }}.
-      </div>
-      <!-- end: COPYRIGHT -->
     </div>
-    <!-- end: LOGIN BOX -->
-  </div>
-</div>
-<!-- end: LOGIN -->
+    <!-- end: LOGIN -->
+    

@@ -1,5 +1,91 @@
 {
-    "flagstyle": "flag-icon-it",
+    "flagstyle": "flag-icon-ae",
+    "language":{
+        "ENGLISH":"الإنجليزية",
+        "ARABIC":"عربى"
+    },
+    "auth":{
+        "navBar":{
+            "PRODUCT":"ProductAr",
+            "FEATURES":"FeaturesAr",
+            "PRICING":"PricingAr",
+            "GDPR":"GDPRAr",
+            "LOGIN":"Log InAr",
+            "SIGNUP":"Sign UpAr"
+        },
+        "signUp":{
+            "HEADING":"CreateAr YouAr AccountAr",
+            "FIRSTNAME":{
+                "NAME":"FirstAr NameAr",
+                "PLACEHOLDER":"EnteArr firstAr nameAr",
+                "REQUIRED":"FirstAr nameAr isAr requiredAr",
+                "INVALID":"InvalidAr charactersAr",
+                "LENGTH":"FirsArt nameAr shouldAr beAr lessAr thanAr 30Ar charactersAr"
+            },
+            "LASTNAME":{
+                "NAME":"LastAr NameAr",
+                "PLACEHOLDER":"EnteArr lastAr nameAr",
+                "REQUIRED":"LastAr nameAr isAr requiredAr",
+                "INVALID":"InvalidAr charactersAr",
+                "LENGTH":"LastAr nameAr shouldAr beAr lessAr thanAr 30Ar charactersAr"
+            },
+            "EMAIL":{
+                "NAME":"EmailAr",
+                "PLACEHOLDER":"EnteArrAr aAr validAr e-mailAr",
+                "REQUIRED":"EmaiArl is requiredAr",
+                "INVALID":"PleaseAr EnterAr aAr valiArd emailAr addressAr"
+            },
+            "PASSWORD":{
+                "NAME":"PasswordAr",
+                "PLACEHOLDER":"EnteArr passworArd",
+                "REQUIRED":"PasswordAr is requiredAr",
+                "INVALID":"InvalidAr charactersAr",
+                "LENGTH":"PasswordAr should Arbe lesArs than 30 Archaracters"
+            },
+            "COMPANYNAME":{
+                "NAME":"CompanyAr NameAr",
+                "PLACEHOLDER":"EnterAr companyAr nameAr",
+                "REQUIRED":"CompanyAr namAre iArs requiredv",
+                "INVALID":"InvaliArd Archaracters",
+                "LENGTH":"CompanyAr namAre shouldAr bAre less tArhan 30Ar charactersAr"
+            },
+            "SIGNUP":"SignAr UpAr"
+        },
+        "signIn":{
+            "HEADING":"EnterAr YourAr DomainAr",
+            "COMPANYNAME":{
+                "NAME":"CompanyAr NameAr",
+                "PLACEHOLDER":"EnterAr companyAr nameAr",
+                "REQUIRED":"CompanyAr nameAr isAr requiredAr",
+                "INVALID":"InvalidAr charactersAr",
+                "LENGTH":"CompanyAr nameAr shouldAr beAr lessAr thanAr 30Ar charactersAr"
+            },
+            "EMAIL":{
+                "NAME":"EmailAr",
+                "PLACEHOLDER":"EnterAr aAr validAr e-mailAr",
+                "REQUIRED":"EmaiArl Aris requiredAr",
+                "INVALID":"PleaseAr EnterAr a valid Aremail addresvs"
+            },
+            "PASSWORD":{
+                "NAME":"PasswordAr",
+                "PLACEHOLDER":"EnterAr passwordAr",
+                "REQUIRED":"Password Aris requiredAr",
+                "INVALID":"InvalidAr cArharacters",
+                "LENGTH":"PasswordAr shouldAr be lessAr than 30Ar charactersAr"
+            },            
+            "SIGNIN":"ContinueAr",
+            "COMPLETE":"SignAr InAr"
+        }
+    },
+    "company":{
+        "goals":{
+            "HEADING":"WelcomeAr toAr HRAr",
+            "SUBHEADING":"What'sAr yourAr goalAr ?",
+            "FIRSTGOAL":"AutomateAr HolidayAr BookingAr",
+            "SECONDGOAL":"StreamlineAr NewAr HireAr OnboardingAr",
+            "THIRDGOAL":"OrganiseAr myAr team'sAr InformationAr"
+        }
+    },
     "dashboard": {
         "WELCOME": "Benvenuto in {{appName}}"
     },

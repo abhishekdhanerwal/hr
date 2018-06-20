@@ -1,0 +1,84 @@
+<!-- start: TOP NAVBAR -->
+<div class="company-details-header">
+
+    <header class="navbar navbar-default navbar-static-top hidden-print navbar-header">
+        <div class="">
+            <div class="row">
+               <div class="col-md-2">
+                <div class="navbar-brand margin-top-5" ui-sref="auth.view">
+                  <img class="img-responsive" src="../../images/logo.png">
+                </div>
+            </div>
+          
+            
+                <div class="col-md-8">
+                        <div id="wizard" class="swMain">
+                            <!-- start: WIZARD SEPS -->
+                            <ul>
+                                <li>
+                                    <a class={{vm.goalsSelected}}>
+                                        <div class="stepNumber">
+                                            1
+                                        </div> <span class="stepDesc text-small"> Goals </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class={{vm.detailsSelected}}>
+                                        <div class="stepNumber">
+                                            2
+                                        </div> <span class="stepDesc text-small"> Details </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class={{vm.teamsSelected}}>
+                                        <div class="stepNumber">
+                                            3
+                                        </div> <span class="stepDesc text-small"> Teams </span>
+                                    </a>
+                                </li>
+                                <li >
+                                    <a class={{vm.slidesSelected}}>
+                                        <div class="stepNumber">
+                                            4
+                                        </div> <span class="stepDesc text-small"> Slides </span>
+                                    </a>
+                                </li>
+                                <li >
+                                        <a class={{vm.membersSelected}}>
+                                            <div class="stepNumber">
+                                                5
+                                            </div> <span class="stepDesc text-small"> Members </span>
+                                        </a>
+                                    </li>
+
+                                    
+                            </ul>
+                            <!-- end: WIZARD SEPS -->
+
+                            
+                        </div>
+        </div>
+        <div class="col-md-2">
+                <ul class="nav margin-top-10">
+                <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+                        <a href class="dropdown-toggle" uib-dropdown-toggle>
+                          <i class="flag-icon" ng-class="'flagstyle'| translate"></i>
+                          <span>&nbsp;{{language.selected}}</span>
+                        </a>
+                        <ul role="menu" class="dropdown-menu dropdown-light animated fadeInUpShort ">
+                          <li ng-repeat="(localeId, langName) in language.available">
+                            <a ng-click="language.set(localeId, $event)" href="javascript:void(0)" class="menu-toggler"> {{langName}} </a>
+                          </li>
+                        </ul>
+                      </li>
+                      </ul>
+        </div>
+            </div>
+           
+        </div>
+          
+          </header>
+          </div>
+          <!-- end: HORIZONTAL MENU -->
+
+          <div ui-view class="fade-in-left-big smooth"></div>

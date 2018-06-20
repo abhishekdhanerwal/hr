@@ -5,57 +5,42 @@
     .module('blocks.auth')
     .controller('SigninController', SigninController);
 
-  SigninController.$inject = ['$scope', '$state', 'principal', 'toaster', '$localStorage', '$timeout', 'role'];
+  SigninController.$inject = ['$scope', '$state', 'validationHelperFactory', 'toaster', '$localStorage', '$timeout', 'ngNotify'];
   /* @ngInject */
-  function SigninController($scope, $state, principal, toaster, $localStorage, $timeout, role) {
+  function SigninController($scope, $state, validationHelperFactory, toaster, $localStorage, $timeout, ngNotify) {
     var vm = this;
-    vm.signin = signin;
 
-    function signin() {
-
-      principal.signin(vm.user, vm.password).then(function (user) {
-
-        vm.isAdminRole = role.isAdminRole();
-        vm.isSuperAdminRole = role.isSuperAdminRole();
-        vm.isConsumerRole = role.isConsumerRole();
-        vm.isManagementRole = role.isManagementRole();
-        vm.isCreatorRole = role.isCreatorRole();
-        vm.isMeterManagementRole = role.isMeterManagementRole();
-        vm.isVisitorAdminRole = role.isVisitorAdminRole();
-
-        if(vm.isMeterManagementRole) {
-          $state.go('app.complaint')
-        }
-        else if(vm.isCreatorRole || vm.isSuperAdminRole){
-          $state.go('app.society')
-        }
-        else if(vm.isVisitorAdminRole){
-          $state.go('app.visitor')
-        }
-        else{
-          $state.go('app.notice')
-        }
-        }, function () {
-          if(vm.user=="" && vm.password!="")
-          {
-            toaster.error("Username is required");
-          }
-          else if(vm.password==""&& vm.user!="")
-          {
-            toaster.error("Password is required");
-          }
-          else if(vm.user=="" && vm.password=="")
-          {
-            toaster.error("Username and password are required");
-          }
-          else {
-            toaster.error("Please enter valid credentials");
-          }
-          console.log(vm.user)
-          console.log(vm.password)
-        });
+    vm.continue = function(){
+      if(vm.FormDomain.$invalid){
+        validationHelperFactory.manageValidationFailed(vm.FormDomain);
+        ngNotify.set('Oops !! You can not proceed without Company Name', {
+          type: 'error',
+          duration: 3000
+      })
+        return;
+      }else {
+        $state.go('auth.validate');
       }
+    }
 
+    vm.signin = function(){
+      if(vm.validateForm.$invalid){
+        validationHelperFactory.manageValidationFailed(vm.validateForm);
+        if(vm.validateForm.email.$invalid && vm.validateForm.password.$invalid)
+          vm.msg = "Email & Password are not correct ";
+        else if(vm.validateForm.email.$invalid && !vm.validateForm.password.$invalid)
+          vm.msg =  "Email is not correct ";
+        else 
+          vm.msg =  "Password is not correct ";
+        ngNotify.set(vm.msg, {
+          type: 'error',
+          duration: 3000
+      })
+        return;
+      } else {
+
+      }
+    }
 
     activate();
 

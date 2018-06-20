@@ -1,9 +1,9 @@
 {
-  "name": "Packet",
-  "description": "Starter Kit for Packet layout 6 projects",
+  "name": "hr",
+  "description": "hr",
   "main": "src/index.html",
   "authors": [
-    "parminder@datiot.com"
+    "Abhishek"
   ],
   "ignore": [
     "**/.*",

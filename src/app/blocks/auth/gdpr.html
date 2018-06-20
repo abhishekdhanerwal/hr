@@ -1,0 +1,34 @@
+<!-- start: BAR CHART -->
+<div class="container-fluid container-fullw">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-white">
+                    <div class="panel-body">
+                        <h5 class="over-title margin-bottom-15">Bar <span class="text-bold">Chart</span></h5>
+                        <div class="row">
+                            <!-- /// controller:  'ChartCtrl2' -  localtion: assets/js/controllers/chartsCtrl.js /// -->
+                            <div>
+                                <div class="col-sm-6">
+                                    <p class="margin-bottom-20">
+                                        A bar chart is a way of showing data as bars.
+                                        It is sometimes used to show trend data, and the comparison of multiple data sets side by side.
+                                    </p>
+                                    <p>
+                                        The bar chart has the a very similar data structure to the line chart, and has an array of datasets, each with colours and an array of data. Again, colours are in CSS format.
+                                        We have an array of labels too for display. In the example, we are showing the same data as the previous line chart example.
+                                    </p>
+                                    <p>
+                                        The label key on each dataset is optional, and can be used when generating a scale for the chart.
+                                    </p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <canvas class="chart chart-bar" chart-data="data" chart-options="options" chart-labels="labels" chart-series="series" chart-colours="colors" chart-legend="true"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end: BAR CHART -->
