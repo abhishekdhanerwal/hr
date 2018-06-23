@@ -1,3 +1,4 @@
+
 (function () {
   'use strict';
 
@@ -22,10 +23,30 @@
       isInRole: isInRole,
 
       signin: signin,
-      signout: signout
+      signout: signout,
+
+      signup:signup
 
     };
     return service;
+
+    function signup(user){
+      var promise = $http.post('http://18.130.41.111:8082/%7Btenant%7D/api/unauth/v1/account' ,user)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+      // var deferred = $q.defer();
+      // $http.post('http://18.130.41.111:8082/%7Btenant%7D/api/unauth/v1/account' ,user ).then(function(response){
+      //   deferred.resolve(response)
+      // }, function(error){
+      //   deferred.reject(error);
+      // })
+    }
 
     function identity(force) {
       var deferred = $q.defer();

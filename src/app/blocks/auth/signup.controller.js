@@ -5,9 +5,9 @@
       .module('blocks.auth')
       .controller('SignupController', SignupController);
   
-      SignupController.$inject = ['$scope', '$state', 'validationHelperFactory', 'ngNotify', '$localStorage', '$timeout'];
+      SignupController.$inject = ['$scope', '$state', 'validationHelperFactory', 'ngNotify', '$localStorage', '$timeout', 'principal'];
     /* @ngInject */
-    function SignupController($scope, $state, validationHelperFactory, ngNotify, $localStorage, $timeout) {
+    function SignupController($scope, $state, validationHelperFactory, ngNotify, $localStorage, $timeout , principal) {
       var vm = this;
       vm.hideSignUp = false;
   
@@ -28,7 +28,14 @@
             return;
         }
         else {
-            $state.go('company.goal');
+          console.log(vm.user)
+          principal.signup(vm.user).then(function(result){
+                console.log(result)
+                $state.go('company.goal');
+          }, function(error){
+            console.log(error)
+
+          })
         }
       }
     }

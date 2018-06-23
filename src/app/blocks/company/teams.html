@@ -5,70 +5,77 @@
     
         <div class="row jumbotron margin-top-15">
             <div class="row">
-                <h2><strong>Introduce your new starter to the rest of their team</strong></h1>
+                <h2 translate="company.teams.HEADING"><strong>Introduce your new starter to the rest of their team</strong></h1>
                 <!-- <h7>Lets get started</h4> -->
             </div><br>
             <div class="row margin-top-25">
-                <h4>Make it easier for new joiners</h4>
+                <h4 translate="company.teams.SUBHEADING">Make it easier for new joiners</h4>
             </div>
             <div class="row margin-top-25 pull-left">
                     <div class="panel-heading">
-                            <h5 class="panel-title">Select teams to create :</h5>
+                            <h5 class="panel-title" translate="company.teams.TICKBOXHEAD">Select teams to create :</h5>
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="checkbox clip-check check-primary checkbox-inline">
-                                        <input type="checkbox" id="checkbox10" value="1" checked="">
+                                        <input type="checkbox" id="checkbox10" ng-model="vm.team.marketing" value="true" ng-checked="false">
                                         <label for="checkbox10">
-                                            Checkbox 1
+                                            <span translate="company.teams.MARKETING"> MARKETING </span>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="checkbox clip-check check-success checkbox-inline">
-                                        <input type="checkbox" id="checkbox11" value="1" checked="">
+                                        <input type="checkbox" id="checkbox11" ng-model="vm.team.sales" value="true" ng-checked="false">
                                         <label for="checkbox11">
-                                            Checkbox 2
+                                            <span translate="company.teams.SALES"> SALES </span>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="checkbox clip-check check-warning checkbox-inline">
-                                        <input type="checkbox" id="checkbox12" value="1" checked="">
+                                        <input type="checkbox" id="checkbox12" ng-model="vm.team.development" value="true" ng-checked="false">
                                         <label for="checkbox12">
-                                            Checkbox 3
+                                            <span translate="company.teams.DEVELOPMENT"> DEVELOPMENT </span>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="checkbox clip-check check-danger checkbox-inline">
-                                        <input type="checkbox" id="checkbox13" value="1" checked="">
+                                        <input type="checkbox" id="checkbox13" ng-model="vm.team.operations" value="true" ng-checked="false">
                                         <label for="checkbox13">
-                                            Checkbox 4
+                                            <span translate="company.teams.OPERATIONS"> OPERATIONS </span>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="checkbox clip-check check-info checkbox-inline">
-                                        <input type="checkbox" id="checkbox14" value="1" checked="">
+                                        <input type="checkbox" id="checkbox14" ng-model="vm.team.finance" value="true" ng-checked="false">
                                         <label for="checkbox14">
-                                            Checkbox 5
+                                            <span translate="company.teams.FINANCE"> FINANCE </span>
                                         </label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="checkbox clip-check check-purple checkbox-inline">
-                                        <input type="checkbox" id="checkbox15" value="1" checked="">
-                                        <label for="checkbox15">
-                                            Checkbox 6
-                                        </label>
+                                <div ng-if="vm.newTeamName.length > 0">
+                                    <div class="row" ng-repeat="team in vm.newTeamName">
+                                        <div class="checkbox clip-check check-info checkbox-inline">
+                                            <input type="checkbox" id="{{team}}" ng-model="vm.team[team]" value="true" ng-checked="false">
+                                            <label for="{{team}}">
+                                                 {{team}} <span><i ng-click="vm.removeNewTeam(team)" style="color:red" class="glyphicon glyphicon-trash"></i></span>
+                                            </label>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <button type="button" class="btn btn-o btn-wide btn-default" ng-click="vm.addTeamBox()">
+                                        <i class="glyphicon glyphicon-plus"></i> <span translate="company.teams.ADDBUTTON">Add Team</span> 
+                                    </button>
                                 </div>
             </div>
             <div class="row">
                     <div class="col-md-8">
                             <div class="form-actions">
-                                    <button type="submit" class="btn btn-red btn-block"  ui-sref="company.slides">
+                                    <button type="submit" class="btn btn-red btn-block" translate="company.teams.NEXT"  ng-click="vm.teamDetailsNext()">
                                         Next
                                     </button>                    
                             </div>
@@ -82,3 +89,28 @@
     </div>
     
     </div>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" translate="company.teams.MODALADDTEAM.HEADING">Team Name</h3>
+        </div>
+        <div class="modal-body">
+            <ng-form name="vm.Form" role="Form" id="Form" novalidate>                   
+                    
+                       <div class="form-group"
+                            ng-class="{'has-error':vm.Form.teamName.$dirty && vm.Form.teamName.$invalid, 'has-success':vm.Form.teamName.$valid}">
+                         <input type="text" placeholder="{{'company.teams.MODALADDTEAM.PLACEHOLDER' | translate }}" class="form-control" name="teamName"
+                                ng-model="teamName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="10" required/>
+                         <span class="error text-small block" ng-if="vm.Form.teamName.$error.pattern" translate="company.teams.MODALADDTEAM.INVALID">Invalid characters</span>
+                         <span class="error text-small block" ng-if="vm.Form.teamName.$dirty && vm.Form.teamName.$error.required" translate="company.teams.MODALADDTEAM.REQUIRED">Company name is required</span>
+                         <span class="error text-small block"
+                               ng-show="vm.Form.teamName.$invalid && vm.Form.teamName.$error.maxlength" translate="company.teams.MODALADDTEAM.LENGTH">Company name should be less than 10 characters</span>
+                       </div>
+
+                    </ng-form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-disabled="vm.Form.$invalid" translate="company.teams.MODALADDTEAM.OKBTN" ng-click="ok()">OK</button>
+            <button class="btn btn-primary btn-o" translate="company.teams.MODALADDTEAM.CANBTN" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>

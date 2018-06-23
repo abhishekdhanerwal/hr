@@ -84,6 +84,80 @@
             "FIRSTGOAL":"Automate Holiday Booking",
             "SECONDGOAL":"Streamline New Hire Onboarding",
             "THIRDGOAL":"Organise my team's Information"
+        },
+        "details":{
+            "HEADING":"Lets create an onboarding process to be proud of",
+            "SUBHEADING":"Add some  basic company info to help new starters settle in",
+            "COMPANYNAME":{
+                "NAME":"Company Name",
+                "PLACEHOLDER":"Enter company name",
+                "REQUIRED":"Company name is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"Company name should be less than 30 characters"
+            },
+            "COMPANYSIZE":{
+                "NAME":"Company Size",
+                "PLACEHOLDER":"Select size of company",
+                "REQUIRED":"Company size is required",
+                "DROPDOWNONE":"1 - 50",
+                "DROPDOWNTWO":"50 - 100",
+                "DROPDOWNTHREE":"More than 100"
+            },
+            "NEXT":"Next"
+        },
+        "teams":{
+            "HEADING":"Introduce your new starter to the rest of their team",
+            "SUBHEADING":"Make it easier for new joiners",
+            "TICKBOXHEAD":"Select teams to create :",
+            "MARKETING":"Marketing",
+            "SALES":"Sales",
+            "DEVELOPMENT":"Development",
+            "OPERATIONS":"Operations",
+            "FINANCE":"Finance",
+            "ADDBUTTON":"Add Team" ,
+            "NEXT":"Next",
+            "MODALADDTEAM":{
+                "HEADING":"Team Name",
+                "PLACEHOLDER":"Enter team name",
+                "REQUIRED":"Team name is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"Team name should be less than 10 characters",
+                "OKBTN":"OK",
+                "CANBTN":"Cancel"
+            }              
+        },
+        "members":{
+            "HEADING":"Invite others to test with you",
+            "SUBHEADING":"The best way to see how we help you streamline new hire onboarding is to test with two or three colleagues. Invite atleast one person to get started.",
+            "MESSAGE":"you're already onboard !",
+            "FORMHEADING":"Invite  some coworkers to help you test :",
+            "FIRSTNAME":{
+                "NAME":"First Name",
+                "PLACEHOLDER":"Enter first name",
+                "REQUIRED":"First name is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"First name should be less than 30 characters"
+            },
+            "LASTNAME":{
+                "NAME":"Last Name",
+                "PLACEHOLDER":"Enter last name",
+                "REQUIRED":"Last name is required",
+                "INVALID":"Invalid characters",
+                "LENGTH":"Last name should be less than 30 characters"
+            },
+            "EMAIL":{
+                "NAME":"Email",
+                "PLACEHOLDER":"Enter a valid e-mail",
+                "REQUIRED":"Email is required",
+                "INVALID":"Please Enter a valid email address"
+            },
+            "INVITEMESSAGE":{
+                "NAME":"Invite Message (Optional)",
+                "PLACEHOLDER":"Write a message",
+                "INVALID":"Please Enter a valid message"
+            },
+            "MOREBUTTON":"Invite Another Coworker",
+            "GETSTARTED":"Start Working"
         }
     },
     "dashboard": {

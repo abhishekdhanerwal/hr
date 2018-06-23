@@ -5,11 +5,11 @@
     
         <div class="row jumbotron margin-top-15">
             <div class="row">
-                <h2><strong>Lets create an onboarding process to be proud of</strong></h1>
+                <h2 translate="company.details.HEADING"><strong>Lets create an onboarding process to be proud of</strong></h1>
                 <!-- <h7>Lets get started</h4> -->
             </div><br>
             <div class="row margin-top-25">
-                <h4>Add some  basic company info to help new starters settle in</h4>
+                <h4 translate="company.details.SUBHEADING">Add some  basic company info to help new starters settle in</h4>
             </div>
             <div class="row margin-top-25 pull-left">
                     <ng-form name="vm.Form" role="Form" id="Form" novalidate>
@@ -19,24 +19,27 @@
                                 
                                    <div class="form-group"
                                         ng-class="{'has-error':vm.Form.companyName.$dirty && vm.Form.companyName.$invalid, 'has-success':vm.Form.companyName.$valid}">
-                                     <label class="control-label"><span translate="auth.signUp.COMPANYNAME.NAME"> Company Name </span> <span class="symbol required"></span> </label>
-                                     <input type="text" placeholder="Enter company name" class="form-control" name="companyName"
-                                            ng-model="vm.user.companyName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
-                                     <span class="error text-small block" ng-if="vm.Form.companyName.$error.pattern">Invalid characters</span>
-                                     <span class="error text-small block" ng-if="vm.Form.companyName.$dirty && vm.Form.companyName.$error.required">Company name is required</span>
+                                     <label class="control-label"><span translate="company.details.COMPANYNAME.NAME"> Company Name </span> <span class="symbol required"></span> </label>
+                                     <input type="text" placeholder="{{'company.details.COMPANYNAME.PLACEHOLDER' | translate }}" class="form-control" name="companyName"
+                                            ng-model="vm.company.companyName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                                     <span class="error text-small block" ng-if="vm.Form.companyName.$error.pattern" translate="company.details.COMPANYNAME.INVALID">Invalid characters</span>
+                                     <span class="error text-small block" ng-if="vm.Form.companyName.$dirty && vm.Form.companyName.$error.required" translate="company.details.COMPANYNAME.REQUIRED">Company name is required</span>
                                      <span class="error text-small block"
-                                           ng-show="vm.Form.companyName.$invalid && vm.Form.companyName.$error.maxlength">Company name should be less than 30 characters</span>
+                                           ng-show="vm.Form.companyName.$invalid && vm.Form.companyName.$error.maxlength" translate="company.details.COMPANYNAME.LENGTH">Company name should be less than 30 characters</span>
                                    </div>
 
                                    <div class="form-group"
-                                        ng-class="{'has-error':vm.Form.companyName.$dirty && vm.Form.companyName.$invalid, 'has-success':vm.Form.companyName.$valid}">
-                                     <label class="control-label"><span translate="auth.signUp.COMPANYNAME.NAME"> Company Name </span> <span class="symbol required"></span> </label>
-                                     <input type="text" placeholder="Enter company name" class="form-control" name="companyName"
-                                            ng-model="vm.user.companyName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
-                                     <span class="error text-small block" ng-if="vm.Form.companyName.$error.pattern">Invalid characters</span>
-                                     <span class="error text-small block" ng-if="vm.Form.companyName.$dirty && vm.Form.companyName.$error.required">Company name is required</span>
-                                     <span class="error text-small block"
-                                           ng-show="vm.Form.companyName.$invalid && vm.Form.companyName.$error.maxlength">Company name should be less than 30 characters</span>
+                                        ng-class="{'has-error':vm.Form.companySize.$dirty && vm.Form.companySize.$invalid, 'has-success':vm.Form.companySize.$valid}">
+                                     <label class="control-label"><span translate="company.details.COMPANYSIZE.NAME"> Company Size </span> <span class="symbol required"></span> </label>
+                                     <select class="form-control" placeholder="{{'company.details.COMPANYNAME.PLACEHOLDER' | translate }}" name="companySize" ng-model="vm.company.companySize" style="width:250px;"
+                                         autofocus required>
+                                        <option value="" disabled selected translate="company.details.COMPANYSIZE.PLACEHOLDER">Select size of company</option>
+                                        <option value="{{'company.details.COMPANYSIZE.DROPDOWNONE'| translate }}" translate="company.details.COMPANYSIZE.DROPDOWNONE">1</option>
+                                        <option value="{{'company.details.COMPANYSIZE.DROPDOWNTWO'| translate}}" translate="company.details.COMPANYSIZE.DROPDOWNTWO">2</option>
+                                        <option value="{{'company.details.COMPANYSIZE.DROPDOWNTHREE'| translate}}" translate="company.details.COMPANYSIZE.DROPDOWNTHREE">3</option>
+                                </select>
+                                <span class="error text-small block"
+                                      ng-if="vm.Form.companySize.$dirty && vm.Form.companySize.$error.required" translate="company.details.COMPANYSIZE.REQUIRED">Company size is required.</span>
                                    </div>
 
                                 </div>
@@ -44,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-8">
                                         <div class="form-actions">
-                                                <button type="submit" class="btn btn-red btn-block" ng-click="vm.detailsSubmit()"  ui-sref="company.teams">
+                                                <button type="submit" class="btn btn-red btn-block" translate="company.details.NEXT" ng-click="vm.detailsSubmit()">
                                                     Next
                                                 </button>                    
                                         </div>

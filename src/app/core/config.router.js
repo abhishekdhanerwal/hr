@@ -159,10 +159,20 @@ function ($httpProvider, $stateProvider, $urlRouterProvider, $controllerProvider
 	    templateUrl: 'app/blocks/company/teams.html',
         controller: 'CompanyDetailsController',
         controllerAs: 'vm'
-    }).state('company.slides', {
+    }).state('company.timeOff', {
+	    url: '/time-off',
+	    templateUrl: 'app/blocks/company/time-off.html',
+        controller: 'CompanyMiscController',
+        controllerAs: 'vm'
+	}).state('company.documentFolders', {
+	    url: '/documentFolders',
+	    templateUrl: 'app/blocks/company/documentFolders.html',
+        controller: 'CompanyMiscController',
+        controllerAs: 'vm'
+	}).state('company.slides', {
 	    url: '/slides',
 	    templateUrl: 'app/blocks/company/slides.html',
-        controller: 'CompanyDetailsController',
+        controller: 'CompanyUploadController',
         controllerAs: 'vm'
 	}).state('company.members', {
 	    url: '/members',

@@ -48,7 +48,7 @@
                                             ng-class="{'has-error':vm.Form.name.$dirty && vm.Form.name.$invalid, 'has-success':vm.Form.name.$valid}">
                                          <label class="control-label" translate="auth.signUp.PASSWORD.NAME">Password</label>  <span class="symbol required"></span>
                                          <input type="password" placeholder="{{'auth.signUp.PASSWORD.PLACEHOLDER' | translate }}" class="form-control" name="name"
-                                                ng-model="vm.user.name"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                                                ng-model="vm.user.password"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
                                          <span class="error text-small block" ng-if="vm.Form.name.$error.pattern" translate="auth.signUp.PASSWORD.INVALID">Invalid characters</span>
                                          <span class="error text-small block" ng-if="vm.Form.name.$dirty && vm.Form.name.$error.required" translate="auth.signUp.PASSWORD.REQUIRED">Password is required</span>
                                          <span class="error text-small block"

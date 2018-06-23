@@ -84,6 +84,47 @@
             "FIRSTGOAL":"AutomateAr HolidayAr BookingAr",
             "SECONDGOAL":"StreamlineAr NewAr HireAr OnboardingAr",
             "THIRDGOAL":"OrganiseAr myAr team'sAr InformationAr"
+        },
+        "details":{
+            "HEADING":"LetsAr createAr anAr onboardingAr processAr toAr beAr proudAr ofAr",
+            "SUBHEADING":"AddAr someAr  basicAr companyAr infoAr toAr helpAr newAr startersAr settleAr in",
+            "COMPANYNAME":{
+                "NAME":"CompanyAr NameAr",
+                "PLACEHOLDER":"EnterAr companyAr name",
+                "REQUIRED":"CompanyAr namev is requiredAr",
+                "INVALID":"InvalidAr charactersAr",
+                "LENGTH":"CompanyAr nameAr shouldAr beAr lessAr thanAr 30 characters"
+            },
+            "COMPANYSIZE":{
+                "NAME":"CompanyAr SizeAr",
+                "PLACEHOLDER":"SelectAr sizeAr of companyAr",
+                "REQUIRED":"CompanyAr sizeAr is requiredArs",
+                "DROPDOWNONE":"1Ar - 50Ar",
+                "DROPDOWNTWO":"50Ar - 100Ar",
+                "DROPDOWNTHREE":"MoreAr thanAr 100Ar"
+            },
+            "NEXT":"NextAr"
+        },
+        "teams":{
+            "HEADING":"IntroduceAr yourAr newAr starterAr to the restAr of theirAr teamAr",
+            "SUBHEADING":"MakeAr it easierAr for newAr joinersAr",
+            "TICKBOXHEAD":"SelectAr teamsAr to createAr :",
+            "MARKETING":"MarketingAr",
+            "SALES":"SalesAr",
+            "DEVELOPMENT":"DevelopmentAr",
+            "OPERATIONS":"OperationsAr",
+            "FINANCE":"FinanceAr",
+            "ADDBUTTON":"AddAr TeamAr" ,
+            "NEXT":"NextAr",
+            "MODALADDTEAM":{
+                "HEADING":"TeamAr NameAr",
+                "PLACEHOLDER":"EnterAr teamAr namAre",
+                "REQUIRED":"TeamAr namAre isAr requiredAr",
+                "INVALID":"InvalidAr charactersAr",
+                "LENGTH":"TeamAr nameAr should Arbe less Arthan 10Ar characters",
+                "OKBTN":"OKAr",
+                "CANBTN":"CancelAr"
+            }              
         }
     },
     "dashboard": {

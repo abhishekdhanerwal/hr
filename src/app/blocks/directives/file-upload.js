@@ -12,7 +12,7 @@
   'use strict';
 
   angular
-    .module('app.directives')
+    .module('blocks.auth')
     .directive('ngThumb', ['$window', function ($window) {
       var helper = {
         support: !!($window.FileReader && $window.CanvasRenderingContext2D),

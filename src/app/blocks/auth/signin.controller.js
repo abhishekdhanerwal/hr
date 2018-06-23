@@ -5,9 +5,9 @@
     .module('blocks.auth')
     .controller('SigninController', SigninController);
 
-  SigninController.$inject = ['$scope', '$state', 'validationHelperFactory', 'toaster', '$localStorage', '$timeout', 'ngNotify'];
+  SigninController.$inject = ['$scope', '$state', 'validationHelperFactory', 'toaster', '$localStorage', '$timeout', 'ngNotify' ,'$http'];
   /* @ngInject */
-  function SigninController($scope, $state, validationHelperFactory, toaster, $localStorage, $timeout, ngNotify) {
+  function SigninController($scope, $state, validationHelperFactory, toaster, $localStorage, $timeout, ngNotify , $http) {
     var vm = this;
 
     vm.continue = function(){

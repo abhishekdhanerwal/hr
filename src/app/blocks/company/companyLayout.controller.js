@@ -22,35 +22,34 @@
             vm.membersSelected = 'inactiveLink';
         }
        else if($state.current.name == 'company.details'){
-        vm.goalsSelected = 'inactiveLink';
+        vm.goalsSelected = 'selected , inactiveLink';
         vm.detailsSelected = 'selected , inactiveLink';
         vm.teamsSelected = 'inactiveLink';
         vm.slidesSelected = 'inactiveLink';
         vm.membersSelected = 'inactiveLink';
       }
       else if($state.current.name == 'company.teams'){
-        vm.goalsSelected = 'inactiveLink';
-            vm.detailsSelected = 'inactiveLink';
+        vm.goalsSelected = 'selected , inactiveLink';
+            vm.detailsSelected = 'selected , inactiveLink';
             vm.teamsSelected = 'selected , inactiveLink';
             vm.slidesSelected = 'inactiveLink';
             vm.membersSelected = 'inactiveLink';
        }
        else if($state.current.name == 'company.slides'){
-        vm.goalsSelected = 'inactiveLink';
-            vm.detailsSelected = 'inactiveLink';
-            vm.teamsSelected = 'inactiveLink';
+        vm.goalsSelected = 'selected , inactiveLink';
+            vm.detailsSelected = 'selected , inactiveLink';
+            vm.teamsSelected = 'selected , inactiveLink';
             vm.slidesSelected = 'selected , inactiveLink';
             vm.membersSelected = 'inactiveLink';
       }
        else if($state.current.name == 'company.members'){
-        vm.goalsSelected = 'inactiveLink';
-        vm.detailsSelected = 'inactiveLink';
-        vm.teamsSelected = 'inactiveLink';
-        vm.slidesSelected = 'inactiveLink';
+        vm.goalsSelected = 'selected , inactiveLink';
+        vm.detailsSelected = 'selected , inactiveLink';
+        vm.teamsSelected = 'selected , inactiveLink';
+        vm.slidesSelected = 'selected , inactiveLink';
         vm.membersSelected = 'selected , inactiveLink';
         }
 
-        console.log(vm.teamsSelected)
       }
 
     }

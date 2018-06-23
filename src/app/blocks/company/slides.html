@@ -8,7 +8,7 @@
                             with canvas preview
                         </p>
                         <!-- /// controller:  'UploadCtrl' -  localtion: assets/js/controllers/uploadCtrl.js /// -->
-                        <div ng-controller="UploadCtrl" nv-file-drop="" uploader="uploaderImages">
+                        <div  nv-file-drop="" uploader="uploaderImages">
                             <div class="row">
                                 <div class="col-md-3">
                                     <h5>Select files</h5>
@@ -100,14 +100,15 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+                <div class="col-md-4 offset-md-4 margin-left-25">
+                        <div class="form-actions">
+                                <button type="submit" class="btn btn-red btn-block"  ui-sref="company.members">
+                                    Next
+                                </button>                    
+                        </div>
+                </div>
+            </div>
     </div>
 
-    <div class="row">
-            <div class="col-md-8">
-                    <div class="form-actions">
-                            <button type="submit" class="btn btn-red btn-block"  ui-sref="company.members">
-                                Next
-                            </button>                    
-                    </div>
-            </div>
-        </div>
+    
