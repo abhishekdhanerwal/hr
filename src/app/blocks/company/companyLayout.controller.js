@@ -41,6 +41,12 @@
             vm.teamsSelected = 'selected , inactiveLink';
             vm.slidesSelected = 'selected , inactiveLink';
             vm.membersSelected = 'inactiveLink';
+      }else if($state.current.name == 'company.documentFolders'){
+        vm.goalsSelected = 'selected , inactiveLink';
+            vm.detailsSelected = 'selected , inactiveLink';
+            vm.teamsSelected = 'selected , inactiveLink';
+            vm.slidesSelected = 'selected , inactiveLink';
+            vm.membersSelected = 'inactiveLink';
       }
        else if($state.current.name == 'company.members'){
         vm.goalsSelected = 'selected , inactiveLink';

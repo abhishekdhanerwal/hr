@@ -21,7 +21,7 @@
                                         ng-class="{'has-error':vm.Form.companyName.$dirty && vm.Form.companyName.$invalid, 'has-success':vm.Form.companyName.$valid}">
                                      <label class="control-label"><span translate="company.details.COMPANYNAME.NAME"> Company Name </span> <span class="symbol required"></span> </label>
                                      <input type="text" placeholder="{{'company.details.COMPANYNAME.PLACEHOLDER' | translate }}" class="form-control" name="companyName"
-                                            ng-model="vm.company.companyName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-maxlength="30" required/>
+                                            ng-model="vm.company.companyName"  ng-pattern="/^[a-zA-Z\s]*$/" ng-disabled="true" ng-maxlength="30" required/>
                                      <span class="error text-small block" ng-if="vm.Form.companyName.$error.pattern" translate="company.details.COMPANYNAME.INVALID">Invalid characters</span>
                                      <span class="error text-small block" ng-if="vm.Form.companyName.$dirty && vm.Form.companyName.$error.required" translate="company.details.COMPANYNAME.REQUIRED">Company name is required</span>
                                      <span class="error text-small block"
@@ -37,6 +37,8 @@
                                         <option value="{{'company.details.COMPANYSIZE.DROPDOWNONE'| translate }}" translate="company.details.COMPANYSIZE.DROPDOWNONE">1</option>
                                         <option value="{{'company.details.COMPANYSIZE.DROPDOWNTWO'| translate}}" translate="company.details.COMPANYSIZE.DROPDOWNTWO">2</option>
                                         <option value="{{'company.details.COMPANYSIZE.DROPDOWNTHREE'| translate}}" translate="company.details.COMPANYSIZE.DROPDOWNTHREE">3</option>
+                                        <option value="{{'company.details.COMPANYSIZE.DROPDOWNFOUR'| translate}}" translate="company.details.COMPANYSIZE.DROPDOWNFOUR">4</option>
+                                        <option value="{{'company.details.COMPANYSIZE.DROPDOWNFIVE'| translate}}" translate="company.details.COMPANYSIZE.DROPDOWNFIVE">5</option>
                                 </select>
                                 <span class="error text-small block"
                                       ng-if="vm.Form.companySize.$dirty && vm.Form.companySize.$error.required" translate="company.details.COMPANYSIZE.REQUIRED">Company size is required.</span>

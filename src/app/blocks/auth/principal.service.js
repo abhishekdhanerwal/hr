@@ -22,7 +22,7 @@
       // isInAnyRole: isInAnyRole,
       // isInRole: isInRole,
 
-      // signin: signin,
+       signin: signin,
       // signout: signout,
 
       signup:signup
@@ -32,6 +32,18 @@
 
     function signup(user){
       var promise = $http.post(__env.dataServerUrl + '/unauth/v1/account' ,user)
+        .then(
+          function (response) {
+            return response;
+          },
+          function (response) {
+            return response;
+          });
+      return promise;
+    }
+
+    function signin(user){
+      var promise = $http.post(__env.dataServerUrl + '/auth/login' ,user)
         .then(
           function (response) {
             return response;

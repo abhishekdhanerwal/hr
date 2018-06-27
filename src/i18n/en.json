@@ -99,9 +99,11 @@
                 "NAME":"Company Size",
                 "PLACEHOLDER":"Select size of company",
                 "REQUIRED":"Company size is required",
-                "DROPDOWNONE":"1 - 50",
-                "DROPDOWNTWO":"50 - 100",
-                "DROPDOWNTHREE":"More than 100"
+                "DROPDOWNONE":"1-9 Employees",
+                "DROPDOWNTWO":"10-49 Employees",
+                "DROPDOWNTHREE":"50-99 Employees",
+                "DROPDOWNFOUR":"100-149 Employees",
+                "DROPDOWNFIVE":"150+ Employees"
             },
             "NEXT":"Next"
         },
@@ -158,6 +160,23 @@
             },
             "MOREBUTTON":"Invite Another Coworker",
             "GETSTARTED":"Start Working"
+        },
+        "documents":{
+            "HEADING":"Store everyone's details so you can quickly find them",
+            "SUBHEADING":"Keep all the information of a team member safely in one place, and control who can see it",
+            "FORMHEADING":"Team member document folders :",
+            "FOLDERS":{
+                "FIRST":"P45",
+                "SECOND":"Passport",
+                "THIRD":"Visa",
+                "FOURTH":"Contracts"
+            },
+            "NEXTBTNHEADING":"Anything else you want to keep safe? No problem :",
+            "NEXTBTN":"Add A New Folder",
+            "MODALS":{
+                "HEADING":"Create a new team member folder"
+            },
+            "LASTBUTTON":"Next"
         }
     },
     "dashboard": {

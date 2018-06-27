@@ -16,5 +16,12 @@
       function activate() {
       }
 
+      vm.documentsSubmit = function(){
+        
+          // $localStorage.registerProcess.team = vm.team;
+          $state.go('company.members', {}, { reload: true });
+        
+      }
+
     }
   })();

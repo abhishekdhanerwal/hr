@@ -5,7 +5,7 @@
   var environment = "qa"; //can be dev, test or prod.qa
 
     if(environment === "qa"){
-      window.__env.dataServerUrl = 'http://18.130.41.111:8082/%7Btenant%7D/api';
+      window.__env.dataServerUrl = 'http://18.130.41.111:8082/accounting/api';
       window.__env.baseUrl = '/';
       window.__env.enableDebug = true;
       window.__env.user = "";

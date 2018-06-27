@@ -23,6 +23,8 @@
       activate();
   
       function activate() {
+        vm.company = {};
+        vm.company.companyName = $localStorage._identity.userInfo.companyName;
         console.log($localStorage.registerProcess)
       }
 
@@ -73,13 +75,20 @@
           })
         }else{
           $localStorage.registerProcess.team = vm.team;
-          $state.go('company.slides', {}, { reload: true });
+          $state.go('company.documentFolders', {}, { reload: true });
         }
       }
 
       vm.detailsSubmit = function(){
-        if(vm.Form.$invalid){
-          validationHelperFactory.manageValidationFailed(vm.Form);
+        if(vm.memberList.length <= 0 && vm.memberForm.$invalid){
+          ngNotify.set('Atleast One Coworker is Required', {
+            type: 'error',
+            duration: 3000
+        })
+          return;
+        }
+       else if(vm.memberForm.$invalid){
+          validationHelperFactory.manageValidationFailed(vm.memberForm);
           ngNotify.set('Fill all details !!', {
             type: 'error',
             duration: 3000
@@ -87,9 +96,9 @@
           return;
       }
       else {
-        console.log($localStorage.registerProcess)
-          $localStorage.registerProcess.details = vm.company;
-        $state.go('company.teams', {}, { reload: true });
+        console.log($localStorage)
+          $localStorage.registerProcess.memberDetails = vm.company;
+        $state.go('app.society', {}, { reload: true });
       }
         
           // ui-sref="company.teams"

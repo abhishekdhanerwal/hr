@@ -3,7 +3,8 @@
 
   angular.module('blocks.auth', [
     'toaster',
-    'ngNotify'
+    'ngNotify',
+    'angular-jwt'
   ]);
 
 })();

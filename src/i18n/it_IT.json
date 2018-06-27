@@ -99,9 +99,11 @@
                 "NAME":"CompanyAr SizeAr",
                 "PLACEHOLDER":"SelectAr sizeAr of companyAr",
                 "REQUIRED":"CompanyAr sizeAr is requiredArs",
-                "DROPDOWNONE":"1Ar - 50Ar",
-                "DROPDOWNTWO":"50Ar - 100Ar",
-                "DROPDOWNTHREE":"MoreAr thanAr 100Ar"
+                "DROPDOWNONE":"1Ar-9Ar EmployeesAr",
+                "DROPDOWNTWO":"10Ar-49Ar EmployeesAr",
+                "DROPDOWNTHREE":"50Ar-99Ar EmployeesAr",
+                "DROPDOWNFOUR":"100Ar-149Ar EmployeesAr",
+                "DROPDOWNFIVE":"150+ Employees"
             },
             "NEXT":"NextAr"
         },

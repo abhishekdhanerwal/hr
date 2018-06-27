@@ -6,14 +6,14 @@
     .module('blocks.auth')
     .controller('SignoutController', SignoutController);
 
-  SignoutController.$inject = ['$state', 'principal', 'toaster'];
+  SignoutController.$inject = ['$state', 'principal', 'toaster' , '$localStorage'];
   /* @ngInject */
-  function SignoutController($state, principal, toaster) {
+  function SignoutController($state, principal, toaster , $localStorage) {
     var vm = this;
 
        vm.signout = function () {
-        principal.signout();
-        $state.go('auth.signin');
+        $localStorage.$reset();
+        $state.go('auth.view', {}, { reload: true });
        }
   }
   })();
