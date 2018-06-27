@@ -45,3 +45,8 @@ div.scrollUserList {
   pointer-events: none;
   cursor: default;
 }
+
+
+.nav-height{
+  height: 90px;
+}
